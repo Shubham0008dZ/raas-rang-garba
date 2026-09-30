@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071b49">
 
     <title>Refund & Cancellation Policy | Raas Rang</title>
 
@@ -12,161 +11,200 @@
         content="Refund and Cancellation Policy for Raas Rang Dandiya Night."
     >
 
-    <link rel="stylesheet" href="assets/site.css">
-
     <style>
-        body {
-            margin: 0;
-            background: #f5f7fc;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #18243d;
+        :root{
+            --navy:#071b49;
+            --navy2:#123979;
+            --pink:#ef2f7d;
+            --gold:#ffd04f;
+            --bg:#f4f6fb;
+            --text:#17233d;
+            --muted:#64728b;
+            --border:#e3e8f1;
+            --shadow:0 20px 60px rgba(7,27,73,.10);
         }
 
-        .topbar {
-            background: #071b49;
-            color: #fff;
-            text-align: center;
-            padding: 12px;
-            font-size: 13px;
-            font-weight: 800;
+        *{box-sizing:border-box}
+
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
         }
 
-        nav {
-            background: #fff;
-            border-bottom: 1px solid #e4e8f1;
-            padding: 16px 6%;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            align-items: center;
+        a{text-decoration:none}
+
+        .top-strip{
+            background:var(--navy);
+            color:#fff;
+            text-align:center;
+            padding:10px 18px;
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.7px;
         }
 
-        .brand {
-            font-weight: 800;
-            color: #122d69;
+        .nav{
+            background:#fff;
+            border-bottom:1px solid var(--border);
         }
 
-        .links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
+        .nav-inner{
+            width:min(1180px,calc(100% - 36px));
+            margin:auto;
+            min-height:66px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:20px;
         }
 
-        .links a {
-            color: #18366f;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
+        .brand{
+            color:var(--navy2);
+            font-weight:900;
         }
 
-        .container {
-            width: min(980px, calc(100% - 32px));
-            margin: 40px auto;
+        .links{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+            gap:18px;
         }
 
-        .card {
-            background: #fff;
-            border: 1px solid #e3e8f2;
-            box-shadow: 0 16px 44px rgba(10, 31, 74, .08);
-            border-radius: 22px;
-            padding: 40px;
+        .links a{
+            color:#263e68;
+            font-size:13px;
+            font-weight:800;
         }
 
-        .eyebrow {
-            color: #d81b70;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .links a:hover{color:var(--pink)}
+
+        .container{
+            width:min(980px,calc(100% - 36px));
+            margin:38px auto 60px;
         }
 
-        h1 {
-            color: #0c225a;
-            font-size: clamp(32px, 5vw, 48px);
-            margin: 14px 0 10px;
+        .card{
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:25px;
+            padding:42px;
+            box-shadow:var(--shadow);
         }
 
-        h2 {
-            color: #112c67;
-            margin-top: 34px;
-            font-size: 20px;
+        .eyebrow{
+            color:var(--pink);
+            font-size:11px;
+            letter-spacing:1.2px;
+            text-transform:uppercase;
+            font-weight:900;
         }
 
-        p,
-        li {
-            color: #5f6d85;
-            line-height: 1.75;
-            font-size: 15px;
+        h1{
+            margin:12px 0 10px;
+            color:var(--navy);
+            font-size:clamp(36px,6vw,56px);
+            line-height:1;
         }
 
-        ul {
-            padding-left: 20px;
+        .intro,
+        .section p,
+        .section li{
+            color:var(--muted);
+            line-height:1.8;
+            font-size:15px;
         }
 
-        .policy-box {
-            background: #f7f9ff;
-            border: 1px solid #dce4f6;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
+        .section{
+            margin-top:30px;
         }
 
-        .refund-box {
-            background: #fff8df;
-            border: 1px solid #efd87b;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
+        .section h2{
+            margin:0 0 10px;
+            color:var(--navy2);
+            font-size:20px;
         }
 
-        .refund-box strong {
-            color: #6a5314;
+        ul{
+            padding-left:20px;
         }
 
-        footer {
-            background: #071b49;
-            color: #fff;
-            padding: 32px 6%;
-            margin-top: 45px;
+        .refund-main{
+            margin:20px 0;
+            padding:20px;
+            background:linear-gradient(135deg,#fff7dc,#fffaf0);
+            border:1px solid #efd77b;
+            border-radius:18px;
         }
 
-        .footer-grid {
-            width: min(1100px, 100%);
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 30px;
+        .refund-main strong{
+            color:#6d5918;
+            font-size:16px;
+        }
+
+        .support{
+            padding:18px;
+            margin-top:20px;
+            background:#f7f9ff;
+            border:1px solid #dfe6f5;
+            border-radius:16px;
+        }
+
+        footer{
+            background:var(--navy);
+            color:#fff;
+            padding:34px 20px 18px;
+        }
+
+        .footer-grid{
+            width:min(1180px,100%);
+            margin:auto;
+            display:grid;
+            grid-template-columns:1.3fr 1fr 1fr;
+            gap:30px;
+        }
+
+        footer h3{
+            margin:0 0 10px;
         }
 
         footer p,
-        footer a {
-            color: #d6e0f4;
-            text-decoration: none;
-            font-size: 13px;
-            line-height: 1.7;
+        footer a{
+            color:#d3def0;
+            margin:5px 0;
+            font-size:13px;
+            line-height:1.7;
         }
 
-        .copyright {
-            width: min(1100px, 100%);
-            margin: 24px auto 0;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,.15);
-            color: #adbbd6;
-            font-size: 12px;
+        .copyright{
+            width:min(1180px,100%);
+            margin:24px auto 0;
+            border-top:1px solid rgba(255,255,255,.14);
+            padding-top:16px;
+            color:#acbad2;
+            font-size:12px;
         }
 
-        @media (max-width: 760px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
+        @media(max-width:850px){
+            .nav-inner{
+                padding:12px 0;
+                flex-direction:column;
+                align-items:flex-start;
             }
 
-            .card {
-                padding: 24px;
+            .footer-grid{
+                grid-template-columns:1fr;
+            }
+        }
+
+        @media(max-width:520px){
+            .container{
+                width:calc(100% - 20px);
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .card{
+                padding:22px;
             }
         }
     </style>
@@ -174,20 +212,22 @@
 
 <body>
 
-    <div class="topbar">
+    <div class="top-strip">
         VANASTHALI PUBLIC SCHOOL • RAAS RANG • REFUND & CANCELLATION
     </div>
 
-    <nav>
-        <div class="brand">Raas Rang — Dandiya Night</div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">Raas Rang — Dandiya Night</div>
 
-        <div class="links">
-            <a href="index.html">Registration</a>
-            <a href="about.html">Event</a>
-            <a href="contact.html">Contact</a>
-            <a href="terms.html">Terms</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="refund-cancellation.html">Refund & Cancellation</a>
+            <div class="links">
+                <a href="index.html">Registration</a>
+                <a href="about.html">Event</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="refund-cancellation.html">Refund</a>
+            </div>
         </div>
     </nav>
 
@@ -199,127 +239,147 @@
 
             <h1>Refund & Cancellation</h1>
 
-            <p>
-                This policy applies to online registrations and entry payments for
-                Raas Rang — Dandiya Night.
+            <p class="intro">
+                This policy applies to online registration and entry payments
+                made for Raas Rang — Dandiya Night.
             </p>
 
-            <div class="policy-box">
-
-                <h2 style="margin-top:0;">Event Ticket Cancellation</h2>
-
-                <p>
-                    Once an event registration payment has been successfully
-                    completed and the registration has been confirmed, customer-
-                    initiated cancellation is generally not permitted and the
-                    event entry fee is non-refundable.
-                </p>
-
+            <div class="refund-main">
+                <strong>
+                    Confirmed event registrations are generally non-refundable
+                    once payment has been successfully completed.
+                </strong>
             </div>
 
-            <h2>1. Duplicate Payment</h2>
-
-            <p>
-                If the same customer is charged more than once for the same
-                registration because of a duplicate transaction, the duplicate
-                amount may be reviewed and refunded after verification.
-            </p>
-
-            <h2>2. Failed or Unsuccessful Payment</h2>
-
-            <p>
-                If a payment is not successfully captured, no confirmed event
-                registration will be issued against that unsuccessful payment.
-            </p>
-
-            <p>
-                If the customer's bank account is debited but the payment remains
-                unsuccessful at the registration system, the transaction will be
-                reviewed against the payment gateway records.
-            </p>
-
-            <h2>3. Event Cancellation by Organiser</h2>
-
-            <div class="refund-box">
+            <div class="section">
+                <h2>1. Customer-Initiated Cancellation</h2>
 
                 <p>
-                    <strong>
-                        If the event is cancelled by the organiser and the organiser
-                        announces that ticket payments will be refunded, eligible
-                        payments will be refunded to the original payment method
-                        used for the transaction.
-                    </strong>
+                    Once an online registration has been successfully paid for
+                    and confirmed, customer-initiated cancellation is generally
+                    not permitted and the entry fee is non-refundable.
                 </p>
-
             </div>
 
-            <h2>4. Event Rescheduling</h2>
-
-            <p>
-                If the event is rescheduled, the organiser may announce whether
-                existing confirmed registrations will remain valid for the revised
-                date or whether a refund window will be provided.
-            </p>
-
-            <h2>5. Refund Processing</h2>
-
-            <p>
-                Approved refunds will be initiated through the applicable payment
-                channel and processed according to the payment service provider's
-                settlement and banking timelines.
-            </p>
-
-            <p>
-                The time taken for the amount to appear in the customer's account
-                may vary depending on the customer's bank or payment method.
-            </p>
-
-            <h2>6. Refund Request</h2>
-
-            <p>
-                For an eligible refund request, customers should contact the event
-                support team using the details below and provide the registration
-                number and payment reference, where available.
-            </p>
-
-            <p>
-                <strong>Email:</strong>
-                <a href="mailto:vpserpvasundhara@gmail.com">
-                    vpserpvasundhara@gmail.com
-                </a>
-            </p>
-
-            <p>
-                <strong>Phone:</strong>
-                0120-4111062 / 011-22456133
-            </p>
-
-            <h2>7. No Unauthorised Refunds</h2>
-
-            <p>
-                Refunds will not be issued merely because a customer changes their
-                mind, does not attend the event, arrives after entry procedures
-                close, or otherwise chooses not to use a confirmed ticket, except
-                where the organiser's announced policy provides otherwise.
-            </p>
-
-            <h2>8. Policy Changes</h2>
-
-            <p>
-                Any change to this policy will be published on this website before
-                it is applied to future transactions, where applicable.
-            </p>
-
-            <div class="refund-box">
+            <div class="section">
+                <h2>2. Duplicate Payment</h2>
 
                 <p>
-                    <strong>
-                        Important: This policy is intended for the Raas Rang event
-                        and should be published only after it has been approved by
-                        the event organiser / school authority.
-                    </strong>
+                    Where a customer is charged more than once for the same
+                    registration due to a duplicate transaction, the duplicate
+                    transaction may be reviewed and refunded after verification.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>3. Failed Payment</h2>
+
+                <p>
+                    If a payment is not successfully captured, no confirmed
+                    event registration will be issued against that unsuccessful
+                    payment.
                 </p>
 
+                <p>
+                    Where a customer's bank account has been debited but the
+                    payment is not reflected as successfully captured by the
+                    payment system, the transaction may be reviewed against the
+                    available payment records.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>4. Event Cancellation by Organiser</h2>
+
+                <p>
+                    If the organiser cancels the event and announces that
+                    eligible ticket payments will be refunded, such refunds
+                    will be processed to the original payment method wherever
+                    technically possible.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>5. Event Rescheduling</h2>
+
+                <p>
+                    If the event is rescheduled, the organiser may announce
+                    whether existing registrations remain valid for the revised
+                    date or whether an eligible refund window will be provided.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>6. Refund Processing</h2>
+
+                <p>
+                    Approved refunds will be initiated through the applicable
+                    payment channel. The time taken for the amount to appear
+                    in the customer's account may vary depending on the payment
+                    method and banking system.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>7. Non-Attendance</h2>
+
+                <p>
+                    A confirmed entry fee is generally not refundable merely
+                    because a customer does not attend the event or chooses
+                    not to use the registration.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>8. Refund Request / Support</h2>
+
+                <p>
+                    For an eligible refund-related query, contact the event
+                    support team and provide the registration number and
+                    payment reference wherever available.
+                </p>
+
+                <div class="support">
+                    <p style="margin:0 0 6px;">
+                        <strong style="color:#18376d;">
+                            Email:
+                        </strong>
+                        <a
+                            href="mailto:vpsvasundhara@gmail.com"
+                            style="color:#54657f;"
+                        >
+                            vpsvasundhara@gmail.com
+                        </a>
+                    </p>
+
+                    <p style="margin:0;">
+                        <strong style="color:#18376d;">
+                            Phone:
+                        </strong>
+                        <span style="color:#54657f;">
+                            0120-4111062 / 011-22456133
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>9. Policy Updates</h2>
+
+                <p>
+                    Any material change to this policy will be reflected on this
+                    page for future transactions, where applicable.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>10. Important</h2>
+
+                <p>
+                    This policy must reflect the actual refund and cancellation
+                    rules approved by the event organiser. The organiser's
+                    announced policy will govern eligible refund decisions.
+                </p>
             </div>
 
         </section>
@@ -327,9 +387,7 @@
     </main>
 
     <footer>
-
         <div class="footer-grid">
-
             <div>
                 <h3>Raas Rang</h3>
                 <p>
@@ -340,7 +398,7 @@
 
             <div>
                 <h3>Support</h3>
-                <p>Email: vpserpvasundhara@gmail.com</p>
+                <p>vpsvasundhara@gmail.com</p>
                 <p>0120-4111062</p>
                 <p>011-22456133</p>
             </div>
@@ -351,13 +409,11 @@
                 <p><a href="privacy.html">Privacy Policy</a></p>
                 <p><a href="contact.html">Contact Us</a></p>
             </div>
-
         </div>
 
         <div class="copyright">
             © 2026 Vanasthali Public School. All rights reserved.
         </div>
-
     </footer>
 
 </body>
