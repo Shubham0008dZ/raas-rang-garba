@@ -10,13 +10,6 @@
     <meta name="description"
         content="Raas Rang Dandiya Night — Vanasthali Public School, Vasundhara Sector-3. 14 October, 6 PM–10 PM." />
 
-    <!--
-    Production security note:
-    Put the real Content-Security-Policy in your Vercel/server response headers.
-    All CSS for this page is inlined below so it never conflicts with assets/site.css.
-    Do NOT put Razorpay secret keys, database credentials, or API secrets in this file.
-  -->
-
     <title>Raas Rang — Dandiya Night | Registration</title>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -1838,8 +1831,8 @@
                     single ? "Single female entry" : "Total people in your group");
 
                 // Single Female mode => group size section is not needed at all.
-                // The `hidden` attribute is enforced by the CSS rule [hidden] { display: none !important; }
-                groupSizeBlock.hidden = single;
+                // Using style.display directly ensures no CSS rule can override it.
+                groupSizeBlock.style.display = single ? "none" : "flex";
 
                 renderMembers();
                 resetPaymentAttempt();
@@ -2195,6 +2188,11 @@
                 renderMembers();
                 updatePayState();
             });
+
+            // ========== YEH LINE MISSING THI ==========
+            // Single Female Entry toggle hone par UI update karne ke liye event listener
+            singleFemaleEntry.addEventListener("change", updateEntryModeUI);
+            // ==========================================
 
             [$("#leadName"), $("#mobile"), $("#email"), captchaAnswer, $("#terms")].forEach((el) => {
                 el.addEventListener("input", () => {
