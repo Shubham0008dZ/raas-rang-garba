@@ -527,13 +527,14 @@
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify({
-                            leadName: $("#leadName").value.trim(),
-                            mobile: $("#mobile").value.trim(),
-                            email: $("#email").value.trim().toLowerCase(),
-                            people: totalPeople,
-                            members
-                        })
+                      body: JSON.stringify({
+    leadName: $("#leadName").value.trim(),
+    mobile: $("#mobile").value.trim(),
+    email: $("#email").value.trim().toLowerCase(),
+    people: totalPeople,
+    members,
+    idempotency_key: idempotencyKey
+})
                     });
 
                     const data = await response.json();
