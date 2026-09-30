@@ -1,46 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071b49"><title>Contact Us | Raas Rang Dandiya Night</title>
-  <link rel="stylesheet" href="./assets/site.css">
-  <style>
-    body{background:#f4f7fc}
-    .policy-shell{width:min(960px,calc(100% - 30px));margin:42px auto 70px}
-    .policy-card{background:#fff;border:1px solid #e4e7ec;border-radius:24px;box-shadow:0 20px 55px rgba(4,19,56,.10);padding:36px}
-    .policy-kicker{color:#f63b82;text-transform:uppercase;letter-spacing:.11em;font-weight:900;font-size:11px}
-    h1{margin:8px 0 10px;color:#081d4b;font-size:clamp(30px,5vw,46px);letter-spacing:-.04em}
-    h2{margin:26px 0 8px;color:#162f66;font-size:19px}
-    p,li{color:#475467;line-height:1.75;font-size:14px}
-    ul{padding-left:22px}
-    .notice{padding:14px 16px;border-radius:14px;background:#fff8e2;border:1px solid #f2db82;color:#6b5600;font-size:12px;line-height:1.6}
-    .back{display:inline-flex;margin-bottom:16px;color:#2044a6;font-weight:900;text-decoration:none;font-size:12px}
-    .mini-footer{text-align:center;color:#7a8497;font-size:11px;padding:0 16px 40px}
-    .contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
-    .contact-box{padding:17px;background:#f8faff;border:1px solid #dbe3f3;border-radius:16px}
-    .contact-box strong{display:block;color:#14213d;font-size:12px}
-    .contact-box span,.contact-box a{display:block;color:#667085;font-size:12px;margin-top:5px;word-break:break-word}
-    @media(max-width:650px){.policy-card{padding:22px 18px}.contact-grid{grid-template-columns:1fr}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071b49">
+
+    <title>Contact Us | Raas Rang — Vanasthali Public School</title>
+
+    <meta
+        name="description"
+        content="Contact Vanasthali Public School regarding Raas Rang Dandiya Night registration and event queries."
+    >
+
+    <link rel="stylesheet" href="assets/site.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f5f7fc;
+            color: #16233f;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topbar {
+            background: #071b49;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .nav {
+            background: #fff;
+            border-bottom: 1px solid #e5e9f2;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            color: #122d69;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: #18366f;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1050px, calc(100% - 32px));
+            margin: 42px auto;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, #071b49, #173f8b);
+            border-radius: 24px;
+            padding: 42px;
+            color: #fff;
+            margin-bottom: 22px;
+        }
+
+        .hero-card small {
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+            color: #ffd55c;
+        }
+
+        .hero-card h1 {
+            margin: 14px 0;
+            font-size: clamp(34px, 5vw, 54px);
+        }
+
+        .hero-card p {
+            max-width: 750px;
+            color: #e0e9fa;
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid #e4e8f2;
+            box-shadow: 0 16px 40px rgba(10, 31, 74, .08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #112c67;
+            font-size: 21px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #eef3ff;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-row strong {
+            display: block;
+            color: #172d5b;
+            margin-bottom: 5px;
+        }
+
+        .contact-row span,
+        .contact-row a {
+            color: #60708b;
+            line-height: 1.6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .support-person {
+            padding: 16px;
+            border-radius: 14px;
+            background: #f7f9fe;
+            margin-top: 12px;
+        }
+
+        .support-person strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #112d67;
+        }
+
+        .important {
+            background: #fff8df;
+            border: 1px solid #f0d97c;
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 22px;
+        }
+
+        .important p {
+            margin: 0;
+            color: #6e5a20;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #071b49;
+            color: #fff;
+            padding: 32px 6%;
+            margin-top: 45px;
+        }
+
+        .footer-grid {
+            width: min(1100px, 100%);
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        footer p,
+        footer a {
+            color: #d6e0f4;
+            font-size: 13px;
+            line-height: 1.7;
+            text-decoration: none;
+        }
+
+        .copyright {
+            width: min(1100px, 100%);
+            margin: 24px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,.15);
+            color: #adbbd6;
+            font-size: 12px;
+        }
+
+        @media (max-width: 780px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card,
+            .card {
+                padding: 24px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="top-strip">VANASTHALI PUBLIC SCHOOL • RAAS RANG DANDIYA NIGHT</div>
-<nav class="compliance-nav"><div class="compliance-nav-inner"><span>Raas Rang Registration</span><div>
-<a href="index.html">Registration</a><a href="about.html">Event</a><a href="contact.html">Contact</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund-cancellation.html">Refund &amp; Cancellation</a>
-</div></div></nav>
-<main class="policy-shell"><a class="back" href="index.html">← Back to registration</a><section class="policy-card"><div class="policy-kicker">Customer Support</div>
-<h1>Contact Us</h1>
-<p>For registration, payment, QR pass or entry-related assistance, use the verified contact details below.</p>
-<div class="contact-grid">
-<div class="contact-box"><strong>School / Event</strong><span>Vanasthali Public School, Vasundhara Sector-3</span></div>
-<div class="contact-box"><strong>Email</strong><a href="mailto:VPSvasundhara@gmail.com">VPSvasundhara@gmail.com</a></div>
-<div class="contact-box"><strong>Website</strong><a href="https://vanasthalischool.in/" target="_blank" rel="noopener noreferrer">vanasthalischool.in</a></div>
-<div class="contact-box"><strong>Phone</strong><span><b style="color:#d92d20">[ADD VERIFIED SUPPORT PHONE]</b></span></div>
-<div class="contact-box"><strong>Operating / registered address</strong><span><b style="color:#d92d20">[ADD EXACT VERIFIED ADDRESS USED FOR RAZORPAY KYC]</b></span></div>
-<div class="contact-box"><strong>Grievance contact</strong><span><b style="color:#d92d20">[ADD NAME + DESIGNATION + VERIFIED EMAIL/PHONE]</b></span></div>
-</div>
-<h2>Support timing</h2><p><b>[ADD SUPPORT DAYS / HOURS]</b></p>
-<h2>Payment safety</h2><p>Do not send card number, CVV, PIN or OTP to support staff.</p>
-<div class="notice"><strong>Before KYC:</strong> Replace every bracketed contact/KYC placeholder with the exact verified merchant information.</div></section></main>
-<div class="mini-footer">© 2026 Vanasthali Public School • <a href="contact.html">Contact &amp; Support</a></div>
-</body></html>
+
+    <div class="topbar">
+        VANASTHALI PUBLIC SCHOOL • VASUNDHARA SECTOR-3 • RAAS RANG
+    </div>
+
+    <nav class="nav">
+        <div class="brand">Raas Rang — Dandiya Night</div>
+
+        <div class="nav-links">
+            <a href="index.html">Registration</a>
+            <a href="about.html">Event</a>
+            <a href="contact.html">Contact</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="refund-cancellation.html">Refund & Cancellation</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="hero-card">
+            <small>Customer Support</small>
+
+            <h1>Contact Us</h1>
+
+            <p>
+                For Raas Rang Dandiya Night registration, payment, ticket,
+                entry or event-related queries, please use the contact details below.
+            </p>
+        </section>
+
+        <section class="contact-grid">
+
+            <div class="card">
+
+                <h2>School Contact</h2>
+
+                <div class="contact-row">
+                    <div class="icon">📍</div>
+                    <div>
+                        <strong>Address</strong>
+                        <span>
+                            Vanasthali Public School,<br>
+                            Sector-3, Vasundhara,<br>
+                            Ghaziabad, Uttar Pradesh, India
+                        </span>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="icon">☎️</div>
+                    <div>
+                        <strong>Phone</strong>
+                        <a href="tel:01204111062">0120-4111062</a><br>
+                        <a href="tel:01122456133">011-22456133</a>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <strong>Email</strong>
+                        <a href="mailto:vpserpvasundhara@gmail.com">
+                            vpserpvasundhara@gmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="icon">🌐</div>
+                    <div>
+                        <strong>Official Website</strong>
+                        <a
+                            href="https://vanasthalischool.in/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            www.vanasthalischool.in
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Raas Rang Event Support</h2>
+
+                <div class="support-person">
+                    <strong>Ms. Geetika</strong>
+                    <a href="tel:8130058828">8130058828</a>
+                </div>
+
+                <div class="support-person">
+                    <strong>Ms. Bani Kaur</strong>
+                    <span>
+                        Event contact number as provided by the event team.
+                    </span>
+                </div>
+
+                <div class="important">
+                    <p>
+                        For payment-related issues, please mention your registration
+                        details and payment reference wherever available.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h3>Raas Rang</h3>
+                <p>
+                    Vanasthali Public School<br>
+                    Sector-3, Vasundhara, Ghaziabad
+                </p>
+            </div>
+
+            <div>
+                <h3>Navigation</h3>
+                <p><a href="index.html">Registration</a></p>
+                <p><a href="about.html">About Event</a></p>
+                <p><a href="terms.html">Terms & Conditions</a></p>
+            </div>
+
+            <div>
+                <h3>Policies</h3>
+                <p><a href="privacy.html">Privacy Policy</a></p>
+                <p><a href="refund-cancellation.html">Refund & Cancellation</a></p>
+                <p>Email: vpserpvasundhara@gmail.com</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Vanasthali Public School. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
