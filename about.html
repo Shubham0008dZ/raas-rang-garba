@@ -3,219 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071b49">
 
     <title>About Raas Rang | Vanasthali Public School</title>
-
     <meta
         name="description"
-        content="Raas Rang Dandiya Night presented by Vanasthali Public School, Vasundhara Sector-3, Ghaziabad."
+        content="Raas Rang Dandiya Night at Vanasthali Public School, Vasundhara Sector-3, Ghaziabad."
     >
 
-    <link rel="stylesheet" href="assets/site.css">
-
     <style>
-        body {
-            margin: 0;
-            background: #f5f7fc;
-            color: #16233f;
-            font-family: Arial, Helvetica, sans-serif;
+        :root{
+            --navy:#071b49;
+            --navy2:#0d2b68;
+            --gold:#ffd04f;
+            --pink:#ef2f7d;
+            --bg:#f4f6fb;
+            --text:#17233d;
+            --muted:#64728b;
+            --white:#fff;
+            --border:#e5e9f2;
+            --shadow:0 20px 60px rgba(7,27,73,.11);
         }
 
-        .policy-page {
-            min-height: 100vh;
+        *{box-sizing:border-box}
+
+        html{scroll-behavior:smooth}
+
+        body{
+            margin:0;
+            background:
+                radial-gradient(circle at 80% 0%, rgba(239,47,125,.08), transparent 25%),
+                var(--bg);
+            color:var(--text);
+            font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
         }
 
-        .policy-top {
-            background: #071b49;
-            color: #fff;
-            text-align: center;
-            padding: 12px 20px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: .5px;
+        a{color:inherit}
+
+        .top-strip{
+            background:var(--navy);
+            color:#fff;
+            text-align:center;
+            padding:10px 20px;
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.7px;
         }
 
-        .policy-nav {
-            background: #fff;
-            border-bottom: 1px solid #e5e9f2;
-            padding: 16px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
+        .nav{
+            background:#fff;
+            border-bottom:1px solid var(--border);
+            position:sticky;
+            top:0;
+            z-index:20;
         }
 
-        .policy-brand {
-            font-weight: 800;
-            color: #132e73;
+        .nav-inner{
+            width:min(1180px,calc(100% - 36px));
+            margin:auto;
+            min-height:66px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
         }
 
-        .policy-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
+        .brand{
+            font-weight:900;
+            color:var(--navy2);
+            white-space:nowrap;
         }
 
-        .policy-links a {
-            color: #18366f;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
+        .links{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+            gap:18px;
         }
 
-        .policy-links a:hover {
-            text-decoration: underline;
+        .links a{
+            text-decoration:none;
+            font-size:13px;
+            font-weight:800;
+            color:#25406e;
         }
 
-        .policy-container {
-            width: min(980px, calc(100% - 32px));
-            margin: 40px auto;
+        .links a:hover{color:var(--pink)}
+
+        .container{
+            width:min(1080px,calc(100% - 36px));
+            margin:38px auto 60px;
         }
 
-        .policy-card {
-            background: #fff;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 18px 50px rgba(9, 31, 77, .10);
-            border: 1px solid #e7ebf4;
+        .hero{
+            border-radius:28px;
+            padding:48px;
+            color:#fff;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(255,208,79,.20), transparent 30%),
+                radial-gradient(circle at 20% 90%, rgba(239,47,125,.22), transparent 30%),
+                linear-gradient(135deg,var(--navy),var(--navy2));
+            box-shadow:var(--shadow);
+            overflow:hidden;
         }
 
-        .eyebrow {
-            display: inline-block;
-            padding: 8px 12px;
-            background: #fff0f6;
-            color: #d81b70;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .eyebrow{
+            display:inline-flex;
+            padding:8px 12px;
+            border:1px solid rgba(255,255,255,.22);
+            border-radius:999px;
+            font-size:11px;
+            font-weight:900;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            background:rgba(255,255,255,.07);
         }
 
-        h1 {
-            margin: 18px 0 8px;
-            font-size: clamp(32px, 5vw, 48px);
-            color: #0b2057;
+        .hero h1{
+            margin:18px 0 10px;
+            font-family:Georgia,serif;
+            font-size:clamp(42px,7vw,72px);
+            line-height:.98;
+            letter-spacing:-2px;
         }
 
-        h2 {
-            margin-top: 32px;
-            color: #102b65;
-            font-size: 21px;
+        .hero h1 span{color:var(--gold)}
+
+        .hero p{
+            max-width:760px;
+            margin:0;
+            line-height:1.8;
+            color:#dce6f7;
+            font-size:16px;
         }
 
-        p,
-        li {
-            color: #5d6b84;
-            line-height: 1.75;
-            font-size: 15px;
+        .facts{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:14px;
+            margin:22px 0;
         }
 
-        ul {
-            padding-left: 20px;
+        .fact{
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:18px;
+            padding:20px;
+            box-shadow:0 12px 32px rgba(7,27,73,.07);
         }
 
-        .event-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin: 28px 0;
+        .fact small{
+            display:block;
+            text-transform:uppercase;
+            font-size:10px;
+            letter-spacing:1px;
+            color:#73819a;
+            font-weight:900;
+            margin-bottom:7px;
         }
 
-        .event-box {
-            background: linear-gradient(145deg, #071b49, #123b86);
-            color: #fff;
-            padding: 18px;
-            border-radius: 16px;
+        .fact strong{
+            color:var(--navy2);
+            font-size:17px;
         }
 
-        .event-box span {
-            display: block;
-            font-size: 11px;
-            opacity: .75;
-            text-transform: uppercase;
-            letter-spacing: .7px;
-            margin-bottom: 7px;
+        .card{
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:24px;
+            padding:34px;
+            box-shadow:var(--shadow);
+            margin-top:20px;
         }
 
-        .event-box strong {
-            font-size: 17px;
+        .card h2{
+            margin:0 0 14px;
+            color:var(--navy2);
+            font-size:23px;
         }
 
-        .note {
-            background: #fff9e7;
-            border: 1px solid #f3df8b;
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: 24px;
+        .card p,
+        .card li{
+            color:var(--muted);
+            line-height:1.8;
+            font-size:15px;
         }
 
-        .note p {
-            margin: 0;
+        .card ul{
+            margin:10px 0 0;
+            padding-left:20px;
         }
 
-        footer {
-            background: #071b49;
-            color: #fff;
-            padding: 32px 6%;
-            margin-top: 50px;
+        .notice{
+            margin-top:20px;
+            padding:18px 20px;
+            border-radius:16px;
+            background:#fff8df;
+            border:1px solid #f0dc88;
+            color:#6d5a20;
+            line-height:1.7;
+            font-size:14px;
         }
 
-        .footer-grid {
-            width: min(1100px, 100%);
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 30px;
+        footer{
+            background:var(--navy);
+            color:#fff;
+            padding:34px 20px 18px;
         }
 
-        footer h3 {
-            margin-top: 0;
+        .footer-grid{
+            width:min(1180px,100%);
+            margin:auto;
+            display:grid;
+            grid-template-columns:1.3fr 1fr 1fr;
+            gap:32px;
+        }
+
+        footer h3{
+            margin:0 0 10px;
+            font-size:16px;
         }
 
         footer p,
-        footer a {
-            color: #d6e0f4;
-            font-size: 13px;
-            line-height: 1.7;
+        footer a{
+            margin:6px 0;
+            color:#d4def0;
+            font-size:13px;
+            line-height:1.7;
+            text-decoration:none;
         }
 
-        footer a {
-            text-decoration: none;
+        footer a:hover{color:#fff}
+
+        .copyright{
+            width:min(1180px,100%);
+            margin:24px auto 0;
+            padding-top:16px;
+            border-top:1px solid rgba(255,255,255,.14);
+            color:#aebbd3;
+            font-size:12px;
         }
 
-        .copyright {
-            width: min(1100px, 100%);
-            margin: 25px auto 0;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,.15);
-            color: #adbbd6;
-            font-size: 12px;
-        }
-
-        @media (max-width: 760px) {
-            .policy-nav {
-                flex-direction: column;
-                align-items: flex-start;
+        @media(max-width:850px){
+            .nav-inner{
+                padding:12px 0;
+                align-items:flex-start;
+                flex-direction:column;
             }
 
-            .event-grid {
-                grid-template-columns: 1fr 1fr;
+            .links{
+                justify-content:flex-start;
             }
 
-            .policy-card {
-                padding: 24px;
+            .facts{
+                grid-template-columns:1fr 1fr;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .hero{
+                padding:32px 24px;
+            }
+
+            .footer-grid{
+                grid-template-columns:1fr;
             }
         }
 
-        @media (max-width: 450px) {
-            .event-grid {
-                grid-template-columns: 1fr;
+        @media(max-width:520px){
+            .facts{
+                grid-template-columns:1fr;
+            }
+
+            .container{
+                width:min(100% - 20px,1080px);
+                margin-top:20px;
+            }
+
+            .card{
+                padding:22px;
+            }
+
+            .hero h1{
+                font-size:45px;
             }
         }
     </style>
@@ -223,123 +290,110 @@
 
 <body>
 
-<div class="policy-page">
-
-    <div class="policy-top">
+    <div class="top-strip">
         VANASTHALI PUBLIC SCHOOL • VASUNDHARA SECTOR-3 • RAAS RANG • 14 OCTOBER 2026
     </div>
 
-    <nav class="policy-nav">
-        <div class="policy-brand">Raas Rang — Dandiya Night</div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">Raas Rang — Dandiya Night</div>
 
-        <div class="policy-links">
-            <a href="index.html">Registration</a>
-            <a href="about.html">Event</a>
-            <a href="contact.html">Contact</a>
-            <a href="terms.html">Terms</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="refund-cancellation.html">Refund & Cancellation</a>
+            <div class="links">
+                <a href="index.html">Registration</a>
+                <a href="about.html">Event</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="refund-cancellation.html">Refund</a>
+            </div>
         </div>
     </nav>
 
-    <main class="policy-container">
-        <section class="policy-card">
+    <main class="container">
 
-            <span class="eyebrow">About the Event</span>
+        <section class="hero">
+            <div class="eyebrow">Vanasthali Public School</div>
 
-            <h1>Raas Rang</h1>
-
-            <p>
-                <strong>Raas Rang — Dandiya Night</strong> is a festive school-hosted event
-                presented by <strong>Vanasthali Public School, Vasundhara Sector-3,
-                Ghaziabad</strong>.
-            </p>
+            <h1>
+                Raas <span>Rang</span>
+            </h1>
 
             <p>
-                The event is designed as an evening of Dandiya, Garba, music,
-                food, games, attractive stalls, prizes and celebration.
+                A festive Dandiya Night presented by Vanasthali Public School,
+                Vasundhara Sector-3, Ghaziabad.
             </p>
+        </section>
 
-            <div class="event-grid">
-
-                <div class="event-box">
-                    <span>Date</span>
-                    <strong>14 October 2026</strong>
-                </div>
-
-                <div class="event-box">
-                    <span>Time</span>
-                    <strong>6 PM – 10 PM</strong>
-                </div>
-
-                <div class="event-box">
-                    <span>Female Entry</span>
-                    <strong>₹150</strong>
-                </div>
-
-                <div class="event-box">
-                    <span>Couple Entry</span>
-                    <strong>₹300</strong>
-                </div>
-
+        <section class="facts">
+            <div class="fact">
+                <small>Date</small>
+                <strong>14 October 2026</strong>
             </div>
+
+            <div class="fact">
+                <small>Time</small>
+                <strong>6 PM – 10 PM</strong>
+            </div>
+
+            <div class="fact">
+                <small>Female Entry</small>
+                <strong>₹150</strong>
+            </div>
+
+            <div class="fact">
+                <small>Couple Entry</small>
+                <strong>₹300</strong>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>About the Event</h2>
+
+            <p>
+                Raas Rang is an evening celebration centred around Garba,
+                Dandiya, music, dance, games, food, attractive stalls and prizes.
+                The event is being organised at Vanasthali Public School,
+                Sector-3, Vasundhara, Ghaziabad.
+            </p>
 
             <h2>Event Highlights</h2>
 
             <ul>
-                <li>Garba and Dandiya celebration</li>
-                <li>Food and refreshment stalls</li>
+                <li>Garba and Dandiya</li>
+                <li>Music and dance</li>
                 <li>Games and activities</li>
+                <li>Food stalls</li>
                 <li>Attractive stalls</li>
                 <li>Prizes and entertainment</li>
-                <li>Dance and music</li>
             </ul>
 
-            <h2>Entry Categories</h2>
+            <h2>Entry Information</h2>
 
             <p>
-                The event provides two registration categories:
+                <strong>Single Female Entry:</strong> ₹150
             </p>
-
-            <ul>
-                <li><strong>Single Female Entry:</strong> ₹150</li>
-                <li><strong>Couple Entry:</strong> ₹300 per couple</li>
-            </ul>
 
             <p>
-                <strong>No stag entry is permitted.</strong>
+                <strong>Couple Entry:</strong> ₹300 per couple
             </p>
 
-            <div class="note">
-                <p>
-                    Online registration creates an event entry record only after
-                    successful payment verification by the payment gateway and
-                    registration system.
-                </p>
+            <p>
+                <strong>No stag entry.</strong>
+            </p>
+
+            <div class="notice">
+                Online registration and payment are subject to the Terms &
+                Conditions, Privacy Policy and Refund & Cancellation Policy
+                published on this website.
             </div>
-
-            <h2>About Vanasthali Public School</h2>
-
-            <p>
-                Vanasthali Public School is located at Sector-3, Vasundhara,
-                Ghaziabad, Uttar Pradesh and is affiliated to CBSE.
-            </p>
-
-            <p>
-                Official school website:
-                <a href="https://vanasthalischool.in/" target="_blank" rel="noopener">
-                    vanasthalischool.in
-                </a>
-            </p>
-
         </section>
+
     </main>
 
     <footer>
         <div class="footer-grid">
-
             <div>
-                <h3>Raas Rang</h3>
+                <h3>Raas Rang — Dandiya Night</h3>
                 <p>
                     Vanasthali Public School<br>
                     Sector-3, Vasundhara, Ghaziabad, Uttar Pradesh
@@ -347,28 +401,24 @@
             </div>
 
             <div>
-                <h3>Event Links</h3>
+                <h3>Event</h3>
                 <p><a href="index.html">Registration</a></p>
-                <p><a href="about.html">Event / About</a></p>
+                <p><a href="about.html">About Event</a></p>
                 <p><a href="contact.html">Contact Us</a></p>
-                <p><a href="terms.html">Terms & Conditions</a></p>
             </div>
 
             <div>
                 <h3>Policies</h3>
+                <p><a href="terms.html">Terms & Conditions</a></p>
                 <p><a href="privacy.html">Privacy Policy</a></p>
                 <p><a href="refund-cancellation.html">Refund & Cancellation</a></p>
-                <p>Email: vpserpvasundhara@gmail.com</p>
             </div>
-
         </div>
 
         <div class="copyright">
             © 2026 Vanasthali Public School. All rights reserved.
         </div>
     </footer>
-
-</div>
 
 </body>
 </html>
