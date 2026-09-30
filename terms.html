@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071b49">
 
     <title>Terms & Conditions | Raas Rang</title>
 
@@ -12,149 +11,195 @@
         content="Terms and Conditions for Raas Rang Dandiya Night registration."
     >
 
-    <link rel="stylesheet" href="assets/site.css">
-
     <style>
-        body {
-            margin: 0;
-            background: #f5f7fc;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #18243d;
+        :root{
+            --navy:#071b49;
+            --navy2:#123979;
+            --pink:#ef2f7d;
+            --gold:#ffd04f;
+            --bg:#f4f6fb;
+            --text:#17233d;
+            --muted:#64728b;
+            --border:#e3e8f1;
+            --shadow:0 20px 60px rgba(7,27,73,.10);
         }
 
-        .topbar {
-            background: #071b49;
-            color: #fff;
-            text-align: center;
-            padding: 12px;
-            font-size: 13px;
-            font-weight: 800;
+        *{box-sizing:border-box}
+
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
         }
 
-        nav {
-            background: #fff;
-            border-bottom: 1px solid #e4e8f1;
-            padding: 16px 6%;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            align-items: center;
+        a{text-decoration:none}
+
+        .top-strip{
+            background:var(--navy);
+            color:#fff;
+            text-align:center;
+            padding:10px 18px;
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.7px;
         }
 
-        .brand {
-            font-weight: 800;
-            color: #122d69;
+        .nav{
+            background:#fff;
+            border-bottom:1px solid var(--border);
         }
 
-        .links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
+        .nav-inner{
+            width:min(1180px,calc(100% - 36px));
+            margin:auto;
+            min-height:66px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:20px;
         }
 
-        .links a {
-            color: #18366f;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
+        .brand{
+            color:var(--navy2);
+            font-weight:900;
         }
 
-        .container {
-            width: min(980px, calc(100% - 32px));
-            margin: 40px auto;
+        .links{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+            gap:18px;
         }
 
-        .card {
-            background: #fff;
-            border: 1px solid #e3e8f2;
-            box-shadow: 0 16px 44px rgba(10, 31, 74, .08);
-            border-radius: 22px;
-            padding: 40px;
+        .links a{
+            color:#263e68;
+            font-size:13px;
+            font-weight:800;
         }
 
-        .eyebrow {
-            color: #d81b70;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .links a:hover{color:var(--pink)}
+
+        .container{
+            width:min(980px,calc(100% - 36px));
+            margin:38px auto 60px;
         }
 
-        h1 {
-            color: #0c225a;
-            font-size: clamp(32px, 5vw, 48px);
-            margin: 14px 0 10px;
+        .card{
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:25px;
+            padding:42px;
+            box-shadow:var(--shadow);
         }
 
-        h2 {
-            color: #112c67;
-            margin-top: 34px;
-            font-size: 20px;
+        .eyebrow{
+            color:var(--pink);
+            font-size:11px;
+            letter-spacing:1.2px;
+            text-transform:uppercase;
+            font-weight:900;
         }
 
-        p,
-        li {
-            color: #5f6d85;
-            line-height: 1.75;
-            font-size: 15px;
+        h1{
+            margin:12px 0 10px;
+            color:var(--navy);
+            font-size:clamp(36px,6vw,56px);
+            line-height:1;
         }
 
-        ul {
-            padding-left: 20px;
+        .intro{
+            color:var(--muted);
+            line-height:1.8;
+            font-size:15px;
         }
 
-        .highlight {
-            background: #f7f9ff;
-            border-left: 4px solid #ee3181;
-            border-radius: 12px;
-            padding: 16px 18px;
-            margin: 20px 0;
+        .section{
+            margin-top:30px;
         }
 
-        footer {
-            background: #071b49;
-            color: #fff;
-            padding: 32px 6%;
-            margin-top: 45px;
+        .section h2{
+            margin:0 0 10px;
+            color:var(--navy2);
+            font-size:20px;
         }
 
-        .footer-grid {
-            width: min(1100px, 100%);
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 30px;
+        .section p,
+        .section li{
+            color:var(--muted);
+            line-height:1.8;
+            font-size:15px;
+        }
+
+        ul{
+            padding-left:20px;
+        }
+
+        .notice{
+            margin-top:18px;
+            padding:18px;
+            border-radius:16px;
+            background:#f7f9ff;
+            border:1px solid #dfe6f5;
+            color:#5d6c84;
+            line-height:1.75;
+            font-size:14px;
+        }
+
+        footer{
+            background:var(--navy);
+            color:#fff;
+            padding:34px 20px 18px;
+        }
+
+        .footer-grid{
+            width:min(1180px,100%);
+            margin:auto;
+            display:grid;
+            grid-template-columns:1.3fr 1fr 1fr;
+            gap:30px;
+        }
+
+        footer h3{
+            margin:0 0 10px;
         }
 
         footer p,
-        footer a {
-            color: #d6e0f4;
-            text-decoration: none;
-            font-size: 13px;
-            line-height: 1.7;
+        footer a{
+            color:#d3def0;
+            font-size:13px;
+            line-height:1.7;
+            margin:5px 0;
         }
 
-        .copyright {
-            width: min(1100px, 100%);
-            margin: 24px auto 0;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,.15);
-            color: #adbbd6;
-            font-size: 12px;
+        .copyright{
+            width:min(1180px,100%);
+            margin:24px auto 0;
+            border-top:1px solid rgba(255,255,255,.14);
+            padding-top:16px;
+            color:#acbad2;
+            font-size:12px;
         }
 
-        @media (max-width: 760px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
+        @media(max-width:850px){
+            .nav-inner{
+                padding:12px 0;
+                flex-direction:column;
+                align-items:flex-start;
             }
 
-            .card {
-                padding: 24px;
+            .footer-grid{
+                grid-template-columns:1fr;
+            }
+        }
+
+        @media(max-width:520px){
+            .container{
+                width:calc(100% - 20px);
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .card{
+                padding:22px;
             }
         }
     </style>
@@ -162,20 +207,22 @@
 
 <body>
 
-    <div class="topbar">
-        VANASTHALI PUBLIC SCHOOL • RAAS RANG • 14 OCTOBER 2026
+    <div class="top-strip">
+        VANASTHALI PUBLIC SCHOOL • RAAS RANG • TERMS & CONDITIONS
     </div>
 
-    <nav>
-        <div class="brand">Raas Rang — Dandiya Night</div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">Raas Rang — Dandiya Night</div>
 
-        <div class="links">
-            <a href="index.html">Registration</a>
-            <a href="about.html">Event</a>
-            <a href="contact.html">Contact</a>
-            <a href="terms.html">Terms</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="refund-cancellation.html">Refund & Cancellation</a>
+            <div class="links">
+                <a href="index.html">Registration</a>
+                <a href="about.html">Event</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="refund-cancellation.html">Refund</a>
+            </div>
         </div>
     </nav>
 
@@ -185,140 +232,128 @@
 
             <div class="eyebrow">Terms & Conditions</div>
 
-            <h1>Terms of Registration</h1>
+            <h1>Registration Terms</h1>
 
-            <p>
-                These Terms & Conditions govern online registration and payment
-                for Raas Rang — Dandiya Night organised by Vanasthali Public School,
+            <p class="intro">
+                These Terms & Conditions apply to registrations and payments made
+                for Raas Rang — Dandiya Night at Vanasthali Public School,
                 Sector-3, Vasundhara, Ghaziabad.
             </p>
 
-            <h2>1. Event Details</h2>
+            <div class="section">
+                <h2>1. Event Details</h2>
+                <ul>
+                    <li>Date: 14 October 2026</li>
+                    <li>Time: 6 PM to 10 PM</li>
+                    <li>Venue: Vanasthali Public School, Sector-3, Vasundhara, Ghaziabad</li>
+                </ul>
+            </div>
 
-            <ul>
-                <li>Date: 14 October 2026</li>
-                <li>Time: 6 PM to 10 PM</li>
-                <li>Venue: Vanasthali Public School, Sector-3, Vasundhara, Ghaziabad</li>
-            </ul>
+            <div class="section">
+                <h2>2. Entry Categories</h2>
+                <ul>
+                    <li>Single Female Entry: ₹150</li>
+                    <li>Couple Entry: ₹300 per couple</li>
+                    <li>No stag entry is permitted.</li>
+                </ul>
+            </div>
 
-            <h2>2. Registration Categories</h2>
-
-            <ul>
-                <li>Single Female Entry: ₹150</li>
-                <li>Couple Entry: ₹300 per couple</li>
-                <li>No stag entry is permitted.</li>
-            </ul>
-
-            <div class="highlight">
+            <div class="section">
+                <h2>3. Registration Information</h2>
                 <p>
-                    Registration information entered by a customer must be accurate
-                    and complete. False, incomplete or misleading information may
-                    result in rejection of entry.
+                    Customers are responsible for entering accurate and complete
+                    registration information. Incorrect or misleading information
+                    may affect registration or entry verification.
                 </p>
             </div>
 
-            <h2>3. Payment</h2>
+            <div class="section">
+                <h2>4. Payment</h2>
+                <p>
+                    Online payments are processed through the payment gateway
+                    presented during checkout. Registration is considered
+                    confirmed only after successful payment processing and
+                    verification by the registration system.
+                </p>
 
-            <p>
-                Online payments are processed through the payment gateway shown
-                during checkout. Payment is considered successful only after the
-                payment has been successfully processed and verified by the
-                registration system.
-            </p>
+                <div class="notice">
+                    A browser message, payment redirect or checkout screen by
+                    itself is not proof of a confirmed event registration.
+                </div>
+            </div>
 
-            <p>
-                A payment screen, browser message or redirect alone does not
-                constitute proof of successful registration.
-            </p>
+            <div class="section">
+                <h2>5. Digital Entry Pass</h2>
+                <p>
+                    After successful payment verification, the registration system
+                    may issue a digital entry pass or registration reference.
+                    Customers should retain this information for event entry.
+                </p>
+            </div>
 
-            <h2>4. Registration Confirmation</h2>
+            <div class="section">
+                <h2>6. Entry Verification</h2>
+                <p>
+                    Event staff may verify the registration reference, QR code and
+                    other relevant registration information at the venue.
+                </p>
+            </div>
 
-            <p>
-                A valid digital entry pass / registration record will be issued
-                only after successful payment verification.
-            </p>
+            <div class="section">
+                <h2>7. Event Rules</h2>
+                <p>
+                    Attendees must follow reasonable instructions from event staff
+                    and comply with applicable venue and safety rules.
+                </p>
+            </div>
 
-            <p>
-                Customers must retain their registration number and digital entry
-                pass for entry verification.
-            </p>
+            <div class="section">
+                <h2>8. Event Changes</h2>
+                <p>
+                    Reasonable operational changes to activities, stalls,
+                    programme or entry procedures may be made by the organiser.
+                </p>
+            </div>
 
-            <h2>5. Entry Verification</h2>
+            <div class="section">
+                <h2>9. Customer Support</h2>
+                <p>
+                    For registration or payment-related assistance:
+                </p>
+                <p>
+                    Email:
+                    <strong>vpsvasundhara@gmail.com</strong>
+                </p>
+                <p>
+                    Phone:
+                    <strong>0120-4111062 / 011-22456133</strong>
+                </p>
+            </div>
 
-            <p>
-                The organiser may verify the registration number, QR code and other
-                necessary registration details at the event entry gate.
-            </p>
+            <div class="section">
+                <h2>10. Privacy</h2>
+                <p>
+                    Registration information is handled according to the Privacy
+                    Policy published on this website.
+                </p>
+            </div>
 
-            <p>
-                Entry may be denied where the registration is invalid, cancelled,
-                refunded, duplicated, or otherwise not eligible for entry.
-            </p>
-
-            <h2>6. Customer Information</h2>
-
-            <p>
-                Customers must provide accurate contact information. Registration
-                details may be used for event communication, registration
-                administration, payment reconciliation, fraud prevention and
-                entry verification as described in the Privacy Policy.
-            </p>
-
-            <h2>7. Event Changes</h2>
-
-            <p>
-                The organiser reserves the right to make reasonable operational
-                changes to event arrangements, including schedule, activities,
-                stall availability and entry procedures.
-            </p>
-
-            <h2>8. Prohibited Conduct</h2>
-
-            <p>
-                Attendees must comply with event rules, venue rules and reasonable
-                instructions of event staff. Misconduct, fraudulent use of tickets,
-                unauthorised resale or misuse of a digital pass may lead to refusal
-                of entry or removal from the event.
-            </p>
-
-            <h2>9. Support & Disputes</h2>
-
-            <p>
-                For support or event-related concerns, contact:
-            </p>
-
-            <p>
-                <strong>Email:</strong>
-                vpserpvasundhara@gmail.com
-            </p>
-
-            <p>
-                <strong>School Contact:</strong>
-                0120-4111062 / 011-22456133
-            </p>
-
-            <h2>10. Governing Law</h2>
-
-            <p>
-                These Terms are governed by the applicable laws of India.
-            </p>
-
-            <h2>11. Acceptance</h2>
-
-            <p>
-                By submitting a registration and proceeding with payment, the
-                customer confirms that they have read and accepted these Terms,
-                the Privacy Policy and the Refund & Cancellation Policy.
-            </p>
+            <div class="section">
+                <h2>11. Acceptance</h2>
+                <p>
+                    By submitting a registration and proceeding with payment,
+                    the customer confirms that they have reviewed and accepted
+                    these Terms & Conditions, the Privacy Policy and the
+                    applicable Refund & Cancellation Policy.
+                </p>
+            </div>
 
         </section>
 
     </main>
 
     <footer>
-
         <div class="footer-grid">
-
             <div>
                 <h3>Raas Rang</h3>
                 <p>
@@ -328,25 +363,23 @@
             </div>
 
             <div>
-                <h3>Quick Links</h3>
-                <p><a href="index.html">Registration</a></p>
-                <p><a href="about.html">About Event</a></p>
-                <p><a href="contact.html">Contact Us</a></p>
+                <h3>Support</h3>
+                <p>vpsvasundhara@gmail.com</p>
+                <p>0120-4111062</p>
+                <p>011-22456133</p>
             </div>
 
             <div>
                 <h3>Legal</h3>
                 <p><a href="privacy.html">Privacy Policy</a></p>
                 <p><a href="refund-cancellation.html">Refund & Cancellation</a></p>
-                <p><a href="terms.html">Terms & Conditions</a></p>
+                <p><a href="contact.html">Contact Us</a></p>
             </div>
-
         </div>
 
         <div class="copyright">
             © 2026 Vanasthali Public School. All rights reserved.
         </div>
-
     </footer>
 
 </body>
