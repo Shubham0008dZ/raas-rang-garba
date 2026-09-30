@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#071b49" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://garba-registration-api.shubham347779.workers.dev https://api.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
     <meta name="description"
         content="Raas Rang Dandiya Night — Vanasthali Public School Vasundhara Sector-3 registration." />
 
@@ -151,7 +153,7 @@
 
                         <div class="price-box" style="margin-top:0;">
                             <div class="price-label">Entry fee</div>
-                            <div class="price" id="amountText">₹500</div>
+                            <div class="price" id="amountText">₹10</div>
                         </div>
                     </div>
 
@@ -280,10 +282,10 @@
             <div class="success-icon">✓</div>
             <h3 id="successTitle" style="margin:0;font-size:25px;">Registration Confirmed</h3>
             <p class="success-note" style="margin-top:8px;">
-                Replace this demo state with the real backend-confirmed payment response.
+                Your payment has been verified by the secure backend. Your registration pass is being prepared.
             </p>
 
-            <div class="registration-code" id="demoRegistrationCode">GN-DEMO-7K3P9Q</div>
+            <div class="registration-code" id="demoRegistrationCode">—</div>
 
             <div class="qr-box">
                 <div style="font-size:45px;">▦</div>
@@ -300,6 +302,11 @@
             "use strict";
 
             const $ = (sel) => document.querySelector(sel);
+
+            window.addEventListener("unhandledrejection", (event) => {
+                console.error("Unhandled promise rejection:", event.reason);
+                showToast("Something went wrong. Please try again.");
+            });
 
             const form = $("#registrationForm");
             const peopleInput = $("#people");
@@ -324,6 +331,29 @@
             let mediaStream = null;
             let selfieBlob = null;
             let captcha = { a: 0, b: 0 };
+
+            // One idempotency key per payment attempt.
+            // Prevents duplicate Razorpay orders caused by double-clicks/retries.
+            let paymentIdempotencyKey = null;
+
+            function getPaymentIdempotencyKey() {
+                if (!paymentIdempotencyKey) {
+                    if (crypto?.randomUUID) {
+                        paymentIdempotencyKey = crypto.randomUUID();
+                    } else {
+                        const bytes = new Uint8Array(16);
+                        crypto.getRandomValues(bytes);
+                        paymentIdempotencyKey = [...bytes]
+                            .map((b) => b.toString(16).padStart(2, "0"))
+                            .join("");
+                    }
+                }
+                return paymentIdempotencyKey;
+            }
+
+            function resetPaymentAttempt() {
+                paymentIdempotencyKey = null;
+            }
 
             // ============================================================
             // TEST PRICING CONFIG
@@ -509,14 +539,22 @@
 
             // Temporary frontend hook. Replace this with a server-created order flow.
             async function startSecurePaymentFlow() {
+                if (!window.fetch || !window.Razorpay) {
+                    showToast("Secure payment service is unavailable in this browser.");
+                    return;
+                }
+
                 const totalPeople = Number(peopleInput.value);
                 const amount = calculateAmount(totalPeople);
 
-                const members = [...membersBox.querySelectorAll('input[name^="member_"]')]
-                    .map((input) => input.value.trim());
+                const members = [
+                    ...membersBox.querySelectorAll('input[name^="member_"]')
+                ].map((input) => input.value.trim());
 
                 const apiBase =
                     "https://garba-registration-api.shubham347779.workers.dev";
+
+                const idempotencyKey = getPaymentIdempotencyKey();
 
                 payNow.disabled = true;
                 payNow.textContent = "Creating secure payment…";
@@ -527,20 +565,44 @@
                         headers: {
                             "Content-Type": "application/json"
                         },
-                      body: JSON.stringify({
-    leadName: $("#leadName").value.trim(),
-    mobile: $("#mobile").value.trim(),
-    email: $("#email").value.trim().toLowerCase(),
-    people: totalPeople,
-    members,
-    idempotency_key: idempotencyKey
-})
+                        body: JSON.stringify({
+                            leadName: $("#leadName").value.trim(),
+                            mobile: $("#mobile").value.trim(),
+                            email: $("#email").value.trim().toLowerCase(),
+                            people: totalPeople,
+                            members,
+                            idempotency_key: idempotencyKey
+                        })
                     });
 
-                    const data = await response.json();
+                    let data = {};
+                    try {
+                        data = await response.json();
+                    } catch {
+                        throw new Error("Invalid server response.");
+                    }
 
                     if (!response.ok || !data.ok) {
-                        throw new Error(data.error || "Unable to create payment order.");
+                        throw new Error(
+                            data.error || "Unable to create payment order."
+                        );
+                    }
+
+                    const serverAmountRupees = Number(data.amount) / 100;
+
+                    if (
+                        !Number.isFinite(serverAmountRupees) ||
+                        serverAmountRupees !== amount
+                    ) {
+                        throw new Error("Payment amount mismatch.");
+                    }
+
+                    if (
+                        !data.order_id ||
+                        !data.key_id ||
+                        data.currency !== "INR"
+                    ) {
+                        throw new Error("Invalid payment order response.");
                     }
 
                     const options = {
@@ -561,41 +623,82 @@
                             color: "#f63b82"
                         },
 
+                        retry: {
+                            enabled: true
+                        },
+
                         handler: async function (paymentResponse) {
                             try {
-                                payNow.textContent = "Verifying payment securely…";
+                                payNow.textContent =
+                                    "Verifying payment securely…";
 
-                                const verifyResponse = await fetch(`${apiBase}/verify-payment`, {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    },
-                                    body: JSON.stringify({
-                                        razorpay_order_id: paymentResponse.razorpay_order_id,
-                                        razorpay_payment_id: paymentResponse.razorpay_payment_id,
-                                        razorpay_signature: paymentResponse.razorpay_signature
-                                    })
-                                });
+                                const verifyResponse =
+                                    await fetch(`${apiBase}/verify-payment`, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify({
+                                            razorpay_order_id:
+                                                paymentResponse.razorpay_order_id,
+                                            razorpay_payment_id:
+                                                paymentResponse.razorpay_payment_id,
+                                            razorpay_signature:
+                                                paymentResponse.razorpay_signature
+                                        })
+                                    });
 
-                                const verified = await verifyResponse.json();
-
-                                if (!verifyResponse.ok || !verified.ok) {
+                                let verified = {};
+                                try {
+                                    verified = await verifyResponse.json();
+                                } catch {
                                     throw new Error(
-                                        verified.error || "Payment verification failed."
+                                        "Invalid verification response."
                                     );
                                 }
 
-                                // Backend has now verified the payment.
+                                if (
+                                    !verifyResponse.ok ||
+                                    !verified.ok
+                                ) {
+                                    throw new Error(
+                                        verified.error ||
+                                        "Payment verification failed."
+                                    );
+                                }
+
+                                // Only backend-verified registrations reach this state.
                                 $("#demoRegistrationCode").textContent =
                                     verified.registration_no || "VERIFIED";
 
+                                const amountPaid =
+                                    Number(verified.amount) / 100;
+
+                                const successNote = document.querySelector(
+                                    "#successModal .success-note"
+                                );
+
+                                if (successNote) {
+                                    successNote.textContent =
+                                        `Payment verified successfully. Amount paid: ${formatINR(amountPaid)}.`;
+                                }
+
                                 $("#successModal").classList.add("show");
 
-                                showToast("Payment verified successfully.");
-                            } catch (error) {
-                                console.error(error);
                                 showToast(
-                                    "Payment was received but verification could not be completed. Please contact support."
+                                    "Payment verified successfully."
+                                );
+
+                                resetPaymentAttempt();
+                            } catch (error) {
+                                console.error(
+                                    "Payment verification error:",
+                                    error
+                                );
+
+                                showToast(
+                                    error?.message ||
+                                    "Payment verification failed. Please contact support."
                                 );
                             } finally {
                                 payNow.disabled = false;
@@ -617,52 +720,76 @@
 
                     const razorpay = new Razorpay(options);
 
-                    razorpay.on("payment.failed", function () {
+                    razorpay.on("payment.failed", function (failureResponse) {
+                        console.error(
+                            "Razorpay payment failed:",
+                            failureResponse?.error?.code ||
+                            "UNKNOWN_PAYMENT_FAILURE"
+                        );
+
                         payNow.disabled = false;
                         payNow.textContent =
                             `Pay ${formatINR(amount)} & Confirm Registration`;
 
-                        showToast("Payment failed or was cancelled.");
+                        showToast(
+                            failureResponse?.error?.description ||
+                            "Payment failed. Please try again."
+                        );
                     });
 
                     razorpay.open();
-
                 } catch (error) {
-                    console.error(error);
-
-                    showToast(
-                        error?.message || "Unable to start secure payment."
+                    console.error(
+                        "Payment order error:",
+                        error
                     );
 
                     payNow.disabled = false;
                     payNow.textContent =
                         `Pay ${formatINR(amount)} & Confirm Registration`;
+
+                    showToast(
+                        error?.message ||
+                        "Unable to start secure payment."
+                    );
                 }
             }
 
             $("#minusPeople").addEventListener("click", () => {
+                resetPaymentAttempt();
                 peopleInput.value = String(Math.max(2, Number(peopleInput.value) - 1));
                 renderMembers();
                 updatePayState();
             });
 
             $("#plusPeople").addEventListener("click", () => {
+                resetPaymentAttempt();
                 peopleInput.value = String(Math.min(20, Number(peopleInput.value) + 1));
                 renderMembers();
                 updatePayState();
             });
 
             peopleInput.addEventListener("input", () => {
+                resetPaymentAttempt();
                 renderMembers();
                 updatePayState();
             });
 
             [$("#leadName"), $("#mobile"), $("#email"), captchaAnswer, $("#terms")].forEach((el) => {
-                el.addEventListener("input", updatePayState);
-                el.addEventListener("change", updatePayState);
+                el.addEventListener("input", () => {
+                    resetPaymentAttempt();
+                    updatePayState();
+                });
+                el.addEventListener("change", () => {
+                    resetPaymentAttempt();
+                    updatePayState();
+                });
             });
 
-            membersBox.addEventListener("input", updatePayState);
+            membersBox.addEventListener("input", () => {
+                resetPaymentAttempt();
+                updatePayState();
+            });
 
             openCamera.addEventListener("click", openCameraModal);
             retakeSelfie.addEventListener("click", openCameraModal);
