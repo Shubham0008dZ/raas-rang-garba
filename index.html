@@ -13,325 +13,1634 @@
     <!--
     Production security note:
     Put the real Content-Security-Policy in your Vercel/server response headers.
-    This demo keeps the page self-contained, so inline CSS/JS are used here.
+    All CSS for this page is inlined below so it never conflicts with assets/site.css.
     Do NOT put Razorpay secret keys, database credentials, or API secrets in this file.
   -->
 
     <title>Raas Rang — Dandiya Night | Registration</title>
 
-
-    <link rel="stylesheet" href="./assets/site.css">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        /* ==========================================================================
+           RAAS RANG — SELF-CONTAINED UI (scoped with .rr- prefix)
+           ========================================================================== */
+
+        :root {
+            --rr-navy: #071b49;
+            --rr-navy-2: #0d2564;
+            --rr-ink: #0d1730;
+            --rr-ink-2: #22376b;
+            --rr-pink: #f63b82;
+            --rr-pink-2: #ff7bb0;
+            --rr-gold: #ffc857;
+            --rr-mint: #2ee6a8;
+            --rr-text: #eef2ff;
+            --rr-muted: #a9b6dd;
+            --rr-line: rgba(255, 255, 255, .12);
+            --rr-radius: 16px;
+            --rr-shadow: 0 22px 50px rgba(0, 0, 0, .42);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+            color: var(--rr-text);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            background:
+                radial-gradient(1100px 680px at 8% -12%, #17337f 0%, transparent 58%),
+                radial-gradient(900px 620px at 102% -6%, #58123f 0%, transparent 55%),
+                radial-gradient(900px 900px at 50% 130%, #0b2a63 0%, transparent 62%),
+                #061534;
+            background-attachment: fixed;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ============================ APP SHELL ============================ */
+
+        .rr-app {
+            height: 100vh;
+            height: 100dvh;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+            overflow: hidden;
+        }
+
+        /* ============================ TOP BAR ============================ */
+
+        .rr-topbar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 18px;
+            min-height: 42px;
+            background: linear-gradient(90deg, rgba(7, 27, 73, .96), rgba(11, 34, 92, .82));
+            border-bottom: 1px solid var(--rr-line);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .rr-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            color: #cfd9f7;
+            white-space: nowrap;
+        }
+
+        .rr-brand em {
+            font-style: normal;
+            color: var(--rr-pink-2);
+        }
+
+        .rr-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex: 0 0 9px;
+            background: linear-gradient(135deg, var(--rr-pink), var(--rr-gold));
+            box-shadow: 0 0 0 3px rgba(246, 59, 130, .18);
+            animation: rrPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes rrPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(246, 59, 130, .18);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(246, 59, 130, .05);
+            }
+        }
+
+        .rr-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .rr-nav a {
+            font-size: 11px;
+            font-weight: 700;
+            color: #c3cdea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            transition: .18s;
+            white-space: nowrap;
+        }
+
+        .rr-nav a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, .09);
+            border-color: rgba(255, 255, 255, .14);
+        }
+
+        .rr-tag {
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            padding: 5px 11px;
+            border-radius: 999px;
+            color: #2a0a1a;
+            background: linear-gradient(135deg, var(--rr-pink-2), var(--rr-gold));
+            white-space: nowrap;
+        }
+
+        /* ============================ STAGE ============================ */
+
+        .rr-stage {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(280px, 355px) minmax(0, 1fr);
+            gap: 14px;
+            padding: 14px 18px 16px;
+            overflow: hidden;
+        }
+
+        /* ============================ INFO PANEL ============================ */
+
+        .rr-info {
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            padding: 16px;
+            border-radius: var(--rr-radius);
+            border: 1px solid var(--rr-line);
+            background: linear-gradient(165deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .025));
+            box-shadow: var(--rr-shadow);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .rr-info-kicker {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--rr-gold);
+        }
+
+        .rr-info-title {
+            margin: 0;
+            font-size: clamp(28px, 2.5vw, 40px);
+            line-height: .98;
+            font-weight: 900;
+            letter-spacing: -.02em;
+        }
+
+        .rr-info-title span {
+            background: linear-gradient(120deg, var(--rr-pink), var(--rr-pink-2) 55%, var(--rr-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .rr-info-sub {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #9fb0d8;
+            margin-top: -4px;
+        }
+
+        .rr-info-lead {
+            margin: 0;
+            font-size: 11.5px;
+            line-height: 1.55;
+            color: var(--rr-muted);
+        }
+
+        .rr-mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .rr-mini {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .065);
+            border: 1px solid rgba(255, 255, 255, .1);
+            min-width: 0;
+        }
+
+        .rr-mini>span {
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .rr-mini b {
+            display: block;
+            font-size: 12px;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .rr-mini small {
+            display: block;
+            font-size: 9.5px;
+            color: var(--rr-muted);
+            white-space: nowrap;
+        }
+
+        .rr-features {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .rr-feature {
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .rr-feature i {
+            display: grid;
+            place-items: center;
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            border-radius: 8px;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 12px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--rr-pink), #ff9ec6);
+        }
+
+        .rr-feature strong {
+            display: block;
+            font-size: 11.5px;
+            color: #fff;
+        }
+
+        .rr-feature small {
+            display: block;
+            font-size: 10px;
+            line-height: 1.42;
+            color: var(--rr-muted);
+        }
+
+        .rr-support {
+            margin-top: auto;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            font-size: 11px;
+            line-height: 1.65;
+            color: #c3cdea;
+        }
+
+        .rr-support-title {
+            font-size: 11.5px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .rr-support a {
+            color: var(--rr-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .rr-support a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================ FORM PANEL ============================ */
+
+        .rr-form-panel {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: var(--rr-radius);
+            border: 1px solid rgba(255, 255, 255, .5);
+            background: linear-gradient(180deg, #ffffff 0%, #f3f6ff 100%);
+            color: var(--rr-ink);
+            box-shadow: var(--rr-shadow);
+        }
+
+        .rr-form-head {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 11px 18px 10px;
+            border-bottom: 1px solid rgba(13, 23, 48, .08);
+            background: linear-gradient(90deg, #ffffff, #f4f7ff);
+        }
+
+        .rr-form-head h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -.01em;
+            color: var(--rr-ink);
+        }
+
+        .rr-eyebrow {
+            font-size: 9.5px;
+            font-weight: 900;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--rr-pink);
+        }
+
+        .rr-form-scroll {
+            min-height: 0;
+            flex: 1;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 14px 18px 18px;
+        }
+
+        /* two-column form grid */
+        #registrationForm {
+            counter-reset: rrsec;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 12px 22px;
+            align-content: start;
+        }
+
+        .rr-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        /* ============================ SECTION TITLES ============================ */
+
+        .rr-section-title {
+            counter-increment: rrsec;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .01em;
+            color: var(--rr-ink);
+            margin: 0;
+        }
+
+        .rr-section-title::before {
+            content: counter(rrsec);
+            display: grid;
+            place-items: center;
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 900;
+            color: #fff;
+            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
+        }
+
+        /* ============================ FORM FIELDS ============================ */
+
+        .rr-form-scroll input[type="text"],
+        .rr-form-scroll input[type="tel"],
+        .rr-form-scroll input[type="email"],
+        .rr-form-scroll input[type="number"] {
+            width: 100%;
+            padding: 9px 11px;
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--rr-ink);
+            background: #fff;
+            border: 1.5px solid #d8e0f2;
+            border-radius: 10px;
+            transition: border-color .18s, box-shadow .18s, background .18s;
+        }
+
+        .rr-form-scroll input::placeholder {
+            color: #9aa6c2;
+        }
+
+        .rr-form-scroll input[type="text"]:focus,
+        .rr-form-scroll input[type="tel"]:focus,
+        .rr-form-scroll input[type="email"]:focus,
+        .rr-form-scroll input[type="number"]:focus {
+            outline: none;
+            border-color: var(--rr-pink);
+            box-shadow: 0 0 0 3px rgba(246, 59, 130, .14);
+        }
+
+        .rr-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .rr-field {
+            min-width: 0;
+        }
+
+        .rr-field.rr-full {
+            grid-column: 1 / -1;
+        }
+
+        .rr-field label,
+        .rr-inline-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #3c4a72;
+        }
+
+        .rr-req {
+            color: var(--rr-pink);
+        }
+
+        .rr-helper {
+            margin-top: 4px;
+            font-size: 10px;
+            line-height: 1.45;
+            color: #7b88a8;
+        }
+
+        .rr-intro {
+            margin: 0;
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: #56628a;
+        }
+
+        .rr-policy {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 9px 12px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #f7f9ff, #ffffff);
+            border: 1px solid #e3e9f7;
+        }
+
+        .rr-policy strong {
+            display: block;
+            font-size: 11.5px;
+            color: var(--rr-ink);
+        }
+
+        .rr-policy span {
+            font-size: 10.5px;
+            color: #6d7899;
+        }
+
+        .rr-policy-links {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .rr-policy-links a {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #b3205f;
+            background: #ffeaf3;
+            border: 1px solid #ffd3e5;
+            padding: 4px 9px;
+            border-radius: 999px;
+            transition: .18s;
+            white-space: nowrap;
+        }
+
+        .rr-policy-links a:hover {
+            background: #ffd9e9;
+        }
+
+        /* ============================ ENTRY TYPE TOGGLE ============================ */
+
+        .rr-entrytype {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 9px 12px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #f7f9ff, #ffffff);
+            border: 1px dashed #cfd9f0;
+        }
+
+        .rr-entrytype-label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--rr-ink);
+        }
+
+        .rr-entrytype small {
+            display: block;
+            font-size: 10px;
+            color: #7b88a8;
+            margin-top: 1px;
+        }
+
+        .rr-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+            user-select: none;
+            flex: 0 0 auto;
+        }
+
+        .rr-toggle input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .rr-track {
+            position: relative;
+            width: 42px;
+            height: 23px;
+            border-radius: 999px;
+            background: #c9d3e8;
+            transition: background .22s;
+            flex: 0 0 42px;
+        }
+
+        .rr-thumb {
+            position: absolute;
+            top: 2.5px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .28);
+            transition: transform .22s;
+        }
+
+        .rr-toggle input:checked+.rr-track {
+            background: linear-gradient(90deg, var(--rr-pink), var(--rr-pink-2));
+        }
+
+        .rr-toggle input:checked+.rr-track .rr-thumb {
+            transform: translateX(18px);
+        }
+
+        .rr-toggle input:focus-visible+.rr-track {
+            box-shadow: 0 0 0 3px rgba(246, 59, 130, .25);
+        }
+
+        .rr-toggle-text {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--rr-ink);
+            white-space: nowrap;
+        }
+
+        /* ============================ GROUP SIZE ============================ */
+
+        #groupSizeBlock {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .rr-people-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .rr-stepper {
+            display: inline-flex;
+            align-items: stretch;
+            border: 1.5px solid #d8e0f2;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .rr-stepper button {
+            width: 34px;
+            border: 0;
+            background: #f0f4ff;
+            color: var(--rr-ink);
+            font-size: 17px;
+            font-weight: 900;
+            font-family: inherit;
+            line-height: 1;
+            cursor: pointer;
+            transition: background .16s;
+        }
+
+        .rr-stepper button:hover {
+            background: #e2eaff;
+        }
+
+        .rr-stepper button:active {
+            background: #d3dfff;
+        }
+
+        .rr-stepper input[type="number"] {
+            width: 58px;
+            height: 34px;
+            padding: 0 !important;
+            text-align: center;
+            font-weight: 900;
+            font-size: 13.5px;
+            border: 0 !important;
+            border-left: 1px solid #e2e8f5 !important;
+            border-right: 1px solid #e2e8f5 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .rr-stepper input[type="number"]::-webkit-outer-spin-button,
+        .rr-stepper input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .rr-stepper input[type="number"]:disabled {
+            background: #f4f6fc;
+            color: #8f9ab6;
+        }
+
+        .rr-price-chip {
+            padding: 6px 13px;
+            border-radius: 12px;
+            text-align: right;
+            color: #fff;
+            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
+            box-shadow: 0 8px 18px rgba(13, 23, 48, .22);
+            flex: 0 0 auto;
+        }
+
+        .rr-price-chip span {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #9fb0d8;
+        }
+
+        .rr-price-chip b {
+            font-size: 18px;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+
+        /* ============================ MEMBERS ============================ */
+
+        .rr-members {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .rr-members.single-female-mode {
+            display: none;
+        }
+
+        .member-row {
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: 8px;
+            align-items: center;
+        }
+
+        .member-no {
+            display: grid;
+            place-items: center;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 11.5px;
+            font-weight: 900;
+            color: #2b3a67;
+            background: #eef2ff;
+            border: 1px solid #e0e7f8;
+        }
+
+        /* ============================ SELFIE ============================ */
+
+        .rr-selfie {
+            display: grid;
+            grid-template-columns: 128px minmax(0, 1fr);
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .rr-camera-box {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-height: 116px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(160deg, #101c3c, #0a1densities);
+            background: linear-gradient(160deg, #101c3c, #0a122b);
+            border: 1.5px dashed rgba(255, 255, 255, .22);
+        }
+
+        .rr-camera-empty {
+            font-size: 10.5px;
+            line-height: 1.45;
+            color: #c3cdea;
+        }
+
+        .rr-camera-empty strong {
+            display: block;
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .rr-cam-emoji {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        #selfiePreview,
+        #selfieImage {
+            display: none;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rr-camera-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .rr-btn {
+            border: 0;
+            border-radius: 10px;
+            padding: 9px 14px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .18s;
+            white-space: nowrap;
+        }
+
+        .rr-btn-sec {
+            background: #eef2ff;
+            color: #1b2a52;
+            border: 1px solid #dfe6f7;
+        }
+
+        .rr-btn-sec:hover {
+            background: #e2eaff;
+        }
+
+        .rr-btn-dark {
+            background: var(--rr-ink);
+            color: #fff;
+        }
+
+        .rr-btn-dark:hover {
+            background: #1b2a52;
+        }
+
+        .rr-btn:disabled {
+            opacity: .42;
+            cursor: not-allowed;
+        }
+
+        /* ============================ CAPTCHA ============================ */
+
+        .rr-captcha {
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #f7f9ff;
+            border: 1px dashed #cfd9f0;
+        }
+
+        .rr-captcha-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rr-captcha-q {
+            min-width: 92px;
+            padding: 8px 12px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            color: #fff;
+            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
+            user-select: none;
+        }
+
+        .rr-captcha-row input[type="text"] {
+            width: 92px !important;
+            flex: 0 0 auto;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: .06em;
+        }
+
+        .rr-captcha-refresh {
+            border: 1px solid #dfe6f7;
+            background: #fff;
+            color: #3c4a72;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 8px 11px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .18s;
+            white-space: nowrap;
+        }
+
+        .rr-captcha-refresh:hover {
+            background: #eef2ff;
+        }
+
+        /* ============================ TERMS ============================ */
+
+        .rr-checkline {
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            padding: 9px 11px;
+            border-radius: 12px;
+            background: #f7f9ff;
+            border: 1px solid #e3e9f7;
+        }
+
+        .rr-checkline input {
+            width: 16px;
+            height: 16px;
+            margin: 2px 0 0;
+            flex: 0 0 16px;
+            accent-color: var(--rr-pink);
+            cursor: pointer;
+        }
+
+        .rr-checkline label {
+            font-size: 10.5px;
+            line-height: 1.5;
+            color: #4a5779;
+            cursor: pointer;
+        }
+
+        .rr-checkline a {
+            color: #b3205f;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .rr-checkline a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================ TOTAL / PAY ============================ */
+
+        .rr-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
+            box-shadow: 0 10px 24px rgba(13, 23, 48, .22);
+        }
+
+        .rr-total-label {
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #9fb0d8;
+        }
+
+        .rr-total-note {
+            font-size: 11px;
+            font-weight: 700;
+            color: #dbe3fb;
+            margin-top: 2px;
+        }
+
+        .rr-total-amount {
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(120deg, #ffffff, var(--rr-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .rr-pay {
+            width: 100%;
+            border: 0;
+            border-radius: 12px;
+            padding: 13px 16px;
+            font-family: inherit;
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: .01em;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f63b82, #ff7bb0 55%, #ffc857);
+            box-shadow: 0 12px 26px rgba(246, 59, 130, .34);
+            transition: transform .16s, box-shadow .16s, filter .16s;
+        }
+
+        .rr-pay:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px rgba(246, 59, 130, .42);
+        }
+
+        .rr-pay:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .rr-pay:disabled {
+            background: linear-gradient(135deg, #c9d1e2, #e2e7f1);
+            color: #8b95ae;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .rr-security {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-size: 10px;
+            line-height: 1.45;
+            color: #6d7899;
+        }
+
+        .rr-security span:first-child {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .rr-security b {
+            color: #3c4a72;
+        }
+
+        /* ============================ MODALS ============================ */
+
+        .rr-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: none;
+            place-items: center;
+            padding: 18px;
+            background: rgba(4, 10, 28, .74);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+        }
+
+        .rr-modal.show {
+            display: grid;
+        }
+
+        .rr-modal-card {
+            width: min(440px, 100%);
+            max-height: 94vh;
+            overflow-y: auto;
+            padding: 16px;
+            border-radius: 18px;
+            color: var(--rr-ink);
+            background: #fff;
+            box-shadow: 0 34px 80px rgba(0, 0, 0, .55);
+            animation: rrPop .24s cubic-bezier(.2, .9, .3, 1.2);
+        }
+
+        @keyframes rrPop {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .rr-modal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .rr-modal-head h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .rr-close {
+            width: 30px;
+            height: 30px;
+            border: 0;
+            border-radius: 9px;
+            background: #f0f3fb;
+            color: #3c4a72;
+            font-size: 19px;
+            line-height: 1;
+            font-family: inherit;
+            cursor: pointer;
+            transition: .18s;
+        }
+
+        .rr-close:hover {
+            background: #e2e8f7;
+        }
+
+        .rr-camera-stage {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #captureVideo {
+            display: block;
+            width: 100%;
+            height: min(52vh, 400px);
+            object-fit: cover;
+            background: #000;
+        }
+
+        .rr-camera-guide {
+            position: absolute;
+            inset: 12% 22%;
+            border: 2px dashed rgba(255, 255, 255, .55);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .rr-modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        /* success modal */
+
+        .rr-success-card {
+            text-align: center;
+            padding: 24px 20px;
+        }
+
+        .rr-success-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 12px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            font-size: 27px;
+            font-weight: 900;
+            color: #fff;
+            background: linear-gradient(135deg, #1fbf7a, var(--rr-mint));
+            box-shadow: 0 12px 28px rgba(46, 230, 168, .38);
+        }
+
+        .rr-success-card h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .success-note {
+            margin: 8px 0 0;
+            font-size: 12px;
+            line-height: 1.55;
+            color: #5c6889;
+        }
+
+        .rr-reg-code {
+            margin: 14px 0;
+            padding: 11px 14px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            color: var(--rr-ink);
+            background: #f2f5ff;
+            border: 1px dashed #c9d5f0;
+        }
+
+        .rr-qr-box {
+            display: grid;
+            place-items: center;
+            width: 118px;
+            height: 118px;
+            margin: 0 auto 16px;
+            border-radius: 16px;
+            font-size: 45px;
+            color: var(--rr-ink);
+            background: #fff;
+            border: 1.5px solid #e2e8f7;
+            box-shadow: 0 10px 24px rgba(13, 23, 48, .08);
+        }
+
+        /* ============================ TOAST ============================ */
+
+        .rr-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 22px;
+            z-index: 90;
+            max-width: 90vw;
+            padding: 11px 18px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+            background: rgba(13, 23, 48, .96);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, .45);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 24px);
+            transition: opacity .25s, transform .25s;
+        }
+
+        .rr-toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        /* ============================ SCROLLBARS ============================ */
+
+        .rr-info::-webkit-scrollbar,
+        .rr-form-scroll::-webkit-scrollbar,
+        .rr-modal-card::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .rr-info::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .18);
+            border-radius: 99px;
+        }
+
+        .rr-form-scroll::-webkit-scrollbar-thumb,
+        .rr-modal-card::-webkit-scrollbar-thumb {
+            background: #c7d1e8;
+            border-radius: 99px;
+        }
+
+        .rr-info,
+        .rr-form-scroll {
+            scrollbar-width: thin;
+        }
+
+        .rr-info {
+            scrollbar-color: rgba(255, 255, 255, .2) transparent;
+        }
+
+        .rr-form-scroll {
+            scrollbar-color: #c7d1e8 transparent;
+        }
+
+        /* ============================ RESPONSIVE ============================ */
+
+        @media (max-width: 1180px) {
+            #registrationForm {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+
+            html,
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .rr-app {
+                height: auto;
+                min-height: 100dvh;
+                grid-template-rows: auto auto;
+            }
+
+            .rr-stage {
+                grid-template-columns: minmax(0, 1fr);
+                overflow: visible;
+                padding: 12px;
+            }
+
+            .rr-info,
+            .rr-form-panel,
+            .rr-form-scroll {
+                overflow: visible;
+            }
+
+            .rr-nav {
+                display: none;
+            }
+
+            .rr-topbar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .rr-grid-2 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .rr-selfie {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .rr-mini-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="top-strip">VANASTHALI PUBLIC SCHOOL • VASUNDHARA SECTOR-3 • RAAS RANG • 14 OCTOBER 2026</div>
-    <nav class="compliance-nav" aria-label="Important information">
-        <div class="compliance-nav-inner">
-            <span>Secure Event Registration</span>
-            <div>
+    <div class="rr-app">
+
+        <!-- ============================ TOP BAR ============================ -->
+        <header class="rr-topbar">
+            <div class="rr-brand">
+                <span class="rr-dot" aria-hidden="true"></span>
+                <span>VANASTHALI PUBLIC SCHOOL <em>•</em> VASUNDHARA SECTOR-3</span>
+            </div>
+
+            <nav class="rr-nav" aria-label="Important information">
                 <a href="about.html">Event</a>
                 <a href="contact.html">Contact</a>
                 <a href="terms.html">Terms</a>
                 <a href="privacy.html">Privacy</a>
                 <a href="refund-cancellation.html">Refund &amp; Cancellation</a>
-            </div>
-        </div>
-    </nav>
+            </nav>
 
-    <header class="hero" aria-label="Event overview">
-        <div class="hero-inner">
-            <div class="school-pill">✦ Since 1978 • Vanasthali Public School</div>
-            <h1>Raas <span>Rang</span></h1>
-            <div class="hero-sub">DANDIYA NIGHT • REGISTRATION OPEN</div>
-            <div class="hero-meta">
-                <span>📅 14 October 2026 • Wednesday</span>
-                <span>🕕 6 PM – 10 PM</span>
-                <span>🎟 Female ₹150 • Couple ₹300</span>
-                <span>🚫 No Stag Entry</span>
-            </div>
-        </div>
-    </header>
+            <div class="rr-tag">RAAS RANG • 14 OCT 2026</div>
+        </header>
 
-    <main class="floating-card">
-        <div class="card-grid">
-            <aside class="info-panel">
-                <div class="info-kicker">RAAS RANG • DANDIYA NIGHT</div>
-                <h2>Come. Dance.<br />Celebrate.</h2>
-                <p class="info-lead">
+        <!-- ============================ STAGE ============================ -->
+        <main class="rr-stage">
+
+            <!-- ---------------------- INFO PANEL ---------------------- -->
+            <aside class="rr-info" aria-label="Event overview">
+                <div class="rr-info-kicker">✦ Since 1978 • Dandiya Night</div>
+                <h1 class="rr-info-title">Raas <span>Rang</span></h1>
+                <div class="rr-info-sub">Registration Open</div>
+
+                <p class="rr-info-lead">
                     A festive evening at Vanasthali Public School. Complete your verified registration
                     and carry your digital entry pass to the gate.
                 </p>
 
-                <div class="event-mini-grid">
-                    <div class="event-mini">
-                        <span>📅</span>
-                        <div><b>14 October</b><small>Wednesday</small></div>
+                <div class="rr-mini-grid">
+                    <div class="rr-mini">
+                        <span aria-hidden="true">📅</span>
+                        <div><b>14 October</b><small>Wednesday, 2026</small></div>
                     </div>
-                    <div class="event-mini">
-                        <span>🕕</span>
+                    <div class="rr-mini">
+                        <span aria-hidden="true">🕕</span>
                         <div><b>6 PM – 10 PM</b><small>Event timing</small></div>
                     </div>
-                    <div class="event-mini">
-                        <span>🎟</span>
+                    <div class="rr-mini">
+                        <span aria-hidden="true">🎟</span>
                         <div><b>Female ₹150</b><small>Couple ₹300</small></div>
                     </div>
-                    <div class="event-mini">
-                        <span>🚫</span>
+                    <div class="rr-mini">
+                        <span aria-hidden="true">🚫</span>
                         <div><b>No Stag Entry</b><small>Event policy</small></div>
                     </div>
                 </div>
 
-                <div class="feature compact-feature">
-                    <div class="feature-icon">₹</div>
-                    <div>
-                        <strong>TEST MODE</strong>
-                        <small>Checkout currently uses ₹10 per pair + ₹5 for one extra person.</small>
+                <div class="rr-features">
+                    <div class="rr-feature">
+                        <i aria-hidden="true">₹</i>
+                        <div>
+                            <strong>TEST MODE</strong>
+                            <small>Checkout currently uses ₹10 per pair + ₹5 for one extra person.</small>
+                        </div>
+                    </div>
+                    <div class="rr-feature">
+                        <i aria-hidden="true">✓</i>
+                        <div>
+                            <strong>Payment verified</strong>
+                            <small>Registration is confirmed only after backend payment verification.</small>
+                        </div>
+                    </div>
+                    <div class="rr-feature">
+                        <i aria-hidden="true">▦</i>
+                        <div>
+                            <strong>Digital entry pass</strong>
+                            <small>Verified QR/pass will be issued after successful payment.</small>
+                        </div>
                     </div>
                 </div>
 
-                <div class="feature compact-feature">
-                    <div class="feature-icon">✓</div>
-                    <div>
-                        <strong>Payment verified</strong>
-                        <small>Registration is confirmed only after backend payment verification.</small>
-                    </div>
-                </div>
-
-                <div class="feature compact-feature">
-                    <div class="feature-icon">▦</div>
-                    <div>
-                        <strong>Digital entry pass</strong>
-                        <small>Verified QR/pass will be issued after successful payment.</small>
-                    </div>
-                </div>
-
-                <div class="support-box">
-                    <div class="support-title">Need help?</div>
+                <div class="rr-support">
+                    <div class="rr-support-title">Need help?</div>
                     <a href="mailto:vpserpvasundhara@gmail.com">vpserpvasundhara@gmail.com</a>
-                    <div class="support-person">Ms. Geetika <a href="tel:8130058828">8130058828</a></div>
-                    <div class="support-person">Ms. Bani Kaur <a href="tel:935520700">935520700</a></div>
+                    <div>Ms. Geetika <a href="tel:8130058828">8130058828</a></div>
+                    <div>Ms. Bani Kaur <a href="tel:935520700">935520700</a></div>
                 </div>
             </aside>
 
-            <section class="form-panel">
-                <div class="eyebrow">Secure Event Registration</div>
-                <h2>Book your Garba entry</h2>
-                <p class="form-intro" id="formIntro">
-                    Minimum 2 people are required. Single Female Entry is also available. Enter the lead guest's details
-                    and the names of everyone coming with you.
-                </p>
-
-                <div class="checkout-info">
-                    <div>
-                        <strong>Before you pay</strong>
-                        <span>Review the event rules, privacy terms and refund/cancellation policy.</span>
-                    </div>
-                    <div class="checkout-links">
-                        <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
-                        <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
-                        <a href="refund-cancellation.html" target="_blank" rel="noopener noreferrer">Refund &amp;
-                            Cancellation</a>
-                    </div>
+            <!-- ---------------------- FORM PANEL ---------------------- -->
+            <section class="rr-form-panel">
+                <div class="rr-form-head">
+                    <span class="rr-eyebrow">Secure Event Registration</span>
+                    <h2>Book your Garba entry</h2>
                 </div>
 
-                <form id="registrationForm" novalidate autocomplete="off">
-                    <div class="section-title">1. Lead Guest</div>
+                <div class="rr-form-scroll">
+                    <form id="registrationForm" novalidate autocomplete="off">
 
-                    <div class="field-grid">
-                        <div class="field full">
-                            <label for="leadName">Your full name <span class="required">*</span></label>
-                            <input id="leadName" name="leadName" type="text" maxlength="80"
-                                placeholder="Enter your full name" required />
-                        </div>
+                        <!-- ============ LEFT COLUMN ============ -->
+                        <div class="rr-col">
 
-                        <div class="field">
-                            <label for="mobile">Mobile number <span class="required">*</span></label>
-                            <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10"
-                                placeholder="10-digit mobile number" required />
-                            <div class="helper">Used for registration communication.</div>
-                        </div>
+                            <p class="rr-intro" id="formIntro">
+                                Minimum 2 people are required. Single Female Entry is also available. Enter the lead
+                                guest's details and the names of everyone coming with you.
+                            </p>
 
-                        <div class="field">
-                            <label for="email">Email address <span class="required">*</span></label>
-                            <input id="email" name="email" type="email" maxlength="120" placeholder="you@example.com"
-                                required />
-                        </div>
-                    </div>
-
-                    <div class="entry-type">
-                        <div class="entry-type-copy">
-                            <span class="entry-type-label">Entry type</span>
-                            <small id="entryModeHelp">Couple / group entry • minimum 2 people</small>
-                        </div>
-                        <label class="toggle">
-                            <input id="singleFemaleEntry" type="checkbox" />
-                            <span class="toggle-track"><span class="toggle-thumb"></span></span>
-                            <span class="toggle-text">Single Female Entry</span>
-                        </label>
-                    </div>
-
-                    <div class="section-title">2. Group Size</div>
-
-                    <div class="people-control">
-                        <div>
-                            <label for="people">Total people in your group <span class="required">*</span></label>
-                            <div class="stepper">
-                                <button type="button" id="minusPeople" aria-label="Decrease group size">−</button>
-                                <input id="people" name="people" type="number" min="2" max="20" value="2" required
-                                    aria-describedby="entryModeHelp" />
-                                <button type="button" id="plusPeople" aria-label="Increase group size">+</button>
+                            <div class="rr-policy">
+                                <div>
+                                    <strong>Before you pay</strong>
+                                    <span>Review the event rules, privacy terms and refund/cancellation policy.</span>
+                                </div>
+                                <div class="rr-policy-links">
+                                    <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
+                                    <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
+                                    <a href="refund-cancellation.html" target="_blank" rel="noopener noreferrer">Refund</a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="price-box" style="margin-top:0;">
-                            <div class="price-label">Entry fee</div>
-                            <div class="price" id="amountText">₹10</div>
-                        </div>
-                    </div>
+                            <div class="rr-section-title">Lead Guest</div>
 
-                    <div id="membersBox" class="members-box"></div>
+                            <div class="rr-grid-2">
+                                <div class="rr-field rr-full">
+                                    <label for="leadName">Your full name <span class="rr-req">*</span></label>
+                                    <input id="leadName" name="leadName" type="text" maxlength="80"
+                                        placeholder="Enter your full name" required />
+                                </div>
 
-                    <div class="section-title">3. Live Selfie</div>
+                                <div class="rr-field">
+                                    <label for="mobile">Mobile number <span class="rr-req">*</span></label>
+                                    <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10"
+                                        placeholder="10-digit mobile number" required />
+                                    <div class="rr-helper">Used for registration communication.</div>
+                                </div>
 
-                    <div class="selfie-wrap">
-                        <div class="camera-box">
-                            <div class="camera-empty" id="cameraEmpty">
-                                <div style="font-size:28px;margin-bottom:7px;">📷</div>
-                                <strong>Live selfie required</strong>
-                                <div style="margin-top:5px;">Allow camera access and take a fresh selfie.</div>
+                                <div class="rr-field">
+                                    <label for="email">Email address <span class="rr-req">*</span></label>
+                                    <input id="email" name="email" type="email" maxlength="120"
+                                        placeholder="you@example.com" required />
+                                </div>
                             </div>
-                            <video id="selfiePreview" playsinline muted></video>
-                            <img id="selfieImage" alt="Captured selfie preview" />
-                        </div>
 
-                        <div class="camera-actions">
-                            <button type="button" class="btn btn-secondary" id="openCamera">Open camera</button>
-                            <button type="button" class="btn btn-dark" id="retakeSelfie" disabled>Retake selfie</button>
-                            <div class="helper">Fresh camera capture. Secure backend upload will happen only after
-                                payment verification.</div>
-                        </div>
-                    </div>
-
-                    <div class="section-title">4. Human Verification</div>
-
-                    <div class="captcha-box">
-                        <div class="captcha-row">
-                            <div class="captcha-question" id="captchaQuestion" aria-label="CAPTCHA question"></div>
-                            <input id="captchaAnswer" type="text" inputmode="numeric" maxlength="4" placeholder="Answer"
-                                aria-label="CAPTCHA answer" required />
-                            <button type="button" class="captcha-refresh" id="refreshCaptcha">↻ New CAPTCHA</button>
-                        </div>
-                        <div class="helper" style="margin-top:9px;">
-                            This CAPTCHA is a basic user-flow check. Production will also enforce a
-                            server-side CAPTCHA / anti-bot check as well.
-                        </div>
-                    </div>
-
-                    <div class="checkline">
-                        <input id="terms" type="checkbox" required />
-                        <label for="terms">
-                            I confirm the details are correct, consent to the collection and use of my registration
-                            information and live selfie as described in the <a href="privacy.html" target="_blank"
-                                rel="noopener noreferrer">Privacy Policy</a>, and agree to the <a href="terms.html"
-                                target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>.
-                        </label>
-                    </div>
-
-                    <div class="price-box">
-                        <div class="price-top">
-                            <div>
-                                <div class="price-label">Amount payable</div>
-                                <div class="price-note" id="pricingNote">2 people • 1 pair</div>
+                            <div class="rr-entrytype">
+                                <div>
+                                    <span class="rr-entrytype-label">Entry type</span>
+                                    <small id="entryModeHelp">Couple / group entry • minimum 2 people</small>
+                                </div>
+                                <label class="rr-toggle">
+                                    <input id="singleFemaleEntry" type="checkbox" />
+                                    <span class="rr-track"><span class="rr-thumb"></span></span>
+                                    <span class="rr-toggle-text">Single Female Entry</span>
+                                </label>
                             </div>
-                            <div class="price" id="amountTextBottom">₹10</div>
+
+                            <!-- Group size: hidden automatically in Single Female mode -->
+                            <div id="groupSizeBlock">
+                                <div class="rr-section-title">Group Size</div>
+
+                                <div class="rr-people-row">
+                                    <div>
+                                        <label class="rr-inline-label" for="people">Total people in your group <span
+                                                class="rr-req">*</span></label>
+                                        <div class="rr-stepper">
+                                            <button type="button" id="minusPeople"
+                                                aria-label="Decrease group size">−</button>
+                                            <input id="people" name="people" type="number" min="2" max="20" value="2"
+                                                required aria-describedby="entryModeHelp" />
+                                            <button type="button" id="plusPeople"
+                                                aria-label="Increase group size">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="rr-price-chip">
+                                        <span>Entry fee</span>
+                                        <b id="amountText">₹10</b>
+                                    </div>
+                                </div>
+
+                                <div id="membersBox" class="rr-members"></div>
+                            </div>
+
                         </div>
-                    </div>
 
-                    <button class="pay-btn" id="payNow" type="submit" disabled>
-                        Pay ₹10 & Confirm Registration
-                    </button>
+                        <!-- ============ RIGHT COLUMN ============ -->
+                        <div class="rr-col">
 
-                    <div class="security-note">
-                        <span>🔒</span>
-                        <span><b>Security-first flow:</b> payment confirmation, registration creation and QR issuance
-                            must be performed by the trusted backend. Never expose payment gateway secret keys in
-                            frontend code.</span>
-                    </div>
-                </form>
+                            <div class="rr-section-title">Live Selfie</div>
+
+                            <div class="rr-selfie">
+                                <div class="rr-camera-box">
+                                    <div class="rr-camera-empty" id="cameraEmpty">
+                                        <div class="rr-cam-emoji" aria-hidden="true">📷</div>
+                                        <strong>Live selfie required</strong>
+                                        <div>Allow camera access and take a fresh selfie.</div>
+                                    </div>
+                                    <video id="selfiePreview" playsinline muted></video>
+                                    <img id="selfieImage" alt="Captured selfie preview" />
+                                </div>
+
+                                <div class="rr-camera-actions">
+                                    <button type="button" class="rr-btn rr-btn-sec" id="openCamera">Open
+                                        camera</button>
+                                    <button type="button" class="rr-btn rr-btn-dark" id="retakeSelfie"
+                                        disabled>Retake selfie</button>
+                                    <div class="rr-helper">
+                                        Fresh camera capture. Secure backend upload will happen only after
+                                        payment verification.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rr-section-title">Human Verification</div>
+
+                            <div class="rr-captcha">
+                                <div class="rr-captcha-row">
+                                    <div class="rr-captcha-q" id="captchaQuestion" aria-label="CAPTCHA question"></div>
+                                    <input id="captchaAnswer" type="text" inputmode="numeric" maxlength="4"
+                                        placeholder="Answer" aria-label="CAPTCHA answer" required />
+                                    <button type="button" class="rr-captcha-refresh" id="refreshCaptcha">↻
+                                        New</button>
+                                </div>
+                                <div class="rr-helper">
+                                    This CAPTCHA is a basic user-flow check. Production will also enforce a
+                                    server-side CAPTCHA / anti-bot check as well.
+                                </div>
+                            </div>
+
+                            <div class="rr-checkline">
+                                <input id="terms" type="checkbox" required />
+                                <label for="terms">
+                                    I confirm the details are correct, consent to the collection and use of my
+                                    registration information and live selfie as described in the
+                                    <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy
+                                        Policy</a>, and agree to the
+                                    <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms &amp;
+                                        Conditions</a>.
+                                </label>
+                            </div>
+
+                            <div class="rr-total">
+                                <div>
+                                    <div class="rr-total-label">Amount payable</div>
+                                    <div class="rr-total-note" id="pricingNote">2 people • 1 pair</div>
+                                </div>
+                                <div class="rr-total-amount" id="amountTextBottom">₹10</div>
+                            </div>
+
+                            <button class="rr-pay" id="payNow" type="submit" disabled>
+                                Pay ₹10 &amp; Confirm Registration
+                            </button>
+
+                            <div class="rr-security">
+                                <span aria-hidden="true">🔒</span>
+                                <span><b>Security-first flow:</b> payment confirmation, registration creation and QR
+                                    issuance must be performed by the trusted backend. Never expose payment gateway
+                                    secret keys in frontend code.</span>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
             </section>
-        </div>
-    </main>
 
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div>
-                <strong>Raas Rang — Dandiya Night</strong>
-                <p>Vanasthali Public School, Vasundhara Sector-3</p>
-            </div>
-            <div class="footer-links">
-                <a href="about.html">Event / About</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="terms.html">Terms &amp; Conditions</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="refund-cancellation.html">Refund &amp; Cancellation</a>
-            </div>
-            <div class="footer-compliance">
-                <strong>Event support</strong>
-                <p>
-                    Email: <a href="mailto:vpserpvasundhara@gmail.com">vpserpvasundhara@gmail.com</a><br />
-                    Ms. Geetika: <a href="tel:8130058828">8130058828</a><br />
-                    Ms. Bani Kaur: <a href="tel:935520700">935520700</a>
-                </p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>© 2026 Vanasthali Public School</span>
-            <span>Payments are processed securely through the payment gateway. No card credentials are stored by this
-                website.</span>
-        </div>
-    </footer>
+        </main>
+    </div>
 
-    <!-- Camera modal -->
-    <div class="modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
-        <div class="modal-card">
-            <div class="modal-head">
+    <!-- ============================ CAMERA MODAL ============================ -->
+    <div class="rr-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
+        <div class="rr-modal-card">
+            <div class="rr-modal-head">
                 <h3 id="cameraTitle">Take your live selfie</h3>
-                <button class="close" id="closeCamera" type="button" aria-label="Close">×</button>
+                <button class="rr-close" id="closeCamera" type="button" aria-label="Close">×</button>
             </div>
 
-            <div class="camera-stage">
+            <div class="rr-camera-stage">
                 <video id="captureVideo" autoplay playsinline muted></video>
-                <div class="camera-guide"></div>
+                <div class="rr-camera-guide"></div>
             </div>
 
-            <div class="camera-modal-actions">
-                <button class="btn btn-secondary" id="cancelCamera" type="button">Cancel</button>
-                <button class="btn btn-dark" id="captureSelfie" type="button">Capture selfie</button>
+            <div class="rr-modal-actions">
+                <button class="rr-btn rr-btn-sec" id="cancelCamera" type="button">Cancel</button>
+                <button class="rr-btn rr-btn-dark" id="captureSelfie" type="button">Capture selfie</button>
             </div>
         </div>
     </div>
 
-    <!-- Payment / success modal. This is intentionally a frontend hook only. -->
-    <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
-        <div class="modal-card success-card">
-            <div class="success-icon">✓</div>
-            <h3 id="successTitle" style="margin:0;font-size:25px;">Registration Confirmed</h3>
-            <p class="success-note" style="margin-top:8px;">
+    <!-- ============================ SUCCESS MODAL ============================ -->
+    <div class="rr-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+        <div class="rr-modal-card rr-success-card">
+            <div class="rr-success-icon" aria-hidden="true">✓</div>
+            <h3 id="successTitle">Registration Confirmed</h3>
+            <p class="success-note">
                 Your payment has been verified by the secure backend. Your digital pass is being prepared.
             </p>
 
-            <div class="registration-code" id="demoRegistrationCode">—</div>
+            <div class="rr-reg-code" id="demoRegistrationCode">—</div>
 
-            <div class="qr-box">
-                <div style="font-size:45px;">▦</div>
-            </div>
+            <div class="rr-qr-box" aria-hidden="true">▦</div>
 
-            <button class="btn btn-dark" type="button" id="closeSuccess" style="width:100%;">Close</button>
+            <button class="rr-btn rr-btn-dark" type="button" id="closeSuccess" style="width:100%;">Close</button>
         </div>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <div class="rr-toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
         (() => {
@@ -354,6 +1663,7 @@
             const singleFemaleEntry = $("#singleFemaleEntry");
             const entryModeHelp = $("#entryModeHelp");
             const formIntro = $("#formIntro");
+            const groupSizeBlock = $("#groupSizeBlock");
 
             const cameraModal = $("#cameraModal");
             const captureVideo = $("#captureVideo");
@@ -525,6 +1835,9 @@
 
                 peopleInput.setAttribute("aria-label",
                     single ? "Single female entry" : "Total people in your group");
+
+                // Single Female mode => group size section is not needed at all.
+                groupSizeBlock.hidden = single;
 
                 renderMembers();
                 resetPaymentAttempt();
