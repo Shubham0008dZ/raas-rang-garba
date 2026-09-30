@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://garba-registration-api.shubham347779.workers.dev https://api.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
     <meta name="description"
-        content="Raas Rang Dandiya Night — Vanasthali Public School Vasundhara Sector-3 registration." />
+        content="Raas Rang Dandiya Night — Vanasthali Public School, Vasundhara Sector-3. 14 October, 6 PM–10 PM." />
 
     <!--
     Production security note:
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div class="top-strip">VANASTHALI PUBLIC SCHOOL • VASUNDHARA SECTOR-3 • RAAS RANG DANDIYA NIGHT</div>
+    <div class="top-strip">VANASTHALI PUBLIC SCHOOL • VASUNDHARA SECTOR-3 • RAAS RANG • 14 OCTOBER 2026</div>
     <nav class="compliance-nav" aria-label="Important information">
         <div class="compliance-nav-inner">
             <span>Secure Event Registration</span>
@@ -39,15 +39,16 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero" aria-label="Event overview">
         <div class="hero-inner">
             <div class="school-pill">✦ Since 1978 • Vanasthali Public School</div>
             <h1>Raas <span>Rang</span></h1>
             <div class="hero-sub">DANDIYA NIGHT • REGISTRATION OPEN</div>
             <div class="hero-meta">
-                <span>🪔 Garba • Dandiya • Music</span>
-                <span>🎟 ₹10 / Pair • TEST</span>
-                <span>🔐 Verified QR Entry</span>
+                <span>📅 14 October 2026 • Wednesday</span>
+                <span>🕕 6 PM – 10 PM</span>
+                <span>🎟 Female ₹150 • Couple ₹300</span>
+                <span>🚫 No Stag Entry</span>
             </div>
         </div>
     </header>
@@ -55,51 +56,70 @@
     <main class="floating-card">
         <div class="card-grid">
             <aside class="info-panel">
-                <h2>Come. Dance. Celebrate.</h2>
-                <p>
-                    A colourful Garba evening at Vanasthali Public School.
-                    Complete your registration and carry your verified digital pass to the gate.
+                <div class="info-kicker">RAAS RANG • DANDIYA NIGHT</div>
+                <h2>Come. Dance.<br />Celebrate.</h2>
+                <p class="info-lead">
+                    A festive evening at Vanasthali Public School. Complete your verified registration
+                    and carry your digital entry pass to the gate.
                 </p>
 
-                <div class="feature">
+                <div class="event-mini-grid">
+                    <div class="event-mini">
+                        <span>📅</span>
+                        <div><b>14 October</b><small>Wednesday</small></div>
+                    </div>
+                    <div class="event-mini">
+                        <span>🕕</span>
+                        <div><b>6 PM – 10 PM</b><small>Event timing</small></div>
+                    </div>
+                    <div class="event-mini">
+                        <span>🎟</span>
+                        <div><b>Female ₹150</b><small>Couple ₹300</small></div>
+                    </div>
+                    <div class="event-mini">
+                        <span>🚫</span>
+                        <div><b>No Stag Entry</b><small>Event policy</small></div>
+                    </div>
+                </div>
+
+                <div class="feature compact-feature">
                     <div class="feature-icon">₹</div>
                     <div>
-                        <strong>Simple pair-based pricing</strong>
-                        <small>₹10 per pair + ₹5 for one extra person (TEST MODE).</small>
+                        <strong>TEST MODE</strong>
+                        <small>Checkout currently uses ₹10 per pair + ₹5 for one extra person.</small>
                     </div>
                 </div>
 
-                <div class="feature">
+                <div class="feature compact-feature">
                     <div class="feature-icon">✓</div>
                     <div>
-                        <strong>Payment-verified registration</strong>
-                        <small>Registration confirmation will be created only after verified payment.</small>
+                        <strong>Payment verified</strong>
+                        <small>Registration is confirmed only after backend payment verification.</small>
                     </div>
                 </div>
 
-                <div class="feature">
+                <div class="feature compact-feature">
                     <div class="feature-icon">▦</div>
                     <div>
                         <strong>Digital entry pass</strong>
-                        <small>Download your unique QR pass and show it at the gate.</small>
+                        <small>Verified QR/pass will be issued after successful payment.</small>
                     </div>
                 </div>
 
-                <div class="feature">
-                    <div class="feature-icon">⌁</div>
-                    <div>
-                        <strong>Fast gate verification</strong>
-                        <small>Gate staff can verify the QR or registration number against the secure backend.</small>
-                    </div>
+                <div class="support-box">
+                    <div class="support-title">Need help?</div>
+                    <a href="mailto:vpserpvasundhara@gmail.com">vpserpvasundhara@gmail.com</a>
+                    <div class="support-person">Ms. Geetika <a href="tel:8130058828">8130058828</a></div>
+                    <div class="support-person">Ms. Bani Kaur <a href="tel:935520700">935520700</a></div>
                 </div>
             </aside>
 
             <section class="form-panel">
                 <div class="eyebrow">Secure Event Registration</div>
                 <h2>Book your Garba entry</h2>
-                <p class="form-intro">
-                    Minimum 2 people are required. Enter the lead guest's details and the names of everyone coming with
-                    you.
+                <p class="form-intro" id="formIntro">
+                    Minimum 2 people are required. Single Female Entry is also available. Enter the lead guest's details
+                    and the names of everyone coming with you.
                 </p>
 
                 <div class="checkout-info">
@@ -139,6 +159,18 @@
                         </div>
                     </div>
 
+                    <div class="entry-type">
+                        <div class="entry-type-copy">
+                            <span class="entry-type-label">Entry type</span>
+                            <small id="entryModeHelp">Couple / group entry • minimum 2 people</small>
+                        </div>
+                        <label class="toggle">
+                            <input id="singleFemaleEntry" type="checkbox" />
+                            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                            <span class="toggle-text">Single Female Entry</span>
+                        </label>
+                    </div>
+
                     <div class="section-title">2. Group Size</div>
 
                     <div class="people-control">
@@ -146,7 +178,8 @@
                             <label for="people">Total people in your group <span class="required">*</span></label>
                             <div class="stepper">
                                 <button type="button" id="minusPeople" aria-label="Decrease group size">−</button>
-                                <input id="people" name="people" type="number" min="2" max="20" value="2" required />
+                                <input id="people" name="people" type="number" min="2" max="20" value="2" required
+                                    aria-describedby="entryModeHelp" />
                                 <button type="button" id="plusPeople" aria-label="Increase group size">+</button>
                             </div>
                         </div>
@@ -175,8 +208,8 @@
                         <div class="camera-actions">
                             <button type="button" class="btn btn-secondary" id="openCamera">Open camera</button>
                             <button type="button" class="btn btn-dark" id="retakeSelfie" disabled>Retake selfie</button>
-                            <div class="helper">The final production flow should upload the captured image to a secured
-                                backend only after payment verification.</div>
+                            <div class="helper">Fresh camera capture. Secure backend upload will happen only after
+                                payment verification.</div>
                         </div>
                     </div>
 
@@ -190,7 +223,7 @@
                             <button type="button" class="captcha-refresh" id="refreshCaptcha">↻ New CAPTCHA</button>
                         </div>
                         <div class="helper" style="margin-top:9px;">
-                            Frontend CAPTCHA is for user-flow validation only. A production deployment must enforce a
+                            This CAPTCHA is a basic user-flow check. Production will also enforce a
                             server-side CAPTCHA / anti-bot check as well.
                         </div>
                     </div>
@@ -211,7 +244,7 @@
                                 <div class="price-label">Amount payable</div>
                                 <div class="price-note" id="pricingNote">2 people • 1 pair</div>
                             </div>
-                            <div class="price" id="amountTextBottom">₹500</div>
+                            <div class="price" id="amountTextBottom">₹10</div>
                         </div>
                     </div>
 
@@ -244,9 +277,12 @@
                 <a href="refund-cancellation.html">Refund &amp; Cancellation</a>
             </div>
             <div class="footer-compliance">
-                <strong>Customer support</strong>
-                <p>Email: <a href="mailto:VPSvasundhara@gmail.com">VPSvasundhara@gmail.com</a><br />
-                    Phone: <b>[ADD VERIFIED SUPPORT PHONE]</b></p>
+                <strong>Event support</strong>
+                <p>
+                    Email: <a href="mailto:vpserpvasundhara@gmail.com">vpserpvasundhara@gmail.com</a><br />
+                    Ms. Geetika: <a href="tel:8130058828">8130058828</a><br />
+                    Ms. Bani Kaur: <a href="tel:935520700">935520700</a>
+                </p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -282,7 +318,7 @@
             <div class="success-icon">✓</div>
             <h3 id="successTitle" style="margin:0;font-size:25px;">Registration Confirmed</h3>
             <p class="success-note" style="margin-top:8px;">
-                Your payment has been verified by the secure backend. Your registration pass is being prepared.
+                Your payment has been verified by the secure backend. Your digital pass is being prepared.
             </p>
 
             <div class="registration-code" id="demoRegistrationCode">—</div>
@@ -315,6 +351,9 @@
             const amountTextBottom = $("#amountTextBottom");
             const pricingNote = $("#pricingNote");
             const payNow = $("#payNow");
+            const singleFemaleEntry = $("#singleFemaleEntry");
+            const entryModeHelp = $("#entryModeHelp");
+            const formIntro = $("#formIntro");
 
             const cameraModal = $("#cameraModal");
             const captureVideo = $("#captureVideo");
@@ -356,20 +395,38 @@
             }
 
             // ============================================================
-            // TEST PRICING CONFIG
-            // Current TEST mode: ₹10 per complete pair + ₹5 for one extra.
-            // Before LIVE launch, change only these two values back to:
-            // PAIR_PRICE = 500
-            // EXTRA_PERSON_PRICE = 250
-            // Backend MUST use the same server-side pricing constants.
+            // EVENT PRICING
+            // LIVE poster pricing:
+            //   Single female = ₹150
+            //   Couple = ₹300
+            //
+            // TEST pricing currently used by Razorpay:
+            //   Single female = ₹5
+            //   Pair = ₹10
+            //   Extra odd person = ₹5
+            //
+            // IMPORTANT: backend MUST independently enforce the same rules.
             // ============================================================
-            const PAIR_PRICE = 10;
-            const EXTRA_PERSON_PRICE = 5;
+            const TEST_SINGLE_FEMALE_PRICE = 5;
+            const TEST_PAIR_PRICE = 10;
+            const TEST_EXTRA_PERSON_PRICE = 5;
+
+            function isSingleFemaleMode() {
+                return singleFemaleEntry.checked;
+            }
 
             function calculateAmount(totalPeople) {
+                if (isSingleFemaleMode()) {
+                    return TEST_SINGLE_FEMALE_PRICE;
+                }
+
                 const pairs = Math.floor(totalPeople / 2);
                 const extra = totalPeople % 2;
-                return pairs * PAIR_PRICE + extra * EXTRA_PERSON_PRICE;
+
+                return (
+                    pairs * TEST_PAIR_PRICE +
+                    extra * TEST_EXTRA_PERSON_PRICE
+                );
             }
 
             function formatINR(amount) {
@@ -381,19 +438,43 @@
             }
 
             function renderMembers() {
+                if (isSingleFemaleMode()) {
+                    peopleInput.value = "1";
+                    peopleInput.min = "1";
+                    peopleInput.max = "1";
+                    peopleInput.disabled = true;
+
+                    membersBox.innerHTML = "";
+                    membersBox.classList.add("single-female-mode");
+
+                    const amount = calculateAmount(1);
+                    amountText.textContent = formatINR(amount);
+                    amountTextBottom.textContent = formatINR(amount);
+                    pricingNote.textContent = "1 person • Single Female Entry";
+                    payNow.textContent =
+                        `Pay ${formatINR(amount)} & Confirm Registration`;
+                    return;
+                }
+
+                peopleInput.disabled = false;
+                peopleInput.min = "2";
+                peopleInput.max = "20";
+
                 let total = Number(peopleInput.value);
                 if (!Number.isFinite(total)) total = 2;
                 total = Math.min(20, Math.max(2, Math.floor(total)));
                 peopleInput.value = String(total);
 
+                membersBox.classList.remove("single-female-mode");
                 membersBox.innerHTML = "";
 
-                // Lead Guest is already captured above.
                 const companionCount = total - 1;
 
                 const title = document.createElement("div");
-                title.style.cssText = "font-weight:900;font-size:13px;margin-bottom:12px;";
-                title.textContent = `Names of remaining ${companionCount} guest${companionCount === 1 ? "" : "s"}`;
+                title.style.cssText =
+                    "font-weight:900;font-size:13px;margin-bottom:10px;";
+                title.textContent =
+                    `Names of remaining ${companionCount} guest${companionCount === 1 ? "" : "s"}`;
                 membersBox.appendChild(title);
 
                 for (let i = 1; i <= companionCount; i++) {
@@ -422,10 +503,32 @@
 
                 const pairCount = Math.floor(total / 2);
                 const extra = total % 2;
+
                 pricingNote.textContent =
                     `${total} people • ${pairCount} pair${pairCount === 1 ? "" : "s"}` +
                     (extra ? " + 1 extra guest" : "");
-                payNow.textContent = `Pay ${formatINR(amount)} & Confirm Registration`;
+
+                payNow.textContent =
+                    `Pay ${formatINR(amount)} & Confirm Registration`;
+            }
+
+            function updateEntryModeUI() {
+                const single = isSingleFemaleMode();
+
+                entryModeHelp.textContent = single
+                    ? "1 person allowed • female-only single entry"
+                    : "Couple / group entry • minimum 2 people";
+
+                formIntro.textContent = single
+                    ? "Single Female Entry is available. Enter the lead guest's details and continue to payment."
+                    : "Minimum 2 people are required. Enter the lead guest's details and the names of everyone coming with you.";
+
+                peopleInput.setAttribute("aria-label",
+                    single ? "Single female entry" : "Total people in your group");
+
+                renderMembers();
+                resetPaymentAttempt();
+                updatePayState();
             }
 
             function createCaptcha() {
@@ -571,6 +674,9 @@
                             email: $("#email").value.trim().toLowerCase(),
                             people: totalPeople,
                             members,
+                            entry_mode: isSingleFemaleMode()
+                                ? "single_female"
+                                : "group",
                             idempotency_key: idempotencyKey
                         })
                     });
@@ -837,13 +943,22 @@
                     return;
                 }
 
+                if (isSingleFemaleMode()) {
+                    if (Number(peopleInput.value) !== 1) {
+                        showToast("Single Female Entry must contain exactly 1 person.");
+                        return;
+                    }
+                } else if (Number(peopleInput.value) < 2) {
+                    showToast("Minimum 2 people are required.");
+                    return;
+                }
+
                 await startSecurePaymentFlow();
             });
 
             // Keep only the expected max age/format in the UI. Real anti-bot and validation are server-side.
             createCaptcha();
-            renderMembers();
-            updatePayState();
+            updateEntryModeUI();
         })();
     </script>
 </body>
