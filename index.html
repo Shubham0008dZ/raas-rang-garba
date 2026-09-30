@@ -68,6 +68,7 @@
             background-attachment: fixed;
         }
 
+        /* Fix: Ensure the hidden attribute always hides the element */
         [hidden] {
             display: none !important;
         }
@@ -1336,13 +1337,6 @@
                 transition-duration: .01ms !important;
             }
         }
-
-#groupSizeBlock[hidden] {
-    display: none !important;
-}
-
-
-        
     </style>
 </head>
 
@@ -1844,6 +1838,7 @@
                     single ? "Single female entry" : "Total people in your group");
 
                 // Single Female mode => group size section is not needed at all.
+                // The `hidden` attribute is enforced by the CSS rule [hidden] { display: none !important; }
                 groupSizeBlock.hidden = single;
 
                 renderMembers();
@@ -2279,8 +2274,6 @@
             // Keep only the expected max age/format in the UI. Real anti-bot and validation are server-side.
             createCaptcha();
             updateEntryModeUI();
-                            groupSizeBlock.hidden = single;
-
         })();
     </script>
 </body>
