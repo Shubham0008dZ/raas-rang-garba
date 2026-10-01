@@ -3,2277 +3,4157 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#071b49" />
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://garba-registration-api.shubham347779.workers.dev https://api.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';">
-    <meta name="description"
-        content="Raas Rang Dandiya Night — Vanasthali Public School, Vasundhara Sector-3. 14 October, 6 PM–10 PM." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-    <title>Raas Rang — Dandiya Night | Registration</title>
+    <meta name="description" content="Vanasthali Public School Garba Night registration." />
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Garba Night | Vanasthali Public School</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet" />
 
     <style>
-        /* ==========================================================================
-           RAAS RANG — SELF-CONTAINED UI (scoped with .rr- prefix)
-           ========================================================================== */
-
         :root {
-            --rr-navy: #071b49;
-            --rr-navy-2: #0d2564;
-            --rr-ink: #0d1730;
-            --rr-ink-2: #22376b;
-            --rr-pink: #f63b82;
-            --rr-pink-2: #ff7bb0;
-            --rr-gold: #ffc857;
-            --rr-mint: #2ee6a8;
-            --rr-text: #eef2ff;
-            --rr-muted: #a9b6dd;
-            --rr-line: rgba(255, 255, 255, .12);
-            --rr-radius: 16px;
-            --rr-shadow: 0 22px 50px rgba(0, 0, 0, .42);
+            --bg: #080808;
+            --surface: #111111;
+            --surface-2: #161616;
+            --surface-3: #1b1b1b;
+
+            --text: #ffffff;
+            --muted: #98989f;
+            --muted-2: #707077;
+
+            --orange: #ff7a18;
+            --orange-2: #ff9f43;
+            --pink: #ee4266;
+            --gold: #ffd166;
+
+            --success: #3ddc97;
+            --danger: #ff5c75;
+            --warning: #ffc857;
+
+            --border: rgba(255, 255, 255, .09);
+            --border-strong: rgba(255, 255, 255, .14);
+
+            --shadow:
+                0 25px 80px rgba(0, 0, 0, .45);
+
+            --radius-xl: 30px;
+            --radius-lg: 22px;
+            --radius-md: 15px;
+
+            --container: 1240px;
         }
 
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
             margin: 0;
-            overflow: hidden;
-            font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-            color: var(--rr-text);
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-            background:
-                radial-gradient(1100px 680px at 8% -12%, #17337f 0%, transparent 58%),
-                radial-gradient(900px 620px at 102% -6%, #58123f 0%, transparent 55%),
-                radial-gradient(900px 900px at 50% 130%, #0b2a63 0%, transparent 62%),
-                #061534;
-            background-attachment: fixed;
+            padding: 0;
         }
 
-        /* Fix: Ensure the hidden attribute always hides the element */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "DM Sans", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(circle at 8% 12%,
+                    rgba(255, 122, 24, .12),
+                    transparent 26%),
+                radial-gradient(circle at 92% 18%,
+                    rgba(238, 66, 102, .10),
+                    transparent 28%),
+                radial-gradient(circle at 50% 100%,
+                    rgba(255, 209, 102, .06),
+                    transparent 35%),
+                var(--bg);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         [hidden] {
             display: none !important;
         }
 
-        /* ============================ APP SHELL ============================ */
-
-        .rr-app {
-            height: 100vh;
-            height: 100dvh;
-            display: grid;
-            grid-template-rows: auto minmax(0, 1fr);
-            overflow: hidden;
+        .container {
+            width: min(var(--container), calc(100% - 40px));
+            margin: auto;
         }
 
-        /* ============================ TOP BAR ============================ */
+        /* ==========================================================
+       BUTTONS
+    ========================================================== */
 
-        .rr-topbar {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 8px 18px;
-            min-height: 42px;
-            background: linear-gradient(90deg, rgba(7, 27, 73, .96), rgba(11, 34, 92, .82));
-            border-bottom: 1px solid var(--rr-line);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
+        .btn {
+            min-height: 46px;
+            padding: 0 19px;
 
-        .rr-brand {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 10.5px;
-            font-weight: 800;
-            letter-spacing: .11em;
-            text-transform: uppercase;
-            color: #cfd9f7;
-            white-space: nowrap;
-        }
+            border: 0;
+            border-radius: 13px;
 
-        .rr-brand em {
-            font-style: normal;
-            color: var(--rr-pink-2);
-        }
-
-        .rr-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            flex: 0 0 9px;
-            background: linear-gradient(135deg, var(--rr-pink), var(--rr-gold));
-            box-shadow: 0 0 0 3px rgba(246, 59, 130, .18);
-            animation: rrPulse 2.4s ease-in-out infinite;
-        }
-
-        @keyframes rrPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 3px rgba(246, 59, 130, .18);
-            }
-
-            50% {
-                box-shadow: 0 0 0 6px rgba(246, 59, 130, .05);
-            }
-        }
-
-        .rr-nav {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-left: auto;
-        }
-
-        .rr-nav a {
-            font-size: 11px;
             font-weight: 700;
-            color: #c3cdea;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 999px;
-            border: 1px solid transparent;
-            transition: .18s;
-            white-space: nowrap;
-        }
-
-        .rr-nav a:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, .09);
-            border-color: rgba(255, 255, 255, .14);
-        }
-
-        .rr-tag {
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: .12em;
-            padding: 5px 11px;
-            border-radius: 999px;
-            color: #2a0a1a;
-            background: linear-gradient(135deg, var(--rr-pink-2), var(--rr-gold));
-            white-space: nowrap;
-        }
-
-        /* ============================ STAGE ============================ */
-
-        .rr-stage {
-            min-height: 0;
-            display: grid;
-            grid-template-columns: minmax(280px, 355px) minmax(0, 1fr);
-            gap: 14px;
-            padding: 14px 18px 16px;
-            overflow: hidden;
-        }
-
-        /* ============================ INFO PANEL ============================ */
-
-        .rr-info {
-            min-height: 0;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-            padding: 16px;
-            border-radius: var(--rr-radius);
-            border: 1px solid var(--rr-line);
-            background: linear-gradient(165deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .025));
-            box-shadow: var(--rr-shadow);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-        }
-
-        .rr-info-kicker {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: var(--rr-gold);
-        }
-
-        .rr-info-title {
-            margin: 0;
-            font-size: clamp(28px, 2.5vw, 40px);
-            line-height: .98;
-            font-weight: 900;
-            letter-spacing: -.02em;
-        }
-
-        .rr-info-title span {
-            background: linear-gradient(120deg, var(--rr-pink), var(--rr-pink-2) 55%, var(--rr-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .rr-info-sub {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: #9fb0d8;
-            margin-top: -4px;
-        }
-
-        .rr-info-lead {
-            margin: 0;
-            font-size: 11.5px;
-            line-height: 1.55;
-            color: var(--rr-muted);
-        }
-
-        .rr-mini-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .rr-mini {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 10px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, .065);
-            border: 1px solid rgba(255, 255, 255, .1);
-            min-width: 0;
-        }
-
-        .rr-mini>span {
-            font-size: 15px;
-            flex: 0 0 auto;
-        }
-
-        .rr-mini b {
-            display: block;
-            font-size: 12px;
-            color: #fff;
-            white-space: nowrap;
-        }
-
-        .rr-mini small {
-            display: block;
-            font-size: 9.5px;
-            color: var(--rr-muted);
-            white-space: nowrap;
-        }
-
-        .rr-features {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
-
-        .rr-feature {
-            display: flex;
-            gap: 9px;
-            align-items: flex-start;
-            padding: 8px 10px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, .05);
-            border: 1px solid rgba(255, 255, 255, .08);
-        }
-
-        .rr-feature i {
-            display: grid;
-            place-items: center;
-            width: 24px;
-            height: 24px;
-            flex: 0 0 24px;
-            border-radius: 8px;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 12px;
-            color: #fff;
-            background: linear-gradient(135deg, var(--rr-pink), #ff9ec6);
-        }
-
-        .rr-feature strong {
-            display: block;
-            font-size: 11.5px;
-            color: #fff;
-        }
-
-        .rr-feature small {
-            display: block;
-            font-size: 10px;
-            line-height: 1.42;
-            color: var(--rr-muted);
-        }
-
-        .rr-support {
-            margin-top: auto;
-            padding: 10px 12px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(255, 255, 255, .1);
-            font-size: 11px;
-            line-height: 1.65;
-            color: #c3cdea;
-        }
-
-        .rr-support-title {
-            font-size: 11.5px;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-
-        .rr-support a {
-            color: var(--rr-gold);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .rr-support a:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================ FORM PANEL ============================ */
-
-        .rr-form-panel {
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border-radius: var(--rr-radius);
-            border: 1px solid rgba(255, 255, 255, .5);
-            background: linear-gradient(180deg, #ffffff 0%, #f3f6ff 100%);
-            color: var(--rr-ink);
-            box-shadow: var(--rr-shadow);
-        }
-
-        .rr-form-head {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 11px 18px 10px;
-            border-bottom: 1px solid rgba(13, 23, 48, .08);
-            background: linear-gradient(90deg, #ffffff, #f4f7ff);
-        }
-
-        .rr-form-head h2 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 900;
-            letter-spacing: -.01em;
-            color: var(--rr-ink);
-        }
-
-        .rr-eyebrow {
-            font-size: 9.5px;
-            font-weight: 900;
-            letter-spacing: .16em;
-            text-transform: uppercase;
-            color: var(--rr-pink);
-        }
-
-        .rr-form-scroll {
-            min-height: 0;
-            flex: 1;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            padding: 14px 18px 18px;
-        }
-
-        /* two-column form grid */
-        #registrationForm {
-            counter-reset: rrsec;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 12px 22px;
-            align-content: start;
-        }
-
-        .rr-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        /* ============================ SECTION TITLES ============================ */
-
-        .rr-section-title {
-            counter-increment: rrsec;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: .01em;
-            color: var(--rr-ink);
-            margin: 0;
-        }
-
-        .rr-section-title::before {
-            content: counter(rrsec);
-            display: grid;
-            place-items: center;
-            width: 20px;
-            height: 20px;
-            flex: 0 0 20px;
-            border-radius: 7px;
-            font-size: 11px;
-            font-weight: 900;
-            color: #fff;
-            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
-        }
-
-        /* ============================ FORM FIELDS ============================ */
-
-        .rr-form-scroll input[type="text"],
-        .rr-form-scroll input[type="tel"],
-        .rr-form-scroll input[type="email"],
-        .rr-form-scroll input[type="number"] {
-            width: 100%;
-            padding: 9px 11px;
-            font-family: inherit;
             font-size: 13px;
-            color: var(--rr-ink);
-            background: #fff;
-            border: 1.5px solid #d8e0f2;
-            border-radius: 10px;
-            transition: border-color .18s, box-shadow .18s, background .18s;
-        }
-
-        .rr-form-scroll input::placeholder {
-            color: #9aa6c2;
-        }
-
-        .rr-form-scroll input[type="text"]:focus,
-        .rr-form-scroll input[type="tel"]:focus,
-        .rr-form-scroll input[type="email"]:focus,
-        .rr-form-scroll input[type="number"]:focus {
-            outline: none;
-            border-color: var(--rr-pink);
-            box-shadow: 0 0 0 3px rgba(246, 59, 130, .14);
-        }
-
-        .rr-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .rr-field {
-            min-width: 0;
-        }
-
-        .rr-field.rr-full {
-            grid-column: 1 / -1;
-        }
-
-        .rr-field label,
-        .rr-inline-label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 11.5px;
-            font-weight: 800;
-            color: #3c4a72;
-        }
-
-        .rr-req {
-            color: var(--rr-pink);
-        }
-
-        .rr-helper {
-            margin-top: 4px;
-            font-size: 10px;
-            line-height: 1.45;
-            color: #7b88a8;
-        }
-
-        .rr-intro {
-            margin: 0;
-            font-size: 11.5px;
-            line-height: 1.5;
-            color: #56628a;
-        }
-
-        .rr-policy {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 9px 12px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, #f7f9ff, #ffffff);
-            border: 1px solid #e3e9f7;
-        }
-
-        .rr-policy strong {
-            display: block;
-            font-size: 11.5px;
-            color: var(--rr-ink);
-        }
-
-        .rr-policy span {
-            font-size: 10.5px;
-            color: #6d7899;
-        }
-
-        .rr-policy-links {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .rr-policy-links a {
-            font-size: 10.5px;
-            font-weight: 800;
-            text-decoration: none;
-            color: #b3205f;
-            background: #ffeaf3;
-            border: 1px solid #ffd3e5;
-            padding: 4px 9px;
-            border-radius: 999px;
-            transition: .18s;
-            white-space: nowrap;
-        }
-
-        .rr-policy-links a:hover {
-            background: #ffd9e9;
-        }
-
-        /* ============================ ENTRY TYPE TOGGLE ============================ */
-
-        .rr-entrytype {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 9px 12px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, #f7f9ff, #ffffff);
-            border: 1px dashed #cfd9f0;
-        }
-
-        .rr-entrytype-label {
-            display: block;
-            font-size: 11.5px;
-            font-weight: 800;
-            color: var(--rr-ink);
-        }
-
-        .rr-entrytype small {
-            display: block;
-            font-size: 10px;
-            color: #7b88a8;
-            margin-top: 1px;
-        }
-
-        .rr-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            cursor: pointer;
-            user-select: none;
-            flex: 0 0 auto;
-        }
-
-        .rr-toggle input {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .rr-track {
-            position: relative;
-            width: 42px;
-            height: 23px;
-            border-radius: 999px;
-            background: #c9d3e8;
-            transition: background .22s;
-            flex: 0 0 42px;
-        }
-
-        .rr-thumb {
-            position: absolute;
-            top: 2.5px;
-            left: 3px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, .28);
-            transition: transform .22s;
-        }
-
-        .rr-toggle input:checked+.rr-track {
-            background: linear-gradient(90deg, var(--rr-pink), var(--rr-pink-2));
-        }
-
-        .rr-toggle input:checked+.rr-track .rr-thumb {
-            transform: translateX(18px);
-        }
-
-        .rr-toggle input:focus-visible+.rr-track {
-            box-shadow: 0 0 0 3px rgba(246, 59, 130, .25);
-        }
-
-        .rr-toggle-text {
-            font-size: 11.5px;
-            font-weight: 800;
-            color: var(--rr-ink);
-            white-space: nowrap;
-        }
-
-        /* ============================ GROUP SIZE ============================ */
-
-        #groupSizeBlock {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .rr-people-row {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .rr-stepper {
-            display: inline-flex;
-            align-items: stretch;
-            border: 1.5px solid #d8e0f2;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .rr-stepper button {
-            width: 34px;
-            border: 0;
-            background: #f0f4ff;
-            color: var(--rr-ink);
-            font-size: 17px;
-            font-weight: 900;
-            font-family: inherit;
-            line-height: 1;
-            cursor: pointer;
-            transition: background .16s;
-        }
-
-        .rr-stepper button:hover {
-            background: #e2eaff;
-        }
-
-        .rr-stepper button:active {
-            background: #d3dfff;
-        }
-
-        .rr-stepper input[type="number"] {
-            width: 58px;
-            height: 34px;
-            padding: 0 !important;
-            text-align: center;
-            font-weight: 900;
-            font-size: 13.5px;
-            border: 0 !important;
-            border-left: 1px solid #e2e8f5 !important;
-            border-right: 1px solid #e2e8f5 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            -moz-appearance: textfield;
-            appearance: textfield;
-        }
-
-        .rr-stepper input[type="number"]::-webkit-outer-spin-button,
-        .rr-stepper input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .rr-stepper input[type="number"]:disabled {
-            background: #f4f6fc;
-            color: #8f9ab6;
-        }
-
-        .rr-price-chip {
-            padding: 6px 13px;
-            border-radius: 12px;
-            text-align: right;
-            color: #fff;
-            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
-            box-shadow: 0 8px 18px rgba(13, 23, 48, .22);
-            flex: 0 0 auto;
-        }
-
-        .rr-price-chip span {
-            display: block;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: #9fb0d8;
-        }
-
-        .rr-price-chip b {
-            font-size: 18px;
-            font-weight: 900;
-            line-height: 1.15;
-        }
-
-        /* ============================ MEMBERS ============================ */
-
-        .rr-members {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .rr-members.single-female-mode {
-            display: none;
-        }
-
-        .member-row {
-            display: grid;
-            grid-template-columns: 40px minmax(0, 1fr);
-            gap: 8px;
-            align-items: center;
-        }
-
-        .member-no {
-            display: grid;
-            place-items: center;
-            height: 36px;
-            border-radius: 10px;
-            font-size: 11.5px;
-            font-weight: 900;
-            color: #2b3a67;
-            background: #eef2ff;
-            border: 1px solid #e0e7f8;
-        }
-
-        /* ============================ SELFIE ============================ */
-
-        .rr-selfie {
-            display: grid;
-            grid-template-columns: 128px minmax(0, 1fr);
-            gap: 12px;
-            align-items: stretch;
-        }
-
-        .rr-camera-box {
-            position: relative;
-            display: grid;
-            place-items: center;
-            min-height: 116px;
-            padding: 10px;
-            text-align: center;
-            border-radius: 14px;
-            overflow: hidden;
-            background: linear-gradient(160deg, #101c3c, #0a1densities);
-            background: linear-gradient(160deg, #101c3c, #0a122b);
-            border: 1.5px dashed rgba(255, 255, 255, .22);
-        }
-
-        .rr-camera-empty {
-            font-size: 10.5px;
-            line-height: 1.45;
-            color: #c3cdea;
-        }
-
-        .rr-camera-empty strong {
-            display: block;
-            font-size: 12px;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-
-        .rr-cam-emoji {
-            font-size: 24px;
-            margin-bottom: 4px;
-        }
-
-        #selfiePreview,
-        #selfieImage {
-            display: none;
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .rr-camera-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            justify-content: center;
-            min-width: 0;
-        }
-
-        .rr-btn {
-            border: 0;
-            border-radius: 10px;
-            padding: 9px 14px;
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: .18s;
-            white-space: nowrap;
-        }
-
-        .rr-btn-sec {
-            background: #eef2ff;
-            color: #1b2a52;
-            border: 1px solid #dfe6f7;
-        }
-
-        .rr-btn-sec:hover {
-            background: #e2eaff;
-        }
-
-        .rr-btn-dark {
-            background: var(--rr-ink);
-            color: #fff;
-        }
-
-        .rr-btn-dark:hover {
-            background: #1b2a52;
-        }
-
-        .rr-btn:disabled {
-            opacity: .42;
-            cursor: not-allowed;
-        }
-
-        /* ============================ CAPTCHA ============================ */
-
-        .rr-captcha {
-            padding: 10px 12px;
-            border-radius: 12px;
-            background: #f7f9ff;
-            border: 1px dashed #cfd9f0;
-        }
-
-        .rr-captcha-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .rr-captcha-q {
-            min-width: 92px;
-            padding: 8px 12px;
-            text-align: center;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 900;
-            letter-spacing: .08em;
-            color: #fff;
-            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
-            user-select: none;
-        }
-
-        .rr-captcha-row input[type="text"] {
-            width: 92px !important;
-            flex: 0 0 auto;
-            text-align: center;
-            font-weight: 800;
-            letter-spacing: .06em;
-        }
-
-        .rr-captcha-refresh {
-            border: 1px solid #dfe6f7;
-            background: #fff;
-            color: #3c4a72;
-            font-family: inherit;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 8px 11px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: .18s;
-            white-space: nowrap;
-        }
-
-        .rr-captcha-refresh:hover {
-            background: #eef2ff;
-        }
-
-        /* ============================ TERMS ============================ */
-
-        .rr-checkline {
-            display: flex;
-            gap: 9px;
-            align-items: flex-start;
-            padding: 9px 11px;
-            border-radius: 12px;
-            background: #f7f9ff;
-            border: 1px solid #e3e9f7;
-        }
-
-        .rr-checkline input {
-            width: 16px;
-            height: 16px;
-            margin: 2px 0 0;
-            flex: 0 0 16px;
-            accent-color: var(--rr-pink);
-            cursor: pointer;
-        }
-
-        .rr-checkline label {
-            font-size: 10.5px;
-            line-height: 1.5;
-            color: #4a5779;
-            cursor: pointer;
-        }
-
-        .rr-checkline a {
-            color: #b3205f;
-            font-weight: 800;
-            text-decoration: none;
-        }
-
-        .rr-checkline a:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================ TOTAL / PAY ============================ */
-
-        .rr-total {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 11px 14px;
-            border-radius: 12px;
-            color: #fff;
-            background: linear-gradient(135deg, var(--rr-ink), var(--rr-ink-2));
-            box-shadow: 0 10px 24px rgba(13, 23, 48, .22);
-        }
-
-        .rr-total-label {
-            font-size: 9.5px;
-            font-weight: 800;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: #9fb0d8;
-        }
-
-        .rr-total-note {
-            font-size: 11px;
-            font-weight: 700;
-            color: #dbe3fb;
-            margin-top: 2px;
-        }
-
-        .rr-total-amount {
-            font-size: 24px;
-            font-weight: 900;
-            line-height: 1;
-            background: linear-gradient(120deg, #ffffff, var(--rr-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
 
-        .rr-pay {
-            width: 100%;
-            border: 0;
-            border-radius: 12px;
-            padding: 13px 16px;
-            font-family: inherit;
-            font-size: 13.5px;
-            font-weight: 900;
-            letter-spacing: .01em;
-            color: #fff;
-            cursor: pointer;
-            background: linear-gradient(135deg, #f63b82, #ff7bb0 55%, #ffc857);
-            box-shadow: 0 12px 26px rgba(246, 59, 130, .34);
-            transition: transform .16s, box-shadow .16s, filter .16s;
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease,
+                opacity .2s ease;
         }
 
-        .rr-pay:hover:not(:disabled) {
+        .btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 16px 32px rgba(246, 59, 130, .42);
         }
 
-        .rr-pay:active:not(:disabled) {
+        .btn:active {
             transform: translateY(0);
         }
 
-        .rr-pay:disabled {
-            background: linear-gradient(135deg, #c9d1e2, #e2e7f1);
-            color: #8b95ae;
-            box-shadow: none;
+        .btn:disabled {
+            opacity: .48;
             cursor: not-allowed;
+            transform: none;
         }
 
-        .rr-security {
+        .btn-primary {
+            color: #111;
+            background:
+                linear-gradient(135deg,
+                    var(--gold),
+                    var(--orange));
+
+            box-shadow:
+                0 12px 32px rgba(255, 122, 24, .18);
+        }
+
+        .btn-secondary {
+            color: #fff;
+            background: rgba(255, 255, 255, .055);
+            border: 1px solid var(--border);
+        }
+
+        .btn-danger {
+            color: #fff;
+            background: rgba(255, 92, 117, .10);
+            border: 1px solid rgba(255, 92, 117, .20);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* ==========================================================
+       HEADER
+    ========================================================== */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            height: 76px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+
+            background: rgba(8, 8, 8, .78);
+            backdrop-filter: blur(18px);
+        }
+
+        .topbar-inner {
+            height: 100%;
+
             display: flex;
-            gap: 8px;
-            align-items: flex-start;
-            font-size: 10px;
-            line-height: 1.45;
-            color: #6d7899;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .rr-security span:first-child {
-            font-size: 12px;
-            line-height: 1.2;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .rr-security b {
-            color: #3c4a72;
-        }
+        .brand-logo {
+            width: 42px;
+            height: 42px;
 
-        /* ============================ MODALS ============================ */
-
-        .rr-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 60;
-            display: none;
-            place-items: center;
-            padding: 18px;
-            background: rgba(4, 10, 28, .74);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
-        }
-
-        .rr-modal.show {
             display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            font-weight: 800;
+
+            color: #111;
+
+            background:
+                linear-gradient(135deg,
+                    var(--gold),
+                    var(--orange),
+                    var(--pink));
+
+            box-shadow:
+                0 10px 28px rgba(255, 122, 24, .20);
         }
 
-        .rr-modal-card {
-            width: min(440px, 100%);
-            max-height: 94vh;
-            overflow-y: auto;
-            padding: 16px;
-            border-radius: 18px;
-            color: var(--rr-ink);
-            background: #fff;
-            box-shadow: 0 34px 80px rgba(0, 0, 0, .55);
-            animation: rrPop .24s cubic-bezier(.2, .9, .3, 1.2);
+        .brand-copy strong {
+            display: block;
+            font-size: 13px;
+            line-height: 1.1;
         }
 
-        @keyframes rrPop {
+        .brand-copy span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--muted-2);
+
+            font-size: 10px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 9px;
+        }
+
+        /* ==========================================================
+       HERO
+    ========================================================== */
+
+        .hero-section {
+            padding: 64px 0 76px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 46px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            min-height: 31px;
+            padding: 0 11px;
+
+            border-radius: 999px;
+
+            color: #ffc890;
+
+            background: rgba(255, 122, 24, .08);
+            border: 1px solid rgba(255, 122, 24, .15);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: .6px;
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--success);
+
+            box-shadow:
+                0 0 16px rgba(61, 220, 151, .65);
+        }
+
+        .hero-title {
+            margin-top: 19px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(50px, 7vw, 88px);
+
+            line-height: .94;
+
+            letter-spacing: -2.8px;
+        }
+
+        .hero-title span {
+            background:
+                linear-gradient(90deg,
+                    #fff,
+                    #ffc271,
+                    #ff708b);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 630px;
+
+            margin-top: 22px;
+
+            color: var(--muted);
+
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-top: 28px;
+        }
+
+        .hero-note {
+            margin-top: 14px;
+
+            color: var(--muted-2);
+
+            font-size: 11px;
+        }
+
+        /* ==========================================================
+       EVENT VISUAL
+    ========================================================== */
+
+        .event-visual {
+            position: relative;
+
+            min-height: 560px;
+
+            overflow: hidden;
+
+            border-radius: 34px;
+
+            border: 1px solid var(--border);
+
+            background:
+                radial-gradient(circle at 50% 17%,
+                    rgba(255, 209, 102, .23),
+                    transparent 20%),
+                radial-gradient(circle at 20% 100%,
+                    rgba(255, 122, 24, .17),
+                    transparent 40%),
+                radial-gradient(circle at 100% 80%,
+                    rgba(238, 66, 102, .15),
+                    transparent 45%),
+                #121212;
+
+            box-shadow: var(--shadow);
+        }
+
+        .visual-ring {
+            position: absolute;
+
+            width: 365px;
+            height: 365px;
+
+            top: 65px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255, 255, 255, .12);
+
+            box-shadow:
+                0 0 0 27px rgba(255, 255, 255, .018),
+                0 0 0 55px rgba(255, 255, 255, .012);
+        }
+
+        .visual-ring::before,
+        .visual-ring::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 28px;
+
+            border-radius: 50%;
+
+            border: 1px dashed rgba(255, 209, 102, .25);
+        }
+
+        .visual-ring::after {
+            inset: 84px;
+            border-color: rgba(255, 122, 24, .26);
+        }
+
+        .visual-symbol {
+            position: absolute;
+
+            top: 133px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 92px;
+
+            filter:
+                drop-shadow(0 18px 28px rgba(0, 0, 0, .38));
+        }
+
+        .visual-content {
+            position: absolute;
+
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+
+            padding: 21px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(0, 0, 0, .34);
+
+            border:
+                1px solid rgba(255, 255, 255, .08);
+
+            backdrop-filter: blur(17px);
+        }
+
+        .visual-content h3 {
+            font-size: 24px;
+        }
+
+        .visual-content p {
+            margin-top: 7px;
+
+            color: #c3c3c8;
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .event-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 9px;
+
+            margin-top: 17px;
+        }
+
+        .meta-item {
+            padding: 12px;
+
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .meta-item span {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: var(--muted-2);
+
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+        }
+
+        .meta-item strong {
+            font-size: 12px;
+        }
+
+        /* ==========================================================
+       AUTH
+    ========================================================== */
+
+        .auth-section {
+            min-height: calc(100vh - 76px);
+
+            display: grid;
+            place-items: center;
+
+            padding: 48px 0;
+        }
+
+        .auth-card {
+            width: min(500px, 100%);
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(17, 17, 17, .90);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            backdrop-filter: blur(18px);
+        }
+
+        .auth-title {
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+        }
+
+        .auth-subtitle {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .form {
+            margin-top: 24px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d7d7db;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .input {
+            width: 100%;
+            height: 49px;
+
+            padding: 0 14px;
+
+            border: 1px solid rgba(255, 255, 255, .10);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: rgba(255, 255, 255, .045);
+
+            color: #fff;
+
+            transition:
+                border .2s,
+                box-shadow .2s;
+        }
+
+        .input::placeholder {
+            color: #68686e;
+        }
+
+        .input:focus {
+            border-color: rgba(255, 159, 67, .65);
+
+            box-shadow:
+                0 0 0 4px rgba(255, 122, 24, .07);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap .input {
+            padding-right: 50px;
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 9px;
+            top: 6px;
+
+            width: 37px;
+            height: 37px;
+
+            border: 0;
+            background: transparent;
+
+            color: #919198;
+        }
+
+        .form-help {
+            margin-top: 6px;
+
+            color: var(--muted-2);
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .auth-switch {
+            margin-top: 19px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        .text-button {
+            border: 0;
+            background: transparent;
+
+            color: #ffc084;
+
+            font-weight: 700;
+        }
+
+        /* ==========================================================
+       DASHBOARD
+    ========================================================== */
+
+        .dashboard-section {
+            padding: 30px 0 70px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 24px;
+        }
+
+        .dashboard-header h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+        }
+
+        .dashboard-header p {
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .account-pill {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 11px 7px 7px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(135deg,
+                    var(--orange),
+                    var(--pink));
+
+            color: white;
+
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .account-pill strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        .account-pill span {
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted-2);
+
+            font-size: 9px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 235px 1fr;
+            gap: 20px;
+        }
+
+        .sidebar {
+            height: fit-content;
+
+            padding: 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, .035);
+        }
+
+        .sidebar-label {
+            padding: 10px 11px 7px;
+
+            color: #68686e;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .8px;
+        }
+
+        .nav-btn {
+            width: 100%;
+
+            margin-bottom: 3px;
+
+            padding: 12px;
+
+            border: 0;
+            border-radius: 11px;
+
+            background: transparent;
+
+            color: #9c9ca2;
+
+            text-align: left;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, .045);
+            color: #fff;
+        }
+
+        .nav-btn.active {
+            color: #fff;
+
+            background:
+                linear-gradient(90deg,
+                    rgba(255, 122, 24, .16),
+                    rgba(238, 66, 102, .06));
+
+            border: 1px solid rgba(255, 122, 24, .12);
+        }
+
+        .content-panel {
+            min-width: 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+
+            animation:
+                fade-in .25s ease;
+        }
+
+        @keyframes fade-in {
             from {
                 opacity: 0;
-                transform: translateY(12px) scale(.96);
+                transform: translateY(5px);
             }
 
             to {
                 opacity: 1;
-                transform: none;
+                transform: translateY(0);
             }
         }
 
-        .rr-modal-head {
+        .card {
+            margin-bottom: 17px;
+
+            padding: 22px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            background:
+                rgba(255, 255, 255, .035);
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================
+       STATUS
+    ========================================================== */
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 17px;
+        }
+
+        .status-card {
+            padding: 17px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            background: rgba(255, 255, 255, .035);
+        }
+
+        .status-card small {
+            color: var(--muted-2);
+
+            text-transform: uppercase;
+
+            font-size: 9px;
+            letter-spacing: .6px;
+        }
+
+        .status-card strong {
+            display: block;
+
+            margin-top: 8px;
+
+            font-size: 18px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+
+            margin-top: 8px;
+
+            padding: 6px 9px;
+
+            border-radius: 999px;
+
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .badge-muted {
+            color: #b1b1b7;
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .badge-warning {
+            color: #ffd798;
+            background: rgba(255, 200, 87, .08);
+            border: 1px solid rgba(255, 200, 87, .12);
+        }
+
+        .badge-success {
+            color: #8af0c4;
+            background: rgba(61, 220, 151, .08);
+            border: 1px solid rgba(61, 220, 151, .12);
+        }
+
+        .badge-danger {
+            color: #ff9eaf;
+            background: rgba(255, 92, 117, .08);
+            border: 1px solid rgba(255, 92, 117, .12);
+        }
+
+        /* ==========================================================
+       REGISTRATION FORM
+    ========================================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .readonly {
+            opacity: .66;
+            cursor: not-allowed;
+        }
+
+        .entry-switch {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 12px;
+
+            gap: 20px;
+
+            padding: 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, .025);
         }
 
-        .rr-modal-head h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 900;
-        }
-
-        .rr-close {
-            width: 30px;
-            height: 30px;
-            border: 0;
-            border-radius: 9px;
-            background: #f0f3fb;
-            color: #3c4a72;
-            font-size: 19px;
-            line-height: 1;
-            font-family: inherit;
-            cursor: pointer;
-            transition: .18s;
-        }
-
-        .rr-close:hover {
-            background: #e2e8f7;
-        }
-
-        .rr-camera-stage {
-            position: relative;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #captureVideo {
+        .entry-switch strong {
             display: block;
-            width: 100%;
-            height: min(52vh, 400px);
-            object-fit: cover;
-            background: #000;
-        }
 
-        .rr-camera-guide {
-            position: absolute;
-            inset: 12% 22%;
-            border: 2px dashed rgba(255, 255, 255, .55);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .rr-modal-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        /* success modal */
-
-        .rr-success-card {
-            text-align: center;
-            padding: 24px 20px;
-        }
-
-        .rr-success-icon {
-            width: 58px;
-            height: 58px;
-            margin: 0 auto 12px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            font-size: 27px;
-            font-weight: 900;
-            color: #fff;
-            background: linear-gradient(135deg, #1fbf7a, var(--rr-mint));
-            box-shadow: 0 12px 28px rgba(46, 230, 168, .38);
-        }
-
-        .rr-success-card h3 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 900;
-        }
-
-        .success-note {
-            margin: 8px 0 0;
             font-size: 12px;
-            line-height: 1.55;
-            color: #5c6889;
         }
 
-        .rr-reg-code {
-            margin: 14px 0;
-            padding: 11px 14px;
-            border-radius: 12px;
-            font-size: 17px;
-            font-weight: 900;
-            letter-spacing: .12em;
-            color: var(--rr-ink);
-            background: #f2f5ff;
-            border: 1px dashed #c9d5f0;
+        .entry-switch span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            line-height: 1.5;
         }
 
-        .rr-qr-box {
-            display: grid;
-            place-items: center;
-            width: 118px;
-            height: 118px;
-            margin: 0 auto 16px;
-            border-radius: 16px;
-            font-size: 45px;
-            color: var(--rr-ink);
-            background: #fff;
-            border: 1.5px solid #e2e8f7;
-            box-shadow: 0 10px 24px rgba(13, 23, 48, .08);
+        .switch {
+            position: relative;
+
+            width: 51px;
+            height: 29px;
+
+            flex: 0 0 auto;
         }
 
-        /* ============================ TOAST ============================ */
-
-        .rr-toast {
-            position: fixed;
-            left: 50%;
-            bottom: 22px;
-            z-index: 90;
-            max-width: 90vw;
-            padding: 11px 18px;
-            border-radius: 999px;
-            font-size: 12.5px;
-            font-weight: 700;
-            text-align: center;
-            color: #fff;
-            background: rgba(13, 23, 48, .96);
-            box-shadow: 0 16px 38px rgba(0, 0, 0, .45);
+        .switch input {
+            position: absolute;
             opacity: 0;
             pointer-events: none;
-            transform: translate(-50%, 24px);
-            transition: opacity .25s, transform .25s;
         }
 
-        .rr-toast.show {
-            opacity: 1;
-            transform: translate(-50%, 0);
+        .switch-slider {
+            position: absolute;
+            inset: 0;
+
+            border-radius: 999px;
+
+            background: #2b2b2f;
+
+            transition: .2s;
         }
 
-        /* ============================ SCROLLBARS ============================ */
+        .switch-slider::before {
+            content: "";
 
-        .rr-info::-webkit-scrollbar,
-        .rr-form-scroll::-webkit-scrollbar,
-        .rr-modal-card::-webkit-scrollbar {
-            width: 8px;
+            position: absolute;
+
+            width: 21px;
+            height: 21px;
+
+            top: 4px;
+            left: 4px;
+
+            border-radius: 50%;
+
+            background: #ddd;
+
+            transition: .2s;
         }
 
-        .rr-info::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, .18);
-            border-radius: 99px;
+        .switch input:checked+.switch-slider {
+            background:
+                linear-gradient(135deg,
+                    var(--orange),
+                    var(--pink));
         }
 
-        .rr-form-scroll::-webkit-scrollbar-thumb,
-        .rr-modal-card::-webkit-scrollbar-thumb {
-            background: #c7d1e8;
-            border-radius: 99px;
+        .switch input:checked+.switch-slider::before {
+            transform: translateX(22px);
+            background: #fff;
         }
 
-        .rr-info,
-        .rr-form-scroll {
-            scrollbar-width: thin;
+        .members-box {
+            margin-top: 5px;
         }
 
-        .rr-info {
-            scrollbar-color: rgba(255, 255, 255, .2) transparent;
+        .members-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 9px;
         }
 
-        .rr-form-scroll {
-            scrollbar-color: #c7d1e8 transparent;
+        .members-header strong {
+            font-size: 12px;
         }
 
-        /* ============================ RESPONSIVE ============================ */
+        .members-header span {
+            color: var(--muted-2);
+            font-size: 10px;
+        }
 
-        @media (max-width: 1180px) {
-            #registrationForm {
-                grid-template-columns: minmax(0, 1fr);
+        .member-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+
+            gap: 8px;
+
+            margin-bottom: 8px;
+        }
+
+        .remove-btn {
+            width: 47px;
+
+            border-radius: 11px;
+
+            border: 1px solid rgba(255, 92, 117, .18);
+
+            background: rgba(255, 92, 117, .07);
+
+            color: #ff9eaf;
+        }
+
+        .add-member {
+            margin-top: 3px;
+
+            padding: 10px 12px;
+
+            border-radius: 10px;
+
+            border: 1px dashed rgba(255, 159, 67, .24);
+
+            background: rgba(255, 122, 24, .05);
+
+            color: #ffc17d;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .pricing-card {
+            padding: 17px;
+
+            border-radius: 17px;
+
+            border: 1px solid rgba(255, 122, 24, .14);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 122, 24, .08),
+                    rgba(238, 66, 102, .05));
+        }
+
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 5px 0;
+
+            font-size: 11px;
+        }
+
+        .price-line span:first-child {
+            color: var(--muted);
+        }
+
+        .price-total {
+            padding-top: 12px;
+            margin-top: 7px;
+
+            border-top: 1px solid rgba(255, 255, 255, .08);
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* ==========================================================
+       CAPTCHA PLACEHOLDER
+    ========================================================== */
+
+        .captcha-demo {
+            min-height: 55px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 11px 13px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, .025);
+        }
+
+        .captcha-demo input {
+            width: 18px;
+            height: 18px;
+
+            accent-color: var(--orange);
+        }
+
+        .captcha-demo strong {
+            font-size: 11px;
+        }
+
+        .captcha-demo span {
+            margin-left: auto;
+
+            color: var(--muted-2);
+
+            font-size: 9px;
+        }
+
+        /* ==========================================================
+       PAYMENT
+    ========================================================== */
+
+        .payment-grid {
+            display: grid;
+
+            grid-template-columns: 350px 1fr;
+
+            gap: 18px;
+        }
+
+        .payment-card {
+            text-align: center;
+        }
+
+        .payment-qr {
+            width: 232px;
+            height: 232px;
+
+            margin: 18px auto;
+
+            display: grid;
+            place-items: center;
+
+            padding: 10px;
+
+            background: #fff;
+
+            border-radius: 17px;
+        }
+
+        .payment-qr-inner {
+            width: 100%;
+            height: 100%;
+
+            display: grid;
+            place-items: center;
+
+            color: #111;
+
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .upi-pill {
+            display: inline-block;
+
+            padding: 8px 12px;
+
+            border-radius: 999px;
+
+            color: #ffd69a;
+
+            background: rgba(255, 255, 255, .05);
+
+            border: 1px solid var(--border);
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .payment-total {
+            margin-top: 13px;
+
+            font-size: 31px;
+            font-weight: 800;
+        }
+
+        .small-text {
+            color: var(--muted-2);
+
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        .payment-instructions {
+            display: grid;
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .instruction {
+            display: grid;
+
+            grid-template-columns: 31px 1fr;
+
+            gap: 10px;
+        }
+
+        .instruction-number {
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            color: #ffc37d;
+
+            background: rgba(255, 122, 24, .08);
+
+            border: 1px solid rgba(255, 122, 24, .13);
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .instruction strong {
+            display: block;
+
+            font-size: 11px;
+        }
+
+        .instruction span {
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            line-height: 1.5;
+        }
+
+        .file-input {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px dashed rgba(255, 255, 255, .12);
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, .025);
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+        /* ==========================================================
+       QR
+    ========================================================== */
+
+        .qr-layout {
+            display: grid;
+
+            grid-template-columns: 360px 1fr;
+
+            gap: 18px;
+        }
+
+        .qr-card {
+            text-align: center;
+        }
+
+        .user-qr-box {
+            width: 255px;
+            height: 255px;
+
+            margin: 19px auto;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+
+            background: #fff;
+
+            padding: 12px;
+        }
+
+        .qr-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: grid;
+            place-items: center;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 11px;
+
+            border: 2px dashed #ddd;
+            border-radius: 11px;
+        }
+
+        .qr-placeholder strong {
+            display: block;
+
+            color: #333;
+
+            margin-bottom: 5px;
+        }
+
+        .detail-list {
+            margin-top: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .detail-row:last-child {
+            border-bottom: 0;
+        }
+
+        .detail-row span {
+            color: var(--muted-2);
+
+            font-size: 10px;
+        }
+
+        .detail-row strong {
+            max-width: 64%;
+
+            text-align: right;
+
+            font-size: 10px;
+        }
+
+        /* ==========================================================
+       TOAST
+    ========================================================== */
+
+        .toast-container {
+            position: fixed;
+
+            right: 17px;
+            bottom: 17px;
+
+            z-index: 500;
+
+            display: grid;
+            gap: 8px;
+
+            width: min(360px, calc(100% - 34px));
+        }
+
+        .toast {
+            padding: 13px 14px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(18, 18, 18, .95);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            color: #fff;
+
+            font-size: 10px;
+            line-height: 1.5;
+
+            animation:
+                toast-in .22s ease;
+        }
+
+        .toast.success {
+            border-color: rgba(61, 220, 151, .18);
+        }
+
+        .toast.error {
+            border-color: rgba(255, 92, 117, .18);
+        }
+
+        @keyframes toast-in {
+            from {
+                opacity: 0;
+                transform: translateY(7px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 1024px) {
+        /* ==========================================================
+       RESPONSIVE
+    ========================================================== */
 
-            html,
-            body {
-                height: auto;
-                overflow: auto;
+        @media (max-width: 980px) {
+
+            .hero-grid,
+            .payment-grid,
+            .qr-layout {
+                grid-template-columns: 1fr;
             }
 
-            .rr-app {
-                height: auto;
-                min-height: 100dvh;
-                grid-template-rows: auto auto;
+            .event-visual {
+                min-height: 470px;
             }
 
-            .rr-stage {
-                grid-template-columns: minmax(0, 1fr);
-                overflow: visible;
-                padding: 12px;
+            .dashboard-grid {
+                grid-template-columns: 1fr;
             }
 
-            .rr-info,
-            .rr-form-panel,
-            .rr-form-scroll {
-                overflow: visible;
+            .sidebar {
+                display: flex;
+                overflow-x: auto;
+                gap: 4px;
             }
 
-            .rr-nav {
+            .sidebar-label {
                 display: none;
             }
 
-            .rr-topbar {
-                flex-wrap: wrap;
-                gap: 8px;
+            .nav-btn {
+                min-width: max-content;
+                margin: 0;
             }
+
         }
 
-        @media (max-width: 520px) {
-            .rr-grid-2 {
-                grid-template-columns: minmax(0, 1fr);
+        @media (max-width: 690px) {
+
+            .container {
+                width: min(var(--container),
+                        calc(100% - 28px));
             }
 
-            .rr-selfie {
-                grid-template-columns: minmax(0, 1fr);
+            .topbar {
+                height: 68px;
             }
 
-            .rr-mini-grid {
-                grid-template-columns: minmax(0, 1fr);
+            .hero-section {
+                padding-top: 35px;
             }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: .01ms !important;
-                transition-duration: .01ms !important;
+            .hero-title {
+                font-size: 51px;
+                letter-spacing: -1.8px;
             }
+
+            .event-visual {
+                min-height: 420px;
+            }
+
+            .visual-ring {
+                width: 275px;
+                height: 275px;
+            }
+
+            .visual-symbol {
+                top: 112px;
+                font-size: 77px;
+            }
+
+            .event-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-card,
+            .card {
+                padding: 18px;
+            }
+
+            .dashboard-header {
+                align-items: center;
+            }
+
+            .account-pill span,
+            .account-pill strong {
+                display: none;
+            }
+
+            .status-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .payment-qr,
+            .user-qr-box {
+                width: 220px;
+                height: 220px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
         }
     </style>
 </head>
 
 <body>
-    <div class="rr-app">
 
-        <!-- ============================ TOP BAR ============================ -->
-        <header class="rr-topbar">
-            <div class="rr-brand">
-                <span class="rr-dot" aria-hidden="true"></span>
-                <span>VANASTHALI PUBLIC SCHOOL <em>•</em> VASUNDHARA SECTOR-3</span>
+    <!-- ==========================================================
+       HEADER
+  =========================================================== -->
+
+    <header class="topbar">
+        <div class="container topbar-inner">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    ✦
+                </div>
+
+                <div class="brand-copy">
+                    <strong>
+                        Vanasthali Public School
+                    </strong>
+
+                    <span>
+                        Garba Night Registration
+                    </span>
+                </div>
+
             </div>
 
-            <nav class="rr-nav" aria-label="Important information">
-                <a href="about.html">Event</a>
-                <a href="contact.html">Contact</a>
-                <a href="terms.html">Terms</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="refund-cancellation.html">Refund &amp; Cancellation</a>
-            </nav>
+            <div class="header-actions">
 
-            <div class="rr-tag">RAAS RANG • 14 OCT 2026</div>
-        </header>
+                <button class="btn btn-secondary" id="headerLoginButton" type="button">
+                    Login
+                </button>
 
-        <!-- ============================ STAGE ============================ -->
-        <main class="rr-stage">
+                <button class="btn btn-primary" id="headerRegisterButton" type="button">
+                    Register
+                </button>
 
-            <!-- ---------------------- INFO PANEL ---------------------- -->
-            <aside class="rr-info" aria-label="Event overview">
-                <div class="rr-info-kicker">✦ Since 1978 • Dandiya Night</div>
-                <h1 class="rr-info-title">Raas <span>Rang</span></h1>
-                <div class="rr-info-sub">Registration Open</div>
+            </div>
 
-                <p class="rr-info-lead">
-                    A festive evening at Vanasthali Public School. Complete your verified registration
-                    and carry your digital entry pass to the gate.
+        </div>
+    </header>
+
+
+    <!-- ==========================================================
+       LANDING
+  =========================================================== -->
+
+    <main id="landingView">
+
+        <section class="hero-section">
+
+            <div class="container hero-grid">
+
+                <div>
+
+                    <div class="eyebrow">
+                        <span class="live-dot"></span>
+                        Registration Open
+                    </div>
+
+                    <h1 class="hero-title">
+                        Rang, Raas &<br>
+                        <span>Garba Night.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Register yourself and your group for an evening of
+                        music, colours, dance and celebration at
+                        Vanasthali Public School.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button class="btn btn-primary" id="heroRegisterButton" type="button">
+                            Start Registration →
+                        </button>
+
+                        <button class="btn btn-secondary" id="heroLoginButton" type="button">
+                            Already Registered
+                        </button>
+
+                    </div>
+
+                    <div class="hero-note">
+                        Minimum group entry: 2 members ·
+                        Single female entry available
+                    </div>
+
+                </div>
+
+
+                <div class="event-visual">
+
+                    <div class="visual-ring"></div>
+
+                    <div class="visual-symbol">
+                        💃
+                    </div>
+
+                    <div class="visual-content">
+
+                        <h3>
+                            Garba Night 2026
+                        </h3>
+
+                        <p>
+                            Celebrate together with an unforgettable
+                            evening of dance, music and festive energy.
+                        </p>
+
+                        <div class="event-meta">
+
+                            <div class="meta-item">
+                                <span>Venue</span>
+                                <strong>
+                                    School Campus
+                                </strong>
+                            </div>
+
+                            <div class="meta-item">
+                                <span>Date</span>
+                                <strong>
+                                    To Be Announced
+                                </strong>
+                            </div>
+
+                            <div class="meta-item">
+                                <span>Group Entry</span>
+                                <strong>
+                                    ₹300 + ₹150/member
+                                </strong>
+                            </div>
+
+                            <div class="meta-item">
+                                <span>Single Female</span>
+                                <strong>
+                                    ₹200
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================================
+       AUTH VIEW
+  =========================================================== -->
+
+    <section id="authView" class="auth-section" hidden>
+
+        <div class="auth-card">
+
+            <!-- REGISTER -->
+
+            <div id="registerView">
+
+                <div class="eyebrow">
+                    Create Account
+                </div>
+
+                <h2 class="auth-title">
+                    Join the celebration
+                </h2>
+
+                <p class="auth-subtitle">
+                    Create your account first. Your registered
+                    email will be permanently linked to your event
+                    registration.
                 </p>
 
-                <div class="rr-mini-grid">
-                    <div class="rr-mini">
-                        <span aria-hidden="true">📅</span>
-                        <div><b>14 October</b><small>Wednesday, 2026</small></div>
+
+                <form class="form" id="registerForm" novalidate>
+
+                    <div class="field">
+
+                        <label for="registerEmail">
+                            Email Address
+                        </label>
+
+                        <input class="input" id="registerEmail" type="email" autocomplete="email"
+                            placeholder="you@example.com" maxlength="254" required />
+
                     </div>
-                    <div class="rr-mini">
-                        <span aria-hidden="true">🕕</span>
-                        <div><b>6 PM – 10 PM</b><small>Event timing</small></div>
-                    </div>
-                    <div class="rr-mini">
-                        <span aria-hidden="true">🎟</span>
-                        <div><b>Female ₹150</b><small>Couple ₹300</small></div>
-                    </div>
-                    <div class="rr-mini">
-                        <span aria-hidden="true">🚫</span>
-                        <div><b>No Stag Entry</b><small>Event policy</small></div>
-                    </div>
-                </div>
 
-                <div class="rr-features">
-                    <div class="rr-feature">
-                        <i aria-hidden="true">₹</i>
-                        <div>
-                            <strong>TEST MODE</strong>
-                            <small>Checkout currently uses ₹10 per pair + ₹5 for one extra person.</small>
-                        </div>
-                    </div>
-                    <div class="rr-feature">
-                        <i aria-hidden="true">✓</i>
-                        <div>
-                            <strong>Payment verified</strong>
-                            <small>Registration is confirmed only after backend payment verification.</small>
-                        </div>
-                    </div>
-                    <div class="rr-feature">
-                        <i aria-hidden="true">▦</i>
-                        <div>
-                            <strong>Digital entry pass</strong>
-                            <small>Verified QR/pass will be issued after successful payment.</small>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="rr-support">
-                    <div class="rr-support-title">Need help?</div>
-                    <a href="mailto:vpserpvasundhara@gmail.com">vpserpvasundhara@gmail.com</a>
-                    <div>Ms. Geetika <a href="tel:8130058828">8130058828</a></div>
-                    <div>Ms. Bani Kaur <a href="tel:935520700">935520700</a></div>
-                </div>
-            </aside>
+                    <div class="field">
 
-            <!-- ---------------------- FORM PANEL ---------------------- -->
-            <section class="rr-form-panel">
-                <div class="rr-form-head">
-                    <span class="rr-eyebrow">Secure Event Registration</span>
-                    <h2>Book your Garba entry</h2>
-                </div>
+                        <label for="registerPassword">
+                            Password
+                        </label>
 
-                <div class="rr-form-scroll">
-                    <form id="registrationForm" novalidate autocomplete="off">
+                        <div class="password-wrap">
 
-                        <!-- ============ LEFT COLUMN ============ -->
-                        <div class="rr-col">
+                            <input class="input" id="registerPassword" type="password" autocomplete="new-password"
+                                placeholder="Create a strong password" minlength="8" maxlength="128" required />
 
-                            <p class="rr-intro" id="formIntro">
-                                Minimum 2 people are required. Single Female Entry is also available. Enter the lead
-                                guest's details and the names of everyone coming with you.
-                            </p>
-
-                            <div class="rr-policy">
-                                <div>
-                                    <strong>Before you pay</strong>
-                                    <span>Review the event rules, privacy terms and refund/cancellation policy.</span>
-                                </div>
-                                <div class="rr-policy-links">
-                                    <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
-                                    <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
-                                    <a href="refund-cancellation.html" target="_blank" rel="noopener noreferrer">Refund</a>
-                                </div>
-                            </div>
-
-                            <div class="rr-section-title">Lead Guest</div>
-
-                            <div class="rr-grid-2">
-                                <div class="rr-field rr-full">
-                                    <label for="leadName">Your full name <span class="rr-req">*</span></label>
-                                    <input id="leadName" name="leadName" type="text" maxlength="80"
-                                        placeholder="Enter your full name" required />
-                                </div>
-
-                                <div class="rr-field">
-                                    <label for="mobile">Mobile number <span class="rr-req">*</span></label>
-                                    <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10"
-                                        placeholder="10-digit mobile number" required />
-                                    <div class="rr-helper">Used for registration communication.</div>
-                                </div>
-
-                                <div class="rr-field">
-                                    <label for="email">Email address <span class="rr-req">*</span></label>
-                                    <input id="email" name="email" type="email" maxlength="120"
-                                        placeholder="you@example.com" required />
-                                </div>
-                            </div>
-
-                            <div class="rr-entrytype">
-                                <div>
-                                    <span class="rr-entrytype-label">Entry type</span>
-                                    <small id="entryModeHelp">Couple / group entry • minimum 2 people</small>
-                                </div>
-                                <label class="rr-toggle">
-                                    <input id="singleFemaleEntry" type="checkbox" />
-                                    <span class="rr-track"><span class="rr-thumb"></span></span>
-                                    <span class="rr-toggle-text">Single Female Entry</span>
-                                </label>
-                            </div>
-
-                            <!-- Group size: hidden automatically in Single Female mode -->
-                            <div id="groupSizeBlock">
-                                <div class="rr-section-title">Group Size</div>
-
-                                <div class="rr-people-row">
-                                    <div>
-                                        <label class="rr-inline-label" for="people">Total people in your group <span
-                                                class="rr-req">*</span></label>
-                                        <div class="rr-stepper">
-                                            <button type="button" id="minusPeople"
-                                                aria-label="Decrease group size">−</button>
-                                            <input id="people" name="people" type="number" min="2" max="20" value="2"
-                                                required aria-describedby="entryModeHelp" />
-                                            <button type="button" id="plusPeople"
-                                                aria-label="Increase group size">+</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="rr-price-chip">
-                                        <span>Entry fee</span>
-                                        <b id="amountText">₹10</b>
-                                    </div>
-                                </div>
-
-                                <div id="membersBox" class="rr-members"></div>
-                            </div>
-
-                        </div>
-
-                        <!-- ============ RIGHT COLUMN ============ -->
-                        <div class="rr-col">
-
-                            <div class="rr-section-title">Live Selfie</div>
-
-                            <div class="rr-selfie">
-                                <div class="rr-camera-box">
-                                    <div class="rr-camera-empty" id="cameraEmpty">
-                                        <div class="rr-cam-emoji" aria-hidden="true">📷</div>
-                                        <strong>Live selfie required</strong>
-                                        <div>Allow camera access and take a fresh selfie.</div>
-                                    </div>
-                                    <video id="selfiePreview" playsinline muted></video>
-                                    <img id="selfieImage" alt="Captured selfie preview" />
-                                </div>
-
-                                <div class="rr-camera-actions">
-                                    <button type="button" class="rr-btn rr-btn-sec" id="openCamera">Open
-                                        camera</button>
-                                    <button type="button" class="rr-btn rr-btn-dark" id="retakeSelfie"
-                                        disabled>Retake selfie</button>
-                                    <div class="rr-helper">
-                                        Fresh camera capture. Secure backend upload will happen only after
-                                        payment verification.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="rr-section-title">Human Verification</div>
-
-                            <div class="rr-captcha">
-                                <div class="rr-captcha-row">
-                                    <div class="rr-captcha-q" id="captchaQuestion" aria-label="CAPTCHA question"></div>
-                                    <input id="captchaAnswer" type="text" inputmode="numeric" maxlength="4"
-                                        placeholder="Answer" aria-label="CAPTCHA answer" required />
-                                    <button type="button" class="rr-captcha-refresh" id="refreshCaptcha">↻
-                                        New</button>
-                                </div>
-                                <div class="rr-helper">
-                                    This CAPTCHA is a basic user-flow check. Production will also enforce a
-                                    server-side CAPTCHA / anti-bot check as well.
-                                </div>
-                            </div>
-
-                            <div class="rr-checkline">
-                                <input id="terms" type="checkbox" required />
-                                <label for="terms">
-                                    I confirm the details are correct, consent to the collection and use of my
-                                    registration information and live selfie as described in the
-                                    <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy
-                                        Policy</a>, and agree to the
-                                    <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms &amp;
-                                        Conditions</a>.
-                                </label>
-                            </div>
-
-                            <div class="rr-total">
-                                <div>
-                                    <div class="rr-total-label">Amount payable</div>
-                                    <div class="rr-total-note" id="pricingNote">2 people • 1 pair</div>
-                                </div>
-                                <div class="rr-total-amount" id="amountTextBottom">₹10</div>
-                            </div>
-
-                            <button class="rr-pay" id="payNow" type="submit" disabled>
-                                Pay ₹10 &amp; Confirm Registration
+                            <button class="password-toggle" type="button" data-password-toggle="registerPassword">
+                                ◉
                             </button>
 
-                            <div class="rr-security">
-                                <span aria-hidden="true">🔒</span>
-                                <span><b>Security-first flow:</b> payment confirmation, registration creation and QR
-                                    issuance must be performed by the trusted backend. Never expose payment gateway
-                                    secret keys in frontend code.</span>
+                        </div>
+
+                        <div class="form-help">
+                            Minimum 8 characters.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="registerConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input class="input" id="registerConfirmPassword" type="password" autocomplete="new-password"
+                            placeholder="Re-enter your password" minlength="8" maxlength="128" required />
+
+                    </div>
+
+
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <div class="auth-switch">
+
+                    Already have an account?
+
+                    <button class="text-button" type="button" data-switch-auth="login">
+                        Login
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <div id="loginView" hidden>
+
+                <div class="eyebrow">
+                    Secure Login
+                </div>
+
+                <h2 class="auth-title">
+                    Welcome back
+                </h2>
+
+                <p class="auth-subtitle">
+                    Login to complete your registration or
+                    access your event QR code.
+                </p>
+
+
+                <form class="form" id="loginForm" novalidate>
+
+                    <div class="field">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <input class="input" id="loginEmail" type="email" autocomplete="email"
+                            placeholder="you@example.com" maxlength="254" required />
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="password-wrap">
+
+                            <input class="input" id="loginPassword" type="password" autocomplete="current-password"
+                                placeholder="Your password" maxlength="128" required />
+
+                            <button class="password-toggle" type="button" data-password-toggle="loginPassword">
+                                ◉
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+
+                <div class="auth-switch">
+
+                    Don't have an account?
+
+                    <button class="text-button" type="button" data-switch-auth="register">
+                        Create Account
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+       USER DASHBOARD
+  =========================================================== -->
+
+    <section id="dashboardView" class="dashboard-section" hidden>
+
+        <div class="container">
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <h2>
+                        Your Event Dashboard
+                    </h2>
+
+                    <p>
+                        Manage your Garba Night registration,
+                        payment proof and entry QR.
+                    </p>
+
+                </div>
+
+
+                <div class="account-pill">
+
+                    <div class="avatar" id="avatar">
+                        U
+                    </div>
+
+                    <div>
+
+                        <strong id="accountEmail">
+                            user@example.com
+                        </strong>
+
+                        <span>
+                            Participant
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+
+                <!-- SIDEBAR -->
+
+                <aside class="sidebar">
+
+                    <div class="sidebar-label">
+                        Event
+                    </div>
+
+                    <button class="nav-btn active" data-tab="overview">
+                        ◉ &nbsp; Overview
+                    </button>
+
+                    <button class="nav-btn" data-tab="registration">
+                        ✦ &nbsp; Registration
+                    </button>
+
+                    <button class="nav-btn" data-tab="payment">
+                        ₹ &nbsp; Payment
+                    </button>
+
+                    <button class="nav-btn" data-tab="qr">
+                        ▣ &nbsp; My QR Code
+                    </button>
+
+                    <div class="sidebar-label">
+                        Account
+                    </div>
+
+                    <button class="nav-btn" id="logoutButton">
+                        ↪ &nbsp; Logout
+                    </button>
+
+                </aside>
+
+
+                <!-- CONTENT -->
+
+                <main class="content-panel">
+
+
+                    <!-- =================================================
+               OVERVIEW
+          ================================================== -->
+
+                    <div class="tab-content active" id="tab-overview">
+
+                        <div class="status-grid">
+
+                            <div class="status-card">
+
+                                <small>
+                                    Registration
+                                </small>
+
+                                <strong id="statusRegistration">
+                                    Not Started
+                                </strong>
+
+                                <span class="badge badge-muted" id="statusRegistrationBadge">
+                                    ● Not Started
+                                </span>
+
+                            </div>
+
+
+                            <div class="status-card">
+
+                                <small>
+                                    Payment
+                                </small>
+
+                                <strong id="statusPayment">
+                                    Pending
+                                </strong>
+
+                                <span class="badge badge-warning" id="statusPaymentBadge">
+                                    ● Awaiting
+                                </span>
+
+                            </div>
+
+
+                            <div class="status-card">
+
+                                <small>
+                                    QR
+                                </small>
+
+                                <strong id="statusQR">
+                                    Inactive
+                                </strong>
+
+                                <span class="badge badge-muted" id="statusQRBadge">
+                                    ● Not Active
+                                </span>
+
                             </div>
 
                         </div>
 
-                    </form>
-                </div>
-            </section>
 
-        </main>
-    </div>
+                        <div class="card">
 
-    <!-- ============================ CAMERA MODAL ============================ -->
-    <div class="rr-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
-        <div class="rr-modal-card">
-            <div class="rr-modal-head">
-                <h3 id="cameraTitle">Take your live selfie</h3>
-                <button class="rr-close" id="closeCamera" type="button" aria-label="Close">×</button>
+                            <div class="card-title">
+                                Welcome to Garba Night
+                            </div>
+
+                            <div class="card-subtitle">
+                                Complete your registration first.
+                                After payment submission, the school
+                                team will manually verify your transaction.
+                                Your event QR code becomes active only
+                                after approval.
+                            </div>
+
+                            <div style="margin-top:17px;">
+
+                                <button class="btn btn-primary" id="startRegistrationButton" type="button">
+                                    Start Registration →
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+               REGISTRATION
+          ================================================== -->
+
+                    <div class="tab-content" id="tab-registration">
+
+                        <div class="card">
+
+                            <div class="card-title">
+                                Participant Registration
+                            </div>
+
+                            <div class="card-subtitle">
+                                Your account email is automatically linked
+                                and cannot be replaced by another email.
+                            </div>
+
+
+                            <form class="form" id="registrationForm" novalidate>
+
+                                <div class="form-grid">
+
+
+                                    <div class="field">
+
+                                        <label for="participantName">
+                                            Full Name
+                                        </label>
+
+                                        <input class="input" id="participantName" type="text" maxlength="100"
+                                            autocomplete="name" placeholder="Enter full name" required />
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="participantPhone">
+                                            Mobile Number
+                                        </label>
+
+                                        <input class="input" id="participantPhone" type="tel" inputmode="numeric"
+                                            maxlength="10" autocomplete="tel" placeholder="10-digit mobile number"
+                                            required />
+
+                                    </div>
+
+
+                                    <div class="field full">
+
+                                        <label for="participantEmail">
+                                            Registered Email
+                                        </label>
+
+                                        <input class="input readonly" id="participantEmail" type="email" readonly />
+
+                                        <div class="form-help">
+                                            Linked to your account.
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- SINGLE FEMALE -->
+
+                                    <div class="field full">
+
+                                        <div class="entry-switch">
+
+                                            <div>
+
+                                                <strong>
+                                                    Single Female Entry
+                                                </strong>
+
+                                                <span>
+                                                    Enable this for individual female entry.
+                                                    Group members will automatically disappear.
+                                                </span>
+
+                                            </div>
+
+
+                                            <label class="switch">
+
+                                                <input type="checkbox" id="singleFemale" />
+
+                                                <span class="switch-slider"></span>
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- MEMBERS -->
+
+                                    <div class="field full" id="membersSection">
+
+                                        <div class="members-box">
+
+                                            <div class="members-header">
+
+                                                <strong>
+                                                    Group Members
+                                                </strong>
+
+                                                <span id="memberCount">
+                                                    2 Members
+                                                </span>
+
+                                            </div>
+
+                                            <div id="membersContainer"></div>
+
+                                            <button type="button" class="add-member" id="addMemberButton">
+                                                + Add Member
+                                            </button>
+
+                                            <div class="form-help">
+                                                Minimum 2 members are required.
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- PRICE -->
+
+                                    <div class="field full">
+
+                                        <div class="pricing-card">
+
+                                            <div class="price-line">
+                                                <span>
+                                                    Entry Type
+                                                </span>
+
+                                                <strong id="priceType">
+                                                    Group
+                                                </strong>
+                                            </div>
+
+
+                                            <div class="price-line">
+                                                <span>
+                                                    Members
+                                                </span>
+
+                                                <strong id="priceMembers">
+                                                    2
+                                                </strong>
+                                            </div>
+
+
+                                            <div class="price-line">
+                                                <span>
+                                                    Base Price
+                                                </span>
+
+                                                <strong id="priceBase">
+                                                    ₹300
+                                                </strong>
+                                            </div>
+
+
+                                            <div class="price-line">
+                                                <span>
+                                                    Additional Members
+                                                </span>
+
+                                                <strong id="priceAdditional">
+                                                    ₹150
+                                                </strong>
+                                            </div>
+
+
+                                            <div class="price-line price-total">
+
+                                                <span>
+                                                    Total Payable
+                                                </span>
+
+                                                <strong id="priceTotal">
+                                                    ₹450
+                                                </strong>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CAPTCHA -->
+
+                                    <div class="field full">
+
+                                        <label>
+                                            Verification
+                                        </label>
+
+                                        <!--
+                      TEMPORARY VISUAL PLACEHOLDER.
+
+                      Real Cloudflare Turnstile will be inserted
+                      here when Supabase Auth integration is done.
+                    -->
+
+                                        <label class="captcha-demo">
+
+                                            <input id="captchaCheck" type="checkbox" />
+
+                                            <strong>
+                                                I'm not a robot
+                                            </strong>
+
+                                            <span>
+                                                TURNSTILE
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div style="
+                    display:flex;
+                    justify-content:flex-end;
+                    gap:8px;
+                    margin-top:18px;
+                  ">
+
+                                    <button type="button" class="btn btn-secondary" data-tab-target="overview">
+                                        Cancel
+                                    </button>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        Continue to Payment →
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+               PAYMENT
+          ================================================== -->
+
+                    <div class="tab-content" id="tab-payment">
+
+                        <div class="payment-grid">
+
+
+                            <div class="card payment-card">
+
+                                <div class="eyebrow">
+                                    Manual UPI Payment
+                                </div>
+
+                                <div class="payment-qr">
+
+                                    <div class="payment-qr-inner">
+
+                                        <div>
+
+                                            <div style="font-size:45px;">
+                                                ▦
+                                            </div>
+
+                                            <strong>
+                                                SCHOOL UPI QR
+                                            </strong>
+
+                                            <div style="
+                          margin-top:5px;
+                          color:#888;
+                        ">
+                                                QR will be configured
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="small-text">
+                                    Scan using your preferred UPI app.
+                                </div>
+
+
+                                <div class="upi-pill">
+                                    school@upi
+                                </div>
+
+
+                                <div class="payment-total" id="paymentAmount">
+                                    ₹450
+                                </div>
+
+
+                                <div class="small-text">
+                                    Please pay the exact amount.
+                                </div>
+
+
+                                <div class="payment-instructions">
+
+
+                                    <div class="instruction">
+
+                                        <div class="instruction-number">
+                                            1
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Scan & Pay
+                                            </strong>
+
+                                            <span>
+                                                Pay the exact amount displayed above.
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="instruction">
+
+                                        <div class="instruction-number">
+                                            2
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Save Proof
+                                            </strong>
+
+                                            <span>
+                                                Take a clear payment screenshot.
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="instruction">
+
+                                        <div class="instruction-number">
+                                            3
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Submit UTR
+                                            </strong>
+
+                                            <span>
+                                                Enter your UTR / UPI reference /
+                                                transaction ID.
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="card">
+
+                                <div class="card-title">
+                                    Submit Payment Proof
+                                </div>
+
+                                <div class="card-subtitle">
+                                    Your payment is manually verified by
+                                    the school team against the actual bank/
+                                    UPI transaction record.
+                                </div>
+
+
+                                <form class="form" id="paymentForm" novalidate>
+
+                                    <div class="field">
+
+                                        <label for="paymentProof">
+                                            Payment Screenshot / PDF
+                                        </label>
+
+                                        <input class="file-input" id="paymentProof" type="file"
+                                            accept=".jpg,.jpeg,.png,.pdf" required />
+
+                                        <div class="form-help">
+                                            Maximum 1 MB · JPG, JPEG, PNG, PDF
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="utrNumber">
+                                            UTR / UPI Reference Number /
+                                            Transaction ID
+                                        </label>
+
+                                        <input class="input" id="utrNumber" type="text" maxlength="100"
+                                            autocomplete="off" placeholder="Enter transaction reference" required />
+
+                                    </div>
+
+
+                                    <div class="card" style="
+                      margin-top:8px;
+                      margin-bottom:0;
+                      background:rgba(255,200,87,.035);
+                    ">
+
+                                        <div style="
+                        font-size:11px;
+                        font-weight:700;
+                      ">
+                                            Important
+                                        </div>
+
+                                        <div class="card-subtitle" style="margin-top:5px;">
+                                            Submission does not instantly activate
+                                            your QR code. Payment must first be
+                                            manually verified and approved.
+                                        </div>
+
+                                    </div>
+
+
+                                    <div style="
+                      display:flex;
+                      justify-content:flex-end;
+                      margin-top:18px;
+                    ">
+
+                                        <button type="submit" class="btn btn-primary">
+                                            Submit Payment Proof →
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+               QR
+          ================================================== -->
+
+                    <div class="tab-content" id="tab-qr">
+
+                        <div class="qr-layout">
+
+
+                            <div class="card qr-card">
+
+                                <div class="eyebrow">
+                                    Entry Pass
+                                </div>
+
+                                <div class="user-qr-box">
+
+                                    <div class="qr-placeholder">
+
+                                        <div>
+
+                                            <strong>
+                                                QR NOT ACTIVE
+                                            </strong>
+
+                                            Payment verification and
+                                            permission are required.
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <span class="badge badge-warning" id="qrBadge">
+                                    ● Awaiting Approval
+                                </span>
+
+
+                                <div class="card-subtitle" style="margin-top:13px;">
+                                    Your unique QR code will appear here
+                                    only after the school grants permission.
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="card">
+
+                                    <div class="card-title">
+                                        Registration Details
+                                    </div>
+
+
+                                    <div class="detail-list">
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Name
+                                            </span>
+
+                                            <strong id="detailName">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Mobile
+                                            </span>
+
+                                            <strong id="detailPhone">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Email
+                                            </span>
+
+                                            <strong id="detailEmail">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Entry Type
+                                            </span>
+
+                                            <strong id="detailEntryType">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Group Size
+                                            </span>
+
+                                            <strong id="detailGroupSize">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Amount
+                                            </span>
+
+                                            <strong id="detailAmount">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div class="detail-row">
+
+                                            <span>
+                                                Registration ID
+                                            </span>
+
+                                            <strong id="detailRegistrationId">
+                                                —
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="card">
+
+                                    <div class="card-title">
+                                        Gate Instructions
+                                    </div>
+
+                                    <div class="card-subtitle">
+                                        Show the active QR at Gate 1 or Gate 2.
+                                        The gate staff will verify your details
+                                        before checking you in.
+                                    </div>
+
+                                    <span class="badge badge-muted">
+                                        QR can only be used once
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </main>
+
             </div>
 
-            <div class="rr-camera-stage">
-                <video id="captureVideo" autoplay playsinline muted></video>
-                <div class="rr-camera-guide"></div>
-            </div>
-
-            <div class="rr-modal-actions">
-                <button class="rr-btn rr-btn-sec" id="cancelCamera" type="button">Cancel</button>
-                <button class="rr-btn rr-btn-dark" id="captureSelfie" type="button">Capture selfie</button>
-            </div>
         </div>
-    </div>
 
-    <!-- ============================ SUCCESS MODAL ============================ -->
-    <div class="rr-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
-        <div class="rr-modal-card rr-success-card">
-            <div class="rr-success-icon" aria-hidden="true">✓</div>
-            <h3 id="successTitle">Registration Confirmed</h3>
-            <p class="success-note">
-                Your payment has been verified by the secure backend. Your digital pass is being prepared.
-            </p>
+    </section>
 
-            <div class="rr-reg-code" id="demoRegistrationCode">—</div>
 
-            <div class="rr-qr-box" aria-hidden="true">▦</div>
+    <!-- ==========================================================
+       TOAST
+  =========================================================== -->
 
-            <button class="rr-btn rr-btn-dark" type="button" id="closeSuccess" style="width:100%;">Close</button>
-        </div>
-    </div>
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-    <div class="rr-toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
-        (() => {
-            "use strict";
 
-            const $ = (sel) => document.querySelector(sel);
+        /*
+          ============================================================
+          FRONTEND FOUNDATION ONLY
+          ============================================================
+    
+          IMPORTANT:
+    
+          This version deliberately does NOT treat frontend state
+          as authoritative.
+    
+          Production security will later be provided by:
+    
+          - Supabase Auth
+          - PostgreSQL
+          - RLS
+          - Edge Functions
+          - server-side pricing
+          - secure payment proof upload
+          - server-generated QR tokens
+          - atomic check-in
+    
+          localStorage below is ONLY for UI prototyping.
+          Never use it for production authentication/passwords.
+        */
 
-            window.addEventListener("unhandledrejection", (event) => {
-                console.error("Unhandled promise rejection:", event.reason);
-                showToast("Something went wrong. Please try again.");
-            });
 
-            const form = $("#registrationForm");
-            const peopleInput = $("#people");
-            const membersBox = $("#membersBox");
-            const amountText = $("#amountText");
-            const amountTextBottom = $("#amountTextBottom");
-            const pricingNote = $("#pricingNote");
-            const payNow = $("#payNow");
-            const singleFemaleEntry = $("#singleFemaleEntry");
-            const entryModeHelp = $("#entryModeHelp");
-            const formIntro = $("#formIntro");
-            const groupSizeBlock = $("#groupSizeBlock");
+        "use strict";
 
-            const cameraModal = $("#cameraModal");
-            const captureVideo = $("#captureVideo");
-            const selfiePreview = $("#selfiePreview");
-            const selfieImage = $("#selfieImage");
-            const cameraEmpty = $("#cameraEmpty");
-            const openCamera = $("#openCamera");
-            const retakeSelfie = $("#retakeSelfie");
 
-            const captchaQuestion = $("#captchaQuestion");
-            const captchaAnswer = $("#captchaAnswer");
-            const refreshCaptcha = $("#refreshCaptcha");
+        /* ==========================================================
+           CONFIG
+        =========================================================== */
 
-            let mediaStream = null;
-            let selfieBlob = null;
-            let captcha = { a: 0, b: 0 };
+        const CONFIG = Object.freeze({
 
-            // One idempotency key per payment attempt.
-            // Prevents duplicate Razorpay orders caused by double-clicks/retries.
-            let paymentIdempotencyKey = null;
+            BASE_PRICE: 300,
 
-            function getPaymentIdempotencyKey() {
-                if (!paymentIdempotencyKey) {
-                    if (crypto?.randomUUID) {
-                        paymentIdempotencyKey = crypto.randomUUID();
-                    } else {
-                        const bytes = new Uint8Array(16);
-                        crypto.getRandomValues(bytes);
-                        paymentIdempotencyKey = [...bytes]
-                            .map((b) => b.toString(16).padStart(2, "0"))
-                            .join("");
-                    }
-                }
-                return paymentIdempotencyKey;
+            ADDITIONAL_MEMBER_PRICE: 150,
+
+            SINGLE_FEMALE_PRICE: 200,
+
+            MAX_FILE_SIZE: 1024 * 1024,
+
+            ALLOWED_FILE_TYPES: Object.freeze([
+                "image/jpeg",
+                "image/png",
+                "application/pdf"
+            ])
+
+        });
+
+
+        /* ==========================================================
+           STATE
+        =========================================================== */
+
+        const state = {
+
+            currentUser: null,
+
+            members: [
+                { name: "" },
+                { name: "" }
+            ],
+
+            registration: {
+
+                submitted: false,
+
+                paymentSubmitted: false,
+
+                paymentStatus: "not_submitted",
+
+                permissionGranted: false,
+
+                checkedIn: false,
+
+                name: "",
+
+                phone: "",
+
+                email: "",
+
+                entryType: "group",
+
+                groupSize: 2,
+
+                amount: 450,
+
+                registrationId: ""
+
             }
 
-            function resetPaymentAttempt() {
-                paymentIdempotencyKey = null;
-            }
+        };
 
-            // ============================================================
-            // EVENT PRICING
-            // LIVE poster pricing:
-            //   Single female = ₹150
-            //   Couple = ₹300
-            //
-            // TEST pricing currently used by Razorpay:
-            //   Single female = ₹5
-            //   Pair = ₹10
-            //   Extra odd person = ₹5
-            //
-            // IMPORTANT: backend MUST independently enforce the same rules.
-            // ============================================================
-            const TEST_SINGLE_FEMALE_PRICE = 5;
-            const TEST_PAIR_PRICE = 10;
-            const TEST_EXTRA_PERSON_PRICE = 5;
 
-            function isSingleFemaleMode() {
-                return singleFemaleEntry.checked;
-            }
+        /* ==========================================================
+           DOM HELPERS
+        =========================================================== */
 
-            function calculateAmount(totalPeople) {
-                if (isSingleFemaleMode()) {
-                    return TEST_SINGLE_FEMALE_PRICE;
-                }
+        const $ = (selector) =>
+            document.querySelector(selector);
 
-                const pairs = Math.floor(totalPeople / 2);
-                const extra = totalPeople % 2;
+        const $$ = (selector) =>
+            Array.from(document.querySelectorAll(selector));
 
-                return (
-                    pairs * TEST_PAIR_PRICE +
-                    extra * TEST_EXTRA_PERSON_PRICE
-                );
-            }
 
-            function formatINR(amount) {
-                return new Intl.NumberFormat("en-IN", {
-                    style: "currency",
-                    currency: "INR",
-                    maximumFractionDigits: 0
-                }).format(amount);
-            }
+        /* ==========================================================
+           INIT
+        =========================================================== */
 
-            function renderMembers() {
-                if (isSingleFemaleMode()) {
-                    peopleInput.value = "1";
-                    peopleInput.min = "1";
-                    peopleInput.max = "1";
-                    peopleInput.disabled = true;
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
 
-                    membersBox.innerHTML = "";
-                    membersBox.classList.add("single-female-mode");
 
-                    const amount = calculateAmount(1);
-                    amountText.textContent = formatINR(amount);
-                    amountTextBottom.textContent = formatINR(amount);
-                    pricingNote.textContent = "1 person • Single Female Entry";
-                    payNow.textContent =
-                        `Pay ${formatINR(amount)} & Confirm Registration`;
-                    return;
-                }
+        function initialize() {
 
-                peopleInput.disabled = false;
-                peopleInput.min = "2";
-                peopleInput.max = "20";
+            bindGlobalEvents();
 
-                let total = Number(peopleInput.value);
-                if (!Number.isFinite(total)) total = 2;
-                total = Math.min(20, Math.max(2, Math.floor(total)));
-                peopleInput.value = String(total);
+            renderMembers();
 
-                membersBox.classList.remove("single-female-mode");
-                membersBox.innerHTML = "";
+            updatePricing();
 
-                const companionCount = total - 1;
+            updateDashboard();
 
-                const title = document.createElement("div");
-                title.style.cssText =
-                    "font-weight:900;font-size:13px;margin-bottom:10px;";
-                title.textContent =
-                    `Names of remaining ${companionCount} guest${companionCount === 1 ? "" : "s"}`;
-                membersBox.appendChild(title);
+        }
 
-                for (let i = 1; i <= companionCount; i++) {
-                    const row = document.createElement("div");
-                    row.className = "member-row";
 
-                    const no = document.createElement("div");
-                    no.className = "member-no";
-                    no.textContent = `#${i + 1}`;
+        /* ==========================================================
+           GLOBAL EVENTS
+        =========================================================== */
 
-                    const field = document.createElement("input");
-                    field.type = "text";
-                    field.name = "member_" + i;
-                    field.maxLength = 80;
-                    field.placeholder = `Guest ${i + 1} full name`;
-                    field.required = true;
-                    field.autocomplete = "off";
+        function bindGlobalEvents() {
 
-                    row.append(no, field);
-                    membersBox.appendChild(row);
-                }
-
-                const amount = calculateAmount(total);
-                amountText.textContent = formatINR(amount);
-                amountTextBottom.textContent = formatINR(amount);
-
-                const pairCount = Math.floor(total / 2);
-                const extra = total % 2;
-
-                pricingNote.textContent =
-                    `${total} people • ${pairCount} pair${pairCount === 1 ? "" : "s"}` +
-                    (extra ? " + 1 extra guest" : "");
-
-                payNow.textContent =
-                    `Pay ${formatINR(amount)} & Confirm Registration`;
-            }
-
-            function updateEntryModeUI() {
-                const single = isSingleFemaleMode();
-
-                entryModeHelp.textContent = single
-                    ? "1 person allowed • female-only single entry"
-                    : "Couple / group entry • minimum 2 people";
-
-                formIntro.textContent = single
-                    ? "Single Female Entry is available. Enter the lead guest's details and continue to payment."
-                    : "Minimum 2 people are required. Enter the lead guest's details and the names of everyone coming with you.";
-
-                peopleInput.setAttribute("aria-label",
-                    single ? "Single female entry" : "Total people in your group");
-
-                // Single Female mode => group size section is not needed at all.
-                // Using style.display directly ensures no CSS rule can override it.
-                groupSizeBlock.style.display = single ? "none" : "flex";
-
-                renderMembers();
-                resetPaymentAttempt();
-                updatePayState();
-            }
-
-            function createCaptcha() {
-                const buf = new Uint32Array(2);
-                crypto.getRandomValues(buf);
-                captcha.a = (buf[0] % 8) + 2;
-                captcha.b = (buf[1] % 8) + 2;
-                captchaQuestion.textContent = `${captcha.a} + ${captcha.b} = ?`;
-                captchaAnswer.value = "";
-            }
-
-            function isCaptchaValid() {
-                return Number(captchaAnswer.value.trim()) === captcha.a + captcha.b;
-            }
-
-            function getMobileValid() {
-                return /^[6-9]\d{9}$/.test($("#mobile").value.trim());
-            }
-
-            function getEmailValid() {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("#email").value.trim());
-            }
-
-            function updatePayState() {
-                const basicValid = form.checkValidity();
-                const mobileValid = getMobileValid();
-                const emailValid = getEmailValid();
-                const captchaValid = isCaptchaValid();
-
-                payNow.disabled = !(basicValid && mobileValid && emailValid && captchaValid && selfieBlob);
-            }
-
-            function showToast(message) {
-                const toast = $("#toast");
-                toast.textContent = message;
-                toast.classList.add("show");
-                clearTimeout(showToast.timer);
-                showToast.timer = setTimeout(() => toast.classList.remove("show"), 2800);
-            }
-
-            async function openCameraModal() {
-                try {
-                    if (!navigator.mediaDevices?.getUserMedia) {
-                        showToast("Camera access is not supported in this browser.");
-                        return;
-                    }
-
-                    mediaStream = await navigator.mediaDevices.getUserMedia({
-                        video: {
-                            facingMode: "user",
-                            width: { ideal: 1080 },
-                            height: { ideal: 1350 }
-                        },
-                        audio: false
-                    });
-
-                    captureVideo.srcObject = mediaStream;
-                    cameraModal.classList.add("show");
-                } catch (err) {
-                    showToast("Camera permission was denied or unavailable.");
-                }
-            }
-
-            function stopCamera() {
-                if (mediaStream) {
-                    mediaStream.getTracks().forEach((track) => track.stop());
-                    mediaStream = null;
-                }
-                captureVideo.srcObject = null;
-            }
-
-            function closeCameraModal() {
-                stopCamera();
-                cameraModal.classList.remove("show");
-            }
-
-            async function captureSelfiePhoto() {
-                if (!mediaStream) return;
-
-                const videoWidth = captureVideo.videoWidth;
-                const videoHeight = captureVideo.videoHeight;
-
-                if (!videoWidth || !videoHeight) {
-                    showToast("Camera is still starting. Please try again.");
-                    return;
-                }
-
-                const canvas = document.createElement("canvas");
-                const maxWidth = 900;
-                const scale = Math.min(1, maxWidth / videoWidth);
-                canvas.width = Math.round(videoWidth * scale);
-                canvas.height = Math.round(videoHeight * scale);
-
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(captureVideo, 0, 0, canvas.width, canvas.height);
-
-                selfieBlob = await new Promise((resolve) =>
-                    canvas.toBlob(resolve, "image/jpeg", 0.88)
+            $("#headerRegisterButton")
+                .addEventListener(
+                    "click",
+                    () => openAuth("register")
                 );
 
-                const objectUrl = URL.createObjectURL(selfieBlob);
-                selfieImage.src = objectUrl;
-                selfieImage.style.display = "block";
-                selfiePreview.style.display = "none";
-                cameraEmpty.style.display = "none";
-                retakeSelfie.disabled = false;
 
-                closeCameraModal();
-                updatePayState();
-            }
+            $("#headerLoginButton")
+                .addEventListener(
+                    "click",
+                    () => openAuth("login")
+                );
 
-            // Temporary frontend hook. Replace this with a server-created order flow.
-            async function startSecurePaymentFlow() {
-                if (!window.fetch || !window.Razorpay) {
-                    showToast("Secure payment service is unavailable in this browser.");
-                    return;
-                }
 
-                const totalPeople = Number(peopleInput.value);
-                const amount = calculateAmount(totalPeople);
+            $("#heroRegisterButton")
+                .addEventListener(
+                    "click",
+                    () => openAuth("register")
+                );
 
-                const members = [
-                    ...membersBox.querySelectorAll('input[name^="member_"]')
-                ].map((input) => input.value.trim());
 
-                const apiBase =
-                    "https://garba-registration-api.shubham347779.workers.dev";
+            $("#heroLoginButton")
+                .addEventListener(
+                    "click",
+                    () => openAuth("login")
+                );
 
-                const idempotencyKey = getPaymentIdempotencyKey();
 
-                payNow.disabled = true;
-                payNow.textContent = "Creating secure payment…";
+            $("#startRegistrationButton")
+                .addEventListener(
+                    "click",
+                    () => openTab("registration")
+                );
 
-                try {
-                    const response = await fetch(`${apiBase}/create-order`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            leadName: $("#leadName").value.trim(),
-                            mobile: $("#mobile").value.trim(),
-                            email: $("#email").value.trim().toLowerCase(),
-                            people: totalPeople,
-                            members,
-                            entry_mode: isSingleFemaleMode()
-                                ? "single_female"
-                                : "group",
-                            idempotency_key: idempotencyKey
-                        })
-                    });
 
-                    let data = {};
-                    try {
-                        data = await response.json();
-                    } catch {
-                        throw new Error("Invalid server response.");
-                    }
+            $("#addMemberButton")
+                .addEventListener(
+                    "click",
+                    addMember
+                );
 
-                    if (!response.ok || !data.ok) {
-                        throw new Error(
-                            data.error || "Unable to create payment order."
-                        );
-                    }
 
-                    const serverAmountRupees = Number(data.amount) / 100;
+            $("#singleFemale")
+                .addEventListener(
+                    "change",
+                    handleSingleFemaleToggle
+                );
 
-                    if (
-                        !Number.isFinite(serverAmountRupees) ||
-                        serverAmountRupees !== amount
-                    ) {
-                        throw new Error("Payment amount mismatch.");
-                    }
 
-                    if (
-                        !data.order_id ||
-                        !data.key_id ||
-                        data.currency !== "INR"
-                    ) {
-                        throw new Error("Invalid payment order response.");
-                    }
+            $("#registerForm")
+                .addEventListener(
+                    "submit",
+                    handleRegister
+                );
 
-                    const options = {
-                        key: data.key_id,
-                        order_id: data.order_id,
-                        amount: data.amount,
-                        currency: data.currency,
-                        name: "Vanasthali Public School",
-                        description: "Raas Rang — Dandiya Night",
 
-                        prefill: {
-                            name: $("#leadName").value.trim(),
-                            email: $("#email").value.trim().toLowerCase(),
-                            contact: $("#mobile").value.trim()
-                        },
+            $("#loginForm")
+                .addEventListener(
+                    "submit",
+                    handleLogin
+                );
 
-                        theme: {
-                            color: "#f63b82"
-                        },
 
-                        retry: {
-                            enabled: true
-                        },
+            $("#registrationForm")
+                .addEventListener(
+                    "submit",
+                    handleRegistration
+                );
 
-                        handler: async function (paymentResponse) {
-                            try {
-                                payNow.textContent =
-                                    "Verifying payment securely…";
 
-                                const verifyResponse =
-                                    await fetch(`${apiBase}/verify-payment`, {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        },
-                                        body: JSON.stringify({
-                                            razorpay_order_id:
-                                                paymentResponse.razorpay_order_id,
-                                            razorpay_payment_id:
-                                                paymentResponse.razorpay_payment_id,
-                                            razorpay_signature:
-                                                paymentResponse.razorpay_signature
-                                        })
-                                    });
+            $("#paymentForm")
+                .addEventListener(
+                    "submit",
+                    handlePaymentProof
+                );
 
-                                let verified = {};
-                                try {
-                                    verified = await verifyResponse.json();
-                                } catch {
-                                    throw new Error(
-                                        "Invalid verification response."
-                                    );
-                                }
 
-                                if (
-                                    !verifyResponse.ok ||
-                                    !verified.ok
-                                ) {
-                                    throw new Error(
-                                        verified.error ||
-                                        "Payment verification failed."
-                                    );
-                                }
+            $("#logoutButton")
+                .addEventListener(
+                    "click",
+                    logout
+                );
 
-                                // Only backend-verified registrations reach this state.
-                                $("#demoRegistrationCode").textContent =
-                                    verified.registration_no || "VERIFIED";
 
-                                const amountPaid =
-                                    Number(verified.amount) / 100;
+            $$("[data-switch-auth]")
+                .forEach(button => {
 
-                                const successNote = document.querySelector(
-                                    "#successModal .success-note"
-                                );
+                    button.addEventListener(
+                        "click",
+                        () => {
 
-                                if (successNote) {
-                                    successNote.textContent =
-                                        `Payment verified successfully. Amount paid: ${formatINR(amountPaid)}.`;
-                                }
+                            openAuth(
+                                button.dataset.switchAuth
+                            );
 
-                                $("#successModal").classList.add("show");
-
-                                showToast(
-                                    "Payment verified successfully."
-                                );
-
-                                resetPaymentAttempt();
-                            } catch (error) {
-                                console.error(
-                                    "Payment verification error:",
-                                    error
-                                );
-
-                                showToast(
-                                    error?.message ||
-                                    "Payment verification failed. Please contact support."
-                                );
-                            } finally {
-                                payNow.disabled = false;
-                                payNow.textContent =
-                                    `Pay ${formatINR(amount)} & Confirm Registration`;
-                            }
-                        },
-
-                        modal: {
-                            ondismiss: function () {
-                                payNow.disabled = false;
-                                payNow.textContent =
-                                    `Pay ${formatINR(amount)} & Confirm Registration`;
-
-                                showToast("Payment window closed.");
-                            }
                         }
-                    };
-
-                    const razorpay = new Razorpay(options);
-
-                    razorpay.on("payment.failed", function (failureResponse) {
-                        console.error(
-                            "Razorpay payment failed:",
-                            failureResponse?.error?.code ||
-                            "UNKNOWN_PAYMENT_FAILURE"
-                        );
-
-                        payNow.disabled = false;
-                        payNow.textContent =
-                            `Pay ${formatINR(amount)} & Confirm Registration`;
-
-                        showToast(
-                            failureResponse?.error?.description ||
-                            "Payment failed. Please try again."
-                        );
-                    });
-
-                    razorpay.open();
-                } catch (error) {
-                    console.error(
-                        "Payment order error:",
-                        error
                     );
 
-                    payNow.disabled = false;
-                    payNow.textContent =
-                        `Pay ${formatINR(amount)} & Confirm Registration`;
+                });
+
+
+            $$("[data-password-toggle]")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            togglePassword(
+                                button.dataset.passwordToggle,
+                                button
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            $$("[data-tab]")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            openTab(
+                                button.dataset.tab
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            $$("[data-tab-target]")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            openTab(
+                                button.dataset.tabTarget
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            $("#participantPhone")
+                .addEventListener(
+                    "input",
+                    enforcePhoneInput
+                );
+
+        }
+
+
+        /* ==========================================================
+           AUTH VIEW
+        =========================================================== */
+
+        function openAuth(mode) {
+
+            $("#landingView").hidden = true;
+
+            $("#dashboardView").hidden = true;
+
+            $("#authView").hidden = false;
+
+
+            $("#registerView").hidden =
+                mode !== "register";
+
+            $("#loginView").hidden =
+                mode !== "login";
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function openDashboard() {
+
+            $("#landingView").hidden = true;
+
+            $("#authView").hidden = true;
+
+            $("#dashboardView").hidden = false;
+
+
+            updateDashboard();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* ==========================================================
+           DEMO REGISTER
+        =========================================================== */
+
+        function handleRegister(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                $("#registerEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                $("#registerPassword")
+                    .value;
+
+
+            const confirmPassword =
+                $("#registerConfirmPassword")
+                    .value;
+
+
+            if (!isValidEmail(email)) {
+
+                showToast(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (password.length < 8) {
+
+                showToast(
+                    "Password must contain at least 8 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (password !== confirmPassword) {
+
+                showToast(
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /*
+              DEMO ONLY.
+      
+              No password is stored in production.
+            */
+
+            state.currentUser = {
+
+                id:
+                    crypto.randomUUID(),
+
+                email
+
+            };
+
+
+            $("#participantEmail")
+                .value = email;
+
+
+            showToast(
+                "Demo account created. Production Auth will use Supabase.",
+                "success"
+            );
+
+
+            openDashboard();
+
+            openTab("registration");
+
+        }
+
+
+        /* ==========================================================
+           DEMO LOGIN
+        =========================================================== */
+
+        function handleLogin(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                $("#loginEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!isValidEmail(email)) {
+
+                showToast(
+                    "Enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            state.currentUser = {
+
+                id:
+                    crypto.randomUUID(),
+
+                email
+
+            };
+
+
+            $("#participantEmail")
+                .value = email;
+
+
+            showToast(
+                "Demo login successful.",
+                "success"
+            );
+
+
+            openDashboard();
+
+        }
+
+
+        /* ==========================================================
+           LOGOUT
+        =========================================================== */
+
+        function logout() {
+
+            state.currentUser = null;
+
+            $("#dashboardView").hidden = true;
+
+            $("#authView").hidden = true;
+
+            $("#landingView").hidden = false;
+
+            showToast(
+                "Logged out.",
+                "success"
+            );
+
+        }
+
+
+        /* ==========================================================
+           DASHBOARD
+        =========================================================== */
+
+        function updateDashboard() {
+
+            if (!state.currentUser) {
+
+                return;
+
+            }
+
+
+            const email =
+                state.currentUser.email;
+
+
+            $("#accountEmail")
+                .textContent = email;
+
+
+            $("#avatar")
+                .textContent =
+                email.charAt(0).toUpperCase();
+
+
+            $("#participantEmail")
+                .value = email;
+
+
+            updateOverviewStatus();
+
+            updateRegistrationDetails();
+
+        }
+
+
+        function updateOverviewStatus() {
+
+            const registration =
+                state.registration;
+
+
+            $("#statusRegistration")
+                .textContent =
+                registration.submitted
+                    ? "Completed"
+                    : "Not Started";
+
+
+            $("#statusPayment")
+                .textContent =
+                registration.paymentSubmitted
+                    ? (
+                        registration.paymentStatus === "verified"
+                            ? "Verified"
+                            : "Under Review"
+                    )
+                    : "Pending";
+
+
+            $("#statusQR")
+                .textContent =
+                registration.checkedIn
+                    ? "Used"
+                    : registration.permissionGranted
+                        ? "Active"
+                        : "Inactive";
+
+
+            setBadge(
+                $("#statusRegistrationBadge"),
+                registration.submitted
+                    ? "● Completed"
+                    : "● Not Started",
+                registration.submitted
+                    ? "success"
+                    : "muted"
+            );
+
+
+            setBadge(
+                $("#statusPaymentBadge"),
+                registration.paymentStatus === "verified"
+                    ? "● Verified"
+                    : registration.paymentSubmitted
+                        ? "● Under Review"
+                        : "● Awaiting",
+                registration.paymentStatus === "verified"
+                    ? "success"
+                    : "warning"
+            );
+
+
+            setBadge(
+                $("#statusQRBadge"),
+                registration.checkedIn
+                    ? "● Used"
+                    : registration.permissionGranted
+                        ? "● Active"
+                        : "● Not Active",
+                registration.checkedIn
+                    ? "danger"
+                    : registration.permissionGranted
+                        ? "success"
+                        : "muted"
+            );
+
+        }
+
+
+        function setBadge(element, text, type) {
+
+            element.textContent = text;
+
+            element.className =
+                "badge badge-" + type;
+
+        }
+
+
+        /* ==========================================================
+           TABS
+        =========================================================== */
+
+        function openTab(tabName) {
+
+            $$(".nav-btn[data-tab]")
+                .forEach(button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.tab === tabName
+                    );
+
+                });
+
+
+            $$(".tab-content")
+                .forEach(panel => {
+
+                    panel.classList.toggle(
+                        "active",
+                        panel.id === "tab-" + tabName
+                    );
+
+                });
+
+
+            if (tabName === "payment") {
+
+                updatePaymentAmount();
+
+            }
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* ==========================================================
+           MEMBERS
+        =========================================================== */
+
+        function renderMembers() {
+
+            const container =
+                $("#membersContainer");
+
+
+            container.innerHTML = "";
+
+
+            state.members.forEach(
+                (member, index) => {
+
+                    const row =
+                        document.createElement("div");
+
+
+                    row.className =
+                        "member-item";
+
+
+                    const input =
+                        document.createElement("input");
+
+
+                    input.className = "input";
+
+                    input.type = "text";
+
+                    input.maxLength = 100;
+
+                    input.placeholder =
+                        "Member " +
+                        (index + 1) +
+                        " full name";
+
+                    input.value =
+                        member.name;
+
+
+                    input.addEventListener(
+                        "input",
+                        () => {
+
+                            state.members[index].name =
+                                input.value;
+
+                        }
+                    );
+
+
+                    row.appendChild(input);
+
+
+                    if (index >= 2) {
+
+                        const remove =
+                            document.createElement("button");
+
+
+                        remove.type = "button";
+
+                        remove.className =
+                            "remove-btn";
+
+                        remove.textContent =
+                            "×";
+
+
+                        remove.addEventListener(
+                            "click",
+                            () => {
+
+                                removeMember(index);
+
+                            }
+                        );
+
+
+                        row.appendChild(remove);
+
+                    } else {
+
+                        const spacer =
+                            document.createElement("div");
+
+                        row.appendChild(spacer);
+
+                    }
+
+
+                    container.appendChild(row);
+
+                }
+            );
+
+
+            $("#memberCount")
+                .textContent =
+                `${state.members.length} ${state.members.length === 1
+                    ? "Member"
+                    : "Members"
+                }`;
+
+        }
+
+
+        function addMember() {
+
+            state.members.push({
+                name: ""
+            });
+
+
+            renderMembers();
+
+            updatePricing();
+
+        }
+
+
+        function removeMember(index) {
+
+            if (state.members.length <= 2) {
+
+                showToast(
+                    "Minimum 2 members are required.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            state.members.splice(index, 1);
+
+            renderMembers();
+
+            updatePricing();
+
+        }
+
+
+        /* ==========================================================
+           SINGLE FEMALE
+        =========================================================== */
+
+        function handleSingleFemaleToggle(event) {
+
+            const enabled =
+                event.target.checked;
+
+
+            $("#membersSection").hidden =
+                enabled;
+
+
+            updatePricing();
+
+        }
+
+
+        /* ==========================================================
+           PRICING
+        =========================================================== */
+
+        function calculatePrice() {
+
+            if ($("#singleFemale").checked) {
+
+                return CONFIG.SINGLE_FEMALE_PRICE;
+
+            }
+
+
+            return (
+                CONFIG.BASE_PRICE +
+                (
+                    Math.max(
+                        state.members.length - 1,
+                        0
+                    ) *
+                    CONFIG.ADDITIONAL_MEMBER_PRICE
+                )
+            );
+
+        }
+
+
+        function updatePricing() {
+
+            const singleFemale =
+                $("#singleFemale").checked;
+
+
+            const memberCount =
+                singleFemale
+                    ? 1
+                    : state.members.length;
+
+
+            const total =
+                calculatePrice();
+
+
+            $("#priceType")
+                .textContent =
+                singleFemale
+                    ? "Single Female"
+                    : "Group";
+
+
+            $("#priceMembers")
+                .textContent =
+                memberCount;
+
+
+            $("#priceBase")
+                .textContent =
+                singleFemale
+                    ? "₹200"
+                    : "₹300";
+
+
+            $("#priceAdditional")
+                .textContent =
+                singleFemale
+                    ? "₹0"
+                    : "₹" +
+                    (
+                        Math.max(
+                            state.members.length - 1,
+                            0
+                        ) *
+                        CONFIG.ADDITIONAL_MEMBER_PRICE
+                    );
+
+
+            $("#priceTotal")
+                .textContent =
+                "₹" + total;
+
+
+            updatePaymentAmount();
+
+        }
+
+
+        function updatePaymentAmount() {
+
+            $("#paymentAmount")
+                .textContent =
+                "₹" + calculatePrice();
+
+        }
+
+
+        /* ==========================================================
+           REGISTRATION
+        =========================================================== */
+
+        function handleRegistration(event) {
+
+            event.preventDefault();
+
+
+            if (!state.currentUser) {
+
+                showToast(
+                    "Please login first.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const name =
+                $("#participantName")
+                    .value
+                    .trim();
+
+
+            const phone =
+                $("#participantPhone")
+                    .value
+                    .trim();
+
+
+            const email =
+                $("#participantEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const singleFemale =
+                $("#singleFemale")
+                    .checked;
+
+
+            const captcha =
+                $("#captchaCheck")
+                    .checked;
+
+
+            if (name.length < 2) {
+
+                showToast(
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/^[0-9]{10}$/.test(phone)) {
+
+                showToast(
+                    "Please enter a valid 10-digit mobile number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                email !==
+                state.currentUser.email
+            ) {
+
+                showToast(
+                    "Registration email does not match your account.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!captcha) {
+
+                showToast(
+                    "Please complete verification.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !singleFemale &&
+                state.members.length < 2
+            ) {
+
+                showToast(
+                    "Minimum 2 group members are required.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!singleFemale) {
+
+                const hasEmptyMember =
+                    state.members.some(
+                        member =>
+                            member.name.trim().length < 2
+                    );
+
+
+                if (hasEmptyMember) {
 
                     showToast(
-                        error?.message ||
-                        "Unable to start secure payment."
+                        "Please enter every group member's name.",
+                        "error"
                     );
+
+                    return;
+
                 }
+
             }
 
-            $("#minusPeople").addEventListener("click", () => {
-                resetPaymentAttempt();
-                peopleInput.value = String(Math.max(2, Number(peopleInput.value) - 1));
-                renderMembers();
-                updatePayState();
-            });
 
-            $("#plusPeople").addEventListener("click", () => {
-                resetPaymentAttempt();
-                peopleInput.value = String(Math.min(20, Number(peopleInput.value) + 1));
-                renderMembers();
-                updatePayState();
-            });
+            const amount =
+                calculatePrice();
 
-            peopleInput.addEventListener("input", () => {
-                resetPaymentAttempt();
-                renderMembers();
-                updatePayState();
-            });
 
-            // ========== YEH LINE MISSING THI ==========
-            // Single Female Entry toggle hone par UI update karne ke liye event listener
-            singleFemaleEntry.addEventListener("change", updateEntryModeUI);
-            // ==========================================
+            state.registration = {
 
-            [$("#leadName"), $("#mobile"), $("#email"), captchaAnswer, $("#terms")].forEach((el) => {
-                el.addEventListener("input", () => {
-                    resetPaymentAttempt();
-                    updatePayState();
-                });
-                el.addEventListener("change", () => {
-                    resetPaymentAttempt();
-                    updatePayState();
-                });
-            });
+                ...state.registration,
 
-            membersBox.addEventListener("input", () => {
-                resetPaymentAttempt();
-                updatePayState();
-            });
+                submitted: true,
 
-            openCamera.addEventListener("click", openCameraModal);
-            retakeSelfie.addEventListener("click", openCameraModal);
-            $("#closeCamera").addEventListener("click", closeCameraModal);
-            $("#cancelCamera").addEventListener("click", closeCameraModal);
-            $("#captureSelfie").addEventListener("click", captureSelfiePhoto);
+                name,
 
-            cameraModal.addEventListener("click", (e) => {
-                if (e.target === cameraModal) closeCameraModal();
-            });
+                phone,
 
-            refreshCaptcha.addEventListener("click", () => {
-                createCaptcha();
-                updatePayState();
-            });
+                email,
 
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
+                entryType:
+                    singleFemale
+                        ? "single_female"
+                        : "group",
 
-                // Frontend validation only; backend MUST independently validate everything.
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
-                }
+                groupSize:
+                    singleFemale
+                        ? 1
+                        : state.members.length,
 
-                if (!getMobileValid()) {
-                    showToast("Please enter a valid 10-digit mobile number.");
-                    return;
-                }
+                amount,
 
-                if (!getEmailValid()) {
-                    showToast("Please enter a valid email address.");
-                    return;
-                }
+                registrationId:
+                    createDemoRegistrationId()
 
-                if (!isCaptchaValid()) {
-                    showToast("Please solve the CAPTCHA correctly.");
-                    createCaptcha();
-                    updatePayState();
-                    return;
-                }
+            };
 
-                if (!selfieBlob) {
-                    showToast("Please capture your live selfie.");
-                    return;
-                }
 
-                if (isSingleFemaleMode()) {
-                    if (Number(peopleInput.value) !== 1) {
-                        showToast("Single Female Entry must contain exactly 1 person.");
-                        return;
-                    }
-                } else if (Number(peopleInput.value) < 2) {
-                    showToast("Minimum 2 people are required.");
-                    return;
-                }
+            updateDashboard();
 
-                await startSecurePaymentFlow();
-            });
+            showToast(
+                "Registration details saved.",
+                "success"
+            );
 
-            // Keep only the expected max age/format in the UI. Real anti-bot and validation are server-side.
-            createCaptcha();
-            updateEntryModeUI();
-        })();
+
+            openTab("payment");
+
+        }
+
+
+        /* ==========================================================
+           PAYMENT PROOF
+        =========================================================== */
+
+        function handlePaymentProof(event) {
+
+            event.preventDefault();
+
+
+            if (!state.registration.submitted) {
+
+                showToast(
+                    "Complete registration first.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const file =
+                $("#paymentProof")
+                    .files[0];
+
+
+            const utr =
+                $("#utrNumber")
+                    .value
+                    .trim();
+
+
+            if (!file) {
+
+                showToast(
+                    "Please attach payment proof.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (file.size > CONFIG.MAX_FILE_SIZE) {
+
+                showToast(
+                    "Payment proof must not exceed 1 MB.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !CONFIG.ALLOWED_FILE_TYPES
+                    .includes(file.type)
+            ) {
+
+                showToast(
+                    "Only JPG, JPEG, PNG or PDF is allowed.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (utr.length < 6) {
+
+                showToast(
+                    "Please enter a valid transaction reference.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            state.registration = {
+
+                ...state.registration,
+
+                paymentSubmitted: true,
+
+                paymentStatus: "pending"
+
+            };
+
+
+            updateDashboard();
+
+            openTab("overview");
+
+
+            showToast(
+                "Payment proof submitted for manual verification.",
+                "success"
+            );
+
+        }
+
+
+        /* ==========================================================
+           DETAILS
+        =========================================================== */
+
+        function updateRegistrationDetails() {
+
+            const data =
+                state.registration;
+
+
+            $("#detailName")
+                .textContent =
+                data.name || "—";
+
+
+            $("#detailPhone")
+                .textContent =
+                data.phone || "—";
+
+
+            $("#detailEmail")
+                .textContent =
+                data.email || "—";
+
+
+            $("#detailEntryType")
+                .textContent =
+                data.entryType === "single_female"
+                    ? "Single Female"
+                    : data.entryType === "group"
+                        ? "Group"
+                        : "—";
+
+
+            $("#detailGroupSize")
+                .textContent =
+                data.submitted
+                    ? data.groupSize
+                    : "—";
+
+
+            $("#detailAmount")
+                .textContent =
+                data.submitted
+                    ? "₹" + data.amount
+                    : "—";
+
+
+            $("#detailRegistrationId")
+                .textContent =
+                data.registrationId || "—";
+
+        }
+
+
+        /* ==========================================================
+           INPUT VALIDATION
+        =========================================================== */
+
+        function enforcePhoneInput(event) {
+
+            event.target.value =
+                event.target.value
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
+
+        }
+
+
+        function isValidEmail(email) {
+
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email);
+
+        }
+
+
+        /* ==========================================================
+           PASSWORD UI
+        =========================================================== */
+
+        function togglePassword(id, button) {
+
+            const input =
+                document.getElementById(id);
+
+
+            if (!input) return;
+
+
+            const isPassword =
+                input.type === "password";
+
+
+            input.type =
+                isPassword
+                    ? "text"
+                    : "password";
+
+
+            button.textContent =
+                isPassword
+                    ? "◌"
+                    : "◉";
+
+        }
+
+
+        /* ==========================================================
+           DEMO REGISTRATION ID
+        =========================================================== */
+
+        function createDemoRegistrationId() {
+
+            const suffix =
+                crypto.randomUUID()
+                    .replaceAll("-", "")
+                    .slice(0, 8)
+                    .toUpperCase();
+
+
+            return "GBR-" + suffix;
+
+        }
+
+
+        /* ==========================================================
+           TOAST
+        =========================================================== */
+
+        function showToast(
+            message,
+            type = "success"
+        ) {
+
+            const container =
+                $("#toastContainer");
+
+
+            const toast =
+                document.createElement("div");
+
+
+            toast.className =
+                "toast " + type;
+
+
+            toast.textContent =
+                message;
+
+
+            container.appendChild(toast);
+
+
+            window.setTimeout(
+                () => {
+
+                    toast.remove();
+
+                },
+                3500
+            );
+
+        }
+
     </script>
+
 </body>
 
 </html>
