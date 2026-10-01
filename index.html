@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
 
   <meta
@@ -10,343 +11,418 @@
 
   <meta
     name="description"
-    content="Vanasthali Public School Garba Night 2026 registration."
+    content="Raas Rang Garba Night 2026 - Vanasthali Public School"
   />
 
   <meta
     name="theme-color"
-    content="#100711"
+    content="#090509"
   />
 
-  <title>Raas Rang — Vanasthali Public School</title>
+  <title>
+    Raas Rang — Vanasthali Public School
+  </title>
 
   <link
     rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='28' fill='%23ff8a1f'/%3E%3Ctext x='50' y='64' font-size='52' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
   />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
     rel="stylesheet"
   />
 
-  <!-- Supabase -->
+
+  <!-- =======================================================
+       SUPABASE
+  ======================================================== -->
+
   <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
     defer
   ></script>
 
-  <!-- Cloudflare Turnstile -->
+
+  <!-- =======================================================
+       CLOUDFLARE TURNSTILE
+  ======================================================== -->
+
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
     defer
   ></script>
 
-  <!-- QR Generator -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-    defer
-  ></script>
 
   <style>
+
     :root {
-      --bg: #090609;
-      --bg-2: #100711;
-      --surface: rgba(255, 255, 255, 0.045);
-      --surface-2: rgba(255, 255, 255, 0.065);
-      --surface-3: rgba(255, 255, 255, 0.09);
 
-      --text: #ffffff;
-      --muted: #aaa4ad;
-      --muted-2: #77717b;
+      --bg:
+        #080508;
 
-      --orange: #ff861f;
-      --orange-2: #ffb14e;
-      --pink: #f24970;
-      --pink-2: #ff7794;
-      --gold: #ffd36a;
+      --bg-2:
+        #110811;
 
-      --green: #42d89c;
-      --red: #ff5b76;
-      --yellow: #ffc95a;
+      --surface:
+        rgba(255,255,255,.045);
 
-      --border: rgba(255, 255, 255, 0.09);
-      --border-strong: rgba(255, 255, 255, 0.15);
+      --surface-2:
+        rgba(255,255,255,.065);
 
-      --shadow-lg:
-        0 30px 100px rgba(0, 0, 0, 0.55);
+      --text:
+        #ffffff;
 
-      --shadow-orange:
-        0 18px 50px rgba(255, 134, 31, 0.2);
+      --muted:
+        #aaa2ad;
 
-      --radius-xl: 32px;
-      --radius-lg: 23px;
-      --radius-md: 15px;
+      --muted-2:
+        #746d78;
 
-      --container: 1220px;
+      --orange:
+        #ff861f;
+
+      --orange-2:
+        #ffb14c;
+
+      --pink:
+        #f24970;
+
+      --pink-2:
+        #ff7592;
+
+      --gold:
+        #ffd36a;
+
+      --green:
+        #43d99e;
+
+      --red:
+        #ff5c76;
+
+      --yellow:
+        #ffcc5b;
+
+      --border:
+        rgba(255,255,255,.085);
+
+      --border-strong:
+        rgba(255,255,255,.14);
+
+      --shadow:
+        0 30px 90px rgba(0,0,0,.52);
+
+      --container:
+        1180px;
+
     }
+
 
     * {
-      box-sizing: border-box;
+      box-sizing:
+        border-box;
     }
+
 
     html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+
+      overflow-x:
+        hidden;
+
+      scroll-behavior:
+        smooth;
+
     }
 
+
     body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
 
-      font-family: "DM Sans", sans-serif;
+      margin:
+        0;
 
-      overflow-x: hidden;
+      min-height:
+        100vh;
+
+      overflow-x:
+        hidden;
+
+      color:
+        var(--text);
+
+      font-family:
+        "DM Sans",
+        sans-serif;
 
       background:
         radial-gradient(
-          circle at 8% 10%,
-          rgba(255, 134, 31, 0.1),
-          transparent 26%
-        ),
-        radial-gradient(
-          circle at 93% 17%,
-          rgba(242, 73, 112, 0.1),
+          circle at 8% 8%,
+          rgba(255,134,31,.11),
           transparent 27%
         ),
+
         radial-gradient(
-          circle at 52% 103%,
-          rgba(255, 211, 106, 0.055),
+          circle at 94% 15%,
+          rgba(242,73,112,.10),
           transparent 28%
         ),
+
+        radial-gradient(
+          circle at 48% 100%,
+          rgba(255,211,106,.05),
+          transparent 30%
+        ),
+
         linear-gradient(
           180deg,
           var(--bg-2),
           var(--bg)
         );
+
     }
 
-    body.lock-scroll {
-      overflow: hidden;
+
+    body.locked {
+      overflow:
+        hidden;
     }
+
 
     button,
-    input,
-    select,
-    textarea {
-      font: inherit;
+    input {
+      font:
+        inherit;
     }
+
 
     button {
-      cursor: pointer;
+      cursor:
+        pointer;
     }
+
 
     button:disabled {
-      cursor: not-allowed;
+      cursor:
+        not-allowed;
+
+      opacity:
+        .5;
     }
 
-    img,
-    svg {
-      max-width: 100%;
-    }
 
     [hidden] {
-      display: none !important;
+      display:
+        none !important;
     }
+
 
     .container {
-      width: min(
-        var(--container),
-        calc(100% - 40px)
-      );
 
-      margin: 0 auto;
+      width:
+        min(
+          var(--container),
+          calc(100% - 40px)
+        );
+
+      margin:
+        0 auto;
+
     }
 
-    /* =========================================================
-       GLOBAL
-    ========================================================= */
 
-    .app {
-      min-height: 100vh;
-    }
-
-    .glass {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      padding: 8px 12px;
-
-      border: 1px solid rgba(255, 134, 31, 0.2);
-
-      border-radius: 999px;
-
-      background:
-        rgba(255, 134, 31, 0.09);
-
-      color: #ffcc98;
-
-      font-size: 10px;
-      font-weight: 800;
-
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background: var(--green);
-
-      box-shadow:
-        0 0 15px rgba(66, 216, 156, 0.75);
-    }
-
-    /* =========================================================
+    /* =======================================================
        BUTTONS
-    ========================================================= */
+    ======================================================== */
 
     .btn {
-      min-height: 46px;
 
-      padding: 0 18px;
+      min-height:
+        46px;
 
-      border-radius: 13px;
+      padding:
+        0 18px;
 
-      border: 0;
+      border:
+        0;
 
-      font-size: 13px;
-      font-weight: 800;
+      border-radius:
+        13px;
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
 
       transition:
-        transform 0.18s ease,
-        opacity 0.18s ease,
-        box-shadow 0.18s ease;
+        transform .18s ease,
+        box-shadow .18s ease,
+        opacity .18s ease;
+
     }
+
 
     .btn:hover {
-      transform: translateY(-1px);
+      transform:
+        translateY(-1px);
     }
+
 
     .btn:active {
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
-    .btn:disabled {
-      opacity: 0.5;
-    }
 
     .btn-primary {
-      color: #16100b;
+
+      color:
+        #17110b;
 
       background:
         linear-gradient(
           135deg,
           var(--gold),
-          var(--orange),
-          #ff922e
+          var(--orange)
         );
 
       box-shadow:
-        var(--shadow-orange);
+        0 15px 40px
+        rgba(255,134,31,.20);
+
     }
+
 
     .btn-secondary {
-      color: #fff;
 
-      background:
-        rgba(255, 255, 255, 0.055);
-
-      border:
-        1px solid var(--border);
-    }
-
-    .btn-danger {
-      color: #fff;
-
-      background:
-        rgba(255, 91, 118, 0.09);
+      color:
+        #fff;
 
       border:
-        1px solid rgba(255, 91, 118, 0.2);
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,.045);
+
     }
+
 
     .btn-full {
-      width: 100%;
+      width:
+        100%;
     }
 
-    /* =========================================================
+
+    /* =======================================================
        HEADER
-    ========================================================= */
+    ======================================================== */
 
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
 
-      height: 76px;
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        100;
+
+      height:
+        74px;
 
       border-bottom:
-        1px solid rgba(255, 255, 255, 0.06);
+        1px solid
+        rgba(255,255,255,.055);
 
       background:
-        rgba(8, 5, 9, 0.78);
+        rgba(7,4,8,.80);
 
       backdrop-filter:
         blur(20px);
 
       -webkit-backdrop-filter:
         blur(20px);
+
     }
+
 
     .topbar-inner {
-      height: 100%;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      height:
+        100%;
 
-      gap: 16px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+
     }
+
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
 
-      min-width: 0;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        11px;
+
+      min-width:
+        0;
+
     }
 
-    .brand-mark {
-      width: 43px;
-      height: 43px;
 
-      flex: 0 0 auto;
+    .brand-logo {
 
-      display: grid;
-      place-items: center;
+      width:
+        42px;
 
-      border-radius: 13px;
+      height:
+        42px;
 
-      color: white;
+      flex:
+        0 0 auto;
 
-      font-size: 20px;
-      font-weight: 800;
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        13px;
+
+      color:
+        white;
+
+      font-size:
+        19px;
+
+      font-weight:
+        800;
 
       background:
         linear-gradient(
@@ -356,1876 +432,1696 @@
         );
 
       box-shadow:
-        0 12px 32px rgba(255, 100, 43, 0.25);
+        0 12px 30px
+        rgba(242,73,112,.18);
+
     }
 
-    .brand-copy {
-      min-width: 0;
+
+    .brand-text {
+      min-width:
+        0;
     }
 
-    .brand-copy strong {
-      display: block;
 
-      font-size: 13px;
-      line-height: 1.1;
+    .brand-text strong {
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display:
+        block;
+
+      font-size:
+        12px;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+
     }
 
-    .brand-copy span {
-      display: block;
 
-      margin-top: 4px;
+    .brand-text span {
 
-      color: var(--muted-2);
+      display:
+        block;
 
-      font-size: 9px;
+      margin-top:
+        3px;
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        8px;
+
     }
+
 
     .header-actions {
-      display: flex;
-      gap: 9px;
-      flex: 0 0 auto;
+
+      display:
+        flex;
+
+      gap:
+        8px;
+
+      flex:
+        0 0 auto;
+
     }
 
-    /* =========================================================
-       LANDING
-    ========================================================= */
 
-    .landing {
-      padding: 60px 0 70px;
+    /* =======================================================
+       HERO
+    ======================================================== */
+
+    .hero-section {
+
+      min-height:
+        calc(100vh - 74px);
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        55px 0 65px;
+
     }
+
 
     .hero {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
-        minmax(0, 1.06fr)
-        minmax(350px, 0.94fr);
+        minmax(0,1.03fr)
+        minmax(350px,.97fr);
 
-      gap: 44px;
+      gap:
+        42px;
 
-      align-items: center;
+      align-items:
+        center;
+
     }
 
-    .hero-copy {
-      min-width: 0;
+
+    .eyebrow {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      padding:
+        7px 11px;
+
+      border:
+        1px solid
+        rgba(255,134,31,.18);
+
+      border-radius:
+        999px;
+
+      color:
+        #ffcc96;
+
+      background:
+        rgba(255,134,31,.075);
+
+      font-size:
+        9px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .6px;
+
+      text-transform:
+        uppercase;
+
     }
+
+
+    .status-dot {
+
+      width:
+        7px;
+
+      height:
+        7px;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 15px
+        rgba(67,217,158,.7);
+
+    }
+
 
     .hero-title {
-      margin: 20px 0 0;
+
+      margin:
+        20px 0 0;
 
       font-family:
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(50px, 6.9vw, 86px);
+        clamp(
+          50px,
+          7vw,
+          87px
+        );
 
-      line-height: 0.93;
+      line-height:
+        .92;
 
-      letter-spacing: -3px;
+      letter-spacing:
+        -3px;
+
     }
 
+
     .hero-title span {
-      color: transparent;
+
+      color:
+        transparent;
 
       background:
         linear-gradient(
           90deg,
           #fff,
-          #ffd07c 42%,
-          #ff6e88
+          #ffd27c 45%,
+          #ff708c
         );
 
-      -webkit-background-clip: text;
-      background-clip: text;
+      -webkit-background-clip:
+        text;
+
+      background-clip:
+        text;
+
     }
+
 
     .hero-description {
-      max-width: 630px;
 
-      margin-top: 24px;
+      max-width:
+        620px;
 
-      color: var(--muted);
+      margin:
+        23px 0 0;
 
-      font-size: 15px;
-      line-height: 1.8;
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.8;
+
     }
+
 
     .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
 
-      margin-top: 27px;
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        9px;
+
+      margin-top:
+        27px;
+
     }
+
 
     .hero-note {
-      margin-top: 14px;
 
-      color: var(--muted-2);
+      margin-top:
+        13px;
 
-      font-size: 10px;
-      line-height: 1.6;
+      color:
+        var(--muted-2);
+
+      font-size:
+        9px;
+
     }
 
-    /* =========================================================
-       EVENT CARD
-    ========================================================= */
+
+    /* =======================================================
+       EVENT VISUAL
+    ======================================================== */
 
     .event-card {
-      position: relative;
 
-      min-height: 535px;
+      position:
+        relative;
 
-      overflow: hidden;
+      min-height:
+        535px;
 
-      border-radius: 33px;
+      overflow:
+        hidden;
 
       border:
-        1px solid rgba(255, 255, 255, 0.1);
+        1px solid
+        rgba(255,255,255,.1);
+
+      border-radius:
+        33px;
 
       background:
+
         radial-gradient(
-          circle at 50% 17%,
-          rgba(255, 211, 106, 0.16),
+          circle at 50% 14%,
+          rgba(255,211,106,.19),
           transparent 19%
         ),
+
         radial-gradient(
-          circle at 12% 100%,
-          rgba(255, 134, 31, 0.16),
-          transparent 41%
+          circle at 10% 100%,
+          rgba(255,134,31,.17),
+          transparent 40%
         ),
+
         radial-gradient(
-          circle at 100% 80%,
-          rgba(242, 73, 112, 0.14),
-          transparent 42%
+          circle at 100% 85%,
+          rgba(242,73,112,.15),
+          transparent 44%
         ),
-        #130c12;
+
+        #140c13;
 
       box-shadow:
-        var(--shadow-lg);
+        var(--shadow);
+
     }
+
 
     .mandala {
-      position: absolute;
 
-      width: 370px;
-      height: 370px;
+      position:
+        absolute;
 
-      top: 45px;
-      left: 50%;
+      width:
+        365px;
 
-      transform: translateX(-50%);
+      height:
+        365px;
 
-      border-radius: 50%;
+      top:
+        47px;
+
+      left:
+        50%;
+
+      transform:
+        translateX(-50%);
 
       border:
-        1px solid rgba(255,255,255,0.14);
+        1px solid
+        rgba(255,255,255,.13);
+
+      border-radius:
+        50%;
 
       box-shadow:
-        0 0 0 22px rgba(255,255,255,.017),
-        0 0 0 46px rgba(255,255,255,.012),
-        0 0 0 74px rgba(255,255,255,.008);
+
+        0 0 0 22px
+        rgba(255,255,255,.017),
+
+        0 0 0 47px
+        rgba(255,255,255,.011),
+
+        0 0 0 73px
+        rgba(255,255,255,.007);
+
     }
+
 
     .mandala::before,
     .mandala::after {
-      content: "";
 
-      position: absolute;
+      content:
+        "";
 
-      inset: 25px;
+      position:
+        absolute;
 
-      border-radius: 50%;
+      inset:
+        24px;
 
       border:
-        1px dashed rgba(255, 211, 106, 0.28);
+        1px dashed
+        rgba(255,211,106,.28);
+
+      border-radius:
+        50%;
+
     }
+
 
     .mandala::after {
-      inset: 80px;
 
-      border:
-        1px dashed rgba(255, 134, 31, 0.26);
+      inset:
+        79px;
+
+      border-color:
+        rgba(255,134,31,.26);
+
     }
 
-    .dance-symbol {
-      position: absolute;
 
-      top: 120px;
-      left: 50%;
+    .dance {
 
-      transform: translateX(-50%);
+      position:
+        absolute;
 
-      font-size: 88px;
+      top:
+        112px;
+
+      left:
+        50%;
+
+      transform:
+        translateX(-50%);
+
+      font-size:
+        88px;
 
       filter:
         drop-shadow(
-          0 22px 25px rgba(0,0,0,.42)
+          0 20px 25px
+          rgba(0,0,0,.38)
         );
+
     }
+
 
     .spark {
-      position: absolute;
 
-      width: 5px;
-      height: 5px;
+      position:
+        absolute;
 
-      border-radius: 50%;
+      width:
+        5px;
 
-      background: #ffd477;
+      height:
+        5px;
 
-      box-shadow:
-        0 0 16px rgba(255, 212, 119, .75);
-    }
-
-    .spark.s1 {
-      top: 86px;
-      left: 17%;
-    }
-
-    .spark.s2 {
-      top: 165px;
-      right: 16%;
-    }
-
-    .spark.s3 {
-      top: 280px;
-      left: 10%;
-    }
-
-    .spark.s4 {
-      top: 320px;
-      right: 12%;
-    }
-
-    .event-info {
-      position: absolute;
-
-      left: 20px;
-      right: 20px;
-      bottom: 20px;
-
-      padding: 20px;
-
-      border-radius: 22px;
-
-      border:
-        1px solid rgba(255,255,255,.08);
+      border-radius:
+        50%;
 
       background:
-        rgba(4, 2, 5, 0.48);
+        #ffd477;
+
+      box-shadow:
+        0 0 15px
+        rgba(255,212,119,.78);
+
+    }
+
+
+    .spark.one {
+
+      top:
+        82px;
+
+      left:
+        17%;
+
+    }
+
+
+    .spark.two {
+
+      top:
+        158px;
+
+      right:
+        15%;
+
+    }
+
+
+    .spark.three {
+
+      top:
+        278px;
+
+      left:
+        10%;
+
+    }
+
+
+    .spark.four {
+
+      top:
+        315px;
+
+      right:
+        12%;
+
+    }
+
+
+    .event-info {
+
+      position:
+        absolute;
+
+      left:
+        20px;
+
+      right:
+        20px;
+
+      bottom:
+        20px;
+
+      padding:
+        20px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius:
+        22px;
+
+      background:
+        rgba(5,2,6,.50);
 
       backdrop-filter:
         blur(17px);
+
     }
+
 
     .event-info h2 {
-      margin: 0;
 
-      font-size: 25px;
+      margin:
+        0;
+
+      font-size:
+        25px;
+
     }
+
 
     .event-info p {
-      margin: 7px 0 0;
 
-      color: #c6c0c8;
+      margin:
+        6px 0 0;
 
-      font-size: 11px;
-      line-height: 1.6;
+      color:
+        #c3bbc5;
+
+      font-size:
+        10px;
+
+      line-height:
+        1.6;
+
     }
 
-    .event-facts {
-      display: grid;
+
+    .facts {
+
+      display:
+        grid;
 
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(2,minmax(0,1fr));
 
-      gap: 8px;
+      gap:
+        7px;
 
-      margin-top: 15px;
+      margin-top:
+        14px;
+
     }
+
 
     .fact {
-      min-width: 0;
 
-      padding: 12px;
-
-      border-radius: 13px;
+      padding:
+        11px;
 
       border:
-        1px solid rgba(255,255,255,.06);
-
-      background:
-        rgba(255,255,255,.045);
-    }
-
-    .fact small {
-      display: block;
-
-      margin-bottom: 5px;
-
-      color: var(--muted-2);
-
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: .7px;
-    }
-
-    .fact strong {
-      display: block;
-
-      font-size: 12px;
-    }
-
-    .no-stag {
-      margin-top: 11px;
-
-      text-align: center;
-
-      color: #ffafbd;
-
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    /* =========================================================
-       AUTH
-    ========================================================= */
-
-    .auth-page {
-      min-height:
-        calc(100vh - 76px);
-
-      display: grid;
-      place-items: center;
-
-      padding: 45px 0;
-    }
-
-    .auth-card {
-      width: min(500px, 100%);
-
-      padding: 29px;
-
-      border-radius: 25px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(16, 11, 17, 0.9);
-
-      box-shadow:
-        var(--shadow-lg);
-
-      backdrop-filter:
-        blur(20px);
-    }
-
-    .auth-title {
-      margin: 17px 0 0;
-
-      font-family:
-        "Playfair Display",
-        serif;
-
-      font-size: 35px;
-
-      line-height: 1;
-    }
-
-    .auth-text {
-      margin: 9px 0 0;
-
-      color: var(--muted);
-
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .form {
-      margin-top: 23px;
-    }
-
-    .field {
-      margin-bottom: 15px;
-    }
-
-    .field label {
-      display: block;
-
-      margin-bottom: 7px;
-
-      color: #d7d1d9;
-
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .input {
-      width: 100%;
-      height: 49px;
-
-      padding: 0 14px;
-
-      border:
-        1px solid rgba(255,255,255,.1);
-
-      border-radius: 12px;
-
-      outline: none;
-
-      background:
-        rgba(255,255,255,.045);
-
-      color: #fff;
-
-      transition:
-        border .18s ease,
-        box-shadow .18s ease;
-    }
-
-    .input::placeholder {
-      color: #666069;
-    }
-
-    .input:focus {
-      border-color:
-        rgba(255, 159, 67, .65);
-
-      box-shadow:
-        0 0 0 4px rgba(255,122,24,.06);
-    }
-
-    .readonly {
-      opacity: .58;
-      cursor: not-allowed;
-    }
-
-    .password-wrap {
-      position: relative;
-    }
-
-    .password-wrap .input {
-      padding-right: 50px;
-    }
-
-    .password-toggle {
-      position: absolute;
-
-      top: 6px;
-      right: 8px;
-
-      width: 36px;
-      height: 36px;
-
-      border: 0;
-
-      background: transparent;
-
-      color: #918b95;
-    }
-
-    .form-help {
-      margin-top: 6px;
-
-      color: var(--muted-2);
-
-      font-size: 9px;
-      line-height: 1.5;
-    }
-
-    .turnstile-wrap {
-      min-height: 66px;
-
-      display: flex;
-      align-items: center;
-    }
-
-    .auth-footer {
-      margin-top: 17px;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      font-size: 10px;
-    }
-
-    .text-btn {
-      border: 0;
-      background: transparent;
-
-      color: #ffc182;
-
-      font-weight: 800;
-    }
-
-    .verification-box {
-      margin-top: 18px;
-
-      padding: 15px;
-
-      border-radius: 15px;
-
-      border:
-        1px solid rgba(255, 200, 87, 0.15);
-
-      background:
-        rgba(255, 200, 87, 0.045);
-    }
-
-    .verification-box strong {
-      font-size: 11px;
-    }
-
-    .verification-box p {
-      margin: 5px 0 0;
-
-      color: #aaa;
-
-      font-size: 9px;
-      line-height: 1.6;
-    }
-
-    /* =========================================================
-       DASHBOARD
-    ========================================================= */
-
-    .dashboard {
-      padding: 28px 0 60px;
-    }
-
-    .dashboard-head {
-      display: flex;
-
-      align-items: flex-start;
-
-      justify-content: space-between;
-
-      gap: 18px;
-
-      margin-bottom: 22px;
-    }
-
-    .dashboard-head h1 {
-      margin: 0;
-
-      font-family:
-        "Playfair Display",
-        serif;
-
-      font-size: 34px;
-
-      line-height: 1;
-    }
-
-    .dashboard-head p {
-      margin: 7px 0 0;
-
-      color: var(--muted);
-
-      font-size: 11px;
-    }
-
-    .account-chip {
-      display: flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      padding: 7px 11px 7px 7px;
-
-      border-radius: 999px;
-
-      border:
-        1px solid var(--border);
+        1px solid
+        rgba(255,255,255,.055);
+
+      border-radius:
+        12px;
 
       background:
         rgba(255,255,255,.04);
+
     }
 
-    .avatar {
-      width: 35px;
-      height: 35px;
 
-      display: grid;
-      place-items: center;
+    .fact small {
 
-      border-radius: 50%;
+      display:
+        block;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--pink)
+      margin-bottom:
+        5px;
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        7px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .7px;
+
+    }
+
+
+    .fact strong {
+
+      display:
+        block;
+
+      font-size:
+        11px;
+
+    }
+
+
+    .no-stag {
+
+      margin-top:
+        10px;
+
+      color:
+        #ffb1c1;
+
+      font-size:
+        9px;
+
+      font-weight:
+        800;
+
+      text-align:
+        center;
+
+    }
+
+
+    /* =======================================================
+       AUTH
+    ======================================================== */
+
+    .auth-page {
+
+      min-height:
+        calc(100vh - 74px);
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        35px 0 50px;
+
+    }
+
+
+    .auth-wrap {
+
+      width:
+        min(
+          460px,
+          100%
         );
 
-      font-size: 11px;
-      font-weight: 800;
+      margin:
+        0 auto;
+
     }
 
-    .account-chip strong {
-      display: block;
 
-      max-width: 200px;
+    .auth-card {
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 10px;
-    }
-
-    .account-chip span {
-      display: block;
-
-      margin-top: 2px;
-
-      color: var(--muted-2);
-
-      font-size: 8px;
-    }
-
-    .dashboard-grid {
-      display: grid;
-
-      grid-template-columns:
-        225px
-        minmax(0,1fr);
-
-      gap: 18px;
-    }
-
-    .sidebar {
-      align-self: start;
-
-      padding: 9px;
-
-      border-radius: 19px;
+      padding:
+        28px;
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
+
+      border-radius:
+        24px;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(17,10,17,.88);
 
-      position: sticky;
-      top: 94px;
-    }
-
-    .sidebar-label {
-      padding: 9px 10px 6px;
-
-      color: #6d6670;
-
-      font-size: 8px;
-
-      text-transform: uppercase;
-
-      letter-spacing: .8px;
-
-      font-weight: 800;
-    }
-
-    .nav-btn {
-      width: 100%;
-
-      margin-bottom: 3px;
-
-      padding: 12px;
-
-      border: 0;
-
-      border-radius: 10px;
-
-      color: #9d969f;
-
-      background: transparent;
-
-      text-align: left;
-
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .nav-btn:hover {
-      color: #fff;
-
-      background:
-        rgba(255,255,255,.045);
-    }
-
-    .nav-btn.active {
-      color: #fff;
-
-      border:
-        1px solid rgba(255,134,31,.13);
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255,134,31,.15),
-          rgba(242,73,112,.055)
-        );
-    }
-
-    .content {
-      min-width: 0;
-    }
-
-    .panel {
-      display: none;
-    }
-
-    .panel.active {
-      display: block;
-
-      animation:
-        panel-in .2s ease;
-    }
-
-    @keyframes panel-in {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card {
-      margin-bottom: 16px;
-
-      padding: 21px;
-
-      border-radius: 20px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.035);
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .card-subtitle {
-      margin-top: 5px;
-
-      color: var(--muted);
-
-      font-size: 10px;
-      line-height: 1.6;
-    }
-
-    /* =========================================================
-       STATUS
-    ========================================================= */
-
-    .status-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, minmax(0,1fr));
-
-      gap: 11px;
-
-      margin-bottom: 16px;
-    }
-
-    .status-card {
-      padding: 16px;
-
-      border-radius: 17px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.035);
-    }
-
-    .status-card small {
-      display: block;
-
-      color: var(--muted-2);
-
-      font-size: 8px;
-
-      text-transform: uppercase;
-
-      letter-spacing: .7px;
-    }
-
-    .status-card strong {
-      display: block;
-
-      margin-top: 8px;
-
-      font-size: 18px;
-    }
-
-    .badge {
-      display: inline-flex;
-
-      align-items: center;
-
-      margin-top: 8px;
-
-      padding: 6px 9px;
-
-      border-radius: 999px;
-
-      font-size: 8px;
-
-      font-weight: 800;
-    }
-
-    .badge-muted {
-      color: #b5b0b7;
-      background: rgba(255,255,255,.05);
-    }
-
-    .badge-warning {
-      color: #ffdc99;
-      background: rgba(255,200,87,.08);
-      border: 1px solid rgba(255,200,87,.12);
-    }
-
-    .badge-success {
-      color: #8cf0c5;
-      background: rgba(66,216,156,.08);
-      border: 1px solid rgba(66,216,156,.12);
-    }
-
-    .badge-danger {
-      color: #ff9cac;
-      background: rgba(255,91,118,.08);
-      border: 1px solid rgba(255,91,118,.12);
-    }
-
-    /* =========================================================
-       REGISTRATION
-    ========================================================= */
-
-    .form-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0,1fr));
-
-      gap: 14px;
-    }
-
-    .full {
-      grid-column: 1 / -1;
-    }
-
-    .entry-switch {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      padding: 14px;
-
-      border-radius: 15px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.025);
-    }
-
-    .entry-switch strong {
-      display: block;
-
-      font-size: 11px;
-    }
-
-    .entry-switch p {
-      margin: 4px 0 0;
-
-      color: var(--muted);
-
-      font-size: 9px;
-
-      line-height: 1.5;
-    }
-
-    .switch {
-      position: relative;
-
-      width: 50px;
-      height: 28px;
-
-      flex: 0 0 auto;
-    }
-
-    .switch input {
-      opacity: 0;
-
-      position: absolute;
-
-      width: 1px;
-      height: 1px;
-    }
-
-    .switch-track {
-      position: absolute;
-
-      inset: 0;
-
-      border-radius: 999px;
-
-      background: #2a272b;
-
-      transition: .2s;
-    }
-
-    .switch-track::before {
-      content: "";
-
-      position: absolute;
-
-      width: 20px;
-      height: 20px;
-
-      top: 4px;
-      left: 4px;
-
-      border-radius: 50%;
-
-      background: #d8d4d8;
-
-      transition: .2s;
-    }
-
-    .switch input:checked + .switch-track {
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--pink)
-        );
-    }
-
-    .switch input:checked + .switch-track::before {
-      transform: translateX(22px);
-
-      background: white;
-    }
-
-    .members-head {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      margin-bottom: 9px;
-    }
-
-    .members-head strong {
-      font-size: 11px;
-    }
-
-    .members-head span {
-      color: var(--muted-2);
-
-      font-size: 9px;
-    }
-
-    .member-row {
-      display: grid;
-
-      grid-template-columns:
-        minmax(0,1fr)
-        auto;
-
-      gap: 7px;
-
-      margin-bottom: 7px;
-    }
-
-    .remove-member {
-      width: 46px;
+      box-shadow:
+        var(--shadow);
 
-      border-radius: 11px;
+      backdrop-filter:
+        blur(20px);
 
-      border:
-        1px solid rgba(255,91,118,.18);
-
-      color: #ff9cac;
-
-      background:
-        rgba(255,91,118,.07);
-    }
-
-    .add-member {
-      margin-top: 2px;
-
-      padding: 9px 11px;
-
-      border-radius: 10px;
-
-      border:
-        1px dashed rgba(255,159,67,.23);
-
-      color: #ffc17d;
-
-      background:
-        rgba(255,134,31,.045);
-
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .price-card {
-      padding: 16px;
-
-      border-radius: 17px;
-
-      border:
-        1px solid rgba(255,134,31,.14);
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,134,31,.08),
-          rgba(242,73,112,.04)
-        );
-    }
-
-    .price-line {
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 16px;
-
-      padding: 5px 0;
-
-      font-size: 10px;
-    }
-
-    .price-line span {
-      color: var(--muted);
-    }
-
-    .price-total {
-      margin-top: 7px;
-      padding-top: 12px;
-
-      border-top:
-        1px solid rgba(255,255,255,.08);
-
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    /* =========================================================
-       PAYMENT
-    ========================================================= */
-
-    .payment-grid {
-      display: grid;
-
-      grid-template-columns:
-        340px
-        minmax(0,1fr);
-
-      gap: 17px;
-    }
-
-    .payment-card {
-      text-align: center;
-    }
-
-    .payment-qr-box {
-      width: 225px;
-      height: 225px;
-
-      margin: 17px auto;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 17px;
-
-      background: #fff;
-
-      padding: 10px;
-    }
-
-    #paymentQR {
-      display: grid;
-
-      place-items: center;
-
-      width: 100%;
-      height: 100%;
-    }
-
-    .payment-qr-box img,
-    .payment-qr-box canvas {
-      max-width: 100%;
-      height: auto !important;
-    }
-
-    .upi-chip {
-      display: inline-block;
-
-      padding: 8px 11px;
-
-      border-radius: 999px;
-
-      color: #ffd59d;
-
-      background:
-        rgba(255,255,255,.05);
-
-      border:
-        1px solid var(--border);
-
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .payment-amount {
-      margin-top: 13px;
-
-      font-size: 31px;
-      font-weight: 800;
-    }
-
-    .mini {
-      color: var(--muted-2);
-
-      font-size: 9px;
-      line-height: 1.55;
-    }
-
-    .instruction-list {
-      display: grid;
-
-      gap: 10px;
-
-      margin-top: 18px;
-
-      text-align: left;
-    }
-
-    .instruction {
-      display: grid;
-
-      grid-template-columns:
-        30px
-        minmax(0,1fr);
-
-      gap: 9px;
-    }
-
-    .instruction-num {
-      width: 30px;
-      height: 30px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 9px;
-
-      color: #ffc67f;
-
-      background:
-        rgba(255,134,31,.08);
-
-      border:
-        1px solid rgba(255,134,31,.14);
-
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .instruction strong {
-      display: block;
-
-      font-size: 10px;
-    }
-
-    .instruction span {
-      display: block;
-
-      margin-top: 2px;
-
-      color: var(--muted);
-
-      font-size: 9px;
-
-      line-height: 1.5;
-    }
-
-    .file-input {
-      width: 100%;
-
-      padding: 11px;
-
-      border-radius: 12px;
-
-      border:
-        1px dashed rgba(255,255,255,.13);
-
-      background:
-        rgba(255,255,255,.025);
-
-      color: #aaa;
-
-      font-size: 9px;
-    }
-
-    /* =========================================================
-       QR
-    ========================================================= */
-
-    .qr-grid {
-      display: grid;
-
-      grid-template-columns:
-        350px
-        minmax(0,1fr);
-
-      gap: 17px;
-    }
-
-    .qr-card {
-      text-align: center;
-    }
-
-    .user-qr-box {
-      width: 250px;
-      height: 250px;
-
-      margin: 18px auto;
-
-      display: grid;
-      place-items: center;
-
-      padding: 12px;
-
-      border-radius: 18px;
-
-      background: #fff;
-    }
-
-    .qr-empty {
-      width: 100%;
-      height: 100%;
-
-      display: grid;
-      place-items: center;
-
-      text-align: center;
-
-      color: #777;
-
-      border:
-        2px dashed #ddd;
-
-      border-radius: 11px;
-
-      padding: 20px;
-
-      font-size: 10px;
-    }
-
-    .qr-empty strong {
-      display: block;
-
-      margin-bottom: 5px;
-
-      color: #333;
-    }
-
-    .detail-list {
-      margin-top: 15px;
-    }
-
-    .detail-row {
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      padding: 11px 0;
-
-      border-bottom:
-        1px solid rgba(255,255,255,.06);
-    }
-
-    .detail-row:last-child {
-      border-bottom: 0;
-    }
-
-    .detail-row span {
-      color: var(--muted-2);
-
-      font-size: 9px;
-    }
-
-    .detail-row strong {
-      max-width: 64%;
-
-      text-align: right;
-
-      font-size: 10px;
-    }
-
-    /* =========================================================
-       EMPTY / STATUS
-    ========================================================= */
-
-    .state-card {
-      padding: 30px 22px;
-
-      text-align: center;
-
-      border-radius: 20px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.03);
     }
-
-    .state-icon {
-      width: 58px;
-      height: 58px;
 
-      margin: 0 auto 15px;
 
-      display: grid;
-      place-items: center;
-
-      border-radius: 17px;
-
-      font-size: 25px;
-
-      background:
-        rgba(66,216,156,.08);
-
-      border:
-        1px solid rgba(66,216,156,.12);
-    }
+    .auth-title {
 
-    .state-card h2 {
-      margin: 0;
+      margin:
+        16px 0 0;
 
       font-family:
         "Playfair Display",
         serif;
 
-      font-size: 31px;
+      font-size:
+        35px;
+
+      line-height:
+        1;
+
     }
 
-    .state-card p {
-      max-width: 500px;
 
-      margin: 8px auto 0;
+    .auth-description {
 
-      color: var(--muted);
+      margin:
+        8px 0 0;
 
-      font-size: 10px;
-      line-height: 1.7;
+      color:
+        var(--muted);
+
+      font-size:
+        10px;
+
+      line-height:
+        1.7;
+
     }
 
-    /* =========================================================
-       TOAST
-    ========================================================= */
 
-    .toast-container {
-      position: fixed;
+    .form {
 
-      right: 16px;
-      bottom: 16px;
+      margin-top:
+        23px;
 
-      z-index: 900;
-
-      width: min(
-        370px,
-        calc(100% - 32px)
-      );
-
-      display: grid;
-
-      gap: 8px;
-
-      pointer-events: none;
     }
 
-    .toast {
-      padding: 12px 13px;
 
-      border-radius: 13px;
+    .field {
+
+      margin-bottom:
+        15px;
+
+    }
+
+
+    .field label {
+
+      display:
+        block;
+
+      margin-bottom:
+        6px;
+
+      color:
+        #d9d1db;
+
+      font-size:
+        9px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .input {
+
+      width:
+        100%;
+
+      height:
+        48px;
+
+      padding:
+        0 13px;
 
       border:
-        1px solid var(--border);
+        1px solid
+        rgba(255,255,255,.095);
+
+      border-radius:
+        11px;
+
+      outline:
+        none;
+
+      color:
+        white;
 
       background:
-        rgba(18,14,19,.95);
+        rgba(255,255,255,.037);
+
+      transition:
+        border .18s,
+        box-shadow .18s;
+
+    }
+
+
+    .input:focus {
+
+      border-color:
+        rgba(255,159,67,.62);
 
       box-shadow:
-        var(--shadow-lg);
+        0 0 0 4px
+        rgba(255,134,31,.055);
 
-      font-size: 10px;
-      line-height: 1.5;
-
-      animation:
-        toast-in .2s ease;
     }
 
-    .toast.success {
-      border-color:
-        rgba(66,216,156,.18);
+
+    .input::placeholder {
+
+      color:
+        #625c65;
+
     }
 
-    .toast.error {
-      border-color:
-        rgba(255,91,118,.18);
+
+    .password-wrap {
+      position:
+        relative;
     }
 
-    .toast.info {
-      border-color:
-        rgba(255,200,87,.18);
+
+    .password-wrap .input {
+      padding-right:
+        48px;
     }
 
-    @keyframes toast-in {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .password-btn {
 
-    /* =========================================================
-       LOADER
-    ========================================================= */
+      position:
+        absolute;
 
-    .global-loader {
-      position: fixed;
+      top:
+        5px;
 
-      inset: 0;
+      right:
+        7px;
 
-      z-index: 1000;
+      width:
+        38px;
 
-      display: grid;
-
-      place-items: center;
-
-      background:
-        rgba(7,4,8,.82);
-
-      backdrop-filter:
-        blur(8px);
-    }
-
-    .loader-box {
-      text-align: center;
-    }
-
-    .spinner {
-      width: 38px;
-      height: 38px;
-
-      margin: 0 auto 12px;
-
-      border-radius: 50%;
+      height:
+        38px;
 
       border:
-        3px solid rgba(255,255,255,.12);
+        0;
+
+      background:
+        transparent;
+
+      color:
+        #928b96;
+
+    }
+
+
+    .turnstile-box {
+
+      min-height:
+        70px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      overflow:
+        hidden;
+
+    }
+
+
+    .auth-switch {
+
+      margin-top:
+        16px;
+
+      text-align:
+        center;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+    }
+
+
+    .text-button {
+
+      border:
+        0;
+
+      padding:
+        0;
+
+      color:
+        #ffc282;
+
+      background:
+        transparent;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .auth-message {
+
+      display:
+        none;
+
+      margin-top:
+        13px;
+
+      padding:
+        10px 11px;
+
+      border-radius:
+        11px;
+
+      font-size:
+        9px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .auth-message.show {
+      display:
+        block;
+    }
+
+
+    .auth-message.success {
+
+      color:
+        #90efc9;
+
+      background:
+        rgba(67,217,158,.065);
+
+      border:
+        1px solid
+        rgba(67,217,158,.12);
+
+    }
+
+
+    .auth-message.error {
+
+      color:
+        #ff9eaf;
+
+      background:
+        rgba(255,92,118,.065);
+
+      border:
+        1px solid
+        rgba(255,92,118,.12);
+
+    }
+
+
+    .auth-message.info {
+
+      color:
+        #ffda98;
+
+      background:
+        rgba(255,204,91,.06);
+
+      border:
+        1px solid
+        rgba(255,204,91,.11);
+
+    }
+
+
+    /* =======================================================
+       PROCESS STRIP
+    ======================================================== */
+
+    .process-strip {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:
+        8px;
+
+      margin-top:
+        17px;
+
+    }
+
+
+    .process-item {
+
+      padding:
+        11px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.06);
+
+      border-radius:
+        13px;
+
+      background:
+        rgba(255,255,255,.025);
+
+    }
+
+
+    .process-item strong {
+
+      display:
+        block;
+
+      font-size:
+        9px;
+
+    }
+
+
+    .process-item span {
+
+      display:
+        block;
+
+      margin-top:
+        4px;
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    /* =======================================================
+       LOADER
+    ======================================================== */
+
+    .loader {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        1000;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        rgba(5,3,6,.84);
+
+      backdrop-filter:
+        blur(9px);
+
+    }
+
+
+    .loader-box {
+
+      text-align:
+        center;
+
+    }
+
+
+    .spinner {
+
+      width:
+        38px;
+
+      height:
+        38px;
+
+      margin:
+        0 auto 11px;
+
+      border:
+        3px solid
+        rgba(255,255,255,.11);
 
       border-top-color:
         var(--orange);
 
+      border-radius:
+        50%;
+
       animation:
         spin .7s linear infinite;
+
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
 
     .loader-box span {
-      color: #bbb;
 
-      font-size: 9px;
+      color:
+        #bbb;
+
+      font-size:
+        8px;
+
     }
 
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
 
-    @media (max-width: 1000px) {
+    @keyframes spin {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    /* =======================================================
+       TOAST
+    ======================================================== */
+
+    .toast-container {
+
+      position:
+        fixed;
+
+      right:
+        15px;
+
+      bottom:
+        15px;
+
+      z-index:
+        1100;
+
+      width:
+        min(
+          360px,
+          calc(100% - 30px)
+        );
+
+      display:
+        grid;
+
+      gap:
+        7px;
+
+      pointer-events:
+        none;
+
+    }
+
+
+    .toast {
+
+      padding:
+        12px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        12px;
+
+      color:
+        #fff;
+
+      background:
+        rgba(18,13,19,.96);
+
+      box-shadow:
+        var(--shadow);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.5;
+
+      animation:
+        toast-in .18s ease;
+
+    }
+
+
+    .toast.success {
+
+      border-color:
+        rgba(67,217,158,.17);
+
+    }
+
+
+    .toast.error {
+
+      border-color:
+        rgba(255,92,118,.17);
+
+    }
+
+
+    .toast.info {
+
+      border-color:
+        rgba(255,204,91,.16);
+
+    }
+
+
+    @keyframes toast-in {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(5px);
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
+
+    /* =======================================================
+       MOBILE
+    ======================================================== */
+
+    @media (max-width: 980px) {
 
       .hero {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
+
 
       .event-card {
-        min-height: 475px;
-      }
 
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
+        min-height:
+          470px;
 
-      .sidebar {
-        position: static;
-
-        display: flex;
-
-        gap: 4px;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        scrollbar-width: none;
-      }
-
-      .sidebar::-webkit-scrollbar {
-        display: none;
-      }
-
-      .sidebar-label {
-        display: none;
-      }
-
-      .nav-btn {
-        min-width: max-content;
-
-        margin: 0;
       }
 
     }
 
-    @media (max-width: 780px) {
 
-      .payment-grid,
-      .qr-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .status-grid {
-        grid-template-columns:
-          repeat(3, minmax(0,1fr));
-      }
-
-    }
-
-    @media (max-width: 620px) {
-
-      :root {
-        --container: 100%;
-      }
+    @media (max-width: 600px) {
 
       .container {
+
         width:
-          calc(100% - 24px);
+          calc(100% - 22px);
+
       }
+
 
       .topbar {
-        height: 68px;
+
+        height:
+          66px;
+
       }
 
-      .brand-copy strong {
-        font-size: 11px;
+
+      .brand-logo {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
       }
 
-      .brand-copy span {
-        font-size: 8px;
+
+      .brand-text strong {
+
+        font-size:
+          10px;
+
       }
 
-      .brand-mark {
-        width: 38px;
-        height: 38px;
+
+      .brand-text span {
+
+        font-size:
+          7px;
+
       }
+
+
+      .header-actions {
+
+        gap:
+          5px;
+
+      }
+
 
       .header-actions .btn {
-        min-height: 40px;
 
-        padding: 0 12px;
+        min-height:
+          39px;
 
-        font-size: 10px;
+        padding:
+          0 10px;
+
+        font-size:
+          9px;
+
       }
 
-      .landing {
-        padding: 32px 0 48px;
+
+      .hero-section {
+
+        min-height:
+          auto;
+
+        padding:
+          34px 0 45px;
+
       }
+
 
       .hero-title {
-        font-size: 49px;
+
+        font-size:
+          48px;
 
         letter-spacing:
           -1.8px;
+
       }
+
 
       .hero-description {
-        font-size: 12px;
+
+        font-size:
+          11px;
+
       }
+
 
       .hero-buttons {
-        flex-direction: column;
+
+        flex-direction:
+          column;
+
       }
+
 
       .hero-buttons .btn {
-        width: 100%;
+
+        width:
+          100%;
+
       }
+
 
       .event-card {
-        min-height: 420px;
 
-        border-radius: 25px;
+        min-height:
+          420px;
+
+        border-radius:
+          25px;
+
       }
+
 
       .mandala {
-        width: 285px;
-        height: 285px;
 
-        top: 42px;
+        width:
+          285px;
+
+        height:
+          285px;
+
+        top:
+          45px;
+
       }
 
-      .dance-symbol {
-        top: 105px;
 
-        font-size: 75px;
+      .dance {
+
+        top:
+          102px;
+
+        font-size:
+          73px;
+
       }
+
 
       .event-info {
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
 
-        padding: 15px;
+        left:
+          11px;
 
-        border-radius: 18px;
+        right:
+          11px;
+
+        bottom:
+          11px;
+
+        padding:
+          15px;
+
+        border-radius:
+          18px;
+
       }
+
 
       .event-info h2 {
-        font-size: 21px;
+
+        font-size:
+          21px;
+
       }
 
-      .event-facts {
-        gap: 6px;
-      }
-
-      .fact {
-        padding: 10px;
-      }
 
       .fact strong {
-        font-size: 10px;
+
+        font-size:
+          9px;
+
       }
 
-      .auth-card {
-        padding: 21px;
-
-        border-radius: 20px;
-      }
 
       .auth-page {
-        padding: 25px 0;
+
+        min-height:
+          calc(100vh - 66px);
+
+        padding:
+          23px 0 35px;
+
       }
 
-      .dashboard {
-        padding: 20px 0 45px;
+
+      .auth-card {
+
+        padding:
+          20px;
+
+        border-radius:
+          19px;
+
       }
 
-      .dashboard-head {
-        align-items: center;
+
+      .auth-title {
+
+        font-size:
+          30px;
+
       }
 
-      .dashboard-head h1 {
-        font-size: 27px;
-      }
 
-      .account-chip {
-        padding-right: 7px;
-      }
+      .process-strip {
 
-      .account-chip > div:last-child {
-        display: none;
-      }
+        grid-template-columns:
+          1fr;
 
-      .status-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .full {
-        grid-column: auto;
-      }
-
-      .card {
-        padding: 17px;
-      }
-
-      .payment-qr-box,
-      .user-qr-box {
-        width: 215px;
-        height: 215px;
-      }
-
-      .price-total {
-        font-size: 15px;
       }
 
     }
+
 
     @media (max-width: 390px) {
 
       .hero-title {
-        font-size: 43px;
+
+        font-size:
+          42px;
+
       }
+
 
       .event-card {
-        min-height: 405px;
+
+        min-height:
+          405px;
+
       }
 
-      .dance-symbol {
-        font-size: 68px;
+
+      .event-facts {
+
+        gap:
+          5px;
+
       }
 
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-  <div class="app">
 
-    <!-- =======================================================
-         TOP BAR
-    ======================================================== -->
+  <!-- =======================================================
+       LOADER
+  ======================================================== -->
 
-    <header class="topbar">
+  <div
+    id="loader"
+    class="loader"
+  >
 
-      <div class="container topbar-inner">
+    <div class="loader-box">
 
-        <div class="brand">
+      <div class="spinner"></div>
 
-          <div class="brand-mark">
-            ✦
-          </div>
+      <span id="loaderText">
+        Checking secure session...
+      </span>
 
-          <div class="brand-copy">
+    </div>
 
-            <strong>
-              Vanasthali Public School
-            </strong>
+  </div>
 
-            <span>
-              Raas Rang • Garba Night 2026
-            </span>
 
-          </div>
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
 
+  <header class="topbar">
+
+    <div class="container topbar-inner">
+
+
+      <div class="brand">
+
+        <div class="brand-logo">
+          ✦
         </div>
 
-        <div
-          class="header-actions"
-          id="headerActions"
-        >
+        <div class="brand-text">
 
-          <button
-            class="btn btn-secondary"
-            id="headerLoginBtn"
-            type="button"
-          >
-            Login
-          </button>
+          <strong>
+            Vanasthali Public School
+          </strong>
 
-          <button
-            class="btn btn-primary"
-            id="headerRegisterBtn"
-            type="button"
-          >
-            Register
-          </button>
-
-          <button
-            class="btn btn-secondary"
-            id="headerLogoutBtn"
-            type="button"
-            hidden
-          >
-            Logout
-          </button>
+          <span>
+            Raas Rang • Garba Night 2026
+          </span>
 
         </div>
 
       </div>
 
-    </header>
+
+      <div
+        class="header-actions"
+        id="publicHeader"
+      >
+
+        <button
+          class="btn btn-secondary"
+          id="headerLoginBtn"
+          type="button"
+        >
+          Login
+        </button>
+
+        <button
+          class="btn btn-primary"
+          id="headerRegisterBtn"
+          type="button"
+        >
+          Register
+        </button>
+
+      </div>
 
 
-    <!-- =======================================================
-         LANDING
-    ======================================================== -->
+      <div
+        class="header-actions"
+        id="authenticatedHeader"
+        hidden
+      >
 
-    <main
-      id="landingView"
-      class="landing"
-    >
+        <button
+          class="btn btn-secondary"
+          id="headerLogoutBtn"
+          type="button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       LANDING VIEW
+  ======================================================== -->
+
+  <main
+    id="landingView"
+  >
+
+    <section class="hero-section">
 
       <div class="container">
 
-        <section class="hero">
+        <div class="hero">
 
-          <div class="hero-copy">
+
+          <!-- =================================================
+               HERO COPY
+          ================================================== -->
+
+          <div>
 
             <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
+
+              <span class="status-dot"></span>
+
               Registration Open
+
             </div>
 
+
             <h1 class="hero-title">
+
               Rang, Raas &<br>
-              <span>Garba Night.</span>
+
+              <span>
+                Garba Night.
+              </span>
+
             </h1>
 
+
             <p class="hero-description">
-              Step into an evening of colour, rhythm and celebration.
-              Register your entry for Vanasthali Public School's
-              Garba Night 2026.
+
+              An evening of music, colours, dance and
+              celebration at Vanasthali Public School.
+              Register your entry and experience the
+              festive spirit together.
+
             </p>
+
 
             <div class="hero-buttons">
 
@@ -2237,6 +2133,7 @@
                 Start Registration →
               </button>
 
+
               <button
                 class="btn btn-secondary"
                 id="heroLoginBtn"
@@ -2247,27 +2144,77 @@
 
             </div>
 
+
             <div class="hero-note">
-              Minimum group entry: Couple · No stag entry
+
+              Female ₹200 • Couple ₹300 •
+              Additional Member +₹150 • No Stag Entry
+
+            </div>
+
+
+            <div class="process-strip">
+
+              <div class="process-item">
+
+                <strong>
+                  01 · Register
+                </strong>
+
+                <span>
+                  Create your participant account.
+                </span>
+
+              </div>
+
+
+              <div class="process-item">
+
+                <strong>
+                  02 · Pay
+                </strong>
+
+                <span>
+                  Pay via school UPI and submit proof.
+                </span>
+
+              </div>
+
+
+              <div class="process-item">
+
+                <strong>
+                  03 · Enter
+                </strong>
+
+                <span>
+                  Get your QR after verification.
+                </span>
+
+              </div>
+
             </div>
 
           </div>
 
 
-          <!-- EVENT CARD -->
+          <!-- =================================================
+               EVENT CARD
+          ================================================== -->
 
           <div class="event-card">
 
             <div class="mandala"></div>
 
-            <div class="dance-symbol">
+            <div class="dance">
               💃
             </div>
 
-            <div class="spark s1"></div>
-            <div class="spark s2"></div>
-            <div class="spark s3"></div>
-            <div class="spark s4"></div>
+            <div class="spark one"></div>
+            <div class="spark two"></div>
+            <div class="spark three"></div>
+            <div class="spark four"></div>
+
 
             <div class="event-info">
 
@@ -2275,12 +2222,15 @@
                 Garba Night 2026
               </h2>
 
+
               <p>
-                Celebrate the festive spirit with music,
-                dance and an unforgettable evening together.
+                Celebrate the night with rhythm,
+                energy and the colours of Garba.
               </p>
 
-              <div class="event-facts">
+
+              <div class="facts">
+
 
                 <div class="fact">
 
@@ -2289,10 +2239,11 @@
                   </small>
 
                   <strong>
-                    16 October
+                    16 October 2026
                   </strong>
 
                 </div>
+
 
                 <div class="fact">
 
@@ -2306,6 +2257,7 @@
 
                 </div>
 
+
                 <div class="fact">
 
                   <small>
@@ -2317,6 +2269,7 @@
                   </strong>
 
                 </div>
+
 
                 <div class="fact">
 
@@ -2332,6 +2285,7 @@
 
               </div>
 
+
               <div class="no-stag">
                 ✦ No Stag Entry
               </div>
@@ -2340,49 +2294,66 @@
 
           </div>
 
-        </section>
+
+        </div>
 
       </div>
 
-    </main>
+    </section>
+
+  </main>
 
 
-    <!-- =======================================================
-         AUTH PAGE
-    ======================================================== -->
+  <!-- =======================================================
+       AUTH VIEW
+  ======================================================== -->
 
-    <section
-      id="authView"
-      class="auth-page"
-      hidden
-    >
+  <section
+    id="authView"
+    class="auth-page"
+    hidden
+  >
 
-      <div class="container">
+    <div class="container">
+
+      <div class="auth-wrap">
 
         <div class="auth-card">
 
-          <!-- REGISTER -->
 
-          <div id="registerPanel">
+          <!-- =================================================
+               REGISTER
+          ================================================== -->
+
+          <div
+            id="registerView"
+          >
 
             <div class="eyebrow">
               Create Account
             </div>
 
+
             <h2 class="auth-title">
               Join the celebration
             </h2>
 
-            <p class="auth-text">
-              Create your account using your own email.
-              Your account will be linked to your event registration.
+
+            <p class="auth-description">
+
+              Create your participant account.
+              New participants must verify their
+              email before logging in.
+
             </p>
+
 
             <form
               id="registerForm"
               class="form"
               novalidate
             >
+
 
               <div class="field">
 
@@ -2394,6 +2365,7 @@
                   class="input"
                   id="registerEmail"
                   type="email"
+                  inputmode="email"
                   autocomplete="email"
                   maxlength="254"
                   placeholder="you@example.com"
@@ -2423,9 +2395,10 @@
                   />
 
                   <button
-                    class="password-toggle"
+                    class="password-btn"
                     type="button"
                     data-password-toggle="registerPassword"
+                    aria-label="Show password"
                   >
                     ◉
                   </button>
@@ -2447,7 +2420,7 @@
                   type="password"
                   autocomplete="new-password"
                   maxlength="128"
-                  placeholder="Re-enter password"
+                  placeholder="Re-enter your password"
                   required
                 />
 
@@ -2462,16 +2435,22 @@
 
                 <div
                   id="registerTurnstile"
-                  class="turnstile-wrap"
+                  class="turnstile-box"
                 ></div>
 
               </div>
 
 
+              <div
+                id="registerMessage"
+                class="auth-message"
+              ></div>
+
+
               <button
                 class="btn btn-primary btn-full"
-                type="submit"
                 id="registerSubmitBtn"
+                type="submit"
               >
                 Create Account
               </button>
@@ -2479,12 +2458,12 @@
             </form>
 
 
-            <div class="auth-footer">
+            <div class="auth-switch">
 
               Already have an account?
 
               <button
-                class="text-btn"
+                class="text-button"
                 type="button"
                 data-auth-switch="login"
               >
@@ -2496,10 +2475,12 @@
           </div>
 
 
-          <!-- LOGIN -->
+          <!-- =================================================
+               LOGIN
+          ================================================== -->
 
           <div
-            id="loginPanel"
+            id="loginView"
             hidden
           >
 
@@ -2507,20 +2488,27 @@
               Secure Login
             </div>
 
+
             <h2 class="auth-title">
               Welcome back
             </h2>
 
-            <p class="auth-text">
-              Login to continue your registration and
-              access your event information.
+
+            <p class="auth-description">
+
+              Participants, administrators and gate
+              staff all use their pre-assigned account.
+              Your role controls which portal opens.
+
             </p>
+
 
             <form
               id="loginForm"
               class="form"
               novalidate
             >
+
 
               <div class="field">
 
@@ -2532,7 +2520,8 @@
                   class="input"
                   id="loginEmail"
                   type="email"
-                  autocomplete="email"
+                  inputmode="email"
+                  autocomplete="username"
                   maxlength="254"
                   placeholder="you@example.com"
                   required
@@ -2560,9 +2549,10 @@
                   />
 
                   <button
-                    class="password-toggle"
+                    class="password-btn"
                     type="button"
                     data-password-toggle="loginPassword"
+                    aria-label="Show password"
                   >
                     ◉
                   </button>
@@ -2580,16 +2570,22 @@
 
                 <div
                   id="loginTurnstile"
-                  class="turnstile-wrap"
+                  class="turnstile-box"
                 ></div>
 
               </div>
 
 
+              <div
+                id="loginMessage"
+                class="auth-message"
+              ></div>
+
+
               <button
                 class="btn btn-primary btn-full"
-                type="submit"
                 id="loginSubmitBtn"
+                type="submit"
               >
                 Login
               </button>
@@ -2597,12 +2593,12 @@
             </form>
 
 
-            <div class="auth-footer">
+            <div class="auth-switch">
 
-              Don't have an account?
+              New participant?
 
               <button
-                class="text-btn"
+                class="text-button"
                 type="button"
                 data-auth-switch="register"
               >
@@ -2613,1244 +2609,132 @@
 
           </div>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================================
-         DASHBOARD
-    ======================================================== -->
-
-    <section
-      id="dashboardView"
-      class="dashboard"
-      hidden
-    >
-
-      <div class="container">
-
-        <div class="dashboard-head">
-
-          <div>
-
-            <h1>
-              Your Event Dashboard
-            </h1>
-
-            <p>
-              Registration • Payment • Entry QR
-            </p>
-
-          </div>
-
-
-          <div class="account-chip">
-
-            <div
-              class="avatar"
-              id="avatar"
-            >
-              U
-            </div>
-
-            <div>
-
-              <strong id="accountEmail">
-                user@example.com
-              </strong>
-
-              <span>
-                Participant
-              </span>
-
-            </div>
-
-          </div>
 
         </div>
-
-
-        <div class="dashboard-grid">
-
-          <!-- SIDEBAR -->
-
-          <aside class="sidebar">
-
-            <div class="sidebar-label">
-              Event
-            </div>
-
-            <button
-              class="nav-btn active"
-              data-panel="overview"
-              type="button"
-            >
-              ◉ &nbsp; Overview
-            </button>
-
-            <button
-              class="nav-btn"
-              data-panel="registration"
-              type="button"
-            >
-              ✦ &nbsp; Registration
-            </button>
-
-            <button
-              class="nav-btn"
-              data-panel="payment"
-              type="button"
-            >
-              ₹ &nbsp; Payment
-            </button>
-
-            <button
-              class="nav-btn"
-              data-panel="qr"
-              type="button"
-            >
-              ▣ &nbsp; My QR
-            </button>
-
-            <div class="sidebar-label">
-              Account
-            </div>
-
-            <button
-              class="nav-btn"
-              id="sidebarLogoutBtn"
-              type="button"
-            >
-              ↪ &nbsp; Logout
-            </button>
-
-          </aside>
-
-
-          <!-- CONTENT -->
-
-          <main class="content">
-
-
-            <!-- ===============================================
-                 OVERVIEW
-            ================================================ -->
-
-            <div
-              id="panel-overview"
-              class="panel active"
-            >
-
-              <div class="status-grid">
-
-                <div class="status-card">
-
-                  <small>
-                    Registration
-                  </small>
-
-                  <strong
-                    id="overviewRegistration"
-                  >
-                    Not Started
-                  </strong>
-
-                  <span
-                    id="overviewRegistrationBadge"
-                    class="badge badge-muted"
-                  >
-                    ● Not Started
-                  </span>
-
-                </div>
-
-
-                <div class="status-card">
-
-                  <small>
-                    Payment
-                  </small>
-
-                  <strong
-                    id="overviewPayment"
-                  >
-                    Pending
-                  </strong>
-
-                  <span
-                    id="overviewPaymentBadge"
-                    class="badge badge-muted"
-                  >
-                    ● Awaiting
-                  </span>
-
-                </div>
-
-
-                <div class="status-card">
-
-                  <small>
-                    QR
-                  </small>
-
-                  <strong
-                    id="overviewQR"
-                  >
-                    Inactive
-                  </strong>
-
-                  <span
-                    id="overviewQRBadge"
-                    class="badge badge-muted"
-                  >
-                    ● Not Active
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="card">
-
-                <div class="card-title">
-                  Garba Night 2026
-                </div>
-
-                <div class="card-subtitle">
-                  16 October • 6:00 PM – 10:00 PM
-                  • No Stag Entry
-                </div>
-
-                <div class="event-facts" style="margin-top:15px;">
-
-                  <div class="fact">
-
-                    <small>
-                      Female
-                    </small>
-
-                    <strong>
-                      ₹200
-                    </strong>
-
-                  </div>
-
-                  <div class="fact">
-
-                    <small>
-                      Couple
-                    </small>
-
-                    <strong>
-                      ₹300
-                    </strong>
-
-                  </div>
-
-                  <div class="fact">
-
-                    <small>
-                      Extra Member
-                    </small>
-
-                    <strong>
-                      +₹150
-                    </strong>
-
-                  </div>
-
-                  <div class="fact">
-
-                    <small>
-                      Timing
-                    </small>
-
-                    <strong>
-                      6–10 PM
-                    </strong>
-
-                  </div>
-
-                </div>
-
-                <div style="margin-top:17px;">
-
-                  <button
-                    class="btn btn-primary"
-                    id="overviewStartBtn"
-                    type="button"
-                  >
-                    Start Registration →
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- ===============================================
-                 REGISTRATION
-            ================================================ -->
-
-            <div
-              id="panel-registration"
-              class="panel"
-            >
-
-              <div class="card">
-
-                <div class="card-title">
-                  Participant Registration
-                </div>
-
-                <div class="card-subtitle">
-                  Couple entry starts at ₹300. Each additional
-                  member costs ₹150. Single female entry is ₹200.
-                </div>
-
-
-                <form
-                  id="registrationForm"
-                  class="form"
-                  novalidate
-                >
-
-                  <div class="form-grid">
-
-
-                    <div class="field">
-
-                      <label for="participantName">
-                        Full Name
-                      </label>
-
-                      <input
-                        class="input"
-                        id="participantName"
-                        type="text"
-                        maxlength="100"
-                        autocomplete="name"
-                        placeholder="Enter your full name"
-                        required
-                      />
-
-                    </div>
-
-
-                    <div class="field">
-
-                      <label for="participantPhone">
-                        Mobile Number
-                      </label>
-
-                      <input
-                        class="input"
-                        id="participantPhone"
-                        type="tel"
-                        inputmode="numeric"
-                        maxlength="10"
-                        autocomplete="tel"
-                        placeholder="10-digit mobile number"
-                        required
-                      />
-
-                    </div>
-
-
-                    <div class="field full">
-
-                      <label for="participantEmail">
-                        Registered Email
-                      </label>
-
-                      <input
-                        class="input readonly"
-                        id="participantEmail"
-                        type="email"
-                        readonly
-                      />
-
-                      <div class="form-help">
-                        This email comes directly from your authenticated account.
-                      </div>
-
-                    </div>
-
-
-                    <!-- SINGLE FEMALE -->
-
-                    <div class="field full">
-
-                      <div class="entry-switch">
-
-                        <div>
-
-                          <strong>
-                            Single Female Entry
-                          </strong>
-
-                          <p>
-                            Enable this only for a single female participant.
-                            Group members will automatically be hidden.
-                          </p>
-
-                        </div>
-
-                        <label class="switch">
-
-                          <input
-                            id="singleFemale"
-                            type="checkbox"
-                          />
-
-                          <span
-                            class="switch-track"
-                          ></span>
-
-                        </label>
-
-                      </div>
-
-                    </div>
-
-
-                    <!-- MEMBERS -->
-
-                    <div
-                      class="field full"
-                      id="membersSection"
-                    >
-
-                      <div class="members-head">
-
-                        <strong>
-                          Group Members
-                        </strong>
-
-                        <span id="memberCountLabel">
-                          2 Members
-                        </span>
-
-                      </div>
-
-                      <div id="membersContainer"></div>
-
-                      <button
-                        type="button"
-                        class="add-member"
-                        id="addMemberBtn"
-                      >
-                        + Add Member
-                      </button>
-
-                      <div class="form-help">
-                        Minimum entry is a couple. No stag entry.
-                      </div>
-
-                    </div>
-
-
-                    <!-- PRICE -->
-
-                    <div class="field full">
-
-                      <div class="price-card">
-
-                        <div class="price-line">
-
-                          <span>
-                            Entry Type
-                          </span>
-
-                          <strong id="priceEntryType">
-                            Couple
-                          </strong>
-
-                        </div>
-
-
-                        <div class="price-line">
-
-                          <span>
-                            Group Size
-                          </span>
-
-                          <strong id="priceMemberCount">
-                            2
-                          </strong>
-
-                        </div>
-
-
-                        <div class="price-line">
-
-                          <span>
-                            Base Couple Price
-                          </span>
-
-                          <strong id="priceBase">
-                            ₹300
-                          </strong>
-
-                        </div>
-
-
-                        <div class="price-line">
-
-                          <span>
-                            Additional Members
-                          </span>
-
-                          <strong id="priceExtras">
-                            ₹0
-                          </strong>
-
-                        </div>
-
-
-                        <div class="price-line price-total">
-
-                          <span>
-                            Total Payable
-                          </span>
-
-                          <strong id="priceTotal">
-                            ₹300
-                          </strong>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-
-                  </div>
-
-
-                  <div
-                    style="
-                      display:flex;
-                      justify-content:flex-end;
-                      gap:8px;
-                      margin-top:17px;
-                    "
-                  >
-
-                    <button
-                      class="btn btn-secondary"
-                      type="button"
-                      data-open-panel="overview"
-                    >
-                      Cancel
-                    </button>
-
-                    <button
-                      class="btn btn-primary"
-                      id="registrationSubmitBtn"
-                      type="submit"
-                    >
-                      Continue to Payment →
-                    </button>
-
-                  </div>
-
-                </form>
-
-              </div>
-
-            </div>
-
-
-            <!-- ===============================================
-                 PAYMENT
-            ================================================ -->
-
-            <div
-              id="panel-payment"
-              class="panel"
-            >
-
-              <div class="payment-grid">
-
-
-                <div class="card payment-card">
-
-                  <div class="eyebrow">
-                    Manual UPI Payment
-                  </div>
-
-                  <div
-                    class="payment-qr-box"
-                  >
-                    <div id="paymentQR">
-                    </div>
-                  </div>
-
-                  <div class="mini">
-                    Scan this QR using your UPI application.
-                  </div>
-
-                  <div
-                    class="upi-chip"
-                    id="upiChip"
-                  >
-                    UPI ID: Configure in code
-                  </div>
-
-                  <div
-                    class="payment-amount"
-                    id="paymentAmount"
-                  >
-                    ₹300
-                  </div>
-
-                  <div class="mini">
-                    Pay the exact amount shown above.
-                  </div>
-
-
-                  <div class="instruction-list">
-
-
-                    <div class="instruction">
-
-                      <div class="instruction-num">
-                        1
-                      </div>
-
-                      <div>
-
-                        <strong>
-                          Scan & Pay
-                        </strong>
-
-                        <span>
-                          Make the UPI payment for the exact payable amount.
-                        </span>
-
-                      </div>
-
-                    </div>
-
-
-                    <div class="instruction">
-
-                      <div class="instruction-num">
-                        2
-                      </div>
-
-                      <div>
-
-                        <strong>
-                          Save Payment Proof
-                        </strong>
-
-                        <span>
-                          Keep a clear screenshot of the successful transaction.
-                        </span>
-
-                      </div>
-
-                    </div>
-
-
-                    <div class="instruction">
-
-                      <div class="instruction-num">
-                        3
-                      </div>
-
-                      <div>
-
-                        <strong>
-                          Submit UTR
-                        </strong>
-
-                        <span>
-                          Enter the UTR / UPI reference / transaction ID below.
-                        </span>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-                <div class="card">
-
-                  <div class="card-title">
-                    Submit Payment Proof
-                  </div>
-
-                  <div class="card-subtitle">
-                    The school will manually verify the UTR against
-                    the actual bank/UPI transaction record.
-                  </div>
-
-
-                  <form
-                    id="paymentForm"
-                    class="form"
-                    novalidate
-                  >
-
-                    <div class="field">
-
-                      <label for="paymentProof">
-                        Payment Screenshot / PDF
-                      </label>
-
-                      <input
-                        class="file-input"
-                        id="paymentProof"
-                        type="file"
-                        accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
-                        required
-                      />
-
-                      <div class="form-help">
-                        Maximum 1 MB · JPG, JPEG, PNG or PDF only.
-                      </div>
-
-                    </div>
-
-
-                    <div class="field">
-
-                      <label for="utrNumber">
-                        UTR / UPI Reference Number / Transaction ID
-                      </label>
-
-                      <input
-                        class="input"
-                        id="utrNumber"
-                        type="text"
-                        maxlength="100"
-                        autocomplete="off"
-                        spellcheck="false"
-                        placeholder="Enter transaction reference"
-                        required
-                      />
-
-                    </div>
-
-
-                    <div class="verification-box">
-
-                      <strong>
-                        Manual Verification
-                      </strong>
-
-                      <p>
-                        Payment is not automatically approved.
-                        The school admin will verify your transaction
-                        manually before granting entry permission.
-                      </p>
-
-                    </div>
-
-
-                    <div
-                      style="
-                        display:flex;
-                        justify-content:flex-end;
-                        margin-top:17px;
-                      "
-                    >
-
-                      <button
-                        class="btn btn-primary"
-                        id="paymentSubmitBtn"
-                        type="submit"
-                      >
-                        Submit Payment Proof →
-                      </button>
-
-                    </div>
-
-                  </form>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- ===============================================
-                 QR
-            ================================================ -->
-
-            <div
-              id="panel-qr"
-              class="panel"
-            >
-
-              <div class="qr-grid">
-
-
-                <div class="card qr-card">
-
-                  <div class="eyebrow">
-                    Entry Pass
-                  </div>
-
-                  <div class="user-qr-box">
-
-                    <div class="qr-empty">
-                      <div>
-
-                        <strong>
-                          QR NOT ACTIVE
-                        </strong>
-
-                        Payment verification and
-                        admin permission are required.
-
-                      </div>
-                    </div>
-
-                  </div>
-
-
-                  <span
-                    class="badge badge-warning"
-                    id="qrStatusBadge"
-                  >
-                    ● Awaiting Approval
-                  </span>
-
-
-                  <div
-                    class="card-subtitle"
-                    id="qrStatusMessage"
-                  >
-                    Your unique event QR will appear here
-                    after admin approval.
-                  </div>
-
-                </div>
-
-
-                <div>
-
-                  <div class="card">
-
-                    <div class="card-title">
-                      Registration Details
-                    </div>
-
-
-                    <div class="detail-list">
-
-                      <div class="detail-row">
-
-                        <span>
-                          Name
-                        </span>
-
-                        <strong id="detailName">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Mobile
-                        </span>
-
-                        <strong id="detailPhone">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Email
-                        </span>
-
-                        <strong id="detailEmail">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Entry
-                        </span>
-
-                        <strong id="detailEntry">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Group Size
-                        </span>
-
-                        <strong id="detailGroupSize">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Amount
-                        </span>
-
-                        <strong id="detailAmount">
-                          —
-                        </strong>
-
-                      </div>
-
-
-                      <div class="detail-row">
-
-                        <span>
-                          Registration ID
-                        </span>
-
-                        <strong id="detailRegistrationId">
-                          —
-                        </strong>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-
-                  <div class="card">
-
-                    <div class="card-title">
-                      Gate Instructions
-                    </div>
-
-                    <div class="card-subtitle">
-                      Show your active QR at Gate 1 or Gate 2.
-                      The guard will verify the registration details
-                      before checking you in.
-                    </div>
-
-                    <span class="badge badge-muted">
-                      QR can only be used once
-                    </span>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- ===============================================
-                 SUBMISSION STATE
-            ================================================ -->
-
-            <div
-              id="panel-submitted"
-              class="panel"
-            >
-
-              <div class="state-card">
-
-                <div class="state-icon">
-                  ✓
-                </div>
-
-                <h2>
-                  Thank You!
-                </h2>
-
-                <p>
-                  Your payment proof has been submitted.
-                  The school team will manually verify your UTR
-                  against the actual transaction record.
-                  Your QR code will become available only after
-                  permission is granted.
-                </p>
-
-                <div
-                  style="
-                    margin-top:15px;
-                    display:inline-block;
-                  "
-                >
-
-                  <span
-                    class="badge badge-warning"
-                    id="submissionReference"
-                  >
-                    Registration Pending
-                  </span>
-
-                </div>
-
-                <div style="margin-top:20px;">
-
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-open-panel="qr"
-                  >
-                    Open My QR Section
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-          </main>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================================
-         TOAST
-    ======================================================== -->
-
-    <div
-      id="toastContainer"
-      class="toast-container"
-      aria-live="polite"
-    ></div>
-
-
-    <!-- =======================================================
-         LOADER
-    ======================================================== -->
-
-    <div
-      id="globalLoader"
-      class="global-loader"
-      hidden
-    >
-
-      <div class="loader-box">
-
-        <div class="spinner"></div>
-
-        <span id="loaderText">
-          Please wait...
-        </span>
 
       </div>
 
     </div>
 
+  </section>
 
-  </div>
 
+  <!-- =======================================================
+       TOAST
+  ======================================================== -->
+
+  <div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+  ></div>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
 
   <script>
+
     "use strict";
 
+
     /* =========================================================
-       CONFIGURATION
-       ---------------------------------------------------------
-       Replace ONLY these 3 values.
+       PUBLIC CONFIGURATION
     ========================================================= */
 
-    const CONFIG = Object.freeze({
+    const CONFIG =
+      Object.freeze({
 
-      SUPABASE_URL:
-        "https://fhpudmstnldyqaggrnqme.supabase.co",
+        SUPABASE_URL:
+          "https://fhpudmstnldyqaggrnqme.supabase.co",
 
-      SUPABASE_PUBLISHABLE_KEY:
-        "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw",
+        SUPABASE_PUBLISHABLE_KEY:
+          "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw",
 
-      CLOUDFLARE_TURNSTILE_SITE_KEY:
-        "0x4AAAAAAFLF-_CLSf16-AaW",
+        CLOUDFLARE_TURNSTILE_SITE_KEY:
+          "0x4AAAAAAFLF-_CLSf16-AaW",
 
-      SCHOOL_UPI_ID:
-        "shubham347779@ybl",
+        SITE_URL:
+          "https://raas-rang-garba.vercel.app",
 
-      SCHOOL_PAYEE_NAME:
-        "Vanasthali Public School",
+        PROFILE_TABLE:
+          "profiles",
 
-      BASE_COUPLE_PRICE:
-        300,
+        PARTICIPANT_PAGE:
+          "/user.html",
 
-      ADDITIONAL_MEMBER_PRICE:
-        150,
+        ADMIN_PAGE:
+          "/admin.html",
 
-      SINGLE_FEMALE_PRICE:
-        200,
+        GATE_PAGE:
+          "/gate.html",
 
-      MAX_FILE_SIZE:
-        1024 * 1024,
+        MAX_EMAIL_LENGTH:
+          254,
 
-      ALLOWED_MIME_TYPES:
-        Object.freeze([
-          "image/jpeg",
-          "image/png",
-          "application/pdf"
-        ]),
+        MIN_PASSWORD_LENGTH:
+          8
 
-      EVENT_DATE:
-        "16 October 2026",
-
-      EVENT_TIME:
-        "6:00 PM – 10:00 PM"
-
-    });
+      });
 
 
     /* =========================================================
-       SUPABASE CLIENT
+       STATE
     ========================================================= */
 
-    let supabaseClient = null;
+    const state =
+      {
 
-    function initializeSupabase() {
+        supabase:
+          null,
 
-      if (
-        !window.supabase ||
-        typeof window.supabase.createClient !== "function"
-      ) {
-        throw new Error(
-          "Supabase library failed to load."
-        );
-      }
+        currentUser:
+          null,
 
-      if (
-        !CONFIG.SUPABASE_PUBLISHABLE_KEY ||
-        CONFIG.SUPABASE_PUBLISHABLE_KEY
-          .includes("PASTE_YOUR")
-      ) {
-        throw new Error(
-          "Supabase publishable key is not configured."
-        );
-      }
+        authMode:
+          null,
 
-      supabaseClient =
-        window.supabase.createClient(
-          CONFIG.SUPABASE_URL,
-          CONFIG.SUPABASE_PUBLISHABLE_KEY,
-          {
-            auth: {
-              autoRefreshToken: true,
-              persistSession: true,
-              detectSessionInUrl: true,
-              flowType: "pkce"
-            }
-          }
+        registerTurnstileId:
+          null,
+
+        loginTurnstileId:
+          null,
+
+        registerToken:
+          null,
+
+        loginToken:
+          null,
+
+        redirectInProgress:
+          false
+
+      };
+
+
+    /* =========================================================
+       DOM HELPERS
+    ========================================================= */
+
+    const $ =
+      selector =>
+        document.querySelector(
+          selector
         );
 
-    }
+
+    const $$ =
+      selector =>
+        Array.from(
+          document.querySelectorAll(
+            selector
+          )
+        );
 
 
     /* =========================================================
-       APP STATE
-    ========================================================= */
-
-    const appState = {
-
-      currentUser: null,
-
-      turnstile: {
-
-        registerWidgetId: null,
-
-        loginWidgetId: null,
-
-        registerToken: null,
-
-        loginToken: null
-
-      },
-
-      members: [
-
-        {
-          name: ""
-        }
-
-      ],
-
-      registration: {
-
-        submitted: false,
-
-        paymentSubmitted: false,
-
-        paymentStatus: "not_submitted",
-
-        permissionGranted: false,
-
-        checkedIn: false,
-
-        name: "",
-
-        phone: "",
-
-        email: "",
-
-        entryType: "",
-
-        groupSize: 2,
-
-        amount: 300,
-
-        registrationId: ""
-
-      }
-
-    };
-
-
-    /* =========================================================
-       DOM
-    ========================================================= */
-
-    const $ = (selector) =>
-      document.querySelector(selector);
-
-    const $$ = (selector) =>
-      Array.from(
-        document.querySelectorAll(selector)
-      );
-
-
-    /* =========================================================
-       INITIALIZATION
+       BOOT
     ========================================================= */
 
     document.addEventListener(
@@ -3863,128 +2747,313 @@
 
       bindEvents();
 
-      renderMembers();
-
-      updatePricing();
-
-      waitForLibraries();
-
-    }
-
-
-    async function waitForLibraries() {
-
       setTimeout(
-        async () => {
-
-          try {
-
-            initializeSupabase();
-
-            await restoreSession();
-
-            supabaseClient.auth.onAuthStateChange(
-              async (_event, session) => {
-
-                appState.currentUser =
-                  session?.user || null;
-
-                if (appState.currentUser) {
-
-                  syncAccountUI();
-
-                  await refreshUserRegistration();
-
-                  openDashboard();
-
-                }
-
-              }
-            );
-
-            if (
-              !appState.currentUser
-            ) {
-
-              openLanding();
-
-            }
-
-          } catch (error) {
-
-            console.error(error);
-
-            showToast(
-              error.message,
-              "error"
-            );
-
-            openLanding();
-
-          }
-
-        },
-        250
+        initializeApp,
+        100
       );
 
     }
 
 
-    /* =========================================================
-       SESSION
-    ========================================================= */
+    async function initializeApp() {
 
-    async function restoreSession() {
+      try {
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient.auth.getSession();
+        showLoader(
+          "Starting secure connection..."
+        );
 
-      if (error) {
 
-        throw error;
+        await waitForSupabase();
+
+
+        validatePublicConfig();
+
+
+        state.supabase =
+          window.supabase.createClient(
+            CONFIG.SUPABASE_URL,
+            CONFIG.SUPABASE_PUBLISHABLE_KEY,
+            {
+
+              auth: {
+
+                autoRefreshToken:
+                  true,
+
+                persistSession:
+                  true,
+
+                detectSessionInUrl:
+                  true,
+
+                flowType:
+                  "pkce"
+
+              }
+
+            }
+          );
+
+
+        /*
+          First inspect whether we have a session.
+
+          This is only a local session hint.
+
+          The actual role decision below uses getUser()
+          + protected profile lookup.
+        */
+
+        const {
+          data:
+            sessionData
+        } =
+          await state.supabase.auth.getSession();
+
+
+        if (
+          sessionData?.session
+        ) {
+
+          await routeAuthenticatedUser();
+
+        } else {
+
+          stopLoader();
+
+          openLanding();
+
+        }
+
+
+        /*
+          Keep auth UI synchronized with sign-in/sign-out.
+        */
+
+        state.supabase.auth.onAuthStateChange(
+          async (
+            event,
+            session
+          ) => {
+
+            if (
+              state.redirectInProgress
+            ) {
+
+              return;
+
+            }
+
+
+            if (
+              event ===
+              "SIGNED_OUT"
+            ) {
+
+              state.currentUser =
+                null;
+
+              openLanding();
+
+              return;
+
+            }
+
+
+            if (
+              (
+                event ===
+                  "SIGNED_IN" ||
+                event ===
+                  "TOKEN_REFRESHED"
+              ) &&
+              session?.user
+            ) {
+
+              /*
+                Avoid duplicate routing while the current
+                login handler is already doing it.
+              */
+
+              if (
+                event ===
+                "SIGNED_IN" &&
+                !state.redirectInProgress
+              ) {
+
+                /*
+                  Deliberately do not blindly trust
+                  session metadata for role routing.
+                */
+
+                await routeAuthenticatedUser();
+
+              }
+
+            }
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "APPLICATION BOOT ERROR:",
+          error
+        );
+
+
+        stopLoader();
+
+
+        showToast(
+          getFriendlyError(
+            error
+          ),
+          "error"
+        );
+
+
+        openLanding();
 
       }
-
-      appState.currentUser =
-        data.session?.user || null;
 
     }
 
 
     /* =========================================================
-       EVENTS
+       SUPABASE WAIT
+    ========================================================= */
+
+    async function waitForSupabase() {
+
+      const start =
+        Date.now();
+
+      const timeout =
+        15000;
+
+
+      while (
+        (
+          !window.supabase ||
+          typeof
+            window.supabase.createClient !==
+              "function"
+        ) &&
+        Date.now() -
+          start <
+          timeout
+      ) {
+
+        await delay(
+          100
+        );
+
+      }
+
+
+      if (
+        !window.supabase
+      ) {
+
+        throw new Error(
+          "Supabase library did not load."
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       CONFIG VALIDATION
+    ========================================================= */
+
+    function validatePublicConfig() {
+
+      if (
+        !CONFIG
+          .SUPABASE_PUBLISHABLE_KEY ||
+        CONFIG
+          .SUPABASE_PUBLISHABLE_KEY
+          .includes(
+            "PASTE_"
+          )
+      ) {
+
+        throw new Error(
+          "Supabase publishable key is missing."
+        );
+
+      }
+
+
+      if (
+        !CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY ||
+        CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY
+          .includes(
+            "PASTE_"
+          )
+      ) {
+
+        throw new Error(
+          "Cloudflare Turnstile Site Key is missing."
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       AUTH EVENT BINDING
     ========================================================= */
 
     function bindEvents() {
-
-      $("#headerRegisterBtn")
-        .addEventListener(
-          "click",
-          () => openAuth("register")
-        );
 
 
       $("#headerLoginBtn")
         .addEventListener(
           "click",
-          () => openAuth("login")
+          () =>
+            openAuth(
+              "login"
+            )
         );
 
 
-      $("#heroRegisterBtn")
+      $("#headerRegisterBtn")
         .addEventListener(
           "click",
-          () => openAuth("register")
+          () =>
+            openAuth(
+              "register"
+            )
         );
 
 
       $("#heroLoginBtn")
         .addEventListener(
           "click",
-          () => openAuth("login")
+          () =>
+            openAuth(
+              "login"
+            )
+        );
+
+
+      $("#heroRegisterBtn")
+        .addEventListener(
+          "click",
+          () =>
+            openAuth(
+              "register"
+            )
         );
 
 
@@ -3992,41 +3061,6 @@
         .addEventListener(
           "click",
           logout
-        );
-
-
-      $("#sidebarLogoutBtn")
-        .addEventListener(
-          "click",
-          logout
-        );
-
-
-      $("#overviewStartBtn")
-        .addEventListener(
-          "click",
-          () => openPanel("registration")
-        );
-
-
-      $("#addMemberBtn")
-        .addEventListener(
-          "click",
-          addMember
-        );
-
-
-      $("#singleFemale")
-        .addEventListener(
-          "change",
-          handleSingleFemaleChange
-        );
-
-
-      $("#participantPhone")
-        .addEventListener(
-          "input",
-          sanitizePhone
         );
 
 
@@ -4044,533 +3078,173 @@
         );
 
 
-      $("#registrationForm")
-        .addEventListener(
-          "submit",
-          handleRegistration
-        );
-
-
-      $("#paymentForm")
-        .addEventListener(
-          "submit",
-          handlePaymentSubmission
-        );
-
-
       $$("[data-auth-switch]")
-        .forEach(button => {
+        .forEach(
+          button => {
 
-          button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+              "click",
+              () => {
 
-              openAuth(
-                button.dataset.authSwitch
-              );
+                openAuth(
+                  button.dataset
+                    .authSwitch
+                );
 
-            }
-          );
+              }
+            );
 
-        });
+          }
+        );
 
 
       $$("[data-password-toggle]")
-        .forEach(button => {
+        .forEach(
+          button => {
 
-          button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+              "click",
+              () => {
 
-              togglePassword(
-                button.dataset.passwordToggle,
-                button
-              );
+                togglePassword(
+                  button.dataset
+                    .passwordToggle,
+                  button
+                );
 
-            }
-          );
+              }
+            );
 
-        });
-
-
-      $$("[data-panel]")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              openPanel(
-                button.dataset.panel
-              );
-
-            }
-          );
-
-        });
-
-
-      $$("[data-open-panel]")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              openPanel(
-                button.dataset.openPanel
-              );
-
-            }
-          );
-
-        });
+          }
+        );
 
     }
 
 
     /* =========================================================
-       LANDING / AUTH / DASHBOARD
+       LANDING
     ========================================================= */
 
     function openLanding() {
 
-      $("#landingView").hidden = false;
+      $("#landingView").hidden =
+        false;
 
-      $("#authView").hidden = true;
-
-      $("#dashboardView").hidden = true;
-
-      $("#headerLoginBtn").hidden = false;
-
-      $("#headerRegisterBtn").hidden = false;
-
-      $("#headerLogoutBtn").hidden = true;
-
-    }
+      $("#authView").hidden =
+        true;
 
 
-    function openAuth(mode) {
+      $("#publicHeader").hidden =
+        false;
 
-      if (appState.currentUser) {
-
-        openDashboard();
-
-        return;
-
-      }
-
-      $("#landingView").hidden = true;
-
-      $("#authView").hidden = false;
-
-      $("#dashboardView").hidden = true;
-
-      $("#headerLoginBtn").hidden = true;
-
-      $("#headerRegisterBtn").hidden = true;
-
-      $("#headerLogoutBtn").hidden = false;
+      $("#authenticatedHeader").hidden =
+        true;
 
 
-      $("#registerPanel").hidden =
-        mode !== "register";
-
-      $("#loginPanel").hidden =
-        mode !== "login";
+      state.authMode =
+        null;
 
 
-      if (mode === "register") {
-
-        setTimeout(
-          renderRegisterTurnstile,
-          100
-        );
-
-      } else {
-
-        setTimeout(
-          renderLoginTurnstile,
-          100
-        );
-
-      }
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-
-    function openDashboard() {
-
-      if (!appState.currentUser) {
-
-        openAuth("login");
-
-        return;
-
-      }
-
-      $("#landingView").hidden = true;
-
-      $("#authView").hidden = true;
-
-      $("#dashboardView").hidden = false;
-
-      $("#headerLoginBtn").hidden = true;
-
-      $("#headerRegisterBtn").hidden = true;
-
-      $("#headerLogoutBtn").hidden = false;
-
-      syncAccountUI();
-
-      updateDashboardUI();
-
-      openPanel(
-        appState.registration.paymentSubmitted
-          ? "overview"
-          : "overview",
-        false
+      hideMessage(
+        "#registerMessage"
       );
+
+      hideMessage(
+        "#loginMessage"
+      );
+
+
+      stopLoader();
 
     }
 
 
     /* =========================================================
-       AUTH
+       AUTH SCREEN
     ========================================================= */
 
-    async function handleRegister(event) {
+    function openAuth(
+      mode
+    ) {
 
-      event.preventDefault();
+      if (
+        state.currentUser
+      ) {
 
-      const submitButton =
-        $("#registerSubmitBtn");
-
-      const email =
-        $("#registerEmail")
-          .value
-          .trim()
-          .toLowerCase();
-
-      const password =
-        $("#registerPassword")
-          .value;
-
-      const confirmPassword =
-        $("#registerConfirmPassword")
-          .value;
-
-      const captchaToken =
-        appState.turnstile.registerToken;
-
-
-      if (!isValidEmail(email)) {
-
-        showToast(
-          "Please enter a valid email address.",
-          "error"
-        );
+        routeAuthenticatedUser();
 
         return;
 
       }
 
 
-      if (password.length < 8) {
+      $("#landingView").hidden =
+        true;
 
-        showToast(
-          "Password must contain at least 8 characters.",
-          "error"
-        );
-
-        return;
-
-      }
+      $("#authView").hidden =
+        false;
 
 
-      if (password !== confirmPassword) {
+      $("#publicHeader").hidden =
+        false;
 
-        showToast(
-          "Passwords do not match.",
-          "error"
-        );
-
-        return;
-
-      }
+      $("#authenticatedHeader").hidden =
+        true;
 
 
-      if (!captchaToken) {
-
-        showToast(
-          "Please complete the security verification.",
-          "error"
-        );
-
-        return;
-
-      }
+      $("#registerView").hidden =
+        mode !== "register";
 
 
-      setButtonLoading(
-        submitButton,
-        "Creating account..."
+      $("#loginView").hidden =
+        mode !== "login";
+
+
+      state.authMode =
+        mode;
+
+
+      hideMessage(
+        "#registerMessage"
+      );
+
+      hideMessage(
+        "#loginMessage"
       );
 
 
-      try {
+      /*
+        Small delay because explicit Turnstile rendering
+        needs its target container to be visible.
+      */
 
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signUp({
+      setTimeout(
+        () => {
 
-            email,
+          if (
+            mode ===
+            "register"
+          ) {
 
-            password,
+            renderRegisterTurnstile();
 
-            options: {
+          } else {
 
-              captchaToken,
+            renderLoginTurnstile();
 
-              emailRedirectTo:
-                "https://raas-rang-garba.vercel.app/"
+          }
 
-            }
-
-          });
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-
-        if (
-          data.user &&
-          !data.session
-        ) {
-
-          showToast(
-            "Account created. Please confirm your email before logging in.",
-            "success"
-          );
-
-          $("#registerForm").reset();
-
-          resetRegisterTurnstile();
-
-          return;
-
-        }
-
-
-        if (data.user) {
-
-          appState.currentUser =
-            data.user;
-
-          syncAccountUI();
-
-          showToast(
-            "Account created successfully.",
-            "success"
-          );
-
-          openDashboard();
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "REGISTER ERROR:",
-          error
-        );
-
-        showToast(
-          getFriendlyAuthError(error),
-          "error"
-        );
-
-      } finally {
-
-        resetButton(
-          submitButton,
-          "Create Account"
-        );
-
-      }
-
-    }
-
-
-    async function handleLogin(event) {
-
-      event.preventDefault();
-
-      const submitButton =
-        $("#loginSubmitBtn");
-
-      const email =
-        $("#loginEmail")
-          .value
-          .trim()
-          .toLowerCase();
-
-      const password =
-        $("#loginPassword")
-          .value;
-
-      const captchaToken =
-        appState.turnstile.loginToken;
-
-
-      if (!isValidEmail(email)) {
-
-        showToast(
-          "Please enter a valid email address.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (!password) {
-
-        showToast(
-          "Please enter your password.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (!captchaToken) {
-
-        showToast(
-          "Please complete the security verification.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      setButtonLoading(
-        submitButton,
-        "Signing in..."
+        },
+        100
       );
 
 
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth
-            .signInWithPassword({
-
-              email,
-
-              password,
-
-              options: {
-
-                captchaToken
-
-              }
-
-            });
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-
-        appState.currentUser =
-          data.user;
-
-
-        resetLoginTurnstile();
-
-        syncAccountUI();
-
-        showToast(
-          "Login successful.",
-          "success"
-        );
-
-        openDashboard();
-
-      } catch (error) {
-
-        console.error(
-          "LOGIN ERROR:",
-          error
-        );
-
-        showToast(
-          getFriendlyAuthError(error),
-          "error"
-        );
-
-        resetLoginTurnstile();
-
-      } finally {
-
-        resetButton(
-          submitButton,
-          "Login"
-        );
-
-      }
-
-    }
-
-
-    async function logout() {
-
-      try {
-
-        await supabaseClient.auth.signOut();
-
-      } catch (error) {
-
-        console.error(
-          "LOGOUT ERROR:",
-          error
-        );
-
-      }
-
-      appState.currentUser = null;
-
-      resetApplicationState();
-
-      openLanding();
-
-      showToast(
-        "You have been logged out.",
-        "success"
-      );
+      window.scrollTo({
+        top:
+          0,
+        behavior:
+          "smooth"
+      });
 
     }
 
@@ -4582,10 +3256,22 @@
     function renderRegisterTurnstile() {
 
       if (
-        !window.turnstile ||
-        !CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY ||
-        CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY
-          .includes("PASTE_YOUR")
+        !window.turnstile
+      ) {
+
+        setTimeout(
+          renderRegisterTurnstile,
+          300
+        );
+
+        return;
+
+      }
+
+
+      if (
+        state.registerTurnstileId !==
+          null
       ) {
 
         return;
@@ -4596,12 +3282,9 @@
       const container =
         $("#registerTurnstile");
 
-      if (!container) return;
-
 
       if (
-        appState.turnstile
-          .registerWidgetId !== null
+        !container
       ) {
 
         return;
@@ -4609,50 +3292,48 @@
       }
 
 
-      container.innerHTML = "";
-
-
-      appState.turnstile.registerWidgetId =
+      state.registerTurnstileId =
         window.turnstile.render(
           container,
           {
 
             sitekey:
-              CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
+              CONFIG
+                .CLOUDFLARE_TURNSTILE_SITE_KEY,
 
-            theme: "dark",
+            theme:
+              "dark",
 
-            size: "flexible",
+            size:
+              "flexible",
+
+            action:
+              "signup",
 
             callback:
               token => {
 
-                appState.turnstile
-                  .registerToken = token;
+                state.registerToken =
+                  token;
 
               },
 
             "expired-callback":
               () => {
 
-                appState.turnstile
-                  .registerToken = null;
-
-                showToast(
-                  "Security verification expired. Verify again.",
-                  "error"
-                );
+                state.registerToken =
+                  null;
 
               },
 
             "error-callback":
               errorCode => {
 
-                appState.turnstile
-                  .registerToken = null;
+                state.registerToken =
+                  null;
 
                 console.error(
-                  "TURNSTILE REGISTER ERROR:",
+                  "REGISTER TURNSTILE:",
                   errorCode
                 );
 
@@ -4667,10 +3348,22 @@
     function renderLoginTurnstile() {
 
       if (
-        !window.turnstile ||
-        !CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY ||
-        CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY
-          .includes("PASTE_YOUR")
+        !window.turnstile
+      ) {
+
+        setTimeout(
+          renderLoginTurnstile,
+          300
+        );
+
+        return;
+
+      }
+
+
+      if (
+        state.loginTurnstileId !==
+          null
       ) {
 
         return;
@@ -4681,12 +3374,9 @@
       const container =
         $("#loginTurnstile");
 
-      if (!container) return;
-
 
       if (
-        appState.turnstile
-          .loginWidgetId !== null
+        !container
       ) {
 
         return;
@@ -4694,45 +3384,48 @@
       }
 
 
-      container.innerHTML = "";
-
-
-      appState.turnstile.loginWidgetId =
+      state.loginTurnstileId =
         window.turnstile.render(
           container,
           {
 
             sitekey:
-              CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
+              CONFIG
+                .CLOUDFLARE_TURNSTILE_SITE_KEY,
 
-            theme: "dark",
+            theme:
+              "dark",
 
-            size: "flexible",
+            size:
+              "flexible",
+
+            action:
+              "login",
 
             callback:
               token => {
 
-                appState.turnstile
-                  .loginToken = token;
+                state.loginToken =
+                  token;
 
               },
 
             "expired-callback":
               () => {
 
-                appState.turnstile
-                  .loginToken = null;
+                state.loginToken =
+                  null;
 
               },
 
             "error-callback":
               errorCode => {
 
-                appState.turnstile
-                  .loginToken = null;
+                state.loginToken =
+                  null;
 
                 console.error(
-                  "TURNSTILE LOGIN ERROR:",
+                  "LOGIN TURNSTILE:",
                   errorCode
                 );
 
@@ -4746,18 +3439,18 @@
 
     function resetRegisterTurnstile() {
 
-      appState.turnstile
-        .registerToken = null;
+      state.registerToken =
+        null;
+
 
       if (
         window.turnstile &&
-        appState.turnstile
-          .registerWidgetId !== null
+        state.registerTurnstileId !==
+          null
       ) {
 
         window.turnstile.reset(
-          appState.turnstile
-            .registerWidgetId
+          state.registerTurnstileId
         );
 
       }
@@ -4767,18 +3460,18 @@
 
     function resetLoginTurnstile() {
 
-      appState.turnstile
-        .loginToken = null;
+      state.loginToken =
+        null;
+
 
       if (
         window.turnstile &&
-        appState.turnstile
-          .loginWidgetId !== null
+        state.loginTurnstileId !==
+          null
       ) {
 
         window.turnstile.reset(
-          appState.turnstile
-            .loginWidgetId
+          state.loginTurnstileId
         );
 
       }
@@ -4787,387 +3480,55 @@
 
 
     /* =========================================================
-       REGISTRATION
+       REGISTER
     ========================================================= */
 
-    function initializeGroup() {
-
-      if (
-        !Array.isArray(appState.members) ||
-        appState.members.length === 0
-      ) {
-
-        appState.members = [
-          {
-            name: ""
-          }
-        ];
-
-      }
-
-    }
-
-
-    function renderMembers() {
-
-      initializeGroup();
-
-      const container =
-        $("#membersContainer");
-
-      container.innerHTML = "";
-
-
-      appState.members
-        .forEach(
-          (member, index) => {
-
-            const row =
-              document.createElement(
-                "div"
-              );
-
-            row.className =
-              "member-row";
-
-
-            const input =
-              document.createElement(
-                "input"
-              );
-
-            input.className =
-              "input";
-
-            input.type =
-              "text";
-
-            input.maxLength =
-              100;
-
-            input.placeholder =
-              `Member ${index + 2} full name`;
-
-            input.value =
-              member.name || "";
-
-
-            input.addEventListener(
-              "input",
-              event => {
-
-                appState.members[index]
-                  .name =
-                  event.target.value;
-
-              }
-            );
-
-
-            row.appendChild(input);
-
-
-            const removeButton =
-              document.createElement(
-                "button"
-              );
-
-            removeButton.type =
-              "button";
-
-            removeButton.className =
-              "remove-member";
-
-            removeButton.textContent =
-              "×";
-
-
-            removeButton.addEventListener(
-              "click",
-              () => {
-
-                removeMember(index);
-
-              }
-            );
-
-
-            row.appendChild(
-              removeButton
-            );
-
-
-            container.appendChild(
-              row
-            );
-
-          }
-        );
-
-
-      updateMemberCountLabel();
-
-    }
-
-
-    function addMember() {
-
-      appState.members.push({
-
-        name: ""
-
-      });
-
-      renderMembers();
-
-      updatePricing();
-
-    }
-
-
-    function removeMember(index) {
-
-      if (
-        appState.members.length <= 1
-      ) {
-
-        showToast(
-          "A couple requires at least 2 members.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      appState.members.splice(
-        index,
-        1
-      );
-
-      renderMembers();
-
-      updatePricing();
-
-    }
-
-
-    function updateMemberCountLabel() {
-
-      const totalMembers =
-        appState.members.length + 1;
-
-
-      $("#memberCountLabel")
-        .textContent =
-        `${totalMembers} ${
-          totalMembers === 1
-            ? "Member"
-            : "Members"
-        }`;
-
-    }
-
-
-    function handleSingleFemaleChange(event) {
-
-      const enabled =
-        event.target.checked;
-
-
-      $("#membersSection").hidden =
-        enabled;
-
-
-      updatePricing();
-
-    }
-
-
-    function calculateAmount() {
-
-      if (
-        $("#singleFemale").checked
-      ) {
-
-        return CONFIG.SINGLE_FEMALE_PRICE;
-
-      }
-
-
-      const groupSize =
-        appState.members.length + 1;
-
-
-      if (groupSize < 2) {
-
-        return CONFIG.BASE_COUPLE_PRICE;
-
-      }
-
-
-      return (
-        CONFIG.BASE_COUPLE_PRICE +
-        (
-          Math.max(
-            groupSize - 2,
-            0
-          )
-          *
-          CONFIG.ADDITIONAL_MEMBER_PRICE
-        )
-      );
-
-    }
-
-
-    function updatePricing() {
-
-      const singleFemale =
-        $("#singleFemale")?.checked ||
-        false;
-
-
-      const groupSize =
-        singleFemale
-          ? 1
-          : appState.members.length + 1;
-
-
-      const extras =
-        singleFemale
-          ? 0
-          : Math.max(
-              groupSize - 2,
-              0
-            )
-            * CONFIG.ADDITIONAL_MEMBER_PRICE;
-
-
-      const total =
-        singleFemale
-          ? CONFIG.SINGLE_FEMALE_PRICE
-          : CONFIG.BASE_COUPLE_PRICE + extras;
-
-
-      $("#priceEntryType")
-        .textContent =
-        singleFemale
-          ? "Single Female"
-          : groupSize === 2
-            ? "Couple"
-            : "Group";
-
-
-      $("#priceMemberCount")
-        .textContent =
-        groupSize;
-
-
-      $("#priceBase")
-        .textContent =
-        singleFemale
-          ? "₹200"
-          : "₹300";
-
-
-      $("#priceExtras")
-        .textContent =
-        "₹" + extras;
-
-
-      $("#priceTotal")
-        .textContent =
-        "₹" + total;
-
-
-      updatePaymentAmount(
-        total
-      );
-
-    }
-
-
-    async function handleRegistration(event) {
+    async function handleRegister(
+      event
+    ) {
 
       event.preventDefault();
 
 
-      if (!appState.currentUser) {
+      const button =
+        $("#registerSubmitBtn");
 
-        showToast(
-          "Your login session is missing. Please login again.",
-          "error"
-        );
-
-        openAuth("login");
-
-        return;
-
-      }
-
-
-      const name =
-        $("#participantName")
-          .value
-          .trim();
-
-      const phone =
-        $("#participantPhone")
-          .value
-          .trim();
 
       const email =
-        $("#participantEmail")
-          .value
-          .trim()
-          .toLowerCase();
-
-      const singleFemale =
-        $("#singleFemale")
-          .checked;
-
-
-      if (
-        name.length < 2
-      ) {
-
-        showToast(
-          "Please enter your full name.",
-          "error"
+        normalizeEmail(
+          $("#registerEmail")
+            .value
         );
 
-        return;
 
-      }
+      const password =
+        $("#registerPassword")
+          .value;
+
+
+      const confirmPassword =
+        $("#registerConfirmPassword")
+          .value;
+
+
+      const captchaToken =
+        state.registerToken;
+
+
+      hideMessage(
+        "#registerMessage"
+      );
 
 
       if (
-        !/^[0-9]{10}$/.test(phone)
-      ) {
-
-        showToast(
-          "Please enter a valid 10-digit mobile number.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        email !==
-        (
-          appState.currentUser
-            .email || ""
+        !isValidEmail(
+          email
         )
-          .toLowerCase()
       ) {
 
-        showToast(
-          "Registered email does not match the authenticated account.",
+        showMessage(
+          "#registerMessage",
+          "Please enter a valid email address.",
           "error"
         );
 
@@ -5176,650 +3537,601 @@
       }
 
 
-      if (!singleFemale) {
+      if (
+        password.length <
+          CONFIG.MIN_PASSWORD_LENGTH
+      ) {
 
-        const names =
-          appState.members.map(
-            member =>
-              member.name.trim()
-          );
+        showMessage(
+          "#registerMessage",
+          "Password must contain at least 8 characters.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        password !==
+        confirmPassword
+      ) {
+
+        showMessage(
+          "#registerMessage",
+          "Passwords do not match.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !captchaToken
+      ) {
+
+        showMessage(
+          "#registerMessage",
+          "Please complete the security verification.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      setButtonLoading(
+        button,
+        "Creating account..."
+      );
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await state.supabase
+            .auth
+            .signUp({
+
+              email:
+
+                email,
+
+              password:
+
+                password,
+
+              options: {
+
+                captchaToken:
+
+                  captchaToken,
+
+                emailRedirectTo:
+
+                  CONFIG.SITE_URL +
+                  "/index.html"
+
+              }
+
+            });
 
 
         if (
-          names.some(
-            value =>
-              value.length < 2
-          )
+          error
         ) {
 
-          showToast(
-            "Please enter every additional member's name.",
-            "error"
+          throw error;
+
+        }
+
+
+        /*
+          Confirm Email is enabled in your Supabase
+          project.
+
+          Therefore normally:
+            data.user != null
+            data.session == null
+        */
+
+        if (
+          data?.user &&
+          !data?.session
+        ) {
+
+          showMessage(
+            "#registerMessage",
+            "Account created. Please check your email and confirm your account before logging in.",
+            "success"
+          );
+
+
+          $("#registerForm")
+            .reset();
+
+
+          resetRegisterTurnstile();
+
+
+          return;
+
+        }
+
+
+        if (
+          data?.user
+        ) {
+
+          /*
+            In case email confirmation is disabled
+            later, immediately route through role
+            verification.
+          */
+
+          state.currentUser =
+            data.user;
+
+
+          await routeAuthenticatedUser();
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "REGISTER ERROR:",
+          error
+        );
+
+
+        resetRegisterTurnstile();
+
+
+        showMessage(
+          "#registerMessage",
+          getFriendlyError(
+            error
+          ),
+          "error"
+        );
+
+      } finally {
+
+        resetButton(
+          button,
+          "Create Account"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       LOGIN
+    ========================================================= */
+
+    async function handleLogin(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      if (
+        state.redirectInProgress
+      ) {
+
+        return;
+
+      }
+
+
+      const button =
+        $("#loginSubmitBtn");
+
+
+      const email =
+        normalizeEmail(
+          $("#loginEmail")
+            .value
+        );
+
+
+      const password =
+        $("#loginPassword")
+          .value;
+
+
+      const captchaToken =
+        state.loginToken;
+
+
+      hideMessage(
+        "#loginMessage"
+      );
+
+
+      if (
+        !isValidEmail(
+          email
+        )
+      ) {
+
+        showMessage(
+          "#loginMessage",
+          "Please enter a valid email address.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !password
+      ) {
+
+        showMessage(
+          "#loginMessage",
+          "Please enter your password.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !captchaToken
+      ) {
+
+        showMessage(
+          "#loginMessage",
+          "Please complete the security verification.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      setButtonLoading(
+        button,
+        "Signing in..."
+      );
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await state.supabase
+            .auth
+            .signInWithPassword({
+
+              email:
+
+                email,
+
+              password:
+
+                password,
+
+              options: {
+
+                captchaToken:
+
+                  captchaToken
+
+              }
+
+            });
+
+
+        resetLoginTurnstile();
+
+
+        if (
+          error
+        ) {
+
+          throw error;
+
+        }
+
+
+        if (
+          !data?.user
+        ) {
+
+          throw new Error(
+            "Login did not return a valid user."
+          );
+
+        }
+
+
+        state.currentUser =
+          data.user;
+
+
+        await routeAuthenticatedUser();
+
+      } catch (error) {
+
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
+
+
+        resetLoginTurnstile();
+
+
+        showMessage(
+          "#loginMessage",
+          getFriendlyError(
+            error
+          ),
+          "error"
+        );
+
+      } finally {
+
+        resetButton(
+          button,
+          "Login"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       AUTHENTICATED ROLE ROUTER
+       ---------------------------------------------------------
+       IMPORTANT:
+
+       We DO NOT route based on:
+         - email address
+         - URL parameter
+         - localStorage
+         - hidden input
+         - user-entered role
+
+       Role comes from public.profiles for the
+       authenticated user's own row.
+
+       The final authorization is still enforced
+       inside user.html/admin.html/gate.html.
+    ========================================================= */
+
+    async function routeAuthenticatedUser() {
+
+      if (
+        state.redirectInProgress
+      ) {
+
+        return;
+
+      }
+
+
+      state.redirectInProgress =
+        true;
+
+
+      try {
+
+        showLoader(
+          "Verifying account role..."
+        );
+
+
+        /*
+          getUser() fetches the authenticated user
+          from Supabase Auth rather than trusting
+          unverified local session payload.
+        */
+
+        const {
+          data,
+          error
+        } =
+          await state.supabase
+            .auth
+            .getUser();
+
+
+        if (
+          error
+        ) {
+
+          throw error;
+
+        }
+
+
+        if (
+          !data?.user
+        ) {
+
+          throw new Error(
+            "Authenticated user could not be verified."
+          );
+
+        }
+
+
+        state.currentUser =
+          data.user;
+
+
+        /*
+          Query ONLY the current user's profile.
+
+          Expected columns:
+            role
+            gate_number
+
+          RLS must allow an authenticated user
+          to read only their own profile.
+        */
+
+        const {
+          data:
+            profile,
+          error:
+            profileError
+        } =
+          await state.supabase
+            .from(
+              CONFIG.PROFILE_TABLE
+            )
+            .select(
+              "role, gate_number"
+            )
+            .eq(
+              "id",
+              data.user.id
+            )
+            .maybeSingle();
+
+
+        if (
+          profileError
+        ) {
+
+          throw profileError;
+
+        }
+
+
+        if (
+          !profile
+        ) {
+
+          /*
+            Fail closed.
+
+            Never assume participant role if the
+            profile is missing.
+          */
+
+          throw new Error(
+            "Your account role could not be verified. Please contact the administrator."
+          );
+
+        }
+
+
+        const role =
+          String(
+            profile.role ||
+            ""
+          )
+            .trim()
+            .toLowerCase();
+
+
+        if (
+          role ===
+          "participant"
+        ) {
+
+          redirectTo(
+            CONFIG.PARTICIPANT_PAGE
           );
 
           return;
 
         }
 
-      }
 
+        if (
+          role ===
+          "admin"
+        ) {
 
-      const groupSize =
-        singleFemale
-          ? 1
-          : appState.members.length + 1;
-
-
-      const amount =
-        calculateAmount();
-
-
-      appState.registration = {
-
-        ...appState.registration,
-
-        submitted: true,
-
-        name,
-
-        phone,
-
-        email,
-
-        entryType:
-          singleFemale
-            ? "single_female"
-            : "group",
-
-        groupSize,
-
-        amount,
-
-        members:
-          singleFemale
-            ? []
-            : appState.members
-                .map(
-                  member =>
-                    member.name.trim()
-                )
-
-      };
-
-
-      /*
-        IMPORTANT:
-
-        Database record creation will be handled by the
-        secure Edge Function in the next backend stage.
-
-        Frontend NEVER decides final authority.
-      */
-
-
-      updateDashboardUI();
-
-      updateRegistrationDetails();
-
-      updatePaymentAmount(
-        amount
-      );
-
-      generatePaymentQR(
-        amount
-      );
-
-
-      showToast(
-        "Registration details prepared.",
-        "success"
-      );
-
-
-      openPanel("payment");
-
-    }
-
-
-    /* =========================================================
-       PAYMENT PROOF
-    ========================================================= */
-
-    async function handlePaymentSubmission(event) {
-
-      event.preventDefault();
-
-
-      if (
-        !appState.currentUser
-      ) {
-
-        showToast(
-          "Please login first.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        !appState.registration.submitted
-      ) {
-
-        showToast(
-          "Please complete your registration first.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      const file =
-        $("#paymentProof")
-          .files[0];
-
-      const utr =
-        $("#utrNumber")
-          .value
-          .trim();
-
-
-      if (!file) {
-
-        showToast(
-          "Please attach your payment proof.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        file.size >
-        CONFIG.MAX_FILE_SIZE
-      ) {
-
-        showToast(
-          "Payment proof must not exceed 1 MB.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        !CONFIG.ALLOWED_MIME_TYPES
-          .includes(file.type)
-      ) {
-
-        showToast(
-          "Only JPG, JPEG, PNG and PDF files are allowed.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        utr.length < 6
-      ) {
-
-        showToast(
-          "Please enter a valid UTR / transaction reference.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      /*
-        SECURITY DESIGN:
-
-        We do NOT directly insert payment records from
-        the browser because application tables are protected.
-
-        The final version will send this payload to a secure
-        Edge Function which:
-
-        1. Validates authenticated user
-        2. Validates registration ownership
-        3. Recalculates amount
-        4. Uploads/validates proof
-        5. Validates UTR uniqueness
-        6. Creates payment record
-        7. Sets status = pending
-
-        Until that Edge Function exists, we deliberately do NOT
-        pretend that a payment was stored successfully.
-      */
-
-
-      showToast(
-        "Payment submission backend will be connected next. Your file was validated locally.",
-        "info"
-      );
-
-
-      /*
-        Keep the user on payment page until secure backend
-        endpoint is deployed.
-      */
-
-    }
-
-
-    /* =========================================================
-       PAYMENT QR
-    ========================================================= */
-
-    function generatePaymentQR(
-      amount
-    ) {
-
-      const container =
-        $("#paymentQR");
-
-      if (!container) return;
-
-
-      container.innerHTML = "";
-
-
-      const upiUri =
-        [
-          "upi://pay",
-          "?pa=" +
-            encodeURIComponent(
-              CONFIG.SCHOOL_UPI_ID
-            ),
-          "&pn=" +
-            encodeURIComponent(
-              CONFIG.SCHOOL_PAYEE_NAME
-            ),
-          "&am=" +
-            encodeURIComponent(
-              amount.toFixed(2)
-            ),
-          "&cu=INR"
-        ].join("");
-
-
-      if (
-        window.QRCode
-      ) {
-
-        new window.QRCode(
-          container,
-          {
-
-            text: upiUri,
-
-            width: 200,
-
-            height: 200,
-
-            correctLevel:
-              window.QRCode
-                .CorrectLevel
-                .H
-
-          }
-        );
-
-      } else {
-
-        container.innerHTML =
-          `
-            <div
-              style="
-                color:#333;
-                text-align:center;
-                font-size:10px;
-                line-height:1.5;
-              "
-            >
-              QR library loading...
-            </div>
-          `;
-
-      }
-
-
-      $("#upiChip")
-        .textContent =
-        "UPI ID: " +
-        CONFIG.SCHOOL_UPI_ID;
-
-
-      updatePaymentAmount(
-        amount
-      );
-
-    }
-
-
-    function updatePaymentAmount(
-      amount
-    ) {
-
-      if (
-        typeof amount !== "number"
-      ) {
-
-        amount =
-          calculateAmount();
-
-      }
-
-
-      if (
-        $("#paymentAmount")
-      ) {
-
-        $("#paymentAmount")
-          .textContent =
-          "₹" + amount;
-
-      }
-
-    }
-
-
-    /* =========================================================
-       USER REGISTRATION DATA
-       =========================================================
-       This function intentionally does not make an unsafe
-       direct DB query.
-
-       The final backend Edge Function will return only the
-       authenticated user's own registration.
-    ========================================================= */
-
-    async function refreshUserRegistration() {
-
-      /*
-        No insecure direct table access.
-
-        We will connect the secure Edge Function in the
-        backend stage.
-      */
-
-      updateRegistrationDetails();
-
-      updateDashboardUI();
-
-    }
-
-
-    /* =========================================================
-       UI
-    ========================================================= */
-
-    function syncAccountUI() {
-
-      if (
-        !appState.currentUser
-      ) {
-
-        return;
-
-      }
-
-
-      const email =
-        appState.currentUser.email ||
-        "";
-
-
-      $("#accountEmail")
-        .textContent =
-        email;
-
-
-      $("#participantEmail")
-        .value =
-        email;
-
-
-      $("#avatar")
-        .textContent =
-        email
-          .charAt(0)
-          .toUpperCase() ||
-        "U";
-
-    }
-
-
-    function updateDashboardUI() {
-
-      const data =
-        appState.registration;
-
-
-      $("#overviewRegistration")
-        .textContent =
-        data.submitted
-          ? "Prepared"
-          : "Not Started";
-
-
-      updateBadge(
-        $("#overviewRegistrationBadge"),
-        data.submitted
-          ? "● Prepared"
-          : "● Not Started",
-        data.submitted
-          ? "success"
-          : "muted"
-      );
-
-
-      $("#overviewPayment")
-        .textContent =
-        data.paymentSubmitted
-          ? (
-              data.paymentStatus ===
-              "verified"
-                ? "Verified"
-                : "Under Review"
-            )
-          : "Pending";
-
-
-      updateBadge(
-        $("#overviewPaymentBadge"),
-        data.paymentStatus ===
-        "verified"
-          ? "● Verified"
-          : data.paymentSubmitted
-            ? "● Under Review"
-            : "● Awaiting",
-        data.paymentStatus ===
-        "verified"
-          ? "success"
-          : data.paymentSubmitted
-            ? "warning"
-            : "muted"
-      );
-
-
-      $("#overviewQR")
-        .textContent =
-        data.checkedIn
-          ? "Used"
-          : data.permissionGranted
-            ? "Active"
-            : "Inactive";
-
-
-      updateBadge(
-        $("#overviewQRBadge"),
-        data.checkedIn
-          ? "● Used"
-          : data.permissionGranted
-            ? "● Active"
-            : "● Not Active",
-        data.checkedIn
-          ? "danger"
-          : data.permissionGranted
-            ? "success"
-            : "muted"
-      );
-
-
-      updateRegistrationDetails();
-
-    }
-
-
-    function updateRegistrationDetails() {
-
-      const data =
-        appState.registration;
-
-
-      $("#detailName")
-        .textContent =
-        data.name || "—";
-
-
-      $("#detailPhone")
-        .textContent =
-        data.phone || "—";
-
-
-      $("#detailEmail")
-        .textContent =
-        data.email || "—";
-
-
-      $("#detailEntry")
-        .textContent =
-        data.entryType ===
-          "single_female"
-          ? "Single Female"
-          : data.entryType ===
-              "group"
-            ? data.groupSize === 2
-              ? "Couple"
-              : "Group"
-            : "—";
-
-
-      $("#detailGroupSize")
-        .textContent =
-        data.groupSize ||
-        "—";
-
-
-      $("#detailAmount")
-        .textContent =
-        data.amount
-          ? "₹" + data.amount
-          : "—";
-
-
-      $("#detailRegistrationId")
-        .textContent =
-        data.registrationId ||
-        "Will be generated by backend";
-
-    }
-
-
-    function updateBadge(
-      element,
-      text,
-      type
-    ) {
-
-      if (!element) return;
-
-      element.textContent = text;
-
-      element.className =
-        "badge badge-" + type;
-
-    }
-
-
-    function openPanel(
-      panelName,
-      scroll = true
-    ) {
-
-      if (
-        !appState.currentUser
-      ) {
-
-        openAuth("login");
-
-        return;
-
-      }
-
-
-      $$(".panel")
-        .forEach(panel => {
-
-          panel.classList.toggle(
-            "active",
-            panel.id ===
-              "panel-" +
-              panelName
+          redirectTo(
+            CONFIG.ADMIN_PAGE
           );
 
-        });
+          return;
+
+        }
 
 
-      $$(".nav-btn[data-panel]")
-        .forEach(button => {
+        if (
+          role ===
+          "gate"
+        ) {
 
-          button.classList.toggle(
-            "active",
-            button.dataset.panel ===
-              panelName
+          redirectTo(
+            CONFIG.GATE_PAGE
           );
 
-        });
+          return;
+
+        }
 
 
-      if (
-        panelName ===
-        "payment"
-      ) {
+        /*
+          Unknown role = reject.
+        */
 
-        const amount =
-          appState.registration
-            .amount ||
-          calculateAmount();
+        await state.supabase
+          .auth
+          .signOut();
 
-        generatePaymentQR(
-          amount
+
+        state.currentUser =
+          null;
+
+
+        throw new Error(
+          "Your account has an invalid or unauthorized role."
         );
 
-      }
+      } catch (error) {
+
+        state.redirectInProgress =
+          false;
 
 
-      if (scroll) {
+        stopLoader();
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+
+        console.error(
+          "ROLE ROUTING ERROR:",
+          error
+        );
+
+
+        showToast(
+          getFriendlyError(
+            error
+          ),
+          "error"
+        );
+
+
+        openLanding();
 
       }
 
@@ -5827,28 +4139,71 @@
 
 
     /* =========================================================
-       DETAILS HELPERS
+       REDIRECT
     ========================================================= */
 
-    function sanitizePhone(event) {
-
-      event.target.value =
-        event.target.value
-          .replace(/\D/g, "")
-          .slice(0, 10);
-
-    }
-
-
-    function isValidEmail(
-      email
+    function redirectTo(
+      path
     ) {
 
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
+      /*
+        Replace instead of push.
+
+        This prevents keeping the authentication
+        router page in browser history.
+      */
+
+      window.location.replace(
+        path
+      );
 
     }
 
+
+    /* =========================================================
+       LOGOUT
+    ========================================================= */
+
+    async function logout() {
+
+      try {
+
+        showLoader(
+          "Signing out securely..."
+        );
+
+
+        if (
+          state.supabase
+        ) {
+
+          await state.supabase
+            .auth
+            .signOut();
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "LOGOUT ERROR:",
+          error
+        );
+
+      } finally {
+
+        window.location.replace(
+          "/index.html"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       PASSWORD
+    ========================================================= */
 
     function togglePassword(
       id,
@@ -5856,13 +4211,23 @@
     ) {
 
       const input =
-        document.getElementById(id);
+        document.getElementById(
+          id
+        );
 
-      if (!input) return;
+
+      if (
+        !input
+      ) {
+
+        return;
+
+      }
 
 
       const hidden =
-        input.type === "password";
+        input.type ===
+        "password";
 
 
       input.type =
@@ -5879,46 +4244,233 @@
     }
 
 
-    function getFriendlyAuthError(
+    /* =========================================================
+       VALIDATION
+    ========================================================= */
+
+    function normalizeEmail(
+      value
+    ) {
+
+      return String(
+        value ||
+        ""
+      )
+        .trim()
+        .toLowerCase()
+        .slice(
+          0,
+          CONFIG.MAX_EMAIL_LENGTH
+        );
+
+    }
+
+
+    function isValidEmail(
+      email
+    ) {
+
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(
+          email
+        );
+
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    function setButtonLoading(
+      button,
+      text
+    ) {
+
+      if (
+        !button
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !button.dataset.originalText
+      ) {
+
+        button.dataset.originalText =
+          button.textContent;
+
+      }
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        text;
+
+    }
+
+
+    function resetButton(
+      button,
+      fallback
+    ) {
+
+      if (
+        !button
+      ) {
+
+        return;
+
+      }
+
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        button.dataset.originalText ||
+        fallback;
+
+
+      delete button.dataset
+        .originalText;
+
+    }
+
+
+    /* =========================================================
+       MESSAGES
+    ========================================================= */
+
+    function showMessage(
+      selector,
+      message,
+      type
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        !element
+      ) {
+
+        return;
+
+      }
+
+
+      element.textContent =
+        message;
+
+
+      element.className =
+        "auth-message show " +
+        type;
+
+    }
+
+
+    function hideMessage(
+      selector
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        !element
+      ) {
+
+        return;
+
+      }
+
+
+      element.textContent =
+        "";
+
+      element.className =
+        "auth-message";
+
+    }
+
+
+    /* =========================================================
+       ERRORS
+    ========================================================= */
+
+    function getFriendlyError(
       error
     ) {
 
+      const code =
+        String(
+          error?.code ||
+          ""
+        )
+          .toLowerCase();
+
+
       const message =
-        (
+        String(
           error?.message ||
           ""
-        ).toLowerCase();
-
-
-      if (
-        message.includes(
-          "already registered"
         )
-      ) {
-
-        return "This email is already registered. Please login.";
-
-      }
+          .toLowerCase();
 
 
       if (
-        message.includes(
-          "invalid login credentials"
-        )
-      ) {
-
-        return "Incorrect email or password.";
-
-      }
-
-
-      if (
+        code ===
+          "email_not_confirmed" ||
         message.includes(
           "email not confirmed"
         )
       ) {
 
-        return "Please confirm your email before logging in.";
+        return (
+          "Please confirm your email before logging in."
+        );
+
+      }
+
+
+      if (
+        code ===
+          "invalid_credentials" ||
+        message.includes(
+          "invalid login credentials"
+        )
+      ) {
+
+        return (
+          "Incorrect email or password."
+        );
+
+      }
+
+
+      if (
+        code ===
+          "user_already_exists" ||
+        message.includes(
+          "already registered"
+        ) ||
+        message.includes(
+          "already exists"
+        )
+      ) {
+
+        return (
+          "This email is already registered. Please login."
+        );
 
       }
 
@@ -5929,7 +4481,9 @@
         )
       ) {
 
-        return "Security verification failed. Please try again.";
+        return (
+          "Security verification failed. Please try again."
+        );
 
       }
 
@@ -5940,54 +4494,77 @@
         )
       ) {
 
-        return "Too many requests. Please try again later.";
+        return (
+          "Too many attempts. Please try again later."
+        );
+
+      }
+
+
+      if (
+        message.includes(
+          "failed to fetch"
+        ) ||
+        message.includes(
+          "network"
+        ) ||
+        message.includes(
+          "name_not_resolved"
+        )
+      ) {
+
+        return (
+          "Unable to reach the authentication server. Please check your internet connection and try again."
+        );
 
       }
 
 
       return (
         error?.message ||
-        "Authentication failed. Please try again."
+        "Something went wrong. Please try again."
       );
 
     }
 
 
     /* =========================================================
-       BUTTON HELPERS
+       LOADER
     ========================================================= */
 
-    function setButtonLoading(
-      button,
+    function showLoader(
       text
     ) {
 
-      if (!button) return;
+      $("#loaderText")
+        .textContent =
+        text;
 
-      button.disabled = true;
 
-      button.dataset.originalText =
-        button.textContent;
+      $("#loader")
+        .hidden =
+        false;
 
-      button.textContent = text;
+
+      document.body.classList
+        .add(
+          "locked"
+        );
 
     }
 
 
-    function resetButton(
-      button,
-      fallbackText
-    ) {
+    function stopLoader() {
 
-      if (!button) return;
+      $("#loader")
+        .hidden =
+        true;
 
-      button.disabled = false;
 
-      button.textContent =
-        button.dataset.originalText ||
-        fallbackText;
-
-      delete button.dataset.originalText;
+      document.body.classList
+        .remove(
+          "locked"
+        );
 
     }
 
@@ -5998,13 +4575,12 @@
 
     function showToast(
       message,
-      type = "success"
+      type =
+        "success"
     ) {
 
       const container =
         $("#toastContainer");
-
-      if (!container) return;
 
 
       const toast =
@@ -6014,7 +4590,8 @@
 
 
       toast.className =
-        "toast " + type;
+        "toast " +
+        type;
 
 
       toast.textContent =
@@ -6032,79 +4609,47 @@
           toast.remove();
 
         },
-        3600
+        3500
       );
 
     }
 
 
     /* =========================================================
-       RESET
+       UTILITY
     ========================================================= */
 
-    function resetApplicationState() {
+    function delay(
+      milliseconds
+    ) {
 
-      appState.members = [
-        {
-          name: ""
-        }
-      ];
-
-
-      appState.registration = {
-
-        submitted: false,
-
-        paymentSubmitted: false,
-
-        paymentStatus:
-          "not_submitted",
-
-        permissionGranted:
-          false,
-
-        checkedIn:
-          false,
-
-        name:
-          "",
-
-        phone:
-          "",
-
-        email:
-          "",
-
-        entryType:
-          "",
-
-        groupSize:
-          2,
-
-        amount:
-          300,
-
-        registrationId:
-          ""
-
-      };
-
-
-      $("#singleFemale")
-        .checked = false;
-
-
-      $("#membersSection")
-        .hidden = false;
-
-
-      renderMembers();
-
-      updatePricing();
+      return new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            milliseconds
+          )
+      );
 
     }
 
+
+    /* =========================================================
+       SAFETY CLEANUP
+    ========================================================= */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        state.redirectInProgress =
+          false;
+
+      }
+    );
+
   </script>
+
 
 </body>
 </html>
