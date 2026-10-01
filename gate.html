@@ -1,1 +1,6168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#080508"
+  >
+
+  <meta
+    name="description"
+    content="Vanasthali Public School Raas Rang Garba Night gate verification portal."
+  >
+
+  <title>
+    Gate Portal | Raas Rang Garba Night
+  </title>
+
+
+  <!-- ======================================================
+       FAVICON
+  ======================================================= -->
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
+  >
+
+
+  <!-- ======================================================
+       FONTS
+  ======================================================= -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- ======================================================
+       SUPABASE
+  ======================================================= -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    defer
+  ></script>
+
+
+  <!-- ======================================================
+       QR SCANNER
+  ======================================================= -->
+
+  <script
+    src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+    defer
+  ></script>
+
+
+  <style>
+
+    :root {
+
+      --bg:
+        #080508;
+
+      --bg2:
+        #110811;
+
+      --surface:
+        rgba(255,255,255,.035);
+
+      --surface2:
+        rgba(255,255,255,.05);
+
+      --text:
+        #ffffff;
+
+      --muted:
+        #aaa3ad;
+
+      --muted2:
+        #716b76;
+
+      --orange:
+        #ff861f;
+
+      --gold:
+        #ffd36a;
+
+      --pink:
+        #f24970;
+
+      --green:
+        #43d99e;
+
+      --red:
+        #ff5c76;
+
+      --yellow:
+        #ffcc5b;
+
+      --blue:
+        #72a9ff;
+
+      --border:
+        rgba(255,255,255,.085);
+
+      --border2:
+        rgba(255,255,255,.14);
+
+      --shadow:
+        0 30px 90px rgba(0,0,0,.5);
+
+      --container:
+        1200px;
+
+    }
+
+
+    * {
+      box-sizing:
+        border-box;
+    }
+
+
+    html {
+      overflow-x:
+        hidden;
+    }
+
+
+    body {
+
+      margin:
+        0;
+
+      min-height:
+        100vh;
+
+      overflow-x:
+        hidden;
+
+      color:
+        var(--text);
+
+      font-family:
+        "DM Sans",
+        sans-serif;
+
+      background:
+
+        radial-gradient(
+          circle at 7% 8%,
+          rgba(255,134,31,.10),
+          transparent 27%
+        ),
+
+        radial-gradient(
+          circle at 94% 10%,
+          rgba(242,73,112,.09),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          180deg,
+          var(--bg2),
+          var(--bg)
+        );
+
+    }
+
+
+    body.locked {
+      overflow:
+        hidden;
+    }
+
+
+    [hidden] {
+      display:
+        none !important;
+    }
+
+
+    button,
+    input {
+      font:
+        inherit;
+    }
+
+
+    button {
+      cursor:
+        pointer;
+    }
+
+
+    button:disabled {
+      cursor:
+        not-allowed;
+
+      opacity:
+        .45;
+    }
+
+
+    .container {
+
+      width:
+        min(
+          var(--container),
+          calc(100% - 30px)
+        );
+
+      margin:
+        0 auto;
+
+    }
+
+
+    /* ======================================================
+       BUTTONS
+    ======================================================= */
+
+    .btn {
+
+      min-height:
+        45px;
+
+      padding:
+        0 16px;
+
+      border:
+        0;
+
+      border-radius:
+        12px;
+
+      font-size:
+        10px;
+
+      font-weight:
+        800;
+
+      transition:
+        transform .18s ease,
+        opacity .18s ease,
+        box-shadow .18s ease;
+
+    }
+
+
+    .btn:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .btn:active {
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .btn-primary {
+
+      color:
+        #17100a;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold),
+          var(--orange)
+        );
+
+      box-shadow:
+        0 14px 35px
+        rgba(255,134,31,.18);
+
+    }
+
+
+    .btn-secondary {
+
+      color:
+        #fff;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,.045);
+
+    }
+
+
+    .btn-success {
+
+      color:
+        #07150e;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 14px 35px
+        rgba(67,217,158,.13);
+
+    }
+
+
+    .btn-danger {
+
+      color:
+        #fff;
+
+      border:
+        1px solid
+        rgba(255,92,118,.14);
+
+      background:
+        rgba(255,92,118,.07);
+
+    }
+
+
+    /* ======================================================
+       HEADER
+    ======================================================= */
+
+    .topbar {
+
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        100;
+
+      height:
+        70px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.055);
+
+      background:
+        rgba(7,4,8,.84);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+    }
+
+
+    .topbar-inner {
+
+      height:
+        100%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .brand {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      min-width:
+        0;
+
+    }
+
+
+    .brand-logo {
+
+      width:
+        40px;
+
+      height:
+        40px;
+
+      flex:
+        0 0 auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        12px;
+
+      color:
+        #fff;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--pink)
+        );
+
+      font-size:
+        18px;
+
+    }
+
+
+    .brand-copy {
+
+      min-width:
+        0;
+
+    }
+
+
+    .brand-copy strong {
+
+      display:
+        block;
+
+      font-size:
+        11px;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+
+    }
+
+
+    .brand-copy span {
+
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+    }
+
+
+    .header-right {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      flex:
+        0 0 auto;
+
+    }
+
+
+    .gate-badge {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        6px 10px 6px 6px;
+
+      border:
+        1px solid
+        rgba(67,217,158,.12);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(67,217,158,.045);
+
+    }
+
+
+    .gate-dot {
+
+      width:
+        25px;
+
+      height:
+        25px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        50%;
+
+      color:
+        #07150e;
+
+      background:
+        var(--green);
+
+      font-size:
+        8px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .gate-badge strong {
+
+      display:
+        block;
+
+      font-size:
+        8px;
+
+    }
+
+
+    .gate-badge span {
+
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+    }
+
+
+    /* ======================================================
+       PAGE
+    ======================================================= */
+
+    .page {
+
+      padding:
+        24px 0 45px;
+
+    }
+
+
+    .page-head {
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      margin-bottom:
+        17px;
+
+    }
+
+
+    .eyebrow {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        7px 10px;
+
+      border:
+        1px solid
+        rgba(255,134,31,.16);
+
+      border-radius:
+        999px;
+
+      color:
+        #ffcd98;
+
+      background:
+        rgba(255,134,31,.055);
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .6px;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .eyebrow-dot {
+
+      width:
+        6px;
+
+      height:
+        6px;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 13px
+        rgba(67,217,158,.72);
+
+    }
+
+
+    .page-head h1 {
+
+      margin:
+        13px 0 0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        35px;
+
+      line-height:
+        1;
+
+    }
+
+
+    .page-head p {
+
+      margin:
+        7px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    /* ======================================================
+       STATS
+    ======================================================= */
+
+    .stats {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+      gap:
+        8px;
+
+      margin-bottom:
+        13px;
+
+    }
+
+
+    .stat {
+
+      padding:
+        13px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        14px;
+
+      background:
+        rgba(255,255,255,.03);
+
+    }
+
+
+    .stat small {
+
+      display:
+        block;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .7px;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .stat strong {
+
+      display:
+        block;
+
+      margin-top:
+        6px;
+
+      font-size:
+        18px;
+
+    }
+
+
+    .stat span {
+
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+    }
+
+
+    /* ======================================================
+       MAIN GRID
+    ======================================================= */
+
+    .main-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0,1fr)
+        320px;
+
+      gap:
+        13px;
+
+      align-items:
+        start;
+
+    }
+
+
+    /* ======================================================
+       SCANNER
+    ======================================================= */
+
+    .scanner-card {
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        20px;
+
+      background:
+        rgba(255,255,255,.03);
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .scanner-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+      padding:
+        15px 16px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    }
+
+
+    .scanner-header strong {
+
+      display:
+        block;
+
+      font-size:
+        12px;
+
+    }
+
+
+    .scanner-header span {
+
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+    }
+
+
+    .camera-state {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        5px;
+
+      padding:
+        6px 8px;
+
+      border-radius:
+        999px;
+
+      color:
+        var(--muted);
+
+      background:
+        rgba(255,255,255,.04);
+
+      font-size:
+        6px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .camera-state .mini-dot {
+
+      width:
+        5px;
+
+      height:
+        5px;
+
+      border-radius:
+        50%;
+
+      background:
+        #807987;
+
+    }
+
+
+    .camera-state.live {
+
+      color:
+        #8ef0c7;
+
+      background:
+        rgba(67,217,158,.055);
+
+    }
+
+
+    .camera-state.live .mini-dot {
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 10px
+        rgba(67,217,158,.8);
+
+    }
+
+
+    .scanner-area {
+
+      position:
+        relative;
+
+      min-height:
+        470px;
+
+      padding:
+        15px;
+
+      background:
+        #070407;
+
+    }
+
+
+    #reader {
+
+      width:
+        100%;
+
+      max-width:
+        580px;
+
+      margin:
+        0 auto;
+
+      overflow:
+        hidden;
+
+      border-radius:
+        15px;
+
+      background:
+        #000;
+
+    }
+
+
+    #reader video {
+
+      width:
+        100% !important;
+
+      height:
+        auto !important;
+
+      display:
+        block;
+
+      border-radius:
+        15px;
+
+    }
+
+
+    #reader img[alt="Info icon"] {
+      display:
+        none !important;
+    }
+
+
+    .scan-frame {
+
+      position:
+        absolute;
+
+      top:
+        50%;
+
+      left:
+        50%;
+
+      width:
+        min(
+          250px,
+          62vw
+        );
+
+      aspect-ratio:
+        1;
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
+
+      pointer-events:
+        none;
+
+      border:
+        2px solid
+        rgba(255,211,106,.9);
+
+      border-radius:
+        20px;
+
+      box-shadow:
+        0 0 0 9999px
+        rgba(0,0,0,.05);
+
+    }
+
+
+    .scan-frame::before,
+    .scan-frame::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        36px;
+
+      height:
+        36px;
+
+    }
+
+
+    .scan-frame::before {
+
+      top:
+        -2px;
+
+      left:
+        -2px;
+
+      border-top:
+        4px solid
+        var(--orange);
+
+      border-left:
+        4px solid
+        var(--orange);
+
+      border-radius:
+        17px 0 0 0;
+
+    }
+
+
+    .scan-frame::after {
+
+      right:
+        -2px;
+
+      bottom:
+        -2px;
+
+      border-right:
+        4px solid
+        var(--pink);
+
+      border-bottom:
+        4px solid
+        var(--pink);
+
+      border-radius:
+        0 0 17px 0;
+
+    }
+
+
+    .scanner-hint {
+
+      position:
+        absolute;
+
+      left:
+        15px;
+
+      right:
+        15px;
+
+      bottom:
+        15px;
+
+      padding:
+        10px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius:
+        10px;
+
+      color:
+        #aaa2ad;
+
+      background:
+        rgba(8,5,8,.76);
+
+      backdrop-filter:
+        blur(12px);
+
+      font-size:
+        7px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .scanner-actions {
+
+      display:
+        flex;
+
+      gap:
+        7px;
+
+      flex-wrap:
+        wrap;
+
+      padding:
+        12px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    }
+
+
+    .scanner-actions .btn {
+
+      flex:
+        1 1 150px;
+
+    }
+
+
+    /* ======================================================
+       SIDE CARD
+    ======================================================= */
+
+    .side-card {
+
+      margin-bottom:
+        13px;
+
+      padding:
+        16px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        rgba(255,255,255,.03);
+
+    }
+
+
+    .side-title {
+
+      font-size:
+        11px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .side-sub {
+
+      margin-top:
+        4px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      line-height:
+        1.55;
+
+    }
+
+
+    .manual-form {
+
+      margin-top:
+        13px;
+
+    }
+
+
+    .manual-input {
+
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      padding:
+        0 11px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.085);
+
+      border-radius:
+        10px;
+
+      outline:
+        none;
+
+      color:
+        #fff;
+
+      background:
+        rgba(255,255,255,.035);
+
+      font-size:
+        8px;
+
+    }
+
+
+    .manual-input::placeholder {
+
+      color:
+        #625c66;
+
+    }
+
+
+    .manual-input:focus {
+
+      border-color:
+        rgba(255,159,67,.58);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(255,134,31,.045);
+
+    }
+
+
+    .manual-form .btn {
+
+      width:
+        100%;
+
+      margin-top:
+        7px;
+
+    }
+
+
+    /* ======================================================
+       LIVE RESULT
+    ======================================================= */
+
+    .result-card {
+
+      display:
+        none;
+
+      overflow:
+        hidden;
+
+      margin-bottom:
+        13px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        rgba(255,255,255,.03);
+
+    }
+
+
+    .result-card.show {
+      display:
+        block;
+    }
+
+
+    .result-top {
+
+      padding:
+        18px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .result-icon {
+
+      width:
+        53px;
+
+      height:
+        53px;
+
+      margin:
+        0 auto 11px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        16px;
+
+      font-size:
+        23px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .result-card.valid .result-icon {
+
+      color:
+        #07150e;
+
+      background:
+        var(--green);
+
+    }
+
+
+    .result-card.invalid .result-icon,
+    .result-card.denied .result-icon {
+
+      color:
+        white;
+
+      background:
+        var(--red);
+
+    }
+
+
+    .result-card.used .result-icon {
+
+      color:
+        white;
+
+      background:
+        #9e596b;
+
+    }
+
+
+    .result-card h2 {
+
+      margin:
+        0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        25px;
+
+    }
+
+
+    .result-card p {
+
+      margin:
+        5px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    .result-details {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:
+        6px;
+
+      padding:
+        0 13px 13px;
+
+    }
+
+
+    .result-detail {
+
+      padding:
+        10px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.06);
+
+      border-radius:
+        10px;
+
+      background:
+        rgba(255,255,255,.025);
+
+    }
+
+
+    .result-detail small {
+
+      display:
+        block;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .6px;
+
+    }
+
+
+    .result-detail strong {
+
+      display:
+        block;
+
+      margin-top:
+        5px;
+
+      overflow-wrap:
+        anywhere;
+
+      font-size:
+        8px;
+
+    }
+
+
+    .result-actions {
+
+      display:
+        flex;
+
+      gap:
+        7px;
+
+      padding:
+        0 13px 13px;
+
+    }
+
+
+    .result-actions .btn {
+
+      flex:
+        1;
+
+    }
+
+
+    /* ======================================================
+       RECENT
+    ======================================================= */
+
+    .recent-list {
+
+      display:
+        grid;
+
+      gap:
+        6px;
+
+      margin-top:
+        11px;
+
+    }
+
+
+    .recent-row {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        31px
+        minmax(0,1fr)
+        auto;
+
+      gap:
+        8px;
+
+      align-items:
+        center;
+
+      padding:
+        8px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+
+      border-radius:
+        10px;
+
+      background:
+        rgba(255,255,255,.022);
+
+    }
+
+
+    .recent-icon {
+
+      width:
+        31px;
+
+      height:
+        31px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        9px;
+
+      font-size:
+        10px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .recent-icon.ok {
+
+      color:
+        #07150e;
+
+      background:
+        rgba(67,217,158,.88);
+
+    }
+
+
+    .recent-icon.no {
+
+      color:
+        #fff;
+
+      background:
+        rgba(255,92,118,.72);
+
+    }
+
+
+    .recent-copy {
+
+      min-width:
+        0;
+
+    }
+
+
+    .recent-copy strong {
+
+      display:
+        block;
+
+      overflow:
+        hidden;
+
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
+
+      font-size:
+        8px;
+
+    }
+
+
+    .recent-copy span {
+
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+    }
+
+
+    .recent-time {
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+    }
+
+
+    /* ======================================================
+       RULES
+    ======================================================= */
+
+    .rules {
+
+      display:
+        grid;
+
+      gap:
+        7px;
+
+      margin-top:
+        11px;
+
+    }
+
+
+    .rule {
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      gap:
+        8px;
+
+      padding:
+        9px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+
+      border-radius:
+        9px;
+
+      background:
+        rgba(255,255,255,.022);
+
+    }
+
+
+    .rule-icon {
+
+      width:
+        22px;
+
+      height:
+        22px;
+
+      flex:
+        0 0 auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        7px;
+
+      color:
+        #ffc882;
+
+      background:
+        rgba(255,134,31,.06);
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .rule-text strong {
+
+      display:
+        block;
+
+      font-size:
+        7px;
+
+    }
+
+
+    .rule-text span {
+
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        6px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    /* ======================================================
+       CONFIRM MODAL
+    ======================================================= */
+
+    .overlay {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        800;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        14px;
+
+      background:
+        rgba(0,0,0,.73);
+
+      backdrop-filter:
+        blur(7px);
+
+    }
+
+
+    .modal {
+
+      width:
+        min(
+          430px,
+          100%
+        );
+
+      padding:
+        20px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        18px;
+
+      background:
+        #100b11;
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .modal h3 {
+
+      margin:
+        0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        26px;
+
+    }
+
+
+    .modal p {
+
+      margin:
+        7px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    .modal-person {
+
+      margin-top:
+        13px;
+
+      padding:
+        11px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.06);
+
+      border-radius:
+        11px;
+
+      background:
+        rgba(255,255,255,.025);
+
+    }
+
+
+    .modal-person strong {
+
+      display:
+        block;
+
+      font-size:
+        11px;
+
+    }
+
+
+    .modal-person span {
+
+      display:
+        block;
+
+      margin-top:
+        4px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+    }
+
+
+    .modal-actions {
+
+      display:
+        flex;
+
+      gap:
+        7px;
+
+      margin-top:
+        15px;
+
+    }
+
+
+    .modal-actions .btn {
+
+      flex:
+        1;
+
+    }
+
+
+    /* ======================================================
+       TOAST
+    ======================================================= */
+
+    .toast-container {
+
+      position:
+        fixed;
+
+      right:
+        13px;
+
+      bottom:
+        13px;
+
+      z-index:
+        1500;
+
+      width:
+        min(
+          350px,
+          calc(100% - 26px)
+        );
+
+      display:
+        grid;
+
+      gap:
+        6px;
+
+      pointer-events:
+        none;
+
+    }
+
+
+    .toast {
+
+      padding:
+        11px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        11px;
+
+      color:
+        #fff;
+
+      background:
+        rgba(18,13,19,.97);
+
+      box-shadow:
+        var(--shadow);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .toast.success {
+
+      border-color:
+        rgba(67,217,158,.18);
+
+    }
+
+
+    .toast.error {
+
+      border-color:
+        rgba(255,92,118,.18);
+
+    }
+
+
+    .toast.warning {
+
+      border-color:
+        rgba(255,204,91,.18);
+
+    }
+
+
+    /* ======================================================
+       LOADER
+    ======================================================= */
+
+    .loader {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        2000;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        rgba(5,3,6,.87);
+
+      backdrop-filter:
+        blur(8px);
+
+    }
+
+
+    .loader-box {
+
+      text-align:
+        center;
+
+    }
+
+
+    .spinner {
+
+      width:
+        38px;
+
+      height:
+        38px;
+
+      margin:
+        0 auto 10px;
+
+      border:
+        3px solid
+        rgba(255,255,255,.10);
+
+      border-top-color:
+        var(--orange);
+
+      border-radius:
+        50%;
+
+      animation:
+        spin .7s linear infinite;
+
+    }
+
+
+    .loader-box span {
+
+      color:
+        #bbb;
+
+      font-size:
+        8px;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    /* ======================================================
+       RESPONSIVE
+    ======================================================= */
+
+    @media (max-width: 900px) {
+
+      .main-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .side-column {
+
+        display:
+          grid;
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+
+        gap:
+          10px;
+
+        align-items:
+          start;
+
+      }
+
+
+      .side-card {
+
+        margin-bottom:
+          0;
+
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .container {
+
+        width:
+          calc(100% - 20px);
+
+      }
+
+
+      .topbar {
+
+        height:
+          64px;
+
+      }
+
+
+      .brand-logo {
+
+        width:
+          36px;
+
+        height:
+          36px;
+
+      }
+
+
+      .brand-copy strong {
+
+        font-size:
+          9px;
+
+      }
+
+
+      .brand-copy span {
+
+        font-size:
+          6px;
+
+      }
+
+
+      .gate-badge {
+
+        padding:
+          5px 7px 5px 5px;
+
+      }
+
+
+      .gate-dot {
+
+        width:
+          23px;
+
+        height:
+          23px;
+
+      }
+
+
+      .page {
+
+        padding:
+          17px 0 30px;
+
+      }
+
+
+      .page-head {
+
+        align-items:
+          flex-start;
+
+      }
+
+
+      .page-head h1 {
+
+        font-size:
+          29px;
+
+      }
+
+
+      .stats {
+
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+
+      }
+
+
+      .side-column {
+
+        display:
+          block;
+
+      }
+
+
+      .side-card {
+
+        margin-bottom:
+          10px;
+
+      }
+
+
+      .scanner-area {
+
+        min-height:
+          410px;
+
+        padding:
+          10px;
+
+      }
+
+
+      .scan-frame {
+
+        width:
+          min(
+            225px,
+            66vw
+          );
+
+      }
+
+
+      .scanner-hint {
+
+        left:
+          10px;
+
+        right:
+          10px;
+
+        bottom:
+          10px;
+
+      }
+
+
+      .result-details {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .scanner-actions {
+
+        padding:
+          10px;
+
+      }
+
+    }
+
+
+    @media (max-width: 390px) {
+
+      .container {
+
+        width:
+          calc(100% - 16px);
+
+      }
+
+
+      .header-right .btn {
+
+        padding:
+          0 9px;
+
+      }
+
+
+      .gate-badge {
+
+        display:
+          none;
+
+      }
+
+
+      .page-head h1 {
+
+        font-size:
+          27px;
+
+      }
+
+
+      .scanner-area {
+
+        min-height:
+          380px;
+
+      }
+
+
+      .scan-frame {
+
+        width:
+          200px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ======================================================
+       LOADER
+  ======================================================= -->
+
+  <div
+    class="loader"
+    id="loader"
+  >
+
+    <div class="loader-box">
+
+      <div class="spinner"></div>
+
+      <span id="loaderText">
+        Verifying gate account...
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ======================================================
+       HEADER
+  ======================================================= -->
+
+  <header class="topbar">
+
+    <div class="container topbar-inner">
+
+
+      <div class="brand">
+
+        <div class="brand-logo">
+          ✦
+        </div>
+
+        <div class="brand-copy">
+
+          <strong>
+            Vanasthali Public School
+          </strong>
+
+          <span>
+            Raas Rang • Garba Night 2026
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="header-right">
+
+
+        <div class="gate-badge">
+
+          <div
+            class="gate-dot"
+            id="gateNumber"
+          >
+            —
+          </div>
+
+          <div>
+
+            <strong id="gateTitle">
+              Gate
+            </strong>
+
+            <span>
+              Authorized Gate
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn btn-secondary"
+          id="logoutBtn"
+          type="button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ======================================================
+       PAGE
+  ======================================================= -->
+
+  <main class="page">
+
+    <div class="container">
+
+
+      <!-- ==================================================
+           PAGE HEADER
+      =================================================== -->
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+
+            <span class="eyebrow-dot"></span>
+
+            Entry Verification
+
+          </div>
+
+
+          <h1>
+            Gate Control
+          </h1>
+
+
+          <p>
+            Scan the participant QR and verify entry securely.
+          </p>
+
+        </div>
+
+
+        <button
+          class="btn btn-primary"
+          id="refreshStatsBtn"
+          type="button"
+        >
+          ↻ Refresh
+        </button>
+
+      </div>
+
+
+      <!-- ==================================================
+           STATS
+      =================================================== -->
+
+      <section class="stats">
+
+
+        <div class="stat">
+
+          <small>
+            Total Check-ins
+          </small>
+
+          <strong id="statTotal">
+            —
+          </strong>
+
+          <span>
+            Event total
+          </span>
+
+        </div>
+
+
+        <div class="stat">
+
+          <small>
+            This Gate
+          </small>
+
+          <strong id="statGate">
+            —
+          </strong>
+
+          <span>
+            Current gate
+          </span>
+
+        </div>
+
+
+        <div class="stat">
+
+          <small>
+            Successful
+          </small>
+
+          <strong id="statSuccess">
+            —
+          </strong>
+
+          <span>
+            Accepted entries
+          </span>
+
+        </div>
+
+
+        <div class="stat">
+
+          <small>
+            Denied
+          </small>
+
+          <strong id="statDenied">
+            —
+          </strong>
+
+          <span>
+            Rejected scans
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           MAIN GRID
+      =================================================== -->
+
+      <div class="main-grid">
+
+
+        <!-- =================================================
+             SCANNER
+        ================================================== -->
+
+        <section class="scanner-card">
+
+
+          <div class="scanner-header">
+
+            <div>
+
+              <strong>
+                QR Scanner
+              </strong>
+
+              <span>
+                Keep the participant QR inside the frame.
+              </span>
+
+            </div>
+
+
+            <div
+              class="camera-state"
+              id="cameraState"
+            >
+
+              <span class="mini-dot"></span>
+
+              <span id="cameraStateText">
+                Camera Off
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="scanner-area">
+
+
+            <div id="reader"></div>
+
+
+            <div
+              class="scan-frame"
+              id="scanFrame"
+            ></div>
+
+
+            <div class="scanner-hint">
+
+              Position the QR code clearly inside the
+              highlighted frame.
+
+            </div>
+
+          </div>
+
+
+          <div class="scanner-actions">
+
+
+            <button
+              class="btn btn-primary"
+              id="startCameraBtn"
+              type="button"
+            >
+              Start Camera
+            </button>
+
+
+            <button
+              class="btn btn-secondary"
+              id="stopCameraBtn"
+              type="button"
+              disabled
+            >
+              Stop Camera
+            </button>
+
+          </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             SIDE
+        ================================================== -->
+
+        <aside class="side-column">
+
+
+          <!-- ===============================================
+               RESULT
+          ================================================ -->
+
+          <section
+            class="result-card"
+            id="resultCard"
+          >
+
+
+            <div class="result-top">
+
+
+              <div
+                class="result-icon"
+                id="resultIcon"
+              >
+                ✓
+              </div>
+
+
+              <h2 id="resultTitle">
+                Entry Valid
+              </h2>
+
+
+              <p id="resultMessage">
+                —
+              </p>
+
+            </div>
+
+
+            <div class="result-details">
+
+
+              <div class="result-detail">
+
+                <small>
+                  Participant
+                </small>
+
+                <strong id="resultName">
+                  —
+                </strong>
+
+              </div>
+
+
+              <div class="result-detail">
+
+                <small>
+                  Entry Type
+                </small>
+
+                <strong id="resultEntryType">
+                  —
+                </strong>
+
+              </div>
+
+
+              <div class="result-detail">
+
+                <small>
+                  Group Size
+                </small>
+
+                <strong id="resultGroupSize">
+                  —
+                </strong>
+
+              </div>
+
+
+              <div class="result-detail">
+
+                <small>
+                  Registration
+                </small>
+
+                <strong id="resultRegistration">
+                  —
+                </strong>
+
+              </div>
+
+
+              <div class="result-detail">
+
+                <small>
+                  Payment
+                </small>
+
+                <strong id="resultPayment">
+                  —
+                </strong>
+
+              </div>
+
+
+              <div class="result-detail">
+
+                <small>
+                  QR Status
+                </small>
+
+                <strong id="resultQRStatus">
+                  —
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="result-actions">
+
+
+              <button
+                class="btn btn-secondary"
+                id="dismissResultBtn"
+                type="button"
+              >
+                Close
+              </button>
+
+
+              <button
+                class="btn btn-success"
+                id="confirmEntryBtn"
+                type="button"
+              >
+                ✓ Check-In
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <!-- ===============================================
+               MANUAL FALLBACK
+          ================================================ -->
+
+          <section class="side-card">
+
+
+            <div class="side-title">
+              Manual QR Entry
+            </div>
+
+
+            <div class="side-sub">
+
+              Camera unavailable? Enter the secure QR
+              token manually.
+
+            </div>
+
+
+            <form
+              class="manual-form"
+              id="manualForm"
+              novalidate
+            >
+
+              <input
+                class="manual-input"
+                id="manualToken"
+                type="text"
+                maxlength="1000"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Paste QR token"
+              >
+
+
+              <button
+                class="btn btn-secondary"
+                type="submit"
+                id="manualVerifyBtn"
+              >
+                Verify QR
+              </button>
+
+            </form>
+
+          </section>
+
+
+          <!-- ===============================================
+               RECENT SCANS
+          ================================================ -->
+
+          <section class="side-card">
+
+
+            <div class="side-title">
+              Recent Activity
+            </div>
+
+
+            <div class="side-sub">
+              Latest scans handled on this device.
+            </div>
+
+
+            <div
+              class="recent-list"
+              id="recentList"
+            >
+
+              <div class="recent-row">
+
+                <div class="recent-icon no">
+                  —
+                </div>
+
+                <div class="recent-copy">
+
+                  <strong>
+                    No scans yet
+                  </strong>
+
+                  <span>
+                    Activity will appear here.
+                  </span>
+
+                </div>
+
+                <div class="recent-time">
+                  —
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ===============================================
+               RULES
+          ================================================ -->
+
+          <section class="side-card">
+
+
+            <div class="side-title">
+              Gate Rules
+            </div>
+
+
+            <div class="rules">
+
+
+              <div class="rule">
+
+                <div class="rule-icon">
+                  01
+                </div>
+
+                <div class="rule-text">
+
+                  <strong>
+                    One-time QR
+                  </strong>
+
+                  <span>
+                    A used QR cannot be reused.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="rule">
+
+                <div class="rule-icon">
+                  02
+                </div>
+
+                <div class="rule-text">
+
+                  <strong>
+                    Server verification
+                  </strong>
+
+                  <span>
+                    Never accept an entry from the QR appearance alone.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="rule">
+
+                <div class="rule-icon">
+                  03
+                </div>
+
+                <div class="rule-text">
+
+                  <strong>
+                    Check-in once
+                  </strong>
+
+                  <span>
+                    The final check-in is atomic on the server.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </section>
+
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ======================================================
+       CONFIRM MODAL
+  ======================================================= -->
+
+  <div
+    class="overlay"
+    id="confirmOverlay"
+    hidden
+  >
+
+    <div class="modal">
+
+
+      <h3>
+        Confirm Entry
+      </h3>
+
+
+      <p>
+
+        Confirm that this participant is physically present
+        at the gate before completing the one-time check-in.
+
+      </p>
+
+
+      <div class="modal-person">
+
+        <strong id="confirmName">
+          —
+        </strong>
+
+        <span id="confirmDetails">
+          —
+        </span>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+
+        <button
+          class="btn btn-secondary"
+          id="cancelEntryBtn"
+          type="button"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="btn btn-success"
+          id="executeEntryBtn"
+          type="button"
+        >
+          Confirm Check-In
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ======================================================
+       TOAST
+  ======================================================= -->
+
+  <div
+    class="toast-container"
+    id="toastContainer"
+    aria-live="polite"
+  ></div>
+
+
+  <script>
+
+    "use strict";
+
+
+    /* ======================================================
+       CONFIG
+    ======================================================= */
+
+    const CONFIG =
+      Object.freeze({
+
+        SUPABASE_URL:
+          "https://fhpudmstnldyqggrnqme.supabase.co",
+
+        SUPABASE_PUBLISHABLE_KEY:
+          "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw",
+
+        PROFILE_TABLE:
+          "profiles",
+
+        FUNCTIONS:
+          Object.freeze({
+
+            DASHBOARD:
+              "gate-dashboard",
+
+            CHECKIN:
+              "gate-checkin"
+
+          }),
+
+        MAX_TOKEN_LENGTH:
+          1000,
+
+        RECENT_LIMIT:
+          10,
+
+        SCAN_COOLDOWN:
+          1800,
+
+        STATS_REFRESH:
+          120000
+
+      });
+
+
+    /* ======================================================
+       STATE
+    ======================================================= */
+
+    const state = {
+
+      supabase:
+        null,
+
+      user:
+        null,
+
+      profile:
+        null,
+
+      gateNumber:
+        null,
+
+      scanner:
+        null,
+
+      cameraRunning:
+        false,
+
+      scanLocked:
+        false,
+
+      pendingToken:
+        null,
+
+      pendingParticipant:
+        null,
+
+      actionBusy:
+        false,
+
+      statsTimer:
+        null,
+
+      lastScannedToken:
+        null,
+
+      lastScannedAt:
+        0,
+
+      recent:
+        []
+
+    };
+
+
+    /* ======================================================
+       DOM
+    ======================================================= */
+
+    const $ =
+      selector =>
+        document.querySelector(
+          selector
+        );
+
+
+    /* ======================================================
+       BOOT
+    ======================================================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      bootstrap
+    );
+
+
+    async function bootstrap() {
+
+      bindEvents();
+
+      await waitForLibraries();
+
+    }
+
+
+    async function waitForLibraries() {
+
+      const started =
+        Date.now();
+
+
+      while (
+        (
+          !window.supabase ||
+          typeof
+            window.supabase.createClient !==
+              "function"
+        ) &&
+        Date.now() -
+          started <
+          15000
+      ) {
+
+        await delay(
+          100
+        );
+
+      }
+
+
+      if (
+        !window.supabase
+      ) {
+
+        fatal(
+          "Supabase library could not be loaded."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        state.supabase =
+          window.supabase.createClient(
+            CONFIG.SUPABASE_URL,
+            CONFIG.SUPABASE_PUBLISHABLE_KEY,
+            {
+
+              auth: {
+
+                autoRefreshToken:
+                  true,
+
+                persistSession:
+                  true,
+
+                detectSessionInUrl:
+                  true,
+
+                flowType:
+                  "pkce"
+
+              }
+
+            }
+          );
+
+
+        await verifyGateAccount();
+
+      } catch (error) {
+
+        console.error(
+          "BOOT ERROR:",
+          error
+        );
+
+
+        fatal(
+          friendlyError(
+            error
+          )
+        );
+
+      }
+
+    }
+
+
+    /* ======================================================
+       AUTHENTICATION + ROLE
+    ======================================================= */
+
+    async function verifyGateAccount() {
+
+      showLoader(
+        "Verifying gate account..."
+      );
+
+
+      const {
+        data,
+        error
+      } =
+        await state.supabase
+          .auth
+          .getUser();
+
+
+      if (
+        error ||
+        !data?.user
+      ) {
+
+        redirectToLogin();
+
+        return;
+
+      }
+
+
+      state.user =
+        data.user;
+
+
+      /*
+        Page-level role verification.
+
+        IMPORTANT:
+        gate-dashboard and gate-checkin MUST also
+        independently verify this role server-side.
+      */
+
+      const {
+        data:
+          profile,
+        error:
+          profileError
+      } =
+        await state.supabase
+          .from(
+            CONFIG.PROFILE_TABLE
+          )
+          .select(
+            "role, gate_number"
+          )
+          .eq(
+            "id",
+            state.user.id
+          )
+          .maybeSingle();
+
+
+      if (
+        profileError
+      ) {
+
+        throw profileError;
+
+      }
+
+
+      if (
+        !profile
+      ) {
+
+        throw new Error(
+          "Gate authorization could not be verified."
+        );
+
+      }
+
+
+      const role =
+        String(
+          profile.role ||
+          ""
+        )
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        role ===
+        "participant"
+      ) {
+
+        window.location.replace(
+          "/user.html"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        role ===
+        "admin"
+      ) {
+
+        window.location.replace(
+          "/admin.html"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        role !==
+        "gate"
+      ) {
+
+        await state.supabase
+          .auth
+          .signOut();
+
+
+        throw new Error(
+          "This account is not authorized for the gate portal."
+        );
+
+      }
+
+
+      const gateNumber =
+        Number(
+          profile.gate_number
+        );
+
+
+      if (
+        !Number.isInteger(
+          gateNumber
+        ) ||
+        ![
+          1,
+          2
+        ]
+          .includes(
+            gateNumber
+          )
+      ) {
+
+        throw new Error(
+          "Gate number is not configured correctly."
+        );
+
+      }
+
+
+      state.profile =
+        profile;
+
+
+      state.gateNumber =
+        gateNumber;
+
+
+      renderGateIdentity();
+
+
+      await loadDashboard();
+
+
+      stopLoader();
+
+
+      startStatsRefresh();
+
+    }
+
+
+    /* ======================================================
+       DASHBOARD
+    ======================================================= */
+
+    async function loadDashboard(
+      silent =
+        false
+    ) {
+
+      if (
+        !silent
+      ) {
+
+        showLoader(
+          "Loading gate statistics..."
+        );
+
+      }
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG
+              .FUNCTIONS
+              .DASHBOARD,
+            {}
+
+          );
+
+
+        if (
+          error
+        ) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        if (
+          !data
+        ) {
+
+          throw new Error(
+            "Gate dashboard returned no data."
+          );
+
+        }
+
+
+        /*
+          Expected response:
+
+          {
+            role: "gate",
+            gate_number: 1,
+            stats: {
+              total: ...,
+              gate: ...,
+              success: ...,
+              denied: ...
+            }
+          }
+        */
+
+
+        const serverGate =
+          Number(
+            data.gate_number ??
+            data.gateNumber ??
+            state.gateNumber
+          );
+
+
+        if (
+          serverGate !==
+          state.gateNumber
+        ) {
+
+          throw new Error(
+            "Gate authorization mismatch."
+          );
+
+        }
+
+
+        const stats =
+          data.stats ||
+          {};
+
+
+        setText(
+          "#statTotal",
+          formatNumber(
+            stats.total ??
+            0
+          )
+        );
+
+
+        setText(
+          "#statGate",
+          formatNumber(
+            stats.gate ??
+            stats.gate_total ??
+            0
+          )
+        );
+
+
+        setText(
+          "#statSuccess",
+          formatNumber(
+            stats.success ??
+            stats.accepted ??
+            0
+          )
+        );
+
+
+        setText(
+          "#statDenied",
+          formatNumber(
+            stats.denied ??
+            stats.rejected ??
+            0
+          )
+        );
+
+
+      } finally {
+
+        if (
+          !silent
+        ) {
+
+          stopLoader();
+
+        }
+
+      }
+
+    }
+
+
+    function startStatsRefresh() {
+
+      stopStatsRefresh();
+
+
+      state.statsTimer =
+        setInterval(
+          () => {
+
+            if (
+              document.visibilityState !==
+              "visible"
+            ) {
+
+              return;
+
+            }
+
+
+            loadDashboard(
+              true
+            )
+              .catch(
+                error =>
+                  console.warn(
+                    "STATS REFRESH:",
+                    error
+                  )
+              );
+
+          },
+          CONFIG.STATS_REFRESH
+        );
+
+    }
+
+
+    function stopStatsRefresh() {
+
+      if (
+        state.statsTimer
+      ) {
+
+        clearInterval(
+          state.statsTimer
+        );
+
+        state.statsTimer =
+          null;
+
+      }
+
+    }
+
+
+    /* ======================================================
+       GATE IDENTITY
+    ======================================================= */
+
+    function renderGateIdentity() {
+
+      setText(
+        "#gateNumber",
+        `G${state.gateNumber}`
+      );
+
+
+      setText(
+        "#gateTitle",
+        `Gate ${state.gateNumber}`
+      );
+
+    }
+
+
+    /* ======================================================
+       CAMERA
+    ======================================================= */
+
+    async function startCamera() {
+
+      if (
+        state.cameraRunning
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !window.Html5Qrcode
+      ) {
+
+        showToast(
+          "QR scanner library is still loading.",
+          "warning"
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        state.scanner =
+          new Html5Qrcode(
+            "reader"
+          );
+
+
+        await state.scanner.start(
+
+          {
+            facingMode:
+              "environment"
+          },
+
+          {
+            fps:
+              8,
+
+            qrbox:
+              (
+                width,
+                height
+              ) => {
+
+                const size =
+                  Math.floor(
+                    Math.min(
+                      width,
+                      height
+                    )
+                    *
+                    0.62
+                  );
+
+                return {
+
+                  width:
+                    Math.max(
+                      180,
+                      Math.min(
+                        size,
+                        300
+                      )
+                    ),
+
+                  height:
+                    Math.max(
+                      180,
+                      Math.min(
+                        size,
+                        300
+                      )
+                    )
+
+                };
+
+              },
+
+            aspectRatio:
+              1.0
+
+          },
+
+          decodedText => {
+
+            handleScannedToken(
+              decodedText
+            );
+
+          },
+
+          () => {
+
+            /*
+              Scanner emits frequent frame-level errors
+              when no QR is visible.
+
+              Deliberately ignore them to avoid console/UI noise.
+            */
+
+          }
+
+        );
+
+
+        state.cameraRunning =
+          true;
+
+
+        setCameraState(
+          true
+        );
+
+
+        $("#startCameraBtn")
+          .disabled =
+          true;
+
+
+        $("#stopCameraBtn")
+          .disabled =
+          false;
+
+
+        showToast(
+          "Camera scanner started.",
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "CAMERA START:",
+          error
+        );
+
+
+        state.cameraRunning =
+          false;
+
+
+        setCameraState(
+          false
+        );
+
+
+        showToast(
+          "Unable to start camera. Check camera permission or use manual QR entry.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    async function stopCamera() {
+
+      if (
+        !state.scanner
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        if (
+          state.cameraRunning
+        ) {
+
+          await state.scanner.stop();
+
+        }
+
+
+        try {
+
+          await state.scanner.clear();
+
+        } catch (_) {
+
+          /* ignore */
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "CAMERA STOP:",
+          error
+        );
+
+      } finally {
+
+        state.cameraRunning =
+          false;
+
+        state.scanner =
+          null;
+
+
+        setCameraState(
+          false
+        );
+
+
+        $("#startCameraBtn")
+          .disabled =
+          false;
+
+
+        $("#stopCameraBtn")
+          .disabled =
+          true;
+
+      }
+
+    }
+
+
+    function setCameraState(
+      live
+    ) {
+
+      const stateBox =
+        $("#cameraState");
+
+
+      const text =
+        $("#cameraStateText");
+
+
+      stateBox.classList.toggle(
+        "live",
+        live
+      );
+
+
+      text.textContent =
+        live
+          ? "Camera Live"
+          : "Camera Off";
+
+    }
+
+
+    /* ======================================================
+       SCAN PROCESS
+    ======================================================= */
+
+    function handleScannedToken(
+      rawToken
+    ) {
+
+      if (
+        state.scanLocked ||
+        state.actionBusy
+      ) {
+
+        return;
+
+      }
+
+
+      const token =
+        normalizeToken(
+          rawToken
+        );
+
+
+      if (
+        !token
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+        Same QR is often detected in many consecutive frames.
+
+        Short local cooldown prevents repeated modal opening.
+        This is UX protection only; backend remains authoritative.
+      */
+
+      const now =
+        Date.now();
+
+
+      if (
+        token ===
+          state.lastScannedToken &&
+        now -
+          state.lastScannedAt <
+          CONFIG.SCAN_COOLDOWN
+      ) {
+
+        return;
+
+      }
+
+
+      state.lastScannedToken =
+        token;
+
+      state.lastScannedAt =
+        now;
+
+
+      state.scanLocked =
+        true;
+
+
+      state.pendingToken =
+        token;
+
+
+      showLoader(
+        "Verifying secure entry pass..."
+      );
+
+
+      verifyToken(
+        token
+      )
+        .finally(
+          () => {
+
+            stopLoader();
+
+          }
+        );
+
+    }
+
+
+    async function verifyToken(
+      token
+    ) {
+
+      /*
+        We deliberately call the same authenticated
+        gate function for both camera and manual input.
+
+        The server must:
+          1. Verify JWT.
+          2. Verify role = gate.
+          3. Verify gate_number.
+          4. Find the QR.
+          5. Verify payment/permission.
+          6. Return participant data.
+          7. NOT consume the QR yet.
+
+        Final consumption/check-in happens in gate-checkin
+        after operator confirmation.
+      */
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG
+              .FUNCTIONS
+              .CHECKIN,
+            {
+
+              mode:
+                "verify",
+
+              qrToken:
+                token
+
+            }
+          );
+
+
+        if (
+          error
+        ) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        if (
+          !data
+        ) {
+
+          throw new Error(
+            "Verification server returned no data."
+          );
+
+        }
+
+
+        /*
+          For verify mode we expect:
+
+          {
+            valid: true,
+            participant: {...},
+            qr_status: "active",
+            payment_status: "verified"
+          }
+        */
+
+        if (
+          data.valid !==
+          true
+        ) {
+
+          renderRejectedResult(
+            data
+          );
+
+          addRecent(
+            false,
+            data
+              ?.participant
+              ?.name ||
+            "Invalid QR",
+            data
+              ?.reason ||
+            "Entry denied"
+          );
+
+          return;
+
+        }
+
+
+        state.pendingParticipant =
+          data;
+
+
+        renderValidResult(
+          data
+        );
+
+
+        addRecent(
+          true,
+          data
+            ?.participant
+            ?.name ||
+          "Valid participant",
+          "QR verified"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "QR VERIFY:",
+          error
+        );
+
+
+        renderSystemError(
+          error
+        );
+
+
+        addRecent(
+          false,
+          "Verification error",
+          error.message ||
+          "Server error"
+        );
+
+      }
+
+    }
+
+
+    /* ======================================================
+       CONFIRM ENTRY
+    ======================================================= */
+
+    function openConfirmEntry() {
+
+      const data =
+        state.pendingParticipant;
+
+
+      if (
+        !data ||
+        data.valid !==
+        true ||
+        !state.pendingToken
+      ) {
+
+        return;
+
+      }
+
+
+      const participant =
+        data.participant ||
+        {};
+
+
+      setText(
+        "#confirmName",
+        participant.name ||
+        "Participant"
+      );
+
+
+      const type =
+        formatEntryType(
+          participant
+        );
+
+
+      const groupSize =
+        Number(
+          participant.group_size ??
+          participant.groupSize ??
+          0
+        );
+
+
+      setText(
+        "#confirmDetails",
+        `${type} • ${groupSize || "—"} member${groupSize === 1 ? "" : "s"}`
+      );
+
+
+      $("#confirmOverlay")
+        .hidden =
+        false;
+
+    }
+
+
+    function closeConfirmEntry() {
+
+      $("#confirmOverlay")
+        .hidden =
+        true;
+
+    }
+
+
+    async function executeCheckIn() {
+
+      if (
+        state.actionBusy
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !state.pendingToken
+      ) {
+
+        showToast(
+          "No QR is pending.",
+          "warning"
+        );
+
+        closeConfirmEntry();
+
+        return;
+
+      }
+
+
+      const button =
+        $("#executeEntryBtn");
+
+
+      state.actionBusy =
+        true;
+
+
+      setButtonLoading(
+        button,
+        "Checking In..."
+      );
+
+
+      try {
+
+        /*
+          ATOMIC FINAL OPERATION.
+
+          Backend MUST perform the actual check-in in
+          one transaction.
+
+          It must revalidate the QR because the earlier
+          verification result may already be stale.
+        */
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG
+              .FUNCTIONS
+              .CHECKIN,
+            {
+
+              mode:
+                "checkin",
+
+              qrToken:
+                state.pendingToken
+
+            }
+          );
+
+
+        if (
+          error
+        ) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        if (
+          !data
+        ) {
+
+          throw new Error(
+            "Check-in server returned no data."
+          );
+
+        }
+
+
+        if (
+          data.success !==
+          true
+        ) {
+
+          renderRejectedResult(
+            data
+          );
+
+
+          addRecent(
+            false,
+            data
+              ?.participant
+              ?.name ||
+            "Entry denied",
+            data
+              ?.reason ||
+            "Check-in failed"
+          );
+
+
+          showToast(
+            data.reason ||
+            "Entry denied.",
+            "error"
+          );
+
+
+          closeConfirmEntry();
+
+
+          return;
+
+        }
+
+
+        /*
+          Success means the server atomically consumed
+          the QR for this entry.
+        */
+
+        renderCheckedInResult(
+          data
+        );
+
+
+        addRecent(
+          true,
+          data
+            ?.participant
+            ?.name ||
+          "Participant",
+          "Entry checked in"
+        );
+
+
+        closeConfirmEntry();
+
+
+        showToast(
+          "Entry successfully checked in.",
+          "success"
+        );
+
+
+        await loadDashboard(
+          true
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "CHECK-IN:",
+          error
+        );
+
+
+        showToast(
+          error.message ||
+          "Check-in failed.",
+          "error"
+        );
+
+        renderSystemError(
+          error
+        );
+
+
+      } finally {
+
+        state.actionBusy =
+          false;
+
+
+        resetButton(
+          button,
+          "Confirm Check-In"
+        );
+
+      }
+
+    }
+
+
+    /* ======================================================
+       RESULT UI
+    ======================================================= */
+
+    function renderValidResult(
+      data
+    ) {
+
+      const card =
+        $("#resultCard");
+
+
+      card.className =
+        "result-card show valid";
+
+
+      setText(
+        "#resultIcon",
+        "✓"
+      );
+
+
+      setText(
+        "#resultTitle",
+        "Entry Valid"
+      );
+
+
+      setText(
+        "#resultMessage",
+        "Payment and entry permission verified. Confirm physical entry."
+      );
+
+
+      populateResultDetails(
+        data
+      );
+
+
+      $("#confirmEntryBtn")
+        .hidden =
+        false;
+
+
+      $("#dismissResultBtn")
+        .hidden =
+        false;
+
+    }
+
+
+    function renderCheckedInResult(
+      data
+    ) {
+
+      const card =
+        $("#resultCard");
+
+
+      card.className =
+        "result-card show valid";
+
+
+      setText(
+        "#resultIcon",
+        "✓"
+      );
+
+
+      setText(
+        "#resultTitle",
+        "Entry Checked In"
+      );
+
+
+      setText(
+        "#resultMessage",
+        data.message ||
+        "This participant has been successfully admitted."
+      );
+
+
+      populateResultDetails(
+        data
+      );
+
+
+      $("#confirmEntryBtn")
+        .hidden =
+        true;
+
+
+      $("#dismissResultBtn")
+        .hidden =
+        false;
+
+
+      clearPending();
+
+    }
+
+
+    function renderRejectedResult(
+      data
+    ) {
+
+      const card =
+        $("#resultCard");
+
+
+      const reason =
+        data?.reason ||
+        data?.message ||
+        "This QR is not valid for entry.";
+
+
+      const participant =
+        data?.participant ||
+        {};
+
+
+      const status =
+        String(
+          data?.qr_status ||
+          data?.qrStatus ||
+          ""
+        )
+          .toLowerCase();
+
+
+      let className =
+        "result-card show invalid";
+
+
+      let icon =
+        "×";
+
+
+      let title =
+        "Entry Denied";
+
+
+      if (
+        status ===
+        "used"
+      ) {
+
+        className =
+          "result-card show used";
+
+        icon =
+          "↻";
+
+        title =
+          "Already Used";
+
+      }
+
+
+      card.className =
+        className;
+
+
+      setText(
+        "#resultIcon",
+        icon
+      );
+
+
+      setText(
+        "#resultTitle",
+        title
+      );
+
+
+      setText(
+        "#resultMessage",
+        reason
+      );
+
+
+      setText(
+        "#resultName",
+        participant.name ||
+        "Unknown"
+      );
+
+
+      setText(
+        "#resultEntryType",
+        formatEntryType(
+          participant
+        )
+      );
+
+
+      setText(
+        "#resultGroupSize",
+        participant.group_size ??
+        participant.groupSize ??
+        "—"
+      );
+
+
+      setText(
+        "#resultRegistration",
+        participant.registration_code ||
+        participant.registrationCode ||
+        data.registration_code ||
+        "—"
+      );
+
+
+      setText(
+        "#resultPayment",
+        formatStatus(
+          data.payment_status ||
+          data.paymentStatus ||
+          participant.payment_status ||
+          "—"
+        )
+      );
+
+
+      setText(
+        "#resultQRStatus",
+        formatStatus(
+          data.qr_status ||
+          data.qrStatus ||
+          "Denied"
+        )
+      );
+
+
+      $("#confirmEntryBtn")
+        .hidden =
+        true;
+
+
+      $("#dismissResultBtn")
+        .hidden =
+        false;
+
+
+      clearPending();
+
+    }
+
+
+    function renderSystemError(
+      error
+    ) {
+
+      const card =
+        $("#resultCard");
+
+
+      card.className =
+        "result-card show invalid";
+
+
+      setText(
+        "#resultIcon",
+        "!"
+      );
+
+
+      setText(
+        "#resultTitle",
+        "Verification Error"
+      );
+
+
+      setText(
+        "#resultMessage",
+        error.message ||
+        "Unable to complete verification."
+      );
+
+
+      setText(
+        "#resultName",
+        "—"
+      );
+
+
+      setText(
+        "#resultEntryType",
+        "—"
+      );
+
+
+      setText(
+        "#resultGroupSize",
+        "—"
+      );
+
+
+      setText(
+        "#resultRegistration",
+        "—"
+      );
+
+
+      setText(
+        "#resultPayment",
+        "—"
+      );
+
+
+      setText(
+        "#resultQRStatus",
+        "Not verified"
+      );
+
+
+      $("#confirmEntryBtn")
+        .hidden =
+        true;
+
+
+      $("#dismissResultBtn")
+        .hidden =
+        false;
+
+
+      clearPending();
+
+    }
+
+
+    function populateResultDetails(
+      data
+    ) {
+
+      const participant =
+        data.participant ||
+        {};
+
+
+      setText(
+        "#resultName",
+        participant.name ||
+        "—"
+      );
+
+
+      setText(
+        "#resultEntryType",
+        formatEntryType(
+          participant
+        )
+      );
+
+
+      setText(
+        "#resultGroupSize",
+        participant.group_size ??
+        participant.groupSize ??
+        "—"
+      );
+
+
+      setText(
+        "#resultRegistration",
+        participant.registration_code ||
+        participant.registrationCode ||
+        data.registration_code ||
+        "—"
+      );
+
+
+      setText(
+        "#resultPayment",
+        formatStatus(
+          data.payment_status ||
+          data.paymentStatus ||
+          participant.payment_status ||
+          "verified"
+        )
+      );
+
+
+      setText(
+        "#resultQRStatus",
+        formatStatus(
+          data.qr_status ||
+          data.qrStatus ||
+          "active"
+        )
+      );
+
+    }
+
+
+    function closeResult() {
+
+      $("#resultCard")
+        .className =
+        "result-card";
+
+
+      clearPending();
+
+    }
+
+
+    function clearPending() {
+
+      state.pendingToken =
+        null;
+
+      state.pendingParticipant =
+        null;
+
+      state.scanLocked =
+        false;
+
+      setValue(
+        "#manualToken",
+        ""
+      );
+
+    }
+
+
+    /* ======================================================
+       MANUAL INPUT
+    ======================================================= */
+
+    async function handleManualSubmit(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      if (
+        state.actionBusy
+      ) {
+
+        return;
+
+      }
+
+
+      const token =
+        normalizeToken(
+          $("#manualToken")
+            .value
+        );
+
+
+      if (
+        !token
+      ) {
+
+        showToast(
+          "Enter a valid QR token.",
+          "warning"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        token.length >
+        CONFIG.MAX_TOKEN_LENGTH
+      ) {
+
+        showToast(
+          "QR token is too long.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      state.lastScannedToken =
+        token;
+
+      state.lastScannedAt =
+        Date.now();
+
+
+      state.scanLocked =
+        true;
+
+      state.pendingToken =
+        token;
+
+
+      showLoader(
+        "Verifying secure entry pass..."
+      );
+
+
+      try {
+
+        await verifyToken(
+          token
+        );
+
+      } finally {
+
+        stopLoader();
+
+      }
+
+    }
+
+
+    /* ======================================================
+       RECENT ACTIVITY
+    ======================================================= */
+
+    function addRecent(
+      success,
+      name,
+      message
+    ) {
+
+      state.recent.unshift({
+
+        success,
+
+        name:
+          String(
+            name ||
+            "Unknown"
+          )
+            .slice(
+              0,
+              80
+            ),
+
+        message:
+          String(
+            message ||
+            ""
+          )
+            .slice(
+              0,
+              90
+            ),
+
+        time:
+          Date.now()
+
+      });
+
+
+      state.recent =
+        state.recent.slice(
+          0,
+          CONFIG.RECENT_LIMIT
+        );
+
+
+      renderRecent();
+
+    }
+
+
+    function renderRecent() {
+
+      const list =
+        $("#recentList");
+
+
+      list.innerHTML =
+        "";
+
+
+      if (
+        !state.recent.length
+      ) {
+
+        list.innerHTML =
+          `
+            <div class="recent-row">
+
+              <div class="recent-icon no">
+                —
+              </div>
+
+              <div class="recent-copy">
+
+                <strong>
+                  No scans yet
+                </strong>
+
+                <span>
+                  Activity will appear here.
+                </span>
+
+              </div>
+
+              <div class="recent-time">
+                —
+              </div>
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      state.recent
+        .forEach(
+          item => {
+
+            const row =
+              document.createElement(
+                "div"
+              );
+
+
+            row.className =
+              "recent-row";
+
+
+            row.innerHTML =
+              `
+                <div class="recent-icon ${
+                  item.success
+                    ? "ok"
+                    : "no"
+                }">
+                  ${
+                    item.success
+                      ? "✓"
+                      : "×"
+                  }
+                </div>
+
+
+                <div class="recent-copy">
+
+                  <strong>
+                    ${escapeHtml(
+                      item.name
+                    )}
+                  </strong>
+
+                  <span>
+                    ${escapeHtml(
+                      item.message
+                    )}
+                  </span>
+
+                </div>
+
+
+                <div class="recent-time">
+                  ${relativeTime(
+                    item.time
+                  )}
+                </div>
+              `;
+
+
+            list.appendChild(
+              row
+            );
+
+          }
+        );
+
+    }
+
+
+    /* ======================================================
+       AUTH
+    ======================================================= */
+
+    async function logout() {
+
+      try {
+
+        await stopCamera();
+
+
+        showLoader(
+          "Signing out..."
+        );
+
+
+        await state.supabase
+          .auth
+          .signOut();
+
+      } catch (error) {
+
+        console.error(
+          "LOGOUT:",
+          error
+        );
+
+      } finally {
+
+        redirectToLogin();
+
+      }
+
+    }
+
+
+    /* ======================================================
+       FUNCTIONS
+    ======================================================= */
+
+    async function invokeFunction(
+      name,
+      body
+    ) {
+
+      return await state.supabase
+        .functions
+        .invoke(
+          name,
+          {
+            body
+          }
+        );
+
+    }
+
+
+    /* ======================================================
+       EVENTS
+    ======================================================= */
+
+    function bindEvents() {
+
+
+      $("#startCameraBtn")
+        .addEventListener(
+          "click",
+          startCamera
+        );
+
+
+      $("#stopCameraBtn")
+        .addEventListener(
+          "click",
+          stopCamera
+        );
+
+
+      $("#manualForm")
+        .addEventListener(
+          "submit",
+          handleManualSubmit
+        );
+
+
+      $("#confirmEntryBtn")
+        .addEventListener(
+          "click",
+          openConfirmEntry
+        );
+
+
+      $("#dismissResultBtn")
+        .addEventListener(
+          "click",
+          closeResult
+        );
+
+
+      $("#cancelEntryBtn")
+        .addEventListener(
+          "click",
+          closeConfirmEntry
+        );
+
+
+      $("#executeEntryBtn")
+        .addEventListener(
+          "click",
+          executeCheckIn
+        );
+
+
+      $("#confirmOverlay")
+        .addEventListener(
+          "click",
+          event => {
+
+            if (
+              event.target ===
+              $("#confirmOverlay")
+            ) {
+
+              closeConfirmEntry();
+
+            }
+
+          }
+        );
+
+
+      $("#logoutBtn")
+        .addEventListener(
+          "click",
+          logout
+        );
+
+
+      $("#refreshStatsBtn")
+        .addEventListener(
+          "click",
+          async () => {
+
+            try {
+
+              setButtonLoading(
+                $("#refreshStatsBtn"),
+                "Refreshing..."
+              );
+
+
+              await loadDashboard(
+                false
+              );
+
+
+              showToast(
+                "Gate statistics refreshed.",
+                "success"
+              );
+
+            } catch (error) {
+
+              showToast(
+                error.message ||
+                "Refresh failed.",
+                "error"
+              );
+
+            } finally {
+
+              resetButton(
+                $("#refreshStatsBtn"),
+                "↻ Refresh"
+              );
+
+            }
+
+          }
+        );
+
+
+      /*
+        Stop camera when the browser/tab is hidden.
+
+        This prevents camera resources continuing in the
+        background and reduces unnecessary device load.
+      */
+
+      document.addEventListener(
+        "visibilitychange",
+        () => {
+
+          if (
+            document.visibilityState !==
+            "visible"
+          ) {
+
+            stopCamera();
+
+          }
+
+        }
+      );
+
+
+      document.addEventListener(
+        "keydown",
+        event => {
+
+          if (
+            event.key ===
+            "Escape"
+          ) {
+
+            if (
+              !$("#confirmOverlay")
+                .hidden
+            ) {
+
+              closeConfirmEntry();
+
+            }
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* ======================================================
+       VALIDATION
+    ======================================================= */
+
+    function normalizeToken(
+      value
+    ) {
+
+      return String(
+        value ||
+        ""
+      )
+        .trim()
+        .slice(
+          0,
+          CONFIG.MAX_TOKEN_LENGTH
+        );
+
+    }
+
+
+    /* ======================================================
+       FORMATTING
+    ======================================================= */
+
+    function formatEntryType(
+      participant
+    ) {
+
+      const type =
+        String(
+          participant?.entry_type ||
+          participant?.entryType ||
+          ""
+        )
+          .toLowerCase();
+
+
+      if (
+        type ===
+        "single_female"
+      ) {
+
+        return "Single Female";
+
+      }
+
+
+      const groupSize =
+        Number(
+          participant?.group_size ??
+          participant?.groupSize ??
+          0
+        );
+
+
+      if (
+        groupSize ===
+        2
+      ) {
+
+        return "Couple";
+
+      }
+
+
+      if (
+        groupSize >
+        2
+      ) {
+
+        return "Group";
+
+      }
+
+
+      return "—";
+
+    }
+
+
+    function formatStatus(
+      value
+    ) {
+
+      return String(
+        value ||
+        "—"
+      )
+        .replace(
+          /_/g,
+          " "
+        )
+        .replace(
+          /\b\w/g,
+          character =>
+            character.toUpperCase()
+        );
+
+    }
+
+
+    function formatNumber(
+      value
+    ) {
+
+      const number =
+        Number(
+          value
+        );
+
+
+      if (
+        !Number.isFinite(
+          number
+        )
+      ) {
+
+        return "0";
+
+      }
+
+
+      return number.toLocaleString(
+        "en-IN"
+      );
+
+    }
+
+
+    function relativeTime(
+      timestamp
+    ) {
+
+      const seconds =
+        Math.max(
+          0,
+          Math.floor(
+            (
+              Date.now() -
+              timestamp
+            ) /
+            1000
+          )
+        );
+
+
+      if (
+        seconds <
+        5
+      ) {
+
+        return "now";
+
+      }
+
+
+      if (
+        seconds <
+        60
+      ) {
+
+        return `${seconds}s`;
+
+      }
+
+
+      const minutes =
+        Math.floor(
+          seconds /
+          60
+        );
+
+
+      if (
+        minutes <
+        60
+      ) {
+
+        return `${minutes}m`;
+
+      }
+
+
+      const hours =
+        Math.floor(
+          minutes /
+          60
+        );
+
+
+      return `${hours}h`;
+
+    }
+
+
+    /* ======================================================
+       BUTTONS
+    ======================================================= */
+
+    function setButtonLoading(
+      button,
+      text
+    ) {
+
+      if (
+        !button
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !button.dataset
+          .originalText
+      ) {
+
+        button.dataset
+          .originalText =
+          button.textContent;
+
+      }
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        text;
+
+    }
+
+
+    function resetButton(
+      button,
+      fallback
+    ) {
+
+      if (
+        !button
+      ) {
+
+        return;
+
+      }
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        button.dataset
+          .originalText ||
+        fallback;
+
+
+      delete button.dataset
+        .originalText;
+
+    }
+
+
+    /* ======================================================
+       UI HELPERS
+    ======================================================= */
+
+    function setText(
+      selector,
+      value
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        element
+      ) {
+
+        element.textContent =
+          String(
+            value
+          );
+
+      }
+
+    }
+
+
+    function setValue(
+      selector,
+      value
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        element
+      ) {
+
+        element.value =
+          String(
+            value
+          );
+
+      }
+
+    }
+
+
+    function showLoader(
+      message
+    ) {
+
+      setText(
+        "#loaderText",
+        message
+      );
+
+
+      $("#loader")
+        .hidden =
+        false;
+
+
+      document.body.classList
+        .add(
+          "locked"
+        );
+
+    }
+
+
+    function stopLoader() {
+
+      $("#loader")
+        .hidden =
+        true;
+
+
+      document.body.classList
+        .remove(
+          "locked"
+        );
+
+    }
+
+
+    /* ======================================================
+       TOAST
+    ======================================================= */
+
+    function showToast(
+      message,
+      type =
+        "success"
+    ) {
+
+      const container =
+        $("#toastContainer");
+
+
+      const toast =
+        document.createElement(
+          "div"
+        );
+
+
+      toast.className =
+        `toast ${type}`;
+
+
+      toast.textContent =
+        String(
+          message
+        );
+
+
+      container.appendChild(
+        toast
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.remove();
+
+        },
+        3500
+      );
+
+    }
+
+
+    /* ======================================================
+       ERRORS
+    ======================================================= */
+
+    async function normalizeFunctionError(
+      error
+    ) {
+
+      try {
+
+        if (
+          error?.context &&
+          typeof error.context.json ===
+            "function"
+        ) {
+
+          const body =
+            await error.context.json();
+
+
+          if (
+            body?.message
+          ) {
+
+            return new Error(
+              body.message
+            );
+
+          }
+
+
+          if (
+            body?.error
+          ) {
+
+            return new Error(
+              body.error
+            );
+
+          }
+
+        }
+
+      } catch (_) {
+
+        /* ignore */
+
+      }
+
+
+      return new Error(
+        error?.message ||
+        "Secure server request failed."
+      );
+
+    }
+
+
+    function friendlyError(
+      error
+    ) {
+
+      const message =
+        String(
+          error?.message ||
+          ""
+        )
+          .toLowerCase();
+
+
+      if (
+        message.includes(
+          "failed to fetch"
+        ) ||
+        message.includes(
+          "network"
+        )
+      ) {
+
+        return (
+          "Unable to connect to the Supabase server."
+        );
+
+      }
+
+
+      return (
+        error?.message ||
+        "Unable to securely load the gate portal."
+      );
+
+    }
+
+
+    /* ======================================================
+       FATAL
+    ======================================================= */
+
+    function fatal(
+      message
+    ) {
+
+      stopLoader();
+
+
+      document.body.innerHTML =
+        `
+          <div
+            style="
+              min-height:100vh;
+              display:grid;
+              place-items:center;
+              padding:20px;
+              background:#080508;
+              color:#fff;
+              font-family:'DM Sans',sans-serif;
+            "
+          >
+
+            <div
+              style="
+                width:min(500px,100%);
+                padding:28px;
+                border:1px solid rgba(255,255,255,.085);
+                border-radius:20px;
+                background:#100b11;
+                text-align:center;
+              "
+            >
+
+              <div
+                style="
+                  width:55px;
+                  height:55px;
+                  margin:0 auto 14px;
+                  display:grid;
+                  place-items:center;
+                  border-radius:16px;
+                  color:#ff9ead;
+                  background:rgba(255,92,118,.06);
+                  border:1px solid rgba(255,92,118,.12);
+                  font-size:21px;
+                "
+              >
+                !
+              </div>
+
+
+              <div
+                style="
+                  font-family:'Playfair Display',serif;
+                  font-size:28px;
+                "
+              >
+                Secure Access Error
+              </div>
+
+
+              <p
+                style="
+                  margin:8px 0 17px;
+                  color:#aaa3ad;
+                  font-size:9px;
+                  line-height:1.6;
+                "
+              >
+                ${escapeHtml(
+                  message
+                )}
+              </p>
+
+
+              <button
+                onclick="
+                  window.location.replace('/index.html')
+                "
+                class="btn btn-primary"
+              >
+                Return to Login
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+    }
+
+
+    /* ======================================================
+       SECURITY HELPERS
+    ======================================================= */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value
+      )
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* ======================================================
+       UTILITIES
+    ======================================================= */
+
+    function delay(
+      milliseconds
+    ) {
+
+      return new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            milliseconds
+          )
+      );
+
+    }
+
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        stopStatsRefresh();
+
+        stopCamera();
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
