@@ -1,62 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta
-    name="theme-color"
-    content="#090509"
-  >
+  <meta name="theme-color" content="#090509">
 
-  <meta
-    name="description"
-    content="Vanasthali Public School Raas Rang Garba Night 2026 participant portal."
-  >
+  <meta name="description" content="Vanasthali Public School Raas Rang Garba Night 2026 participant portal.">
 
   <title>
     Participant Portal | Raas Rang Garba Night
   </title>
 
-  <link
-    rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
-  >
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
   <!-- Supabase -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-    defer
-  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
   <!-- Cloudflare Turnstile -->
-  <script
-    src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-    defer
-  ></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
 
   <!-- QRCode -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-    defer
-  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
 
 
   <style>
-
     :root {
 
       --bg:
@@ -66,10 +45,10 @@
         #110811;
 
       --surface:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       --surface2:
-        rgba(255,255,255,.05);
+        rgba(255, 255, 255, .05);
 
       --text:
         #ffffff;
@@ -99,13 +78,13 @@
         #ffcc5b;
 
       --border:
-        rgba(255,255,255,.085);
+        rgba(255, 255, 255, .085);
 
       --border2:
-        rgba(255,255,255,.14);
+        rgba(255, 255, 255, .14);
 
       --shadow:
-        0 30px 100px rgba(0,0,0,.52);
+        0 30px 100px rgba(0, 0, 0, .52);
 
       --container:
         1180px;
@@ -148,23 +127,17 @@
 
       background:
 
-        radial-gradient(
-          circle at 8% 8%,
-          rgba(255,134,31,.10),
-          transparent 28%
-        ),
+        radial-gradient(circle at 8% 8%,
+          rgba(255, 134, 31, .10),
+          transparent 28%),
 
-        radial-gradient(
-          circle at 94% 15%,
-          rgba(242,73,112,.09),
-          transparent 28%
-        ),
+        radial-gradient(circle at 94% 15%,
+          rgba(242, 73, 112, .09),
+          transparent 28%),
 
-        linear-gradient(
-          180deg,
+        linear-gradient(180deg,
           var(--bg2),
-          var(--bg)
-        );
+          var(--bg));
 
     }
 
@@ -208,10 +181,8 @@
     .container {
 
       width:
-        min(
-          var(--container),
-          calc(100% - 40px)
-        );
+        min(var(--container),
+          calc(100% - 40px));
 
       margin:
         0 auto;
@@ -269,15 +240,12 @@
         #17100b;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--gold),
-          var(--orange)
-        );
+          var(--orange));
 
       box-shadow:
-        0 14px 40px
-        rgba(255,134,31,.18);
+        0 14px 40px rgba(255, 134, 31, .18);
 
     }
 
@@ -288,11 +256,10 @@
         #fff;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       background:
-        rgba(255,255,255,.045);
+        rgba(255, 255, 255, .045);
 
     }
 
@@ -316,11 +283,10 @@
         72px;
 
       border-bottom:
-        1px solid
-        rgba(255,255,255,.055);
+        1px solid rgba(255, 255, 255, .055);
 
       background:
-        rgba(7,4,8,.81);
+        rgba(7, 4, 8, .81);
 
       backdrop-filter:
         blur(20px);
@@ -389,11 +355,9 @@
         13px;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--orange),
-          var(--pink)
-        );
+          var(--pink));
 
       font-size:
         19px;
@@ -402,8 +366,7 @@
         800;
 
       box-shadow:
-        0 10px 30px
-        rgba(242,73,112,.18);
+        0 10px 30px rgba(242, 73, 112, .18);
 
     }
 
@@ -492,11 +455,9 @@
         white;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--orange),
-          var(--pink)
-        );
+          var(--pink));
 
       font-size:
         10px;
@@ -598,8 +559,7 @@
         7px 10px;
 
       border:
-        1px solid
-        rgba(255,134,31,.18);
+        1px solid rgba(255, 134, 31, .18);
 
       border-radius:
         999px;
@@ -608,7 +568,7 @@
         #ffcb96;
 
       background:
-        rgba(255,134,31,.07);
+        rgba(255, 134, 31, .07);
 
       font-size:
         8px;
@@ -640,8 +600,7 @@
         var(--green);
 
       box-shadow:
-        0 0 15px
-        rgba(67,217,158,.72);
+        0 0 15px rgba(67, 217, 158, .72);
 
     }
 
@@ -687,14 +646,13 @@
         9px 12px;
 
       border:
-        1px solid
-        rgba(255,134,31,.13);
+        1px solid rgba(255, 134, 31, .13);
 
       border-radius:
         13px;
 
       background:
-        rgba(255,134,31,.055);
+        rgba(255, 134, 31, .055);
 
       text-align:
         right;
@@ -740,8 +698,7 @@
         grid;
 
       grid-template-columns:
-        205px
-        minmax(0,1fr);
+        205px minmax(0, 1fr);
 
       gap:
         16px;
@@ -764,14 +721,13 @@
         8px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         18px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -840,7 +796,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.04);
+        rgba(255, 255, 255, .04);
 
     }
 
@@ -851,15 +807,12 @@
         #fff;
 
       border:
-        1px solid
-        rgba(255,134,31,.12);
+        1px solid rgba(255, 134, 31, .12);
 
       background:
-        linear-gradient(
-          90deg,
-          rgba(255,134,31,.13),
-          rgba(242,73,112,.04)
-        );
+        linear-gradient(90deg,
+          rgba(255, 134, 31, .13),
+          rgba(242, 73, 112, .04));
 
     }
 
@@ -925,14 +878,13 @@
         19px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         18px;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
     }
 
@@ -975,7 +927,7 @@
         grid;
 
       grid-template-columns:
-        repeat(3,minmax(0,1fr));
+        repeat(3, minmax(0, 1fr));
 
       gap:
         9px;
@@ -992,14 +944,13 @@
         14px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         15px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -1070,7 +1021,7 @@
         #b5afb8;
 
       background:
-        rgba(255,255,255,.05);
+        rgba(255, 255, 255, .05);
 
     }
 
@@ -1081,11 +1032,10 @@
         #8ef0c7;
 
       border:
-        1px solid
-        rgba(67,217,158,.11);
+        1px solid rgba(67, 217, 158, .11);
 
       background:
-        rgba(67,217,158,.06);
+        rgba(67, 217, 158, .06);
 
     }
 
@@ -1096,11 +1046,10 @@
         #ffdc97;
 
       border:
-        1px solid
-        rgba(255,204,91,.11);
+        1px solid rgba(255, 204, 91, .11);
 
       background:
-        rgba(255,204,91,.06);
+        rgba(255, 204, 91, .06);
 
     }
 
@@ -1111,11 +1060,10 @@
         #ff9dae;
 
       border:
-        1px solid
-        rgba(255,92,118,.11);
+        1px solid rgba(255, 92, 118, .11);
 
       background:
-        rgba(255,92,118,.06);
+        rgba(255, 92, 118, .06);
 
     }
 
@@ -1130,7 +1078,7 @@
         grid;
 
       grid-template-columns:
-        repeat(4,minmax(0,1fr));
+        repeat(4, minmax(0, 1fr));
 
       gap:
         7px;
@@ -1147,14 +1095,13 @@
         11px;
 
       border:
-        1px solid
-        rgba(255,255,255,.055);
+        1px solid rgba(255, 255, 255, .055);
 
       border-radius:
         12px;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
     }
 
@@ -1202,8 +1149,7 @@
         10px;
 
       border:
-        1px solid
-        rgba(242,73,112,.12);
+        1px solid rgba(242, 73, 112, .12);
 
       border-radius:
         11px;
@@ -1212,7 +1158,7 @@
         #ffb0bf;
 
       background:
-        rgba(242,73,112,.045);
+        rgba(242, 73, 112, .045);
 
       font-size:
         8px;
@@ -1233,7 +1179,7 @@
         grid;
 
       grid-template-columns:
-        repeat(2,minmax(0,1fr));
+        repeat(2, minmax(0, 1fr));
 
       gap:
         13px;
@@ -1292,8 +1238,7 @@
         0 12px;
 
       border:
-        1px solid
-        rgba(255,255,255,.09);
+        1px solid rgba(255, 255, 255, .09);
 
       border-radius:
         11px;
@@ -1305,7 +1250,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.036);
+        rgba(255, 255, 255, .036);
 
       transition:
         border .18s ease,
@@ -1325,11 +1270,10 @@
     .input:focus {
 
       border-color:
-        rgba(255,159,67,.62);
+        rgba(255, 159, 67, .62);
 
       box-shadow:
-        0 0 0 4px
-        rgba(255,134,31,.05);
+        0 0 0 4px rgba(255, 134, 31, .05);
 
     }
 
@@ -1384,14 +1328,13 @@
         13px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         14px;
 
       background:
-        rgba(255,255,255,.025);
+        rgba(255, 255, 255, .025);
 
     }
 
@@ -1501,21 +1444,17 @@
     }
 
 
-    .switch input:checked +
-    .switch-track {
+    .switch input:checked+.switch-track {
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--orange),
-          var(--pink)
-        );
+          var(--pink));
 
     }
 
 
-    .switch input:checked +
-    .switch-track::before {
+    .switch input:checked+.switch-track::before {
 
       transform:
         translateX(21px);
@@ -1572,8 +1511,7 @@
         grid;
 
       grid-template-columns:
-        minmax(0,1fr)
-        43px;
+        minmax(0, 1fr) 43px;
 
       gap:
         6px;
@@ -1587,8 +1525,7 @@
     .remove-member {
 
       border:
-        1px solid
-        rgba(255,92,118,.14);
+        1px solid rgba(255, 92, 118, .14);
 
       border-radius:
         10px;
@@ -1597,7 +1534,7 @@
         #ff9cac;
 
       background:
-        rgba(255,92,118,.06);
+        rgba(255, 92, 118, .06);
 
     }
 
@@ -1611,8 +1548,7 @@
         8px 10px;
 
       border:
-        1px dashed
-        rgba(255,159,67,.23);
+        1px dashed rgba(255, 159, 67, .23);
 
       border-radius:
         10px;
@@ -1621,7 +1557,7 @@
         #ffc27d;
 
       background:
-        rgba(255,134,31,.04);
+        rgba(255, 134, 31, .04);
 
       font-size:
         8px;
@@ -1642,18 +1578,15 @@
         14px;
 
       border:
-        1px solid
-        rgba(255,134,31,.13);
+        1px solid rgba(255, 134, 31, .13);
 
       border-radius:
         15px;
 
       background:
-        linear-gradient(
-          135deg,
-          rgba(255,134,31,.065),
-          rgba(242,73,112,.03)
-        );
+        linear-gradient(135deg,
+          rgba(255, 134, 31, .065),
+          rgba(242, 73, 112, .03));
 
     }
 
@@ -1698,8 +1631,7 @@
         11px;
 
       border-top:
-        1px solid
-        rgba(255,255,255,.07);
+        1px solid rgba(255, 255, 255, .07);
 
       font-size:
         15px;
@@ -1720,8 +1652,7 @@
         grid;
 
       grid-template-columns:
-        335px
-        minmax(0,1fr);
+        335px minmax(0, 1fr);
 
       gap:
         14px;
@@ -1737,6 +1668,20 @@
     }
 
 
+    .payment-method-title {
+
+      margin-top:
+        10px;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+    }
+
+
     .payment-qr {
 
       width:
@@ -1746,16 +1691,16 @@
         225px;
 
       margin:
-        16px auto;
+        16px auto 10px;
 
       padding:
         10px;
 
       display:
-        grid;
+        block;
 
-      place-items:
-        center;
+      border:
+        1px solid rgba(255, 255, 255, .08);
 
       border-radius:
         16px;
@@ -1766,7 +1711,10 @@
     }
 
 
-    #paymentQR {
+    .payment-qr img {
+
+      display:
+        block;
 
       width:
         100%;
@@ -1774,23 +1722,82 @@
       height:
         100%;
 
-      display:
-        grid;
+      object-fit:
+        contain;
 
-      place-items:
-        center;
+      border-radius:
+        8px;
 
     }
 
 
-    #paymentQR canvas,
-    #paymentQR img {
+    .qr-payee {
 
-      max-width:
-        100%;
+      color:
+        #fff;
 
-      height:
-        auto !important;
+      font-size:
+        10px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .upi-payment-box {
+
+      margin-top:
+        18px;
+
+      padding:
+        14px;
+
+      border:
+        1px solid rgba(255, 255, 255, .07);
+
+      border-radius:
+        14px;
+
+      background:
+        rgba(255, 255, 255, .025);
+
+    }
+
+
+    .upi-label {
+
+      margin-bottom:
+        8px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .7px;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .upi-row {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
 
     }
 
@@ -1798,29 +1805,31 @@
     .upi-chip {
 
       display:
-        inline-block;
+        block;
 
-      max-width:
-        100%;
+      min-width:
+        0;
+
+      flex:
+        1;
 
       padding:
-        7px 9px;
+        11px 12px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
-        999px;
+        10px;
 
       color:
         #ffd498;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       font-size:
-        7px;
+        10px;
 
       overflow:
         hidden;
@@ -1830,6 +1839,51 @@
 
       text-overflow:
         ellipsis;
+
+    }
+
+
+    .copy-upi-btn {
+
+      min-height:
+        40px;
+
+      padding:
+        0 12px;
+
+      flex:
+        0 0 auto;
+
+    }
+
+
+    .copy-status {
+
+      min-height:
+        14px;
+
+      margin-top:
+        6px;
+
+      color:
+        var(--green);
+
+      font-size:
+        8px;
+
+    }
+
+
+    .payment-quick-note {
+
+      margin-top:
+        10px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
 
     }
 
@@ -1885,8 +1939,7 @@
         grid;
 
       grid-template-columns:
-        27px
-        minmax(0,1fr);
+        27px minmax(0, 1fr);
 
       gap:
         8px;
@@ -1909,8 +1962,7 @@
         center;
 
       border:
-        1px solid
-        rgba(255,134,31,.12);
+        1px solid rgba(255, 134, 31, .12);
 
       border-radius:
         8px;
@@ -1919,7 +1971,7 @@
         #ffc27c;
 
       background:
-        rgba(255,134,31,.055);
+        rgba(255, 134, 31, .055);
 
       font-size:
         8px;
@@ -1970,8 +2022,7 @@
         10px;
 
       border:
-        1px dashed
-        rgba(255,255,255,.12);
+        1px dashed rgba(255, 255, 255, .12);
 
       border-radius:
         10px;
@@ -1980,7 +2031,7 @@
         #aaa;
 
       background:
-        rgba(255,255,255,.025);
+        rgba(255, 255, 255, .025);
 
       font-size:
         8px;
@@ -1997,8 +2048,7 @@
         10px;
 
       border:
-        1px solid
-        rgba(255,202,88,.10);
+        1px solid rgba(255, 202, 88, .10);
 
       border-radius:
         10px;
@@ -2007,7 +2057,7 @@
         #ffdb97;
 
       background:
-        rgba(255,202,88,.04);
+        rgba(255, 202, 88, .04);
 
       font-size:
         7px;
@@ -2045,8 +2095,7 @@
         grid;
 
       grid-template-columns:
-        340px
-        minmax(0,1fr);
+        340px minmax(0, 1fr);
 
       gap:
         14px;
@@ -2141,8 +2190,7 @@
         #777;
 
       border:
-        2px dashed
-        #ddd;
+        2px dashed #ddd;
 
       border-radius:
         11px;
@@ -2199,8 +2247,7 @@
         10px 0;
 
       border-bottom:
-        1px solid
-        rgba(255,255,255,.055);
+        1px solid rgba(255, 255, 255, .055);
 
     }
 
@@ -2251,14 +2298,13 @@
         14px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         14px;
 
       background:
-        rgba(255,255,255,.025);
+        rgba(255, 255, 255, .025);
 
     }
 
@@ -2310,10 +2356,8 @@
         1200;
 
       width:
-        min(
-          360px,
-          calc(100% - 28px)
-        );
+        min(360px,
+          calc(100% - 28px));
 
       display:
         grid;
@@ -2333,14 +2377,13 @@
         11px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         11px;
 
       background:
-        rgba(18,13,19,.96);
+        rgba(18, 13, 19, .96);
 
       box-shadow:
         var(--shadow);
@@ -2360,7 +2403,7 @@
     .toast.success {
 
       border-color:
-        rgba(67,217,158,.17);
+        rgba(67, 217, 158, .17);
 
     }
 
@@ -2368,7 +2411,7 @@
     .toast.warning {
 
       border-color:
-        rgba(255,204,91,.15);
+        rgba(255, 204, 91, .15);
 
     }
 
@@ -2376,7 +2419,7 @@
     .toast.error {
 
       border-color:
-        rgba(255,92,118,.17);
+        rgba(255, 92, 118, .17);
 
     }
 
@@ -2403,7 +2446,7 @@
         center;
 
       background:
-        rgba(5,3,6,.85);
+        rgba(5, 3, 6, .85);
 
       backdrop-filter:
         blur(8px);
@@ -2431,8 +2474,7 @@
         0 auto 10px;
 
       border:
-        3px solid
-        rgba(255,255,255,.10);
+        3px solid rgba(255, 255, 255, .10);
 
       border-top-color:
         var(--orange);
@@ -2529,7 +2571,7 @@
       .facts {
 
         grid-template-columns:
-          repeat(2,minmax(0,1fr));
+          repeat(2, minmax(0, 1fr));
 
       }
 
@@ -2732,7 +2774,6 @@
       }
 
     }
-
   </style>
 
 </head>
@@ -2745,10 +2786,7 @@
        LOADER
   ======================================================== -->
 
-  <div
-    id="loader"
-    class="loader"
-  >
+  <div id="loader" class="loader">
 
     <div class="loader-box">
 
@@ -2812,11 +2850,7 @@
         </div>
 
 
-        <button
-          class="btn btn-secondary"
-          id="logoutBtn"
-          type="button"
-        >
+        <button class="btn btn-secondary" id="logoutBtn" type="button">
           Logout
         </button>
 
@@ -2898,38 +2932,22 @@
           </div>
 
 
-          <button
-            class="nav-button active"
-            data-panel="overview"
-            type="button"
-          >
+          <button class="nav-button active" data-panel="overview" type="button">
             ◉ &nbsp; Overview
           </button>
 
 
-          <button
-            class="nav-button"
-            data-panel="registration"
-            type="button"
-          >
+          <button class="nav-button" data-panel="registration" type="button">
             ✦ &nbsp; Registration
           </button>
 
 
-          <button
-            class="nav-button"
-            data-panel="payment"
-            type="button"
-          >
+          <button class="nav-button" data-panel="payment" type="button">
             ₹ &nbsp; Payment
           </button>
 
 
-          <button
-            class="nav-button"
-            data-panel="qr"
-            type="button"
-          >
+          <button class="nav-button" data-panel="qr" type="button">
             ▣ &nbsp; My QR
           </button>
 
@@ -2939,20 +2957,12 @@
           </div>
 
 
-          <button
-            class="nav-button"
-            id="refreshBtn"
-            type="button"
-          >
+          <button class="nav-button" id="refreshBtn" type="button">
             ↻ &nbsp; Refresh Status
           </button>
 
 
-          <button
-            class="nav-button"
-            id="logoutSideBtn"
-            type="button"
-          >
+          <button class="nav-button" id="logoutSideBtn" type="button">
             ↪ &nbsp; Logout
           </button>
 
@@ -2970,10 +2980,7 @@
                OVERVIEW
           ================================================== -->
 
-          <div
-            class="panel active"
-            id="panel-overview"
-          >
+          <div class="panel active" id="panel-overview">
 
 
             <div class="status-grid">
@@ -2989,10 +2996,7 @@
                   Not Started
                 </strong>
 
-                <span
-                  class="badge badge-muted"
-                  id="registrationStatusBadge"
-                >
+                <span class="badge badge-muted" id="registrationStatusBadge">
                   ● Not Started
                 </span>
 
@@ -3009,10 +3013,7 @@
                   Pending
                 </strong>
 
-                <span
-                  class="badge badge-muted"
-                  id="paymentStatusBadge"
-                >
+                <span class="badge badge-muted" id="paymentStatusBadge">
                   ● Awaiting
                 </span>
 
@@ -3029,10 +3030,7 @@
                   Inactive
                 </strong>
 
-                <span
-                  class="badge badge-muted"
-                  id="qrStatusBadge"
-                >
+                <span class="badge badge-muted" id="qrStatusBadge">
                   ● Not Active
                 </span>
 
@@ -3120,29 +3118,19 @@
               </div>
 
 
-              <div
-                style="
+              <div style="
                   display:flex;
                   gap:8px;
                   flex-wrap:wrap;
                   margin-top:17px;
-                "
-              >
+                ">
 
-                <button
-                  class="btn btn-primary"
-                  id="startRegistrationBtn"
-                  type="button"
-                >
+                <button class="btn btn-primary" id="startRegistrationBtn" type="button">
                   Start Registration →
                 </button>
 
 
-                <button
-                  class="btn btn-secondary"
-                  id="openQRBtn"
-                  type="button"
-                >
+                <button class="btn btn-secondary" id="openQRBtn" type="button">
                   My QR
                 </button>
 
@@ -3151,11 +3139,7 @@
             </div>
 
 
-            <div
-              class="notice"
-              id="approvalNotice"
-              hidden
-            >
+            <div class="notice" id="approvalNotice" hidden>
 
               <strong>
                 Entry Status
@@ -3174,10 +3158,7 @@
                REGISTRATION
           ================================================== -->
 
-          <div
-            class="panel"
-            id="panel-registration"
-          >
+          <div class="panel" id="panel-registration">
 
 
             <div class="card">
@@ -3194,10 +3175,7 @@
               </div>
 
 
-              <form
-                id="registrationForm"
-                novalidate
-              >
+              <form id="registrationForm" novalidate>
 
 
                 <div class="form-grid">
@@ -3209,15 +3187,8 @@
                       Full Name
                     </label>
 
-                    <input
-                      class="input"
-                      id="fullName"
-                      type="text"
-                      maxlength="100"
-                      autocomplete="name"
-                      placeholder="Enter your full name"
-                      required
-                    >
+                    <input class="input" id="fullName" type="text" maxlength="100" autocomplete="name"
+                      placeholder="Enter your full name" required>
 
                   </div>
 
@@ -3228,16 +3199,8 @@
                       Mobile Number
                     </label>
 
-                    <input
-                      class="input"
-                      id="mobile"
-                      type="tel"
-                      inputmode="numeric"
-                      maxlength="10"
-                      autocomplete="tel"
-                      placeholder="10-digit mobile number"
-                      required
-                    >
+                    <input class="input" id="mobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel"
+                      placeholder="10-digit mobile number" required>
 
                   </div>
 
@@ -3248,12 +3211,7 @@
                       Registered Email
                     </label>
 
-                    <input
-                      class="input readonly"
-                      id="registeredEmail"
-                      type="email"
-                      readonly
-                    >
+                    <input class="input readonly" id="registeredEmail" type="email" readonly>
 
                     <div class="help">
                       This value comes from your authenticated account.
@@ -3282,10 +3240,7 @@
 
                       <label class="switch">
 
-                        <input
-                          id="singleFemale"
-                          type="checkbox"
-                        >
+                        <input id="singleFemale" type="checkbox">
 
                         <span class="switch-track"></span>
 
@@ -3296,10 +3251,7 @@
                   </div>
 
 
-                  <div
-                    class="field full"
-                    id="membersSection"
-                  >
+                  <div class="field full" id="membersSection">
 
                     <div class="members-head">
 
@@ -3314,16 +3266,10 @@
                     </div>
 
 
-                    <div
-                      id="membersContainer"
-                    ></div>
+                    <div id="membersContainer"></div>
 
 
-                    <button
-                      class="add-member"
-                      id="addMemberBtn"
-                      type="button"
-                    >
+                    <button class="add-member" id="addMemberBtn" type="button">
                       + Add Member
                     </button>
 
@@ -3418,10 +3364,7 @@
                     </label>
 
 
-                    <div
-                      id="registrationTurnstile"
-                      class="turnstile-wrap"
-                    ></div>
+                    <div id="registrationTurnstile" class="turnstile-wrap"></div>
 
 
                     <div class="help">
@@ -3433,30 +3376,20 @@
                 </div>
 
 
-                <div
-                  style="
+                <div style="
                     display:flex;
                     justify-content:flex-end;
                     flex-wrap:wrap;
                     gap:8px;
                     margin-top:17px;
-                  "
-                >
+                  ">
 
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    data-open-panel="overview"
-                  >
+                  <button class="btn btn-secondary" type="button" data-open-panel="overview">
                     Cancel
                   </button>
 
 
-                  <button
-                    class="btn btn-primary"
-                    id="saveRegistrationBtn"
-                    type="submit"
-                  >
+                  <button class="btn btn-primary" id="saveRegistrationBtn" type="submit">
                     Save Registration →
                   </button>
 
@@ -3473,50 +3406,78 @@
                PAYMENT
           ================================================== -->
 
-          <div
-            class="panel"
-            id="panel-payment"
-          >
-
+          <div class="panel" id="panel-payment">
 
             <div class="payment-grid">
 
-
               <div class="card payment-card">
 
-
                 <div class="eyebrow">
-                  UPI Payment
+                  Payment
                 </div>
 
+                <div class="payment-method-title">
+                  Scan &amp; Pay using PhonePe
+                </div>
 
                 <div class="payment-qr">
-
-                  <div id="paymentQR"></div>
-
+                  <img src="qr.jpg" alt="PhonePe payment QR code" loading="lazy" decoding="async">
                 </div>
 
-
-                <div class="upi-chip" id="upiChip">
-                  UPI ID: shubham347779@ybl
+                <div class="qr-payee">
+                  Shruti Das
                 </div>
 
+                <div class="payment-note">
+                  Scan this QR code and complete the payment.
+                </div>
 
-                <div
-                  class="amount"
-                  id="paymentAmount"
-                >
+                <div class="amount" id="paymentAmount">
                   ₹300
                 </div>
-
 
                 <div class="payment-note">
                   Pay the exact amount shown above.
                 </div>
 
+              </div>
+
+
+              <div class="card">
+
+                <div class="card-title">
+                  UPI Payment
+                </div>
+
+                <div class="card-subtitle">
+                  You can pay using the QR code or the UPI ID.
+                  Both options are available.
+                </div>
+
+                <div class="upi-payment-box">
+
+                  <div class="upi-label">
+                    UPI ID
+                  </div>
+
+                  <div class="upi-row">
+
+                    <div class="upi-chip" id="upiChip">
+                      shubham347779@ybl
+                    </div>
+
+                    <button class="btn btn-secondary copy-upi-btn" id="copyUpiBtn" type="button">
+                      Copy
+                    </button>
+
+                  </div>
+
+                  <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+
+                </div>
+
 
                 <div class="instructions">
-
 
                   <div class="instruction">
 
@@ -3527,11 +3488,11 @@
                     <div>
 
                       <strong>
-                        Scan & Pay
+                        Make Payment
                       </strong>
 
                       <span>
-                        Pay through any supported UPI application.
+                        Use PhonePe, Google Pay, Paytm or another supported UPI app.
                       </span>
 
                     </div>
@@ -3548,11 +3509,11 @@
                     <div>
 
                       <strong>
-                        Save the Proof
+                        Save Payment Proof
                       </strong>
 
                       <span>
-                        Keep a clear screenshot of the successful payment.
+                        Keep a clear screenshot of the successful transaction.
                       </span>
 
                     </div>
@@ -3573,7 +3534,7 @@
                       </strong>
 
                       <span>
-                        Enter the UTR / UPI reference / transaction ID.
+                        Enter the UTR / UPI reference / transaction ID below.
                       </span>
 
                     </div>
@@ -3583,31 +3544,7 @@
                 </div>
 
 
-              </div>
-
-
-              <div class="card">
-
-
-                <div class="card-title">
-                  Payment Verification
-                </div>
-
-
-                <div class="card-subtitle">
-
-                  Upload your payment proof and enter the
-                  transaction reference. The school will verify
-                  the payment manually.
-
-                </div>
-
-
-                <form
-                  id="paymentForm"
-                  novalidate
-                >
-
+                <form id="paymentForm" novalidate>
 
                   <div class="field" style="margin-top:18px;">
 
@@ -3615,14 +3552,8 @@
                       Payment Screenshot / PDF
                     </label>
 
-
-                    <input
-                      class="file-input"
-                      id="paymentProof"
-                      type="file"
-                      accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
-                    >
-
+                    <input class="file-input" id="paymentProof" type="file"
+                      accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf">
 
                     <div class="help">
                       Maximum 1 MB • JPG, JPEG, PNG or PDF.
@@ -3637,16 +3568,8 @@
                       UTR / UPI Reference Number / Transaction ID
                     </label>
 
-
-                    <input
-                      class="input"
-                      id="utr"
-                      type="text"
-                      maxlength="100"
-                      autocomplete="off"
-                      spellcheck="false"
-                      placeholder="Enter transaction reference"
-                    >
+                    <input class="input" id="utr" type="text" maxlength="100" autocomplete="off" spellcheck="false"
+                      placeholder="Enter transaction reference">
 
                   </div>
 
@@ -3657,11 +3580,7 @@
                       Security Verification
                     </label>
 
-
-                    <div
-                      id="paymentTurnstile"
-                      class="turnstile-wrap"
-                    ></div>
+                    <div id="paymentTurnstile" class="turnstile-wrap"></div>
 
                   </div>
 
@@ -3676,19 +3595,13 @@
                   </div>
 
 
-                  <div
-                    style="
+                  <div style="
                       display:flex;
                       justify-content:flex-end;
                       margin-top:16px;
-                    "
-                  >
+                    ">
 
-                    <button
-                      class="btn btn-primary"
-                      id="submitPaymentBtn"
-                      type="submit"
-                    >
+                    <button class="btn btn-primary" id="submitPaymentBtn" type="submit">
                       Submit Payment Proof →
                     </button>
 
@@ -3707,15 +3620,10 @@
                QR
           ================================================== -->
 
-          <div
-            class="panel"
-            id="panel-qr"
-          >
+          <div class="panel" id="panel-qr">
 
 
-            <div
-              id="qrLockedView"
-            >
+            <div id="qrLockedView">
 
               <div class="card">
 
@@ -3747,18 +3655,12 @@
                   </div>
 
 
-                  <span
-                    class="badge badge-warning"
-                    id="qrLockedBadge"
-                  >
+                  <span class="badge badge-warning" id="qrLockedBadge">
                     ● Awaiting Approval
                   </span>
 
 
-                  <div
-                    class="card-subtitle"
-                    id="qrLockedMessage"
-                  >
+                  <div class="card-subtitle" id="qrLockedMessage">
                     Payment proof and admin approval are required.
                   </div>
 
@@ -3769,10 +3671,7 @@
             </div>
 
 
-            <div
-              id="qrActiveView"
-              hidden
-            >
+            <div id="qrActiveView" hidden>
 
 
               <div class="qr-grid">
@@ -3793,26 +3692,17 @@
                   </div>
 
 
-                  <span
-                    class="badge badge-success"
-                    id="qrActiveBadge"
-                  >
+                  <span class="badge badge-success" id="qrActiveBadge">
                     ● Active
                   </span>
 
 
-                  <div
-                    class="card-subtitle"
-                    id="qrActiveMessage"
-                  >
+                  <div class="card-subtitle" id="qrActiveMessage">
                     Show this QR at Gate 1 or Gate 2.
                   </div>
 
 
-                  <div
-                    class="help"
-                    id="qrPublicId"
-                  >
+                  <div class="help" id="qrPublicId">
                     —
                   </div>
 
@@ -3943,9 +3833,7 @@
                     </div>
 
 
-                    <span
-                      class="badge badge-muted"
-                    >
+                    <span class="badge badge-muted">
                       One-time entry
                     </span>
 
@@ -3964,22 +3852,16 @@
                THANK YOU
           ================================================== -->
 
-          <div
-            class="panel"
-            id="panel-thankyou"
-          >
+          <div class="panel" id="panel-thankyou">
 
             <div class="card">
 
-              <div
-                style="
+              <div style="
                   text-align:center;
                   padding:20px 10px;
-                "
-              >
+                ">
 
-                <div
-                  style="
+                <div style="
                     width:58px;
                     height:58px;
                     margin:0 auto 14px;
@@ -3991,32 +3873,27 @@
                     border:1px solid rgba(67,217,158,.12);
                     font-size:24px;
                     font-weight:800;
-                  "
-                >
+                  ">
                   ✓
                 </div>
 
 
-                <h2
-                  style="
+                <h2 style="
                     margin:0;
                     font-family:'Playfair Display',serif;
                     font-size:32px;
-                  "
-                >
+                  ">
                   Thank You!
                 </h2>
 
 
-                <p
-                  style="
+                <p style="
                     max-width:510px;
                     margin:8px auto 0;
                     color:var(--muted);
                     font-size:9px;
                     line-height:1.7;
-                  "
-                >
+                  ">
 
                   Your payment proof has been submitted.
                   The school team will manually verify the
@@ -4026,38 +3903,25 @@
                 </p>
 
 
-                <span
-                  class="badge badge-warning"
-                  id="thankStatus"
-                >
+                <span class="badge badge-warning" id="thankStatus">
                   ● Under Review
                 </span>
 
 
-                <div
-                  style="
+                <div style="
                     display:flex;
                     justify-content:center;
                     flex-wrap:wrap;
                     gap:8px;
                     margin-top:18px;
-                  "
-                >
+                  ">
 
-                  <button
-                    class="btn btn-primary"
-                    id="thankQRBtn"
-                    type="button"
-                  >
+                  <button class="btn btn-primary" id="thankQRBtn" type="button">
                     Open My QR
                   </button>
 
 
-                  <button
-                    class="btn btn-secondary"
-                    id="thankRefreshBtn"
-                    type="button"
-                  >
+                  <button class="btn btn-secondary" id="thankRefreshBtn" type="button">
                     Refresh Status
                   </button>
 
@@ -4083,11 +3947,7 @@
        TOAST
   ======================================================== -->
 
-  <div
-    class="toast-container"
-    id="toastContainer"
-    aria-live="polite"
-  ></div>
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
 
   <script>
@@ -4114,7 +3974,7 @@
         "shubham347779@ybl",
 
       SCHOOL_PAYEE_NAME:
-        "Vanasthali Public School",
+        "Shruti Das",
 
       EVENT_DATE:
         "16 October 2026",
@@ -4271,10 +4131,10 @@
         (
           !window.supabase ||
           typeof window.supabase.createClient !==
-            "function"
+          "function"
         ) &&
         Date.now() - started <
-          15000
+        15000
       ) {
 
         await delay(
@@ -4336,7 +4196,7 @@
 
             if (
               event ===
-                "SIGNED_OUT"
+              "SIGNED_OUT"
             ) {
 
               redirectToLogin();
@@ -4347,7 +4207,7 @@
             if (
               (
                 event ===
-                  "TOKEN_REFRESHED"
+                "TOKEN_REFRESHED"
               ) &&
               !session
             ) {
@@ -4433,9 +4293,9 @@
 
       const {
         data:
-          profile,
+        profile,
         error:
-          profileError
+        profileError
       } =
         await state.supabase
           .from(
@@ -4758,7 +4618,7 @@
 
       updatePaymentQR(
         Number.isFinite(amount) &&
-        amount > 0
+          amount > 0
           ? amount
           : calculateClientAmount()
       );
@@ -5140,23 +5000,23 @@
       state.members =
         serverMembers.length
           ? serverMembers.map(
-              item => ({
+            item => ({
 
-                name:
-                  typeof item ===
+              name:
+                typeof item ===
                   "string"
-                    ? item
-                    : item?.name ||
-                      ""
-
-              })
-            )
-          : [
-              {
-                name:
+                  ? item
+                  : item?.name ||
                   ""
-              }
-            ];
+
+            })
+          )
+          : [
+            {
+              name:
+                ""
+            }
+          ];
 
 
       $("#membersSection")
@@ -5676,7 +5536,7 @@
 
         const {
           error:
-            uploadError
+          uploadError
         } =
           await state.supabase
             .storage
@@ -6022,10 +5882,9 @@
 
       setText(
         "#memberCount",
-        `${total} ${
-          total === 1
-            ? "Member"
-            : "Members"
+        `${total} ${total === 1
+          ? "Member"
+          : "Members"
         }`
       );
 
@@ -6102,25 +5961,25 @@
         singleFemale
           ? 1
           : state.members.length +
-            1;
+          1;
 
 
       const extras =
         singleFemale
           ? 0
           : Math.max(
-              groupSize - 2,
-              0
-            )
-            *
-            CONFIG.PRICES.EXTRA_MEMBER;
+            groupSize - 2,
+            0
+          )
+          *
+          CONFIG.PRICES.EXTRA_MEMBER;
 
 
       const total =
         singleFemale
           ? CONFIG.PRICES.SINGLE_FEMALE
           : CONFIG.PRICES.COUPLE +
-            extras;
+          extras;
 
 
       setText(
@@ -6176,117 +6035,25 @@
       amount
     ) {
 
-      const container =
-        $("#paymentQR");
+      /*
+        The payment QR is a fixed school-provided image
+        (qr.jpg). We intentionally do not generate or
+        overwrite the QR in the browser.
 
-
-      if (
-        !container
-      ) {
-
-        return;
-
-      }
-
-
-      container.innerHTML =
-        "";
-
+        The backend remains responsible for validating
+        the final payable amount and payment submission.
+      */
 
       setText(
         "#upiChip",
-        "UPI ID: " +
         CONFIG.SCHOOL_UPI_ID
       );
-
 
       setText(
         "#paymentAmount",
         "₹" +
         amount
       );
-
-
-      if (
-        !window.QRCode
-      ) {
-
-        renderQRPlaceholder(
-          container,
-          "UPI QR loading..."
-        );
-
-        return;
-
-      }
-
-
-      const upiUri =
-        "upi://pay" +
-
-        "?pa=" +
-        encodeURIComponent(
-          CONFIG.SCHOOL_UPI_ID
-        ) +
-
-        "&pn=" +
-        encodeURIComponent(
-          CONFIG.SCHOOL_PAYEE_NAME
-        ) +
-
-        "&am=" +
-        encodeURIComponent(
-          Number(
-            amount
-          ).toFixed(2)
-        ) +
-
-        "&cu=INR";
-
-
-      new window.QRCode(
-        container,
-        {
-
-          text:
-            upiUri,
-
-          width:
-            200,
-
-          height:
-            200,
-
-          correctLevel:
-            window.QRCode
-              .CorrectLevel
-              .H
-
-        }
-      );
-
-    }
-
-
-    function renderQRPlaceholder(
-      container,
-      text
-    ) {
-
-      container.innerHTML =
-        `
-          <div
-            style="
-              color:#555;
-              text-align:center;
-              font-size:10px;
-              padding:20px;
-            "
-          >
-            ▦<br><br>
-            ${escapeHtml(text)}
-          </div>
-        `;
 
     }
 
@@ -6600,7 +6367,7 @@
           "single_female"
           ? "Single Female"
           : groupSize ===
-              2
+            2
             ? "Couple"
             : groupSize > 2
               ? "Group"
@@ -6619,7 +6386,7 @@
         "#detailAmount",
         amount
           ? "₹" +
-            amount
+          amount
           : "—"
       );
 
@@ -6808,7 +6575,7 @@
       if (
         window.turnstile &&
         state.registrationTurnstileId !==
-          null
+        null
       ) {
 
         window.turnstile.reset(
@@ -6829,7 +6596,7 @@
       if (
         window.turnstile &&
         state.paymentTurnstileId !==
-          null
+        null
       ) {
 
         window.turnstile.reset(
@@ -7071,7 +6838,7 @@
             panel.classList.toggle(
               "active",
               panel.id ===
-                `panel-${name}`
+              `panel-${name}`
             );
 
           }
@@ -7085,7 +6852,7 @@
             button.classList.toggle(
               "active",
               button.dataset.panel ===
-                name
+              name
             );
 
           }
@@ -7228,6 +6995,91 @@
         .addEventListener(
           "submit",
           handlePayment
+        );
+
+
+      $("#copyUpiBtn")
+        ?.addEventListener(
+          "click",
+          async () => {
+
+            const upi =
+              CONFIG.SCHOOL_UPI_ID;
+
+            const status =
+              $("#copyStatus");
+
+            try {
+
+              if (
+                navigator.clipboard &&
+                window.isSecureContext
+              ) {
+
+                await navigator.clipboard.writeText(
+                  upi
+                );
+
+              } else {
+
+                const temp =
+                  document.createElement(
+                    "textarea"
+                  );
+
+                temp.value =
+                  upi;
+
+                temp.style.position =
+                  "fixed";
+
+                temp.style.opacity =
+                  "0";
+
+                document.body.appendChild(
+                  temp
+                );
+
+                temp.select();
+
+                document.execCommand(
+                  "copy"
+                );
+
+                temp.remove();
+
+              }
+
+              setText(
+                "#copyStatus",
+                "UPI ID copied successfully."
+              );
+
+              setTimeout(
+                () => {
+                  setText(
+                    "#copyStatus",
+                    ""
+                  );
+                },
+                2200
+              );
+
+            } catch (error) {
+
+              console.error(
+                "COPY UPI:",
+                error
+              );
+
+              setText(
+                "#copyStatus",
+                "Please copy the UPI ID manually."
+              );
+
+            }
+
+          }
         );
 
 
@@ -7590,7 +7442,7 @@
         if (
           error?.context &&
           typeof error.context.json ===
-            "function"
+          "function"
         ) {
 
           const body =
@@ -7668,13 +7520,13 @@
       ) {
 
         return:
-          "Unable to connect to the secure server.";
+        "Unable to connect to the secure server.";
 
       }
 
 
       return:
-        error?.message ||
+      error?.message ||
         "Unable to securely load this page.";
 
     }
@@ -7794,8 +7646,8 @@
               style="max-width:500px;margin:8px auto 0;"
             >
               ${escapeHtml(
-                message
-              )}
+          message
+        )}
             </div>
 
             <div style="margin-top:17px;">
@@ -7885,4 +7737,5 @@
   </script>
 
 </body>
+
 </html>
