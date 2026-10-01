@@ -4519,32 +4519,66 @@
     }
 
 
-    async function invokeFunction(
+async function invokeFunction(
+  name,
+  body
+) {
+
+  if (!state.supabase) {
+
+    throw new Error(
+      "Supabase client is not ready."
+    );
+
+  }
+
+
+  /*
+   * Explicitly fetch the current authenticated session
+   * and send its access token to the Edge Function.
+   *
+   * This prevents the function from receiving only the
+   * project API key without the user's JWT.
+   */
+
+  const {
+    data: {
+      session
+    },
+    error: sessionError
+  } =
+    await state.supabase
+      .auth
+      .getSession();
+
+
+  if (
+    sessionError ||
+    !session?.access_token
+  ) {
+
+    throw new Error(
+      "Your login session has expired. Please login again."
+    );
+
+  }
+
+
+  return await state.supabase
+    .functions
+    .invoke(
       name,
-      body
-    ) {
+      {
+        headers: {
+          Authorization:
+            `Bearer ${session.access_token}`
+        },
 
-      if (
-        !state.supabase
-      ) {
-
-        throw new Error(
-          "Supabase client is not ready."
-        );
-
+        body
       }
+    );
 
-
-      return await state.supabase
-        .functions
-        .invoke(
-          name,
-          {
-            body
-          }
-        );
-
-    }
+}
 
 
     /* ========================================================
