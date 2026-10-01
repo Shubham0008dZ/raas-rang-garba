@@ -1,0 +1,7681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta
+    name="description"
+    content="Vanasthali Public School Raas Rang Garba Night participant portal."
+  />
+
+  <meta
+    name="theme-color"
+    content="#0c070d"
+  />
+
+  <title>My Entry | Raas Rang — Vanasthali Public School</title>
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23ff861f'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Supabase -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    defer
+  ></script>
+
+  <!-- Cloudflare Turnstile -->
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+    defer
+  ></script>
+
+  <!-- QR Renderer -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    defer
+  ></script>
+
+  <style>
+    :root {
+      --bg: #080508;
+      --bg2: #0e070f;
+
+      --card: rgba(255, 255, 255, 0.045);
+      --card2: rgba(255, 255, 255, 0.065);
+
+      --text: #ffffff;
+      --muted: #aaa3ad;
+      --muted2: #716b75;
+
+      --orange: #ff851f;
+      --orange2: #ffb04f;
+      --pink: #f24970;
+      --gold: #ffd36a;
+
+      --green: #42da9f;
+      --yellow: #ffca58;
+      --red: #ff5c76;
+
+      --border: rgba(255,255,255,.085);
+      --border2: rgba(255,255,255,.14);
+
+      --shadow:
+        0 28px 90px rgba(0,0,0,.52);
+
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      overflow-x: hidden;
+
+      color: var(--text);
+
+      font-family:
+        "DM Sans",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 8% 9%,
+          rgba(255,133,31,.10),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 94% 15%,
+          rgba(242,73,112,.09),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 48% 100%,
+          rgba(255,211,106,.045),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          var(--bg2),
+          var(--bg)
+        );
+    }
+
+    body.busy {
+      overflow: hidden;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+    }
+
+    img,
+    canvas,
+    svg {
+      max-width: 100%;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .container {
+      width:
+        min(
+          var(--container),
+          calc(100% - 40px)
+        );
+
+      margin:
+        0 auto;
+    }
+
+    /* =========================================================
+       COMMON
+    ========================================================= */
+
+    .glass {
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.04);
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding:
+        7px 11px;
+
+      border:
+        1px solid rgba(255,133,31,.18);
+
+      border-radius:
+        999px;
+
+      color:
+        #ffcc95;
+
+      background:
+        rgba(255,133,31,.075);
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      letter-spacing:
+        .6px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 15px
+        rgba(66,218,159,.7);
+    }
+
+    .btn {
+      min-height: 45px;
+
+      padding:
+        0 17px;
+
+      border:
+        0;
+
+      border-radius:
+        12px;
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      transition:
+        transform .18s ease,
+        opacity .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform:
+        translateY(-1px);
+    }
+
+    .btn:active {
+      transform:
+        translateY(0);
+    }
+
+    .btn:disabled {
+      opacity:
+        .48;
+    }
+
+    .btn-primary {
+      color:
+        #17100b;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold),
+          var(--orange)
+        );
+
+      box-shadow:
+        0 15px 38px
+        rgba(255,133,31,.18);
+    }
+
+    .btn-secondary {
+      color:
+        #fff;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.045);
+    }
+
+    .btn-danger {
+      color:
+        #fff;
+
+      border:
+        1px solid
+        rgba(255,92,118,.17);
+
+      background:
+        rgba(255,92,118,.07);
+    }
+
+    .btn-full {
+      width:
+        100%;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .topbar {
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        100;
+
+      height:
+        74px;
+
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+
+      background:
+        rgba(8,5,8,.8);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+    }
+
+    .topbar-inner {
+      height:
+        100%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+    }
+
+    .brand {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        11px;
+
+      min-width:
+        0;
+    }
+
+    .brand-mark {
+      width:
+        42px;
+
+      height:
+        42px;
+
+      flex:
+        0 0 auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        13px;
+
+      color:
+        #fff;
+
+      font-size:
+        20px;
+
+      font-weight:
+        800;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--pink)
+        );
+
+      box-shadow:
+        0 10px 28px
+        rgba(242,73,112,.18);
+    }
+
+    .brand-text {
+      min-width:
+        0;
+    }
+
+    .brand-text strong {
+      display:
+        block;
+
+      font-size:
+        12px;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+    }
+
+    .brand-text span {
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+    }
+
+    .header-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+    .user-chip {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      min-width:
+        0;
+
+      padding:
+        6px 9px 6px 6px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    .avatar {
+      width:
+        33px;
+
+      height:
+        33px;
+
+      flex:
+        0 0 auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--pink)
+        );
+
+      font-size:
+        10px;
+
+      font-weight:
+        800;
+    }
+
+    .user-chip-text {
+      min-width:
+        0;
+    }
+
+    .user-chip-text strong {
+      display:
+        block;
+
+      max-width:
+        180px;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
+
+      text-overflow:
+        ellipsis;
+
+      font-size:
+        9px;
+    }
+
+    .user-chip-text span {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+    }
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
+    .page {
+      padding:
+        28px 0 55px;
+    }
+
+    .page-head {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+
+      margin-bottom:
+        22px;
+    }
+
+    .page-head h1 {
+      margin:
+        14px 0 0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        34px;
+
+      line-height:
+        .98;
+    }
+
+    .page-head p {
+      margin:
+        7px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        10px;
+
+      line-height:
+        1.6;
+    }
+
+    .event-pill {
+      flex:
+        0 0 auto;
+
+      padding:
+        10px 13px;
+
+      border:
+        1px solid
+        rgba(255,133,31,.15);
+
+      border-radius:
+        14px;
+
+      background:
+        rgba(255,133,31,.06);
+
+      text-align:
+        right;
+    }
+
+    .event-pill strong {
+      display:
+        block;
+
+      font-size:
+        10px;
+    }
+
+    .event-pill span {
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+    }
+
+    /* =========================================================
+       DASHBOARD GRID
+    ========================================================= */
+
+    .dashboard {
+      display:
+        grid;
+
+      grid-template-columns:
+        210px
+        minmax(0,1fr);
+
+      gap:
+        17px;
+    }
+
+    .sidebar {
+      position:
+        sticky;
+
+      top:
+        92px;
+
+      align-self:
+        start;
+
+      padding:
+        8px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      background:
+        rgba(255,255,255,.032);
+    }
+
+    .sidebar-label {
+      padding:
+        9px 10px 6px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .8px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .nav-btn {
+      width:
+        100%;
+
+      margin:
+        0 0 3px;
+
+      padding:
+        11px;
+
+      border:
+        0;
+
+      border-radius:
+        10px;
+
+      color:
+        #9e979f;
+
+      background:
+        transparent;
+
+      text-align:
+        left;
+
+      font-size:
+        10px;
+
+      font-weight:
+        700;
+    }
+
+    .nav-btn:hover {
+      color:
+        #fff;
+
+      background:
+        rgba(255,255,255,.04);
+    }
+
+    .nav-btn.active {
+      color:
+        #fff;
+
+      border:
+        1px solid
+        rgba(255,133,31,.12);
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255,133,31,.14),
+          rgba(242,73,112,.045)
+        );
+    }
+
+    .content {
+      min-width:
+        0;
+    }
+
+    .panel {
+      display:
+        none;
+    }
+
+    .panel.active {
+      display:
+        block;
+
+      animation:
+        fade-in .2s ease;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform:
+          translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    /* =========================================================
+       STATUS CARDS
+    ========================================================= */
+
+    .status-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:
+        10px;
+
+      margin-bottom:
+        15px;
+    }
+
+    .status-card {
+      padding:
+        15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        16px;
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    .status-card small {
+      display:
+        block;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .7px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .status-card strong {
+      display:
+        block;
+
+      margin-top:
+        8px;
+
+      font-size:
+        17px;
+    }
+
+    .badge {
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      padding:
+        5px 8px;
+
+      margin-top:
+        7px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+    }
+
+    .badge-muted {
+      color:
+        #b5afb7;
+
+      background:
+        rgba(255,255,255,.05);
+    }
+
+    .badge-warning {
+      color:
+        #ffdd9a;
+
+      border:
+        1px solid
+        rgba(255,202,88,.1);
+
+      background:
+        rgba(255,202,88,.07);
+    }
+
+    .badge-success {
+      color:
+        #8cf2ca;
+
+      border:
+        1px solid
+        rgba(66,218,159,.11);
+
+      background:
+        rgba(66,218,159,.065);
+    }
+
+    .badge-danger {
+      color:
+        #ff9ead;
+
+      border:
+        1px solid
+        rgba(255,92,118,.11);
+
+      background:
+        rgba(255,92,118,.065);
+    }
+
+    /* =========================================================
+       CARDS
+    ========================================================= */
+
+    .card {
+      margin-bottom:
+        15px;
+
+      padding:
+        20px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        19px;
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    .card-title {
+      font-size:
+        15px;
+
+      font-weight:
+        800;
+    }
+
+    .card-subtitle {
+      margin-top:
+        5px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.65;
+    }
+
+    /* =========================================================
+       EVENT DETAILS
+    ========================================================= */
+
+    .event-facts {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+      gap:
+        8px;
+
+      margin-top:
+        14px;
+    }
+
+    .fact {
+      padding:
+        11px;
+
+      border:
+        1px solid rgba(255,255,255,.06);
+
+      border-radius:
+        13px;
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    .fact small {
+      display:
+        block;
+
+      margin-bottom:
+        4px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      letter-spacing:
+        .6px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .fact strong {
+      display:
+        block;
+
+      font-size:
+        10px;
+    }
+
+    .warning-strip {
+      margin-top:
+        11px;
+
+      padding:
+        10px 11px;
+
+      border:
+        1px solid
+        rgba(242,73,112,.13);
+
+      border-radius:
+        11px;
+
+      color:
+        #ffb4c2;
+
+      background:
+        rgba(242,73,112,.055);
+
+      font-size:
+        9px;
+
+      font-weight:
+        700;
+    }
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    .form-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:
+        13px;
+    }
+
+    .full {
+      grid-column:
+        1 / -1;
+    }
+
+    .field {
+      min-width:
+        0;
+    }
+
+    .field label {
+      display:
+        block;
+
+      margin-bottom:
+        6px;
+
+      color:
+        #d8d2da;
+
+      font-size:
+        9px;
+
+      font-weight:
+        700;
+    }
+
+    .input {
+      width:
+        100%;
+
+      height:
+        47px;
+
+      padding:
+        0 13px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.09);
+
+      border-radius:
+        11px;
+
+      outline:
+        none;
+
+      color:
+        #fff;
+
+      background:
+        rgba(255,255,255,.038);
+
+      transition:
+        border .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .input::placeholder {
+      color:
+        #625c65;
+    }
+
+    .input:focus {
+      border-color:
+        rgba(255,159,67,.62);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(255,133,31,.055);
+    }
+
+    .input.readonly {
+      opacity:
+        .56;
+
+      cursor:
+        not-allowed;
+    }
+
+    .help {
+      margin-top:
+        5px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.5;
+    }
+
+    /* =========================================================
+       ENTRY SWITCH
+    ========================================================= */
+
+    .entry-switch {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        15px;
+
+      padding:
+        14px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        14px;
+
+      background:
+        rgba(255,255,255,.025);
+    }
+
+    .entry-switch strong {
+      display:
+        block;
+
+      font-size:
+        10px;
+    }
+
+    .entry-switch p {
+      margin:
+        4px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.5;
+    }
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        48px;
+
+      height:
+        27px;
+
+      flex:
+        0 0 auto;
+    }
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      pointer-events:
+        none;
+    }
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      border-radius:
+        999px;
+
+      background:
+        #29242b;
+    }
+
+    .switch-track::before {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        19px;
+
+      height:
+        19px;
+
+      top:
+        4px;
+
+      left:
+        4px;
+
+      border-radius:
+        50%;
+
+      background:
+        #ddd;
+
+      transition:
+        .2s;
+    }
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--pink)
+        );
+    }
+
+    .switch input:checked +
+    .switch-track::before {
+      transform:
+        translateX(21px);
+
+      background:
+        #fff;
+    }
+
+    /* =========================================================
+       MEMBERS
+    ========================================================= */
+
+    .members-head {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      margin-bottom:
+        8px;
+    }
+
+    .members-head strong {
+      font-size:
+        10px;
+    }
+
+    .members-head span {
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+    }
+
+    .member-row {
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0,1fr)
+        auto;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        7px;
+    }
+
+    .remove-btn {
+      width:
+        44px;
+
+      border:
+        1px solid
+        rgba(255,92,118,.15);
+
+      border-radius:
+        10px;
+
+      color:
+        #ff9cab;
+
+      background:
+        rgba(255,92,118,.07);
+    }
+
+    .add-btn {
+      margin-top:
+        2px;
+
+      padding:
+        9px 11px;
+
+      border:
+        1px dashed
+        rgba(255,159,67,.24);
+
+      border-radius:
+        10px;
+
+      color:
+        #ffc27c;
+
+      background:
+        rgba(255,133,31,.045);
+
+      font-size:
+        8px;
+
+      font-weight:
+        800;
+    }
+
+    /* =========================================================
+       PRICE
+    ========================================================= */
+
+    .price-card {
+      padding:
+        15px;
+
+      border:
+        1px solid
+        rgba(255,133,31,.14);
+
+      border-radius:
+        16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,133,31,.07),
+          rgba(242,73,112,.035)
+        );
+    }
+
+    .price-line {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      padding:
+        5px 0;
+
+      font-size:
+        9px;
+    }
+
+    .price-line span {
+      color:
+        var(--muted);
+    }
+
+    .price-total {
+      margin-top:
+        7px;
+
+      padding-top:
+        11px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
+      font-size:
+        15px;
+
+      font-weight:
+        800;
+    }
+
+    /* =========================================================
+       PAYMENT
+    ========================================================= */
+
+    .payment-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        340px
+        minmax(0,1fr);
+
+      gap:
+        15px;
+    }
+
+    .payment-card {
+      text-align:
+        center;
+    }
+
+    .payment-qr-box {
+      width:
+        230px;
+
+      height:
+        230px;
+
+      margin:
+        17px auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        10px;
+
+      border-radius:
+        17px;
+
+      background:
+        #fff;
+    }
+
+    #paymentQR {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+    }
+
+    #paymentQR img,
+    #paymentQR canvas {
+      display:
+        block;
+    }
+
+    .upi-chip {
+      display:
+        inline-block;
+
+      max-width:
+        100%;
+
+      padding:
+        8px 10px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        999px;
+
+      color:
+        #ffd49a;
+
+      background:
+        rgba(255,255,255,.04);
+
+      font-size:
+        8px;
+
+      font-weight:
+        800;
+
+      overflow:
+        hidden;
+
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
+    }
+
+    .payment-amount {
+      margin-top:
+        12px;
+
+      font-size:
+        30px;
+
+      font-weight:
+        800;
+    }
+
+    .payment-note {
+      margin-top:
+        4px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+    }
+
+    .instruction-list {
+      display:
+        grid;
+
+      gap:
+        9px;
+
+      margin-top:
+        17px;
+
+      text-align:
+        left;
+    }
+
+    .instruction {
+      display:
+        grid;
+
+      grid-template-columns:
+        28px
+        minmax(0,1fr);
+
+      gap:
+        9px;
+    }
+
+    .instruction-num {
+      width:
+        28px;
+
+      height:
+        28px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid
+        rgba(255,133,31,.12);
+
+      border-radius:
+        8px;
+
+      color:
+        #ffc27c;
+
+      background:
+        rgba(255,133,31,.06);
+
+      font-size:
+        8px;
+
+      font-weight:
+        800;
+    }
+
+    .instruction strong {
+      display:
+        block;
+
+      font-size:
+        9px;
+    }
+
+    .instruction span {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.45;
+    }
+
+    .file-input {
+      width:
+        100%;
+
+      padding:
+        11px;
+
+      border:
+        1px dashed
+        rgba(255,255,255,.13);
+
+      border-radius:
+        11px;
+
+      color:
+        #aaa;
+
+      background:
+        rgba(255,255,255,.025);
+
+      font-size:
+        8px;
+    }
+
+    .manual-note {
+      margin-top:
+        14px;
+
+      padding:
+        11px;
+
+      border:
+        1px solid
+        rgba(255,202,88,.1);
+
+      border-radius:
+        11px;
+
+      color:
+        #ffdc9c;
+
+      background:
+        rgba(255,202,88,.045);
+
+      font-size:
+        8px;
+
+      line-height:
+        1.6;
+    }
+
+    /* =========================================================
+       QR / ENTRY PASS
+    ========================================================= */
+
+    .qr-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        350px
+        minmax(0,1fr);
+
+      gap:
+        15px;
+    }
+
+    .qr-card {
+      text-align:
+        center;
+    }
+
+    .entry-qr-box {
+      width:
+        250px;
+
+      height:
+        250px;
+
+      margin:
+        18px auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        12px;
+
+      border-radius:
+        18px;
+
+      background:
+        #fff;
+    }
+
+    #entryQR {
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      width:
+        100%;
+
+      height:
+        100%;
+    }
+
+    #entryQR img,
+    #entryQR canvas {
+      display:
+        block;
+
+      max-width:
+        100%;
+
+      height:
+        auto !important;
+    }
+
+    .qr-empty {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        20px;
+
+      text-align:
+        center;
+
+      color:
+        #777;
+
+      border:
+        2px dashed
+        #ddd;
+
+      border-radius:
+        11px;
+
+      font-size:
+        9px;
+    }
+
+    .qr-empty strong {
+      display:
+        block;
+
+      margin-bottom:
+        5px;
+
+      color:
+        #333;
+
+      font-size:
+        12px;
+    }
+
+    .qr-id {
+      margin-top:
+        10px;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+
+      letter-spacing:
+        .3px;
+    }
+
+    .details {
+      margin-top:
+        13px;
+    }
+
+    .detail-row {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      padding:
+        11px 0;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.055);
+    }
+
+    .detail-row:last-child {
+      border-bottom:
+        0;
+    }
+
+    .detail-row span {
+      color:
+        var(--muted2);
+
+      font-size:
+        8px;
+    }
+
+    .detail-row strong {
+      max-width:
+        66%;
+
+      overflow-wrap:
+        anywhere;
+
+      text-align:
+        right;
+
+      font-size:
+        9px;
+    }
+
+    /* =========================================================
+       THANK YOU
+    ========================================================= */
+
+    .thank-card {
+      padding:
+        34px 22px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        22px;
+
+      background:
+        rgba(255,255,255,.035);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+    .thank-icon {
+      width:
+        60px;
+
+      height:
+        60px;
+
+      margin:
+        0 auto 15px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        18px;
+
+      color:
+        #8ff1ca;
+
+      background:
+        rgba(66,218,159,.08);
+
+      border:
+        1px solid
+        rgba(66,218,159,.13);
+
+      font-size:
+        25px;
+
+      font-weight:
+        800;
+    }
+
+    .thank-card h2 {
+      margin:
+        0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        33px;
+    }
+
+    .thank-card p {
+      max-width:
+        520px;
+
+      margin:
+        8px auto 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.7;
+    }
+
+    /* =========================================================
+       EMPTY / LOCKED
+    ========================================================= */
+
+    .locked-card {
+      padding:
+        28px 20px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        20px;
+
+      background:
+        rgba(255,255,255,.03);
+    }
+
+    .locked-icon {
+      width:
+        55px;
+
+      height:
+        55px;
+
+      margin:
+        0 auto 13px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        16px;
+
+      color:
+        #ffd78c;
+
+      background:
+        rgba(255,202,88,.06);
+
+      border:
+        1px solid
+        rgba(255,202,88,.1);
+
+      font-size:
+        23px;
+    }
+
+    .locked-card h2 {
+      margin:
+        0;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        29px;
+    }
+
+    .locked-card p {
+      max-width:
+        500px;
+
+      margin:
+        7px auto 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.7;
+    }
+
+    /* =========================================================
+       LOADER
+    ========================================================= */
+
+    .loader {
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        1000;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        rgba(6,4,7,.84);
+
+      backdrop-filter:
+        blur(8px);
+
+      -webkit-backdrop-filter:
+        blur(8px);
+    }
+
+    .loader-inner {
+      text-align:
+        center;
+    }
+
+    .spinner {
+      width:
+        38px;
+
+      height:
+        38px;
+
+      margin:
+        0 auto 11px;
+
+      border:
+        3px solid
+        rgba(255,255,255,.1);
+
+      border-top-color:
+        var(--orange);
+
+      border-radius:
+        50%;
+
+      animation:
+        spin .7s linear infinite;
+    }
+
+    .loader-inner span {
+      color:
+        #bbb;
+
+      font-size:
+        8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform:
+          rotate(360deg);
+      }
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    .toast-container {
+      position:
+        fixed;
+
+      right:
+        15px;
+
+      bottom:
+        15px;
+
+      z-index:
+        1100;
+
+      width:
+        min(
+          360px,
+          calc(100% - 30px)
+        );
+
+      display:
+        grid;
+
+      gap:
+        7px;
+
+      pointer-events:
+        none;
+    }
+
+    .toast {
+      padding:
+        12px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        12px;
+
+      color:
+        #fff;
+
+      background:
+        rgba(18,14,19,.96);
+
+      box-shadow:
+        var(--shadow);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.5;
+
+      animation:
+        toast-in .18s ease;
+    }
+
+    .toast.success {
+      border-color:
+        rgba(66,218,159,.17);
+    }
+
+    .toast.error {
+      border-color:
+        rgba(255,92,118,.17);
+    }
+
+    .toast.info {
+      border-color:
+        rgba(255,202,88,.16);
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity:
+          0;
+
+        transform:
+          translateY(5px);
+      }
+
+      to {
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 980px) {
+
+      .dashboard {
+        grid-template-columns:
+          1fr;
+      }
+
+      .sidebar {
+        position:
+          static;
+
+        display:
+          flex;
+
+        gap:
+          4px;
+
+        overflow:
+          hidden;
+      }
+
+      .sidebar-label {
+        display:
+          none;
+      }
+
+      .nav-btn {
+        min-width:
+          max-content;
+
+        margin:
+          0;
+      }
+
+      .payment-grid,
+      .qr-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .event-facts {
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      .container {
+        width:
+          calc(100% - 24px);
+      }
+
+      .topbar {
+        height:
+          67px;
+      }
+
+      .brand-mark {
+        width:
+          38px;
+
+        height:
+          38px;
+      }
+
+      .brand-text strong {
+        font-size:
+          10px;
+      }
+
+      .brand-text span {
+        font-size:
+          7px;
+      }
+
+      .user-chip-text {
+        display:
+          none;
+      }
+
+      .user-chip {
+        padding:
+          5px;
+      }
+
+      .avatar {
+        width:
+          31px;
+
+        height:
+          31px;
+      }
+
+      .page {
+        padding:
+          19px 0 40px;
+      }
+
+      .page-head {
+        align-items:
+          center;
+      }
+
+      .page-head h1 {
+        font-size:
+          27px;
+      }
+
+      .event-pill {
+        padding:
+          8px 10px;
+      }
+
+      .event-pill strong {
+        font-size:
+          8px;
+      }
+
+      .event-pill span {
+        font-size:
+          7px;
+      }
+
+      .status-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .form-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .full {
+        grid-column:
+          auto;
+      }
+
+      .card {
+        padding:
+          16px;
+
+        border-radius:
+          17px;
+      }
+
+      .event-facts {
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
+      }
+
+      .payment-qr-box,
+      .entry-qr-box {
+        width:
+          215px;
+
+        height:
+          215px;
+      }
+
+      .nav-btn {
+        padding:
+          10px;
+      }
+
+    }
+
+    @media (max-width: 400px) {
+
+      .container {
+        width:
+          calc(100% - 18px);
+      }
+
+      .page-head h1 {
+        font-size:
+          25px;
+      }
+
+      .event-pill {
+        display:
+          none;
+      }
+
+      .event-facts {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .payment-qr-box,
+      .entry-qr-box {
+        width:
+          200px;
+
+        height:
+          200px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       LOADER
+  ======================================================== -->
+
+  <div
+    id="loader"
+    class="loader"
+  >
+
+    <div class="loader-inner">
+
+      <div class="spinner"></div>
+
+      <span id="loaderText">
+        Securing your session...
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header class="topbar">
+
+    <div class="container topbar-inner">
+
+      <div class="brand">
+
+        <div class="brand-mark">
+          ✦
+        </div>
+
+        <div class="brand-text">
+
+          <strong>
+            Vanasthali Public School
+          </strong>
+
+          <span>
+            Raas Rang • Garba Night 2026
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="header-right">
+
+        <div class="user-chip">
+
+          <div
+            class="avatar"
+            id="avatar"
+          >
+            U
+          </div>
+
+          <div class="user-chip-text">
+
+            <strong id="headerEmail">
+              —
+            </strong>
+
+            <span>
+              Participant
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn btn-secondary"
+          id="logoutBtn"
+          type="button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       MAIN
+  ======================================================== -->
+
+  <main class="page">
+
+    <div class="container">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Participant Portal
+          </div>
+
+          <h1>
+            Your Garba Entry
+          </h1>
+
+          <p>
+            16 October 2026 • 6:00 PM – 10:00 PM
+          </p>
+
+        </div>
+
+
+        <div class="event-pill">
+
+          <strong>
+            No Stag Entry
+          </strong>
+
+          <span>
+            Female ₹200 • Couple ₹300
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="dashboard">
+
+
+        <!-- ===================================================
+             SIDEBAR
+        ==================================================== -->
+
+        <aside class="sidebar">
+
+          <div class="sidebar-label">
+            Event
+          </div>
+
+
+          <button
+            class="nav-btn active"
+            data-panel="overview"
+            type="button"
+          >
+            ◉ &nbsp; Overview
+          </button>
+
+
+          <button
+            class="nav-btn"
+            data-panel="registration"
+            type="button"
+          >
+            ✦ &nbsp; Registration
+          </button>
+
+
+          <button
+            class="nav-btn"
+            data-panel="payment"
+            type="button"
+          >
+            ₹ &nbsp; Payment
+          </button>
+
+
+          <button
+            class="nav-btn"
+            data-panel="qr"
+            type="button"
+          >
+            ▣ &nbsp; My QR
+          </button>
+
+
+          <div class="sidebar-label">
+            Account
+          </div>
+
+
+          <button
+            class="nav-btn"
+            id="refreshBtn"
+            type="button"
+          >
+            ↻ &nbsp; Refresh Status
+          </button>
+
+
+          <button
+            class="nav-btn"
+            id="logoutSideBtn"
+            type="button"
+          >
+            ↪ &nbsp; Logout
+          </button>
+
+        </aside>
+
+
+        <!-- ===================================================
+             CONTENT
+        ==================================================== -->
+
+        <section class="content">
+
+
+          <!-- =================================================
+               OVERVIEW
+          ================================================== -->
+
+          <div
+            class="panel active"
+            id="panel-overview"
+          >
+
+            <div class="status-grid">
+
+
+              <div class="status-card">
+
+                <small>
+                  Registration
+                </small>
+
+                <strong
+                  id="statusRegistration"
+                >
+                  Not Started
+                </strong>
+
+                <span
+                  class="badge badge-muted"
+                  id="statusRegistrationBadge"
+                >
+                  ● Not Started
+                </span>
+
+              </div>
+
+
+              <div class="status-card">
+
+                <small>
+                  Payment
+                </small>
+
+                <strong
+                  id="statusPayment"
+                >
+                  Pending
+                </strong>
+
+                <span
+                  class="badge badge-muted"
+                  id="statusPaymentBadge"
+                >
+                  ● Awaiting
+                </span>
+
+              </div>
+
+
+              <div class="status-card">
+
+                <small>
+                  Entry QR
+                </small>
+
+                <strong
+                  id="statusQR"
+                >
+                  Inactive
+                </strong>
+
+                <span
+                  class="badge badge-muted"
+                  id="statusQRBadge"
+                >
+                  ● Not Active
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="card">
+
+              <div class="card-title">
+                Raas Rang — Garba Night 2026
+              </div>
+
+              <div class="card-subtitle">
+                Your event entry is controlled by the
+                school verification process. Payment proof
+                is manually verified by the school team.
+                Only after permission is granted will your
+                unique QR become active.
+              </div>
+
+
+              <div class="event-facts">
+
+
+                <div class="fact">
+
+                  <small>
+                    Date
+                  </small>
+
+                  <strong>
+                    16 October
+                  </strong>
+
+                </div>
+
+
+                <div class="fact">
+
+                  <small>
+                    Time
+                  </small>
+
+                  <strong>
+                    6–10 PM
+                  </strong>
+
+                </div>
+
+
+                <div class="fact">
+
+                  <small>
+                    Female
+                  </small>
+
+                  <strong>
+                    ₹200
+                  </strong>
+
+                </div>
+
+
+                <div class="fact">
+
+                  <small>
+                    Couple
+                  </small>
+
+                  <strong>
+                    ₹300
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="warning-strip">
+                ✦ No stag entry • Minimum group entry is a couple
+              </div>
+
+
+              <div
+                style="
+                  display:flex;
+                  gap:8px;
+                  flex-wrap:wrap;
+                  margin-top:17px;
+                "
+              >
+
+                <button
+                  class="btn btn-primary"
+                  id="overviewStartBtn"
+                  type="button"
+                >
+                  Start Registration →
+                </button>
+
+
+                <button
+                  class="btn btn-secondary"
+                  id="overviewQRBtn"
+                  type="button"
+                >
+                  Open My QR
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="card"
+              id="approvalInfoCard"
+              hidden
+            >
+
+              <div class="card-title">
+                Entry Permission
+              </div>
+
+              <div
+                class="card-subtitle"
+                id="approvalInfoText"
+              >
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               REGISTRATION
+          ================================================== -->
+
+          <div
+            class="panel"
+            id="panel-registration"
+          >
+
+            <div class="card">
+
+              <div class="card-title">
+                Participant Registration
+              </div>
+
+              <div class="card-subtitle">
+                Your email is taken from your authenticated
+                account. It cannot be replaced with another
+                email address.
+              </div>
+
+
+              <form
+                id="registrationForm"
+                novalidate
+              >
+
+                <div class="form-grid">
+
+
+                  <div class="field">
+
+                    <label for="name">
+                      Full Name
+                    </label>
+
+                    <input
+                      class="input"
+                      id="name"
+                      type="text"
+                      maxlength="100"
+                      autocomplete="name"
+                      placeholder="Enter your full name"
+                      required
+                    />
+
+                  </div>
+
+
+                  <div class="field">
+
+                    <label for="phone">
+                      Mobile Number
+                    </label>
+
+                    <input
+                      class="input"
+                      id="phone"
+                      type="tel"
+                      inputmode="numeric"
+                      maxlength="10"
+                      autocomplete="tel"
+                      placeholder="10-digit mobile number"
+                      required
+                    />
+
+                  </div>
+
+
+                  <div class="field full">
+
+                    <label for="email">
+                      Registered Email
+                    </label>
+
+                    <input
+                      class="input readonly"
+                      id="email"
+                      type="email"
+                      readonly
+                    />
+
+                    <div class="help">
+                      This must remain the same email used for your account.
+                    </div>
+
+                  </div>
+
+
+                  <!-- ENTRY TYPE -->
+
+                  <div class="field full">
+
+                    <div class="entry-switch">
+
+                      <div>
+
+                        <strong>
+                          Single Female Entry
+                        </strong>
+
+                        <p>
+                          Select this only when one female participant
+                          is attending alone. Group members will disappear.
+                        </p>
+
+                      </div>
+
+
+                      <label class="switch">
+
+                        <input
+                          id="singleFemale"
+                          type="checkbox"
+                        />
+
+                        <span class="switch-track"></span>
+
+                      </label>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- GROUP -->
+
+                  <div
+                    class="field full"
+                    id="membersSection"
+                  >
+
+                    <div class="members-head">
+
+                      <strong>
+                        Group Members
+                      </strong>
+
+                      <span
+                        id="memberCount"
+                      >
+                        2 Members
+                      </span>
+
+                    </div>
+
+                    <div
+                      id="membersContainer"
+                    ></div>
+
+
+                    <button
+                      class="add-btn"
+                      id="addMemberBtn"
+                      type="button"
+                    >
+                      + Add Member
+                    </button>
+
+
+                    <div class="help">
+                      The registered participant counts as member 1.
+                      Minimum group size is 2.
+                    </div>
+
+                  </div>
+
+
+                  <!-- PRICE -->
+
+                  <div class="field full">
+
+                    <div class="price-card">
+
+                      <div class="price-line">
+
+                        <span>
+                          Entry Type
+                        </span>
+
+                        <strong id="priceType">
+                          Couple
+                        </strong>
+
+                      </div>
+
+
+                      <div class="price-line">
+
+                        <span>
+                          Group Size
+                        </span>
+
+                        <strong id="priceGroupSize">
+                          2
+                        </strong>
+
+                      </div>
+
+
+                      <div class="price-line">
+
+                        <span>
+                          Base Price
+                        </span>
+
+                        <strong id="priceBase">
+                          ₹300
+                        </strong>
+
+                      </div>
+
+
+                      <div class="price-line">
+
+                        <span>
+                          Additional Members
+                        </span>
+
+                        <strong id="priceAdditional">
+                          ₹0
+                        </strong>
+
+                      </div>
+
+
+                      <div class="price-line price-total">
+
+                        <span>
+                          Total Payable
+                        </span>
+
+                        <strong id="priceTotal">
+                          ₹300
+                        </strong>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- TURNSTILE -->
+
+                  <div class="field full">
+
+                    <label>
+                      Security Verification
+                    </label>
+
+                    <div
+                      id="registrationTurnstile"
+                      class="turnstile-wrap"
+                    ></div>
+
+                    <div class="help">
+                      Security verification is validated by the server.
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+
+                <div
+                  style="
+                    display:flex;
+                    justify-content:flex-end;
+                    gap:8px;
+                    flex-wrap:wrap;
+                    margin-top:17px;
+                  "
+                >
+
+                  <button
+                    class="btn btn-secondary"
+                    data-open-panel="overview"
+                    type="button"
+                  >
+                    Cancel
+                  </button>
+
+
+                  <button
+                    class="btn btn-primary"
+                    id="registrationSubmitBtn"
+                    type="submit"
+                  >
+                    Save Registration →
+                  </button>
+
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               PAYMENT
+          ================================================== -->
+
+          <div
+            class="panel"
+            id="panel-payment"
+          >
+
+            <div class="payment-grid">
+
+
+              <div class="card payment-card">
+
+                <div class="eyebrow">
+                  Manual UPI Payment
+                </div>
+
+
+                <div class="payment-qr-box">
+
+                  <div
+                    id="paymentQR"
+                  ></div>
+
+                </div>
+
+
+                <div class="mini-text">
+                  Scan the QR using your UPI app.
+                </div>
+
+
+                <div
+                  class="upi-chip"
+                  id="upiChip"
+                >
+                  UPI ID: Configure in code
+                </div>
+
+
+                <div
+                  class="payment-amount"
+                  id="paymentAmount"
+                >
+                  ₹300
+                </div>
+
+
+                <div class="payment-note">
+                  Pay the exact amount.
+                </div>
+
+
+                <div class="instruction-list">
+
+
+                  <div class="instruction">
+
+                    <div class="instruction-num">
+                      1
+                    </div>
+
+                    <div>
+
+                      <strong>
+                        Scan & Pay
+                      </strong>
+
+                      <span>
+                        Make the exact UPI payment shown above.
+                      </span>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="instruction">
+
+                    <div class="instruction-num">
+                      2
+                    </div>
+
+                    <div>
+
+                      <strong>
+                        Save Proof
+                      </strong>
+
+                      <span>
+                        Keep a clear screenshot of the successful payment.
+                      </span>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="instruction">
+
+                    <div class="instruction-num">
+                      3
+                    </div>
+
+                    <div>
+
+                      <strong>
+                        Enter UTR
+                      </strong>
+
+                      <span>
+                        Enter the UTR / UPI reference / transaction ID.
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="card">
+
+                <div class="card-title">
+                  Submit Payment Proof
+                </div>
+
+                <div class="card-subtitle">
+                  The payment is manually checked by the school
+                  against its actual bank/UPI record. Uploading
+                  proof does not grant entry permission.
+                </div>
+
+
+                <form
+                  id="paymentForm"
+                  novalidate
+                >
+
+                  <div class="field">
+
+                    <label for="paymentProof">
+                      Payment Screenshot / PDF
+                    </label>
+
+                    <input
+                      class="file-input"
+                      id="paymentProof"
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
+                    />
+
+                    <div class="help">
+                      Maximum 1 MB • JPG • JPEG • PNG • PDF
+                    </div>
+
+                  </div>
+
+
+                  <div class="field">
+
+                    <label for="utr">
+                      UTR / UPI Reference Number / Transaction ID
+                    </label>
+
+                    <input
+                      class="input"
+                      id="utr"
+                      type="text"
+                      maxlength="100"
+                      autocomplete="off"
+                      spellcheck="false"
+                      placeholder="Enter transaction reference"
+                    />
+
+                    <div class="help">
+                      Enter exactly the reference shown in your payment record.
+                    </div>
+
+                  </div>
+
+
+                  <div class="field">
+
+                    <label>
+                      Security Verification
+                    </label>
+
+                    <div
+                      id="paymentTurnstile"
+                      class="turnstile-wrap"
+                    ></div>
+
+                  </div>
+
+
+                  <div class="manual-note">
+
+                    <strong>
+                      Manual verification:
+                    </strong>
+
+                    Your payment will remain under review
+                    until the school verifies the transaction.
+                    Your QR will activate only after permission
+                    is granted by the administrator.
+
+                  </div>
+
+
+                  <div
+                    style="
+                      margin-top:17px;
+                      display:flex;
+                      justify-content:flex-end;
+                    "
+                  >
+
+                    <button
+                      class="btn btn-primary"
+                      id="paymentSubmitBtn"
+                      type="submit"
+                    >
+                      Submit Payment Proof →
+                    </button>
+
+                  </div>
+
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               QR
+          ================================================== -->
+
+          <div
+            class="panel"
+            id="panel-qr"
+          >
+
+            <div id="qrActiveView">
+
+              <div class="qr-grid">
+
+
+                <div class="card qr-card">
+
+                  <div class="eyebrow">
+                    Entry Pass
+                  </div>
+
+
+                  <div class="entry-qr-box">
+
+                    <div
+                      id="entryQR"
+                    ></div>
+
+                  </div>
+
+
+                  <span
+                    id="qrBadge"
+                    class="badge badge-warning"
+                  >
+                    ● Awaiting Approval
+                  </span>
+
+
+                  <div
+                    class="card-subtitle"
+                    id="qrMessage"
+                  >
+                    Your QR will appear after the school
+                    grants permission.
+                  </div>
+
+
+                  <div
+                    class="qr-id"
+                    id="qrPublicId"
+                  >
+                    —
+                  </div>
+
+                </div>
+
+
+                <div>
+
+
+                  <div class="card">
+
+                    <div class="card-title">
+                      Registration Details
+                    </div>
+
+
+                    <div class="details">
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Name
+                        </span>
+
+                        <strong id="detailName">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Mobile
+                        </span>
+
+                        <strong id="detailPhone">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Email
+                        </span>
+
+                        <strong id="detailEmail">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Entry
+                        </span>
+
+                        <strong id="detailEntry">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Group Size
+                        </span>
+
+                        <strong id="detailGroupSize">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Amount
+                        </span>
+
+                        <strong id="detailAmount">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                      <div class="detail-row">
+
+                        <span>
+                          Registration ID
+                        </span>
+
+                        <strong id="detailRegistrationId">
+                          —
+                        </strong>
+
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="card">
+
+                    <div class="card-title">
+                      Entry Rule
+                    </div>
+
+                    <div class="card-subtitle">
+                      The QR is unique to this registration.
+                      The gate server will verify it before
+                      allowing entry. Once checked in, the QR
+                      becomes invalid.
+                    </div>
+
+                    <span class="badge badge-muted">
+                      One-time entry
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="qrLockedView"
+              hidden
+            >
+
+              <div class="locked-card">
+
+                <div class="locked-icon">
+                  ▣
+                </div>
+
+                <h2>
+                  QR Not Active
+                </h2>
+
+                <p id="qrLockedMessage">
+                  Your event QR will appear here only after
+                  payment verification and admin permission.
+                </p>
+
+                <div style="margin-top:18px;">
+
+                  <button
+                    class="btn btn-secondary"
+                    data-open-panel="overview"
+                    type="button"
+                  >
+                    Back to Overview
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- =================================================
+               THANK YOU
+          ================================================== -->
+
+          <div
+            class="panel"
+            id="panel-thankyou"
+          >
+
+            <div class="thank-card">
+
+              <div class="thank-icon">
+                ✓
+              </div>
+
+              <h2>
+                Thank You!
+              </h2>
+
+              <p>
+                Your payment proof has been submitted successfully.
+                The school team will manually verify the transaction.
+                Once permission is granted, your unique event QR
+                code will become available in the My QR section.
+              </p>
+
+
+              <div
+                style="
+                  margin-top:14px;
+                "
+              >
+
+                <span
+                  class="badge badge-warning"
+                  id="thankStatus"
+                >
+                  ● Under Review
+                </span>
+
+              </div>
+
+
+              <div
+                style="
+                  display:flex;
+                  justify-content:center;
+                  gap:8px;
+                  flex-wrap:wrap;
+                  margin-top:19px;
+                "
+              >
+
+                <button
+                  class="btn btn-primary"
+                  data-open-panel="qr"
+                  type="button"
+                >
+                  Open My QR
+                </button>
+
+                <button
+                  class="btn btn-secondary"
+                  id="thankRefreshBtn"
+                  type="button"
+                >
+                  Refresh Status
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =======================================================
+       TOAST
+  ======================================================== -->
+
+  <div
+    class="toast-container"
+    id="toastContainer"
+    aria-live="polite"
+  ></div>
+
+
+  <script>
+    "use strict";
+
+    /* =========================================================
+       CONFIGURATION
+       ---------------------------------------------------------
+       Replace ONLY these public configuration values.
+
+       NEVER place:
+       - Supabase Secret Key
+       - service_role key
+       - Turnstile Secret Key
+       - DB password
+
+       in this file.
+    ========================================================= */
+
+    const CONFIG = Object.freeze({
+
+      SUPABASE_URL:
+        "https://fhpudmstnldyqaggrnqme.supabase.co",
+
+      SUPABASE_PUBLISHABLE_KEY:
+        "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE",
+
+      CLOUDFLARE_TURNSTILE_SITE_KEY:
+        "PASTE_YOUR_CLOUDFLARE_SITE_KEY_HERE",
+
+      SCHOOL_UPI_ID:
+        "SCHOOL_UPI_ID_HERE",
+
+      SCHOOL_PAYEE_NAME:
+        "Vanasthali Public School",
+
+      EVENT_DATE:
+        "16 October 2026",
+
+      EVENT_TIME:
+        "6:00 PM – 10:00 PM",
+
+      PRICING: Object.freeze({
+
+        SINGLE_FEMALE:
+          200,
+
+        COUPLE:
+          300,
+
+        EXTRA_MEMBER:
+          150
+
+      }),
+
+      MAX_FILE_SIZE:
+        1024 * 1024,
+
+      ALLOWED_MIME_TYPES:
+        Object.freeze([
+          "image/jpeg",
+          "image/png",
+          "application/pdf"
+        ]),
+
+      REFRESH_INTERVAL_MS:
+        120000,
+
+      EDGE_FUNCTIONS: Object.freeze({
+
+        GET_DASHBOARD:
+          "get-my-dashboard",
+
+        CREATE_REGISTRATION:
+          "create-registration",
+
+        SUBMIT_PAYMENT:
+          "submit-payment"
+
+      })
+
+    });
+
+
+    /* =========================================================
+       GLOBAL STATE
+       ---------------------------------------------------------
+       No passwords.
+       No sensitive data in localStorage.
+       No authentication state manually fabricated.
+    ========================================================= */
+
+    const state = {
+
+      supabase:
+        null,
+
+      user:
+        null,
+
+      dashboard:
+        null,
+
+      members:
+        [
+          {
+            name: ""
+          }
+        ],
+
+      turnstile:
+        {
+          registrationWidgetId:
+            null,
+
+          paymentWidgetId:
+            null,
+
+          registrationToken:
+            null,
+
+          paymentToken:
+            null
+        },
+
+      registrationInFlight:
+        false,
+
+      paymentInFlight:
+        false,
+
+      refreshTimer:
+        null
+
+    };
+
+
+    /* =========================================================
+       DOM
+    ========================================================= */
+
+    const $ =
+      selector =>
+        document.querySelector(selector);
+
+
+    const $$ =
+      selector =>
+        Array.from(
+          document.querySelectorAll(selector)
+        );
+
+
+    /* =========================================================
+       BOOT
+    ========================================================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      bootstrap
+    );
+
+
+    async function bootstrap() {
+
+      bindEvents();
+
+      renderMembers();
+
+      updatePricingUI();
+
+      await waitForLibraries();
+
+    }
+
+
+    async function waitForLibraries() {
+
+      const started =
+        Date.now();
+
+
+      const maxWait =
+        15000;
+
+
+      while (
+        (
+          !window.supabase ||
+          !window.turnstile
+        ) &&
+        Date.now() - started <
+          maxWait
+      ) {
+
+        await delay(100);
+
+      }
+
+
+      try {
+
+        if (
+          !window.supabase ||
+          typeof window.supabase.createClient !==
+            "function"
+        ) {
+
+          throw new Error(
+            "Supabase library failed to load."
+          );
+
+        }
+
+
+        if (
+          CONFIG.SUPABASE_PUBLISHABLE_KEY
+            .includes(
+              "PASTE_YOUR"
+            )
+        ) {
+
+          throw new Error(
+            "Supabase publishable key is not configured."
+          );
+
+        }
+
+
+        state.supabase =
+          window.supabase.createClient(
+            CONFIG.SUPABASE_URL,
+            CONFIG.SUPABASE_PUBLISHABLE_KEY,
+            {
+              auth: {
+
+                autoRefreshToken:
+                  true,
+
+                persistSession:
+                  true,
+
+                detectSessionInUrl:
+                  true,
+
+                flowType:
+                  "pkce"
+
+              }
+            }
+          );
+
+
+        await authenticateUser();
+
+      } catch (error) {
+
+        console.error(
+          "BOOT ERROR:",
+          error
+        );
+
+        stopLoader();
+
+        showFatalError(
+          error.message
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       AUTHENTICATION
+       ---------------------------------------------------------
+       getUser() is intentionally used instead of trusting
+       arbitrary client-side session data.
+    ========================================================= */
+
+    async function authenticateUser() {
+
+      setLoader(
+        "Verifying authenticated account..."
+      );
+
+
+      const {
+        data,
+        error
+      } =
+        await state.supabase.auth.getUser();
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      if (!data?.user) {
+
+        redirectToLogin();
+
+        return;
+
+      }
+
+
+      state.user =
+        data.user;
+
+
+      syncUserIdentity();
+
+
+      /*
+        Role is NOT read from localStorage,
+        URL parameters, hidden fields or user input.
+
+        The Edge Function below must read the role from
+        the protected server-side profile/database.
+      */
+
+      await loadDashboard();
+
+
+      state.supabase.auth.onAuthStateChange(
+        (_event, session) => {
+
+          const user =
+            session?.user ||
+            null;
+
+
+          state.user =
+            user;
+
+
+          if (!user) {
+
+            redirectToLogin();
+
+            return;
+
+          }
+
+
+          syncUserIdentity();
+
+        }
+      );
+
+
+      startBackgroundRefresh();
+
+
+      stopLoader();
+
+    }
+
+
+    /* =========================================================
+       ROLE + DASHBOARD
+    ========================================================= */
+
+    async function loadDashboard() {
+
+      setLoader(
+        "Loading your secure event profile..."
+      );
+
+
+      const {
+        data,
+        error
+      } =
+        await invokeFunction(
+          CONFIG.EDGE_FUNCTIONS.GET_DASHBOARD,
+          {}
+        );
+
+
+      if (error) {
+
+        /*
+          Important:
+
+          If this function is not deployed yet,
+          do NOT fall back to direct public table
+          access.
+
+          This keeps the final architecture fail-closed.
+        */
+
+        throw error;
+
+      }
+
+
+      if (!data) {
+
+        throw new Error(
+          "No secure dashboard response received."
+        );
+
+      }
+
+
+      /*
+        Expected server response:
+
+        {
+          role: "participant",
+
+          registration: {...} | null,
+
+          payment: {...} | null,
+
+          qr: {...} | null
+        }
+      */
+
+      const role =
+        String(
+          data.role ||
+          ""
+        ).toLowerCase();
+
+
+      if (role === "admin") {
+
+        window.location.replace(
+          "/admin.html"
+        );
+
+        return;
+
+      }
+
+
+      if (role === "gate") {
+
+        window.location.replace(
+          "/gate.html"
+        );
+
+        return;
+
+      }
+
+
+      if (role !== "participant") {
+
+        throw new Error(
+          "This account is not authorized for the participant portal."
+        );
+
+      }
+
+
+      state.dashboard =
+        normalizeDashboard(
+          data
+        );
+
+
+      applyDashboardToUI();
+
+    }
+
+
+    function normalizeDashboard(
+      data
+    ) {
+
+      return {
+
+        role:
+          data.role ||
+          "participant",
+
+        registration:
+          data.registration ||
+          null,
+
+        payment:
+          data.payment ||
+          null,
+
+        qr:
+          data.qr ||
+          null
+
+      };
+
+    }
+
+
+    /* =========================================================
+       EDGE FUNCTION HELPER
+       ========================================================= */
+
+    async function invokeFunction(
+      functionName,
+      body
+    ) {
+
+      if (!state.supabase) {
+
+        throw new Error(
+          "Supabase client is not ready."
+        );
+
+      }
+
+
+      return await state.supabase.functions.invoke(
+        functionName,
+        {
+
+          body
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       USER UI
+       ========================================================= */
+
+    function syncUserIdentity() {
+
+      if (!state.user) {
+
+        return;
+
+      }
+
+
+      const email =
+        state.user.email ||
+        "";
+
+
+      $("#headerEmail")
+        .textContent =
+        email;
+
+
+      $("#email")
+        .value =
+        email;
+
+
+      $("#avatar")
+        .textContent =
+        email
+          .charAt(0)
+          .toUpperCase() ||
+        "U";
+
+    }
+
+
+    function applyDashboardToUI() {
+
+      const dashboard =
+        state.dashboard;
+
+
+      if (!dashboard) {
+
+        return;
+
+      }
+
+
+      const registration =
+        dashboard.registration;
+
+
+      const payment =
+        dashboard.payment;
+
+
+      const qr =
+        dashboard.qr;
+
+
+      /*
+        Populate server-returned registration data.
+      */
+
+      if (registration) {
+
+        populateRegistrationFromServer(
+          registration
+        );
+
+      }
+
+
+      updateOverviewStatus(
+        registration,
+        payment,
+        qr
+      );
+
+
+      renderQRState(
+        qr
+      );
+
+
+      updateApprovalInfo(
+        payment,
+        qr
+      );
+
+    }
+
+
+    function updateOverviewStatus(
+      registration,
+      payment,
+      qr
+    ) {
+
+      const registrationExists =
+        Boolean(
+          registration
+        );
+
+
+      $("#statusRegistration")
+        .textContent =
+        registrationExists
+          ? "Completed"
+          : "Not Started";
+
+
+      updateBadge(
+        $("#statusRegistrationBadge"),
+        registrationExists
+          ? "● Completed"
+          : "● Not Started",
+        registrationExists
+          ? "success"
+          : "muted"
+      );
+
+
+      let paymentText =
+        "Pending";
+
+      let paymentBadge =
+        "● Awaiting";
+
+      let paymentType =
+        "muted";
+
+
+      if (payment) {
+
+        const status =
+          String(
+            payment.payment_status ||
+            payment.status ||
+            ""
+          ).toLowerCase();
+
+
+        if (
+          status ===
+          "verified"
+        ) {
+
+          paymentText =
+            "Verified";
+
+          paymentBadge =
+            "● Verified";
+
+          paymentType =
+            "success";
+
+        } else if (
+          status ===
+            "rejected"
+        ) {
+
+          paymentText =
+            "Rejected";
+
+          paymentBadge =
+            "● Rejected";
+
+          paymentType =
+            "danger";
+
+        } else {
+
+          paymentText =
+            "Under Review";
+
+          paymentBadge =
+            "● Under Review";
+
+          paymentType =
+            "warning";
+
+        }
+
+      }
+
+
+      $("#statusPayment")
+        .textContent =
+        paymentText;
+
+
+      updateBadge(
+        $("#statusPaymentBadge"),
+        paymentBadge,
+        paymentType
+      );
+
+
+      let qrText =
+        "Inactive";
+
+      let qrBadge =
+        "● Not Active";
+
+      let qrType =
+        "muted";
+
+
+      const qrStatus =
+        String(
+          qr?.status ||
+          ""
+        ).toLowerCase();
+
+
+      if (
+        qrStatus ===
+        "active"
+      ) {
+
+        qrText =
+          "Active";
+
+        qrBadge =
+          "● Active";
+
+        qrType =
+          "success";
+
+      } else if (
+        qrStatus ===
+        "used"
+      ) {
+
+        qrText =
+          "Used";
+
+        qrBadge =
+          "● Already Used";
+
+        qrType =
+          "danger";
+
+      } else if (
+        qrStatus ===
+        "revoked"
+      ) {
+
+        qrText =
+          "Revoked";
+
+        qrBadge =
+          "● Revoked";
+
+        qrType =
+          "danger";
+
+      } else if (
+        qrStatus ===
+        "inactive"
+      ) {
+
+        qrText =
+          "Inactive";
+
+        qrBadge =
+          "● Awaiting Approval";
+
+        qrType =
+          "warning";
+
+      }
+
+
+      $("#statusQR")
+        .textContent =
+        qrText;
+
+
+      updateBadge(
+        $("#statusQRBadge"),
+        qrBadge,
+        qrType
+      );
+
+    }
+
+
+    function updateApprovalInfo(
+      payment,
+      qr
+    ) {
+
+      const card =
+        $("#approvalInfoCard");
+
+
+      const text =
+        $("#approvalInfoText");
+
+
+      if (!payment && !qr) {
+
+        card.hidden =
+          true;
+
+        return;
+
+      }
+
+
+      card.hidden =
+        false;
+
+
+      const paymentStatus =
+        String(
+          payment?.payment_status ||
+          payment?.status ||
+          ""
+        ).toLowerCase();
+
+
+      const qrStatus =
+        String(
+          qr?.status ||
+          ""
+        ).toLowerCase();
+
+
+      if (
+        qrStatus ===
+        "active"
+      ) {
+
+        text.textContent =
+          "Your payment has been verified and your entry permission has been granted. Your QR is now active.";
+
+        return;
+
+      }
+
+
+      if (
+        qrStatus ===
+        "used"
+      ) {
+
+        text.textContent =
+          "Your entry has already been checked in. The QR is now invalid.";
+
+        return;
+
+      }
+
+
+      if (
+        paymentStatus ===
+        "verified"
+      ) {
+
+        text.textContent =
+          "Payment verified. Your QR will become available once the administrator grants entry permission.";
+
+        return;
+
+      }
+
+
+      if (
+        paymentStatus ===
+        "rejected"
+      ) {
+
+        text.textContent =
+          "The submitted payment proof was rejected by the school. Please contact the school team for clarification.";
+
+        return;
+
+      }
+
+
+      if (
+        payment
+      ) {
+
+        text.textContent =
+          "Your payment proof is under manual verification. Please wait for the school team to complete the verification.";
+
+        return;
+
+      }
+
+
+      card.hidden =
+        true;
+
+    }
+
+
+    /* =========================================================
+       REGISTRATION FORM
+    ========================================================= */
+
+    function populateRegistrationFromServer(
+      registration
+    ) {
+
+      $("#name")
+        .value =
+        registration.name ||
+        "";
+
+      $("#phone")
+        .value =
+        registration.phone ||
+        "";
+
+      $("#email")
+        .value =
+        state.user?.email ||
+        registration.email ||
+        "";
+
+
+      const entryType =
+        String(
+          registration.entry_type ||
+          registration.entryType ||
+          ""
+        ).toLowerCase();
+
+
+      $("#singleFemale")
+        .checked =
+        entryType ===
+        "single_female";
+
+
+      const serverMembers =
+        Array.isArray(
+          registration.members
+        )
+          ? registration.members
+          : [];
+
+
+      if (
+        entryType ===
+          "single_female"
+      ) {
+
+        state.members =
+          [
+            {
+              name:
+                ""
+            }
+          ];
+
+      } else {
+
+        /*
+          Server can return only additional
+          member names, not passwords/session data.
+        */
+
+        state.members =
+          serverMembers.length
+            ? serverMembers.map(
+                member => ({
+                  name:
+                    typeof member ===
+                    "string"
+                      ? member
+                      : member?.name ||
+                        ""
+                })
+              )
+            : [
+                {
+                  name:
+                    ""
+                }
+              ];
+
+      }
+
+
+      $("#membersSection")
+        .hidden =
+        entryType ===
+        "single_female";
+
+
+      renderMembers();
+
+      updatePricingUI();
+
+    }
+
+
+    async function handleRegistrationSubmit(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      if (
+        state.registrationInFlight
+      ) {
+
+        return;
+
+      }
+
+
+      if (!state.user) {
+
+        showToast(
+          "Your session has expired. Please login again.",
+          "error"
+        );
+
+        redirectToLogin();
+
+        return;
+
+      }
+
+
+      const name =
+        $("#name")
+          .value
+          .trim();
+
+      const phone =
+        $("#phone")
+          .value
+          .trim();
+
+      const email =
+        $("#email")
+          .value
+          .trim()
+          .toLowerCase();
+
+      const singleFemale =
+        $("#singleFemale")
+          .checked;
+
+      const turnstileToken =
+        state.turnstile
+          .registrationToken;
+
+
+      /* -------------------------------------------------------
+         CLIENT-SIDE VALIDATION
+         -------------------------------------------------------
+         This is UX validation only.
+         Server will perform the authoritative validation.
+      ------------------------------------------------------- */
+
+
+      if (
+        name.length <
+          2
+      ) {
+
+        showToast(
+          "Please enter your full name.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !/^[0-9]{10}$/
+          .test(phone)
+      ) {
+
+        showToast(
+          "Please enter a valid 10-digit mobile number.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        email !==
+        (
+          state.user.email ||
+          ""
+        )
+          .toLowerCase()
+      ) {
+
+        showToast(
+          "Registered email does not match the authenticated account.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!turnstileToken) {
+
+        showToast(
+          "Please complete the security verification.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      let memberNames =
+        [];
+
+
+      if (!singleFemale) {
+
+        memberNames =
+          state.members
+            .map(
+              member =>
+                String(
+                  member.name ||
+                  ""
+                ).trim()
+            )
+            .filter(
+              Boolean
+            );
+
+
+        if (
+          memberNames.length <
+            1
+        ) {
+
+          showToast(
+            "A minimum of 2 people is required for group entry.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          memberNames.some(
+            member =>
+              member.length <
+                2
+          )
+        ) {
+
+          showToast(
+            "Please enter every additional member's name.",
+            "error"
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      /*
+        Important:
+
+        We do NOT send the final amount as authority.
+
+        The Edge Function must recalculate:
+
+        single female = ₹200
+
+        couple = ₹300
+
+        extra member =
+          ₹150 each
+      */
+
+      const payload =
+        {
+
+          idempotencyKey:
+            crypto.randomUUID(),
+
+          name,
+
+          phone,
+
+          email,
+
+          entryType:
+            singleFemale
+              ? "single_female"
+              : "group",
+
+          members:
+            memberNames,
+
+          turnstileToken
+
+        };
+
+
+      const submitButton =
+        $("#registrationSubmitBtn");
+
+
+      state.registrationInFlight =
+        true;
+
+
+      setButtonLoading(
+        submitButton,
+        "Saving..."
+      );
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG
+              .EDGE_FUNCTIONS
+              .CREATE_REGISTRATION,
+            payload
+          );
+
+
+        if (error) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        /*
+          Backend response should contain
+          the authoritative registration.
+        */
+
+        if (data?.registration) {
+
+          if (!state.dashboard) {
+
+            state.dashboard =
+              {};
+
+          }
+
+
+          state.dashboard
+            .registration =
+            data.registration;
+
+          state.dashboard
+            .payment =
+            data.payment ||
+            state.dashboard.payment ||
+            null;
+
+          state.dashboard
+            .qr =
+            data.qr ||
+            state.dashboard.qr ||
+            null;
+
+        }
+
+
+        resetRegistrationTurnstile();
+
+
+        applyDashboardToUI();
+
+
+        showToast(
+          "Registration saved successfully.",
+          "success"
+        );
+
+
+        openPanel(
+          "payment"
+        );
+
+
+        startPaymentQR();
+
+      } catch (error) {
+
+        console.error(
+          "REGISTRATION SUBMIT ERROR:",
+          error
+        );
+
+        showToast(
+          error.message ||
+          "Registration could not be saved.",
+          "error"
+        );
+
+
+        resetRegistrationTurnstile();
+
+      } finally {
+
+        state.registrationInFlight =
+          false;
+
+        resetButton(
+          submitButton,
+          "Save Registration →"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       PAYMENT SUBMISSION
+    ========================================================= */
+
+    async function handlePaymentSubmit(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      if (
+        state.paymentInFlight
+      ) {
+
+        return;
+
+      }
+
+
+      if (!state.user) {
+
+        redirectToLogin();
+
+        return;
+
+      }
+
+
+      const registration =
+        state.dashboard
+          ?.registration;
+
+
+      if (!registration) {
+
+        showToast(
+          "Complete your registration first.",
+          "error"
+        );
+
+        openPanel(
+          "registration"
+        );
+
+        return;
+
+      }
+
+
+      const file =
+        $("#paymentProof")
+          .files[0];
+
+      const utr =
+        $("#utr")
+          .value
+          .trim();
+
+      const turnstileToken =
+        state.turnstile
+          .paymentToken;
+
+
+      if (!file) {
+
+        showToast(
+          "Please attach your payment proof.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        file.size >
+        CONFIG.MAX_FILE_SIZE
+      ) {
+
+        showToast(
+          "Payment proof must not exceed 1 MB.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !CONFIG
+          .ALLOWED_MIME_TYPES
+          .includes(
+            file.type
+          )
+      ) {
+
+        showToast(
+          "Only JPG, JPEG, PNG or PDF files are allowed.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !/^[A-Za-z0-9\-]{6,100}$/
+          .test(utr)
+      ) {
+
+        showToast(
+          "Please enter a valid UTR / transaction reference.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!turnstileToken) {
+
+        showToast(
+          "Please complete the security verification.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const submitButton =
+        $("#paymentSubmitBtn");
+
+
+      state.paymentInFlight =
+        true;
+
+
+      setButtonLoading(
+        submitButton,
+        "Uploading proof..."
+      );
+
+
+      try {
+
+        /*
+          -----------------------------------------------------
+          FILE PATH
+          -----------------------------------------------------
+
+          The first path segment MUST be the authenticated
+          user's UUID.
+
+          Random filename prevents predictable file names.
+
+          The Storage bucket itself already enforces:
+            - private bucket
+            - max 1 MB
+            - JPG/PNG/PDF MIME types
+        */
+
+        const extension =
+          getSafeExtension(
+            file.name,
+            file.type
+          );
+
+
+        if (!extension) {
+
+          throw new Error(
+            "Unsupported payment proof type."
+          );
+
+        }
+
+
+        const randomFileName =
+          `${crypto.randomUUID()}.${extension}`;
+
+
+        const storagePath =
+          `${state.user.id}/${randomFileName}`;
+
+
+        setButtonLoading(
+          submitButton,
+          "Uploading proof..."
+        );
+
+
+        /*
+          Direct upload is restricted by the Storage RLS
+          policy already configured for this bucket.
+
+          No public URL is generated.
+        */
+
+        const {
+          error:
+            uploadError
+        } =
+          await state.supabase
+            .storage
+            .from(
+              "payment-proofs"
+            )
+            .upload(
+              storagePath,
+              file,
+              {
+
+                cacheControl:
+                  "3600",
+
+                contentType:
+                  file.type,
+
+                upsert:
+                  false
+
+              }
+            );
+
+
+        if (uploadError) {
+
+          throw uploadError;
+
+        }
+
+
+        setButtonLoading(
+          submitButton,
+          "Submitting..."
+        );
+
+
+        /*
+          The backend is authoritative for:
+
+          - user ownership
+          - registration ownership
+          - price
+          - payment uniqueness
+          - storage path ownership
+          - Turnstile verification
+          - duplicate submission prevention
+        */
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG
+              .EDGE_FUNCTIONS
+              .SUBMIT_PAYMENT,
+            {
+
+              idempotencyKey:
+                crypto.randomUUID(),
+
+              utr,
+
+              proofStoragePath:
+                storagePath,
+
+              turnstileToken
+
+            }
+          );
+
+
+        if (error) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        state.dashboard =
+          normalizeDashboard(
+            data ||
+            state.dashboard
+          );
+
+
+        resetPaymentTurnstile();
+
+
+        /*
+          Clear file input so the same proof isn't
+          accidentally submitted twice through the UI.
+        */
+
+        $("#paymentProof")
+          .value =
+          "";
+
+        $("#utr")
+          .value =
+          "";
+
+
+        applyDashboardToUI();
+
+
+        $("#thankStatus")
+          .textContent =
+          "● Under Review";
+
+        $("#thankStatus")
+          .className =
+          "badge badge-warning";
+
+
+        showToast(
+          "Payment proof submitted for manual verification.",
+          "success"
+        );
+
+
+        openPanel(
+          "thankyou"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "PAYMENT SUBMIT ERROR:",
+          error
+        );
+
+        showToast(
+          error.message ||
+          "Payment submission failed.",
+          "error"
+        );
+
+
+        resetPaymentTurnstile();
+
+      } finally {
+
+        state.paymentInFlight =
+          false;
+
+        resetButton(
+          submitButton,
+          "Submit Payment Proof →"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       GROUP MEMBERS
+    ========================================================= */
+
+    function renderMembers() {
+
+      const container =
+        $("#membersContainer");
+
+
+      if (!container) {
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        "";
+
+
+      state.members
+        .forEach(
+          (member, index) => {
+
+            const row =
+              document.createElement(
+                "div"
+              );
+
+
+            row.className =
+              "member-row";
+
+
+            const input =
+              document.createElement(
+                "input"
+              );
+
+
+            input.type =
+              "text";
+
+            input.className =
+              "input";
+
+            input.maxLength =
+              100;
+
+            input.placeholder =
+              `Member ${index + 2} full name`;
+
+            input.value =
+              member.name ||
+              "";
+
+
+            input.addEventListener(
+              "input",
+              event => {
+
+                state.members[index]
+                  .name =
+                  event.target.value;
+
+              }
+            );
+
+
+            row.appendChild(
+              input
+            );
+
+
+            const remove =
+              document.createElement(
+                "button"
+              );
+
+
+            remove.type =
+              "button";
+
+            remove.className =
+              "remove-btn";
+
+            remove.textContent =
+              "×";
+
+
+            remove.addEventListener(
+              "click",
+              () => {
+
+                removeMember(index);
+
+              }
+            );
+
+
+            row.appendChild(
+              remove
+            );
+
+
+            container.appendChild(
+              row
+            );
+
+          }
+        );
+
+
+      updateMemberCount();
+
+    }
+
+
+    function addMember() {
+
+      state.members.push({
+
+        name:
+          ""
+
+      });
+
+
+      renderMembers();
+
+      updatePricingUI();
+
+    }
+
+
+    function removeMember(
+      index
+    ) {
+
+      /*
+        One additional member must always remain
+        because the minimum group is 2.
+      */
+
+      if (
+        state.members.length <=
+          1
+      ) {
+
+        showToast(
+          "Minimum group entry is 2 members.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      state.members.splice(
+        index,
+        1
+      );
+
+
+      renderMembers();
+
+      updatePricingUI();
+
+    }
+
+
+    function updateMemberCount() {
+
+      const total =
+        state.members.length +
+        1;
+
+
+      $("#memberCount")
+        .textContent =
+        `${total} ${
+          total === 1
+            ? "Member"
+            : "Members"
+        }`;
+
+    }
+
+
+    function handleSingleFemaleChange(
+      event
+    ) {
+
+      const enabled =
+        event.target.checked;
+
+
+      $("#membersSection")
+        .hidden =
+        enabled;
+
+
+      updatePricingUI();
+
+    }
+
+
+    /* =========================================================
+       PRICING
+       ---------------------------------------------------------
+       UI calculation only.
+
+       Backend MUST recalculate and enforce final amount.
+    ========================================================= */
+
+    function calculateUIAmount() {
+
+      if (
+        $("#singleFemale")
+          .checked
+      ) {
+
+        return CONFIG.PRICING
+          .SINGLE_FEMALE;
+
+      }
+
+
+      const groupSize =
+        state.members.length +
+        1;
+
+
+      return (
+        CONFIG.PRICING.COUPLE +
+        (
+          Math.max(
+            groupSize - 2,
+            0
+          )
+          *
+          CONFIG.PRICING.EXTRA_MEMBER
+        )
+      );
+
+    }
+
+
+    function getUIGroupSize() {
+
+      return $("#singleFemale")
+        .checked
+        ? 1
+        : state.members.length +
+          1;
+
+    }
+
+
+    function updatePricingUI() {
+
+      const single =
+        $("#singleFemale")
+          ?.checked ||
+        false;
+
+
+      const groupSize =
+        getUIGroupSize();
+
+
+      const extras =
+        single
+          ? 0
+          : Math.max(
+              groupSize - 2,
+              0
+            )
+            *
+            CONFIG.PRICING.EXTRA_MEMBER;
+
+
+      const amount =
+        single
+          ? CONFIG.PRICING.SINGLE_FEMALE
+          : CONFIG.PRICING.COUPLE +
+            extras;
+
+
+      if ($("#priceType")) {
+
+        $("#priceType")
+          .textContent =
+          single
+            ? "Single Female"
+            : groupSize === 2
+              ? "Couple"
+              : "Group";
+
+      }
+
+
+      if ($("#priceGroupSize")) {
+
+        $("#priceGroupSize")
+          .textContent =
+          groupSize;
+
+      }
+
+
+      if ($("#priceBase")) {
+
+        $("#priceBase")
+          .textContent =
+          single
+            ? "₹200"
+            : "₹300";
+
+      }
+
+
+      if ($("#priceAdditional")) {
+
+        $("#priceAdditional")
+          .textContent =
+          "₹" +
+          extras;
+
+      }
+
+
+      if ($("#priceTotal")) {
+
+        $("#priceTotal")
+          .textContent =
+          "₹" +
+          amount;
+
+      }
+
+
+      updatePaymentQR(
+        amount
+      );
+
+    }
+
+
+    /* =========================================================
+       PAYMENT QR
+    ========================================================= */
+
+    function startPaymentQR() {
+
+      const amount =
+        Number(
+          state.dashboard
+            ?.registration
+            ?.amount
+        );
+
+
+      if (
+        Number.isFinite(
+          amount
+        ) &&
+        amount > 0
+      ) {
+
+        updatePaymentQR(
+          amount
+        );
+
+      } else {
+
+        updatePaymentQR(
+          calculateUIAmount()
+        );
+
+      }
+
+    }
+
+
+    function updatePaymentQR(
+      amount
+    ) {
+
+      const container =
+        $("#paymentQR");
+
+
+      if (!container) {
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        "";
+
+
+      $("#upiChip")
+        .textContent =
+        "UPI ID: " +
+        CONFIG.SCHOOL_UPI_ID;
+
+
+      $("#paymentAmount")
+        .textContent =
+        "₹" +
+        amount;
+
+
+      if (
+        !window.QRCode ||
+        !CONFIG.SCHOOL_UPI_ID ||
+        CONFIG.SCHOOL_UPI_ID
+          .includes(
+            "HERE"
+          )
+      ) {
+
+        renderSimpleQRPlaceholder(
+          container,
+          "School UPI QR"
+        );
+
+        return;
+
+      }
+
+
+      const upiUri =
+        "upi://pay" +
+        "?pa=" +
+        encodeURIComponent(
+          CONFIG.SCHOOL_UPI_ID
+        ) +
+        "&pn=" +
+        encodeURIComponent(
+          CONFIG.SCHOOL_PAYEE_NAME
+        ) +
+        "&am=" +
+        encodeURIComponent(
+          Number(
+            amount
+          ).toFixed(2)
+        ) +
+        "&cu=INR";
+
+
+      new window.QRCode(
+        container,
+        {
+
+          text:
+            upiUri,
+
+          width:
+            200,
+
+          height:
+            200,
+
+          correctLevel:
+            window.QRCode
+              .CorrectLevel
+              .H
+
+        }
+      );
+
+    }
+
+
+    function renderSimpleQRPlaceholder(
+      container,
+      title
+    ) {
+
+      container.innerHTML =
+        `
+          <div
+            style="
+              width:100%;
+              height:100%;
+              display:grid;
+              place-items:center;
+              color:#444;
+              text-align:center;
+              font-size:10px;
+            "
+          >
+            <div>
+              <div
+                style="
+                  font-size:48px;
+                  margin-bottom:8px;
+                "
+              >
+                ▦
+              </div>
+
+              <strong>
+                ${escapeHtml(title)}
+              </strong>
+
+              <div
+                style="
+                  margin-top:4px;
+                  color:#777;
+                "
+              >
+                Configure school UPI ID
+              </div>
+            </div>
+          </div>
+        `;
+
+    }
+
+
+    /* =========================================================
+       ENTRY QR
+       ---------------------------------------------------------
+       The actual token is generated by the server.
+
+       Client only renders it.
+
+       Gate verification later happens server-side.
+    ========================================================= */
+
+    function renderQRState(
+      qr
+    ) {
+
+      const activeView =
+        $("#qrActiveView");
+
+      const lockedView =
+        $("#qrLockedView");
+
+
+      const qrContainer =
+        $("#entryQR");
+
+
+      qrContainer.innerHTML =
+        "";
+
+
+      if (!qr) {
+
+        activeView.hidden =
+          true;
+
+        lockedView.hidden =
+          false;
+
+        $("#qrLockedMessage")
+          .textContent =
+          "Your payment has not yet been verified and entry permission has not been granted.";
+
+        return;
+
+      }
+
+
+      const status =
+        String(
+          qr.status ||
+          ""
+        ).toLowerCase();
+
+
+      if (
+        status !== "active"
+      ) {
+
+        activeView.hidden =
+          true;
+
+        lockedView.hidden =
+          false;
+
+
+        if (
+          status ===
+          "used"
+        ) {
+
+          $("#qrLockedMessage")
+            .textContent =
+            "This entry has already been checked in. The QR is now null and void.";
+
+        } else if (
+          status ===
+          "revoked"
+        ) {
+
+          $("#qrLockedMessage")
+            .textContent =
+            "This QR has been revoked by the school and can no longer be used.";
+
+        } else {
+
+          $("#qrLockedMessage")
+            .textContent =
+            "Payment verification may be complete, but the administrator has not yet granted entry permission.";
+
+        }
+
+
+        return;
+
+      }
+
+
+      /*
+        Active QR
+
+        Expected server response may contain:
+
+        qr.token
+        qr.public_id
+
+        Never use a predictable registration ID as the
+        actual QR authorization token.
+      */
+
+      const token =
+        qr.token ||
+        qr.qr_token ||
+        null;
+
+
+      if (!token) {
+
+        activeView.hidden =
+          true;
+
+        lockedView.hidden =
+          false;
+
+        $("#qrLockedMessage")
+          .textContent =
+          "Entry permission is active, but the secure QR payload has not been returned. Please refresh.";
+
+        return;
+
+      }
+
+
+      activeView.hidden =
+        false;
+
+      lockedView.hidden =
+        true;
+
+
+      if (
+        window.QRCode
+      ) {
+
+        new window.QRCode(
+          qrContainer,
+          {
+
+            text:
+              token,
+
+            width:
+              210,
+
+            height:
+              210,
+
+            correctLevel:
+              window.QRCode
+                .CorrectLevel
+                .H
+
+          }
+        );
+
+      } else {
+
+        qrContainer.innerHTML =
+          `
+            <div
+              style="
+                color:#333;
+                text-align:center;
+                font-size:10px;
+              "
+            >
+              QR renderer loading...
+            </div>
+          `;
+
+      }
+
+
+      $("#qrPublicId")
+        .textContent =
+        qr.public_id ||
+        qr.publicId ||
+        "Secure entry pass";
+
+
+      updateBadge(
+        $("#qrBadge"),
+        "● Active",
+        "success"
+      );
+
+
+      $("#qrMessage")
+        .textContent =
+        "Show this QR at Gate 1 or Gate 2. The guard will verify it with the server before checking you in.";
+
+    }
+
+
+    /* =========================================================
+       REGISTRATION DETAILS FOR QR
+    ========================================================= */
+
+    function updateQRDetails() {
+
+      const registration =
+        state.dashboard
+          ?.registration;
+
+
+      if (!registration) {
+
+        setText(
+          "#detailName",
+          "—"
+        );
+
+        setText(
+          "#detailPhone",
+          "—"
+        );
+
+        setText(
+          "#detailEmail",
+          state.user?.email ||
+          "—"
+        );
+
+        setText(
+          "#detailEntry",
+          "—"
+        );
+
+        setText(
+          "#detailGroupSize",
+          "—"
+        );
+
+        setText(
+          "#detailAmount",
+          "—"
+        );
+
+        setText(
+          "#detailRegistrationId",
+          "—"
+        );
+
+        return;
+
+      }
+
+
+      const entryType =
+        String(
+          registration.entry_type ||
+          registration.entryType ||
+          ""
+        ).toLowerCase();
+
+
+      const groupSize =
+        Number(
+          registration.group_size ??
+          registration.groupSize ??
+          0
+        );
+
+
+      setText(
+        "#detailName",
+        registration.name ||
+        "—"
+      );
+
+
+      setText(
+        "#detailPhone",
+        registration.phone ||
+        "—"
+      );
+
+
+      setText(
+        "#detailEmail",
+        registration.email ||
+        state.user?.email ||
+        "—"
+      );
+
+
+      setText(
+        "#detailEntry",
+        entryType ===
+          "single_female"
+          ? "Single Female"
+          : groupSize === 2
+            ? "Couple"
+            : groupSize > 2
+              ? "Group"
+              : "—"
+      );
+
+
+      setText(
+        "#detailGroupSize",
+        groupSize ||
+        "—"
+      );
+
+
+      const amount =
+        Number(
+          registration.amount ??
+          0
+        );
+
+
+      setText(
+        "#detailAmount",
+        amount
+          ? "₹" +
+            amount
+          : "—"
+      );
+
+
+      setText(
+        "#detailRegistrationId",
+        registration.registration_code ||
+        registration.registrationCode ||
+        registration.id ||
+        "—"
+      );
+
+    }
+
+
+    /* =========================================================
+       PANEL NAVIGATION
+    ========================================================= */
+
+    function openPanel(
+      panelName
+    ) {
+
+      $$(".panel")
+        .forEach(
+          panel => {
+
+            panel.classList.toggle(
+              "active",
+              panel.id ===
+                "panel-" +
+                panelName
+            );
+
+          }
+        );
+
+
+      $$(".nav-btn[data-panel]")
+        .forEach(
+          button => {
+
+            button.classList.toggle(
+              "active",
+              button.dataset.panel ===
+                panelName
+            );
+
+          }
+        );
+
+
+      if (
+        panelName ===
+        "payment"
+      ) {
+
+        startPaymentQR();
+
+        renderPaymentTurnstile();
+
+      }
+
+
+      if (
+        panelName ===
+        "registration"
+      ) {
+
+        renderRegistrationTurnstile();
+
+      }
+
+
+      if (
+        panelName ===
+        "qr"
+      ) {
+
+        updateQRDetails();
+
+      }
+
+
+      window.scrollTo({
+        top:
+          0,
+        behavior:
+          "smooth"
+      });
+
+    }
+
+
+    /* =========================================================
+       TURNSTILE
+       ---------------------------------------------------------
+       Site Key is public.
+
+       Backend function must validate the token using the
+       Turnstile Secret Key on the server.
+
+       Client token alone is NOT a security control.
+    ========================================================= */
+
+    function renderRegistrationTurnstile() {
+
+      if (
+        !window.turnstile
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY ||
+        CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY
+          .includes(
+            "PASTE_YOUR"
+          )
+      ) {
+
+        return;
+
+      }
+
+
+      const container =
+        $("#registrationTurnstile");
+
+
+      if (!container) {
+
+        return;
+
+      }
+
+
+      if (
+        state.turnstile
+          .registrationWidgetId !==
+          null
+      ) {
+
+        return;
+
+      }
+
+
+      state.turnstile
+        .registrationWidgetId =
+        window.turnstile.render(
+          container,
+          {
+
+            sitekey:
+              CONFIG
+                .CLOUDFLARE_TURNSTILE_SITE_KEY,
+
+            theme:
+              "dark",
+
+            size:
+              "flexible",
+
+            callback:
+              token => {
+
+                state.turnstile
+                  .registrationToken =
+                  token;
+
+              },
+
+            "expired-callback":
+              () => {
+
+                state.turnstile
+                  .registrationToken =
+                  null;
+
+              },
+
+            "error-callback":
+              code => {
+
+                console.error(
+                  "REGISTRATION TURNSTILE ERROR:",
+                  code
+                );
+
+                state.turnstile
+                  .registrationToken =
+                  null;
+
+              }
+
+          }
+        );
+
+    }
+
+
+    function renderPaymentTurnstile() {
+
+      if (
+        !window.turnstile
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        !CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY ||
+        CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY
+          .includes(
+            "PASTE_YOUR"
+          )
+      ) {
+
+        return;
+
+      }
+
+
+      const container =
+        $("#paymentTurnstile");
+
+
+      if (!container) {
+
+        return;
+
+      }
+
+
+      if (
+        state.turnstile
+          .paymentWidgetId !==
+          null
+      ) {
+
+        return;
+
+      }
+
+
+      state.turnstile
+        .paymentWidgetId =
+        window.turnstile.render(
+          container,
+          {
+
+            sitekey:
+              CONFIG
+                .CLOUDFLARE_TURNSTILE_SITE_KEY,
+
+            theme:
+              "dark",
+
+            size:
+              "flexible",
+
+            callback:
+              token => {
+
+                state.turnstile
+                  .paymentToken =
+                  token;
+
+              },
+
+            "expired-callback":
+              () => {
+
+                state.turnstile
+                  .paymentToken =
+                  null;
+
+              },
+
+            "error-callback":
+              code => {
+
+                console.error(
+                  "PAYMENT TURNSTILE ERROR:",
+                  code
+                );
+
+                state.turnstile
+                  .paymentToken =
+                  null;
+
+              }
+
+          }
+        );
+
+    }
+
+
+    function resetRegistrationTurnstile() {
+
+      state.turnstile
+        .registrationToken =
+        null;
+
+
+      if (
+        window.turnstile &&
+        state.turnstile
+          .registrationWidgetId !==
+          null
+      ) {
+
+        window.turnstile.reset(
+          state.turnstile
+            .registrationWidgetId
+        );
+
+      }
+
+    }
+
+
+    function resetPaymentTurnstile() {
+
+      state.turnstile
+        .paymentToken =
+        null;
+
+
+      if (
+        window.turnstile &&
+        state.turnstile
+          .paymentWidgetId !==
+          null
+      ) {
+
+        window.turnstile.reset(
+          state.turnstile
+            .paymentWidgetId
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       BACKGROUND REFRESH
+       ---------------------------------------------------------
+       Designed to avoid aggressive polling.
+
+       500 users at 120 seconds average =
+       ~4.2 dashboard requests/sec.
+
+       The backend still needs rate limiting and efficient
+       DB queries.
+    ========================================================= */
+
+    function startBackgroundRefresh() {
+
+      stopBackgroundRefresh();
+
+
+      state.refreshTimer =
+        window.setInterval(
+          async () => {
+
+            if (
+              document.visibilityState !==
+                "visible"
+            ) {
+
+              return;
+
+            }
+
+
+            try {
+
+              await refreshDashboardSilently();
+
+            } catch (error) {
+
+              console.warn(
+                "BACKGROUND REFRESH:",
+                error
+              );
+
+            }
+
+          },
+          CONFIG.REFRESH_INTERVAL_MS
+        );
+
+
+      document.addEventListener(
+        "visibilitychange",
+        handleVisibilityRefresh
+      );
+
+    }
+
+
+    function stopBackgroundRefresh() {
+
+      if (
+        state.refreshTimer
+      ) {
+
+        clearInterval(
+          state.refreshTimer
+        );
+
+        state.refreshTimer =
+          null;
+
+      }
+
+    }
+
+
+    let lastVisibilityRefresh =
+      0;
+
+
+    async function handleVisibilityRefresh() {
+
+      if (
+        document.visibilityState !==
+          "visible"
+      ) {
+
+        return;
+
+      }
+
+
+      const now =
+        Date.now();
+
+
+      /*
+        Prevent repeated refresh requests when
+        browser fires multiple visibility events.
+      */
+
+      if (
+        now -
+          lastVisibilityRefresh <
+          15000
+      ) {
+
+        return;
+
+      }
+
+
+      lastVisibilityRefresh =
+        now;
+
+
+      try {
+
+        await refreshDashboardSilently();
+
+      } catch (error) {
+
+        console.warn(
+          "VISIBILITY REFRESH:",
+          error
+        );
+
+      }
+
+    }
+
+
+    async function refreshDashboardSilently() {
+
+      if (
+        !state.user ||
+        !state.supabase
+      ) {
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await invokeFunction(
+          CONFIG
+            .EDGE_FUNCTIONS
+            .GET_DASHBOARD,
+          {}
+        );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      if (!data) {
+
+        return;
+
+      }
+
+
+      const role =
+        String(
+          data.role ||
+          ""
+        ).toLowerCase();
+
+
+      if (
+        role !==
+        "participant"
+      ) {
+
+        if (
+          role ===
+          "admin"
+        ) {
+
+          window.location.replace(
+            "/admin.html"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          role ===
+          "gate"
+        ) {
+
+          window.location.replace(
+            "/gate.html"
+          );
+
+          return;
+
+        }
+
+
+        return;
+
+      }
+
+
+      state.dashboard =
+        normalizeDashboard(
+          data
+        );
+
+
+      applyDashboardToUI();
+
+    }
+
+
+    /* =========================================================
+       EVENTS
+    ========================================================= */
+
+    function bindEvents() {
+
+      $("#logoutBtn")
+        .addEventListener(
+          "click",
+          logout
+        );
+
+
+      $("#logoutSideBtn")
+        .addEventListener(
+          "click",
+          logout
+        );
+
+
+      $("#refreshBtn")
+        .addEventListener(
+          "click",
+          manualRefresh
+        );
+
+
+      $("#thankRefreshBtn")
+        .addEventListener(
+          "click",
+          manualRefresh
+        );
+
+
+      $("#overviewStartBtn")
+        .addEventListener(
+          "click",
+          () => {
+
+            openPanel(
+              "registration"
+            );
+
+          }
+        );
+
+
+      $("#overviewQRBtn")
+        .addEventListener(
+          "click",
+          () => {
+
+            openPanel(
+              "qr"
+            );
+
+          }
+        );
+
+
+      $("#addMemberBtn")
+        .addEventListener(
+          "click",
+          addMember
+        );
+
+
+      $("#singleFemale")
+        .addEventListener(
+          "change",
+          handleSingleFemaleChange
+        );
+
+
+      $("#phone")
+        .addEventListener(
+          "input",
+          sanitizePhone
+        );
+
+
+      $("#registrationForm")
+        .addEventListener(
+          "submit",
+          handleRegistrationSubmit
+        );
+
+
+      $("#paymentForm")
+        .addEventListener(
+          "submit",
+          handlePaymentSubmit
+        );
+
+
+      $$("[data-panel]")
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openPanel(
+                  button.dataset.panel
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+      $$("[data-open-panel]")
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openPanel(
+                  button.dataset.openPanel
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =========================================================
+       MANUAL REFRESH
+    ========================================================= */
+
+    async function manualRefresh() {
+
+      const button =
+        $("#refreshBtn");
+
+
+      setButtonLoading(
+        button,
+        "Refreshing..."
+      );
+
+
+      try {
+
+        await refreshDashboardSilently();
+
+        showToast(
+          "Status refreshed.",
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "MANUAL REFRESH ERROR:",
+          error
+        );
+
+        showToast(
+          error.message ||
+          "Unable to refresh status.",
+          "error"
+        );
+
+      } finally {
+
+        resetButton(
+          button,
+          "↻   Refresh Status"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       LOGOUT
+    ========================================================= */
+
+    async function logout() {
+
+      try {
+
+        setLoader(
+          "Signing out securely..."
+        );
+
+        showLoader();
+
+        await state.supabase.auth.signOut();
+
+      } catch (error) {
+
+        console.error(
+          "LOGOUT ERROR:",
+          error
+        );
+
+      } finally {
+
+        window.location.replace(
+          "/index.html"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       FILE HELPERS
+    ========================================================= */
+
+    function getSafeExtension(
+      fileName,
+      mimeType
+    ) {
+
+      const name =
+        String(
+          fileName ||
+          ""
+        ).toLowerCase();
+
+
+      const extension =
+        name.includes(".")
+          ? name.split(".").pop()
+          : "";
+
+
+      if (
+        mimeType ===
+        "image/jpeg"
+      ) {
+
+        if (
+          extension ===
+            "jpg" ||
+          extension ===
+            "jpeg"
+        ) {
+
+          return extension;
+
+        }
+
+
+        return "jpg";
+
+      }
+
+
+      if (
+        mimeType ===
+        "image/png"
+      ) {
+
+        return "png";
+
+      }
+
+
+      if (
+        mimeType ===
+        "application/pdf"
+      ) {
+
+        return "pdf";
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* =========================================================
+       UI HELPERS
+    ========================================================= */
+
+    function updateBadge(
+      element,
+      text,
+      type
+    ) {
+
+      if (!element) {
+
+        return;
+
+      }
+
+
+      element.textContent =
+        text;
+
+      element.className =
+        "badge badge-" +
+        type;
+
+    }
+
+
+    function setText(
+      selector,
+      value
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        element
+      ) {
+
+        element.textContent =
+          value;
+
+      }
+
+    }
+
+
+    function setLoader(
+      text
+    ) {
+
+      $("#loaderText")
+        .textContent =
+        text;
+
+    }
+
+
+    function showLoader() {
+
+      document.body.classList
+        .add(
+          "busy"
+        );
+
+      $("#loader")
+        .hidden =
+        false;
+
+    }
+
+
+    function stopLoader() {
+
+      document.body.classList
+        .remove(
+          "busy"
+        );
+
+      $("#loader")
+        .hidden =
+        true;
+
+    }
+
+
+    function setButtonLoading(
+      button,
+      text
+    ) {
+
+      if (!button) {
+
+        return;
+
+      }
+
+
+      if (
+        !button.dataset.originalText
+      ) {
+
+        button.dataset.originalText =
+          button.textContent;
+
+      }
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        text;
+
+    }
+
+
+    function resetButton(
+      button,
+      fallback
+    ) {
+
+      if (!button) {
+
+        return;
+
+      }
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        button.dataset.originalText ||
+        fallback;
+
+
+      delete button.dataset
+        .originalText;
+
+    }
+
+
+    function sanitizePhone(
+      event
+    ) {
+
+      event.target.value =
+        event.target.value
+          .replace(
+            /\D/g,
+            ""
+          )
+          .slice(
+            0,
+            10
+          );
+
+    }
+
+
+    function delay(
+      milliseconds
+    ) {
+
+      return new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            milliseconds
+          )
+      );
+
+    }
+
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(
+      message,
+      type = "success"
+    ) {
+
+      const container =
+        $("#toastContainer");
+
+
+      const toast =
+        document.createElement(
+          "div"
+        );
+
+
+      toast.className =
+        "toast " +
+        type;
+
+
+      toast.textContent =
+        message;
+
+
+      container.appendChild(
+        toast
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.remove();
+
+        },
+        3600
+      );
+
+    }
+
+
+    /* =========================================================
+       ERROR NORMALIZATION
+    ========================================================= */
+
+    async function normalizeFunctionError(
+      error
+    ) {
+
+      if (
+        !error
+      ) {
+
+        return new Error(
+          "Request failed."
+        );
+
+      }
+
+
+      /*
+        Supabase FunctionsHttpError provides
+        response context. Try to read a structured
+        backend error message if available.
+      */
+
+      try {
+
+        if (
+          error.context &&
+          typeof
+            error.context.json ===
+            "function"
+        ) {
+
+          const body =
+            await error.context.json();
+
+
+          if (
+            body?.message
+          ) {
+
+            return new Error(
+              body.message
+            );
+
+          }
+
+
+          if (
+            body?.error
+          ) {
+
+            return new Error(
+              body.error
+            );
+
+          }
+
+        }
+
+      } catch (_) {
+
+        /* ignore parsing failure */
+
+      }
+
+
+      return new Error(
+        error.message ||
+        "Secure backend request failed."
+      );
+
+    }
+
+
+    /* =========================================================
+       REDIRECT
+    ========================================================= */
+
+    function redirectToLogin() {
+
+      window.location.replace(
+        "/index.html?auth=required"
+      );
+
+    }
+
+
+    function showFatalError(
+      message
+    ) {
+
+      stopLoader();
+
+
+      const content =
+        $(".content");
+
+
+      if (!content) {
+
+        return;
+
+      }
+
+
+      content.innerHTML =
+        `
+          <div class="locked-card">
+
+            <div class="locked-icon">
+              !
+            </div>
+
+            <h2>
+              Secure Connection Required
+            </h2>
+
+            <p>
+              ${escapeHtml(
+                message ||
+                "Unable to securely load this account."
+              )}
+            </p>
+
+            <div
+              style="
+                margin-top:17px;
+              "
+            >
+
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="
+                  window.location.replace('/index.html')
+                "
+              >
+                Return to Login
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+    }
+
+
+    /* =========================================================
+       CLEANUP
+    ========================================================= */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        stopBackgroundRefresh();
+
+      }
+    );
+
+
+    /* =========================================================
+       POST-LOAD UI
+    ========================================================= */
+
+    /*
+      Once DOM and server data are available,
+      keep the QR details synchronized.
+    */
+
+    const originalApplyDashboard =
+      applyDashboardToUI;
+
+
+    applyDashboardToUI =
+      function() {
+
+        originalApplyDashboard();
+
+        updateQRDetails();
+
+        startPaymentQR();
+
+      };
+
+  </script>
+
+</body>
+</html>
