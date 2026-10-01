@@ -2782,6 +2782,22 @@
 
         "use strict";
 
+const SUPABASE_URL = "https://fhpudmstnldyqaggrnqme.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
 
         /* ==========================================================
            CONFIG
