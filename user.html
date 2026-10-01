@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+
+  <meta charset="UTF-8">
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-
-  <meta
-    name="description"
-    content="Vanasthali Public School Raas Rang Garba Night participant portal."
-  />
+  >
 
   <meta
     name="theme-color"
-    content="#0c070d"
-  />
+    content="#090509"
+  >
 
-  <title>My Entry | Raas Rang — Vanasthali Public School</title>
+  <meta
+    name="description"
+    content="Vanasthali Public School Raas Rang Garba Night 2026 participant portal."
+  >
+
+  <title>
+    Participant Portal | Raas Rang Garba Night
+  </title>
 
   <link
     rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23ff861f'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
-  />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
+  >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
     rel="stylesheet"
-  />
+  >
 
   <!-- Supabase -->
   <script
@@ -45,119 +48,165 @@
     defer
   ></script>
 
-  <!-- QR Renderer -->
+  <!-- QRCode -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
     defer
   ></script>
 
+
   <style>
+
     :root {
-      --bg: #080508;
-      --bg2: #0e070f;
 
-      --card: rgba(255, 255, 255, 0.045);
-      --card2: rgba(255, 255, 255, 0.065);
+      --bg:
+        #080508;
 
-      --text: #ffffff;
-      --muted: #aaa3ad;
-      --muted2: #716b75;
+      --bg2:
+        #110811;
 
-      --orange: #ff851f;
-      --orange2: #ffb04f;
-      --pink: #f24970;
-      --gold: #ffd36a;
+      --surface:
+        rgba(255,255,255,.035);
 
-      --green: #42da9f;
-      --yellow: #ffca58;
-      --red: #ff5c76;
+      --surface2:
+        rgba(255,255,255,.05);
 
-      --border: rgba(255,255,255,.085);
-      --border2: rgba(255,255,255,.14);
+      --text:
+        #ffffff;
+
+      --muted:
+        #aaa3ad;
+
+      --muted2:
+        #716b76;
+
+      --orange:
+        #ff861f;
+
+      --gold:
+        #ffd36a;
+
+      --pink:
+        #f24970;
+
+      --green:
+        #43d99e;
+
+      --red:
+        #ff5c76;
+
+      --yellow:
+        #ffcc5b;
+
+      --border:
+        rgba(255,255,255,.085);
+
+      --border2:
+        rgba(255,255,255,.14);
 
       --shadow:
-        0 28px 90px rgba(0,0,0,.52);
+        0 30px 100px rgba(0,0,0,.52);
 
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --container:
+        1180px;
 
-      --container: 1180px;
     }
+
 
     * {
-      box-sizing: border-box;
+      box-sizing:
+        border-box;
     }
+
 
     html {
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      overflow-x:
+        hidden;
+
+      scroll-behavior:
+        smooth;
     }
 
+
     body {
-      margin: 0;
-      min-height: 100vh;
 
-      overflow-x: hidden;
+      margin:
+        0;
 
-      color: var(--text);
+      min-height:
+        100vh;
+
+      overflow-x:
+        hidden;
+
+      color:
+        var(--text);
 
       font-family:
         "DM Sans",
         sans-serif;
 
       background:
+
         radial-gradient(
-          circle at 8% 9%,
-          rgba(255,133,31,.10),
+          circle at 8% 8%,
+          rgba(255,134,31,.10),
           transparent 28%
         ),
+
         radial-gradient(
           circle at 94% 15%,
           rgba(242,73,112,.09),
-          transparent 27%
-        ),
-        radial-gradient(
-          circle at 48% 100%,
-          rgba(255,211,106,.045),
           transparent 28%
         ),
+
         linear-gradient(
           180deg,
           var(--bg2),
           var(--bg)
         );
+
     }
 
-    body.busy {
-      overflow: hidden;
+
+    body.locked {
+      overflow:
+        hidden;
     }
+
+
+    [hidden] {
+      display:
+        none !important;
+    }
+
 
     button,
     input,
+    select,
     textarea {
-      font: inherit;
+      font:
+        inherit;
     }
+
 
     button {
-      cursor: pointer;
+      cursor:
+        pointer;
     }
+
 
     button:disabled {
-      cursor: not-allowed;
+      cursor:
+        not-allowed;
+
+      opacity:
+        .5;
     }
 
-    img,
-    canvas,
-    svg {
-      max-width: 100%;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
 
     .container {
+
       width:
         min(
           var(--container),
@@ -166,75 +215,18 @@
 
       margin:
         0 auto;
+
     }
 
-    /* =========================================================
-       COMMON
-    ========================================================= */
 
-    .glass {
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.04);
-
-      backdrop-filter:
-        blur(18px);
-
-      -webkit-backdrop-filter:
-        blur(18px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      padding:
-        7px 11px;
-
-      border:
-        1px solid rgba(255,133,31,.18);
-
-      border-radius:
-        999px;
-
-      color:
-        #ffcc95;
-
-      background:
-        rgba(255,133,31,.075);
-
-      font-size: 9px;
-
-      font-weight: 800;
-
-      letter-spacing:
-        .6px;
-
-      text-transform:
-        uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background:
-        var(--green);
-
-      box-shadow:
-        0 0 15px
-        rgba(66,218,159,.7);
-    }
+    /* ========================================================
+       BUTTONS
+    ======================================================== */
 
     .btn {
-      min-height: 45px;
+
+      min-height:
+        45px;
 
       padding:
         0 17px;
@@ -246,7 +238,7 @@
         12px;
 
       font-size:
-        12px;
+        11px;
 
       font-weight:
         800;
@@ -255,24 +247,24 @@
         transform .18s ease,
         opacity .18s ease,
         box-shadow .18s ease;
+
     }
+
 
     .btn:hover {
       transform:
         translateY(-1px);
     }
 
+
     .btn:active {
       transform:
         translateY(0);
     }
 
-    .btn:disabled {
-      opacity:
-        .48;
-    }
 
     .btn-primary {
+
       color:
         #17100b;
 
@@ -284,43 +276,33 @@
         );
 
       box-shadow:
-        0 15px 38px
-        rgba(255,133,31,.18);
+        0 14px 40px
+        rgba(255,134,31,.18);
+
     }
+
 
     .btn-secondary {
-      color:
-        #fff;
 
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,.045);
-    }
-
-    .btn-danger {
       color:
         #fff;
 
       border:
         1px solid
-        rgba(255,92,118,.17);
+        var(--border);
 
       background:
-        rgba(255,92,118,.07);
+        rgba(255,255,255,.045);
+
     }
 
-    .btn-full {
-      width:
-        100%;
-    }
 
-    /* =========================================================
+    /* ========================================================
        HEADER
-    ========================================================= */
+    ======================================================== */
 
     .topbar {
+
       position:
         sticky;
 
@@ -331,22 +313,26 @@
         100;
 
       height:
-        74px;
+        72px;
 
       border-bottom:
-        1px solid rgba(255,255,255,.06);
+        1px solid
+        rgba(255,255,255,.055);
 
       background:
-        rgba(8,5,8,.8);
+        rgba(7,4,8,.81);
 
       backdrop-filter:
         blur(20px);
 
       -webkit-backdrop-filter:
         blur(20px);
+
     }
 
+
     .topbar-inner {
+
       height:
         100%;
 
@@ -360,10 +346,13 @@
         space-between;
 
       gap:
-        16px;
+        12px;
+
     }
 
+
     .brand {
+
       display:
         flex;
 
@@ -371,18 +360,21 @@
         center;
 
       gap:
-        11px;
+        10px;
 
       min-width:
         0;
+
     }
 
-    .brand-mark {
+
+    .brand-logo {
+
       width:
-        42px;
+        41px;
 
       height:
-        42px;
+        41px;
 
       flex:
         0 0 auto;
@@ -396,15 +388,6 @@
       border-radius:
         13px;
 
-      color:
-        #fff;
-
-      font-size:
-        20px;
-
-      font-weight:
-        800;
-
       background:
         linear-gradient(
           135deg,
@@ -412,17 +395,27 @@
           var(--pink)
         );
 
+      font-size:
+        19px;
+
+      font-weight:
+        800;
+
       box-shadow:
-        0 10px 28px
+        0 10px 30px
         rgba(242,73,112,.18);
+
     }
 
-    .brand-text {
+
+    .brand-copy {
       min-width:
         0;
     }
 
-    .brand-text strong {
+
+    .brand-copy strong {
+
       display:
         block;
 
@@ -437,9 +430,12 @@
 
       text-overflow:
         ellipsis;
+
     }
 
-    .brand-text span {
+
+    .brand-copy span {
+
       display:
         block;
 
@@ -451,20 +447,12 @@
 
       font-size:
         8px;
+
     }
 
-    .header-right {
-      display:
-        flex;
 
-      align-items:
-        center;
+    .account {
 
-      gap:
-        8px;
-    }
-
-    .user-chip {
       display:
         flex;
 
@@ -477,28 +465,16 @@
       min-width:
         0;
 
-      padding:
-        6px 9px 6px 6px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        999px;
-
-      background:
-        rgba(255,255,255,.035);
     }
 
+
     .avatar {
+
       width:
         33px;
 
       height:
         33px;
-
-      flex:
-        0 0 auto;
 
       display:
         grid;
@@ -506,8 +482,14 @@
       place-items:
         center;
 
+      flex:
+        0 0 auto;
+
       border-radius:
         50%;
+
+      color:
+        white;
 
       background:
         linear-gradient(
@@ -521,34 +503,41 @@
 
       font-weight:
         800;
+
     }
 
-    .user-chip-text {
+
+    .account-copy {
       min-width:
         0;
     }
 
-    .user-chip-text strong {
+
+    .account-copy strong {
+
       display:
         block;
 
       max-width:
         180px;
 
-      white-space:
-        nowrap;
-
       overflow:
         hidden;
+
+      white-space:
+        nowrap;
 
       text-overflow:
         ellipsis;
 
       font-size:
         9px;
+
     }
 
-    .user-chip-text span {
+
+    .account-copy span {
+
       display:
         block;
 
@@ -560,18 +549,22 @@
 
       font-size:
         7px;
+
     }
 
-    /* =========================================================
-       PAGE
-    ========================================================= */
+
+    /* ========================================================
+       PAGE HEADER
+    ======================================================== */
 
     .page {
       padding:
         28px 0 55px;
     }
 
+
     .page-head {
+
       display:
         flex;
 
@@ -582,13 +575,79 @@
         space-between;
 
       gap:
-        16px;
+        18px;
 
       margin-bottom:
-        22px;
+        20px;
+
     }
 
+
+    .eyebrow {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        7px 10px;
+
+      border:
+        1px solid
+        rgba(255,134,31,.18);
+
+      border-radius:
+        999px;
+
+      color:
+        #ffcb96;
+
+      background:
+        rgba(255,134,31,.07);
+
+      font-size:
+        8px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        .6px;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .dot {
+
+      width:
+        7px;
+
+      height:
+        7px;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--green);
+
+      box-shadow:
+        0 0 15px
+        rgba(67,217,158,.72);
+
+    }
+
+
     .page-head h1 {
+
       margin:
         14px 0 0;
 
@@ -600,10 +659,13 @@
         34px;
 
       line-height:
-        .98;
+        1;
+
     }
 
+
     .page-head p {
+
       margin:
         7px 0 0;
 
@@ -615,38 +677,44 @@
 
       line-height:
         1.6;
+
     }
 
+
     .event-pill {
-      flex:
-        0 0 auto;
 
       padding:
-        10px 13px;
+        9px 12px;
 
       border:
         1px solid
-        rgba(255,133,31,.15);
+        rgba(255,134,31,.13);
 
       border-radius:
-        14px;
+        13px;
 
       background:
-        rgba(255,133,31,.06);
+        rgba(255,134,31,.055);
 
       text-align:
         right;
+
     }
 
+
     .event-pill strong {
+
       display:
         block;
 
       font-size:
-        10px;
+        9px;
+
     }
 
+
     .event-pill span {
+
       display:
         block;
 
@@ -657,31 +725,37 @@
         var(--muted2);
 
       font-size:
-        8px;
+        7px;
+
     }
 
-    /* =========================================================
-       DASHBOARD GRID
-    ========================================================= */
+
+    /* ========================================================
+       DASHBOARD
+    ======================================================== */
 
     .dashboard {
+
       display:
         grid;
 
       grid-template-columns:
-        210px
+        205px
         minmax(0,1fr);
 
       gap:
-        17px;
+        16px;
+
     }
 
+
     .sidebar {
+
       position:
         sticky;
 
       top:
-        92px;
+        90px;
 
       align-self:
         start;
@@ -690,18 +764,22 @@
         8px;
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
       border-radius:
         18px;
 
       background:
-        rgba(255,255,255,.032);
+        rgba(255,255,255,.03);
+
     }
 
+
     .sidebar-label {
+
       padding:
-        9px 10px 6px;
+        8px 9px 6px;
 
       color:
         var(--muted2);
@@ -717,9 +795,12 @@
 
       text-transform:
         uppercase;
+
     }
 
-    .nav-btn {
+
+    .nav-button {
+
       width:
         100%;
 
@@ -736,7 +817,7 @@
         10px;
 
       color:
-        #9e979f;
+        #9f98a2;
 
       background:
         transparent;
@@ -749,224 +830,126 @@
 
       font-weight:
         700;
+
     }
 
-    .nav-btn:hover {
+
+    .nav-button:hover {
+
       color:
         #fff;
 
       background:
         rgba(255,255,255,.04);
+
     }
 
-    .nav-btn.active {
+
+    .nav-button.active {
+
       color:
         #fff;
 
       border:
         1px solid
-        rgba(255,133,31,.12);
+        rgba(255,134,31,.12);
 
       background:
         linear-gradient(
           90deg,
-          rgba(255,133,31,.14),
-          rgba(242,73,112,.045)
+          rgba(255,134,31,.13),
+          rgba(242,73,112,.04)
         );
+
     }
+
 
     .content {
       min-width:
         0;
     }
 
+
     .panel {
       display:
         none;
     }
 
+
     .panel.active {
+
       display:
         block;
 
       animation:
-        fade-in .2s ease;
+        fade .18s ease;
+
     }
 
-    @keyframes fade-in {
+
+    @keyframes fade {
+
       from {
-        opacity: 0;
+
+        opacity:
+          0;
+
         transform:
           translateY(4px);
+
       }
 
       to {
-        opacity: 1;
+
+        opacity:
+          1;
+
         transform:
           translateY(0);
+
       }
+
     }
 
-    /* =========================================================
-       STATUS CARDS
-    ========================================================= */
 
-    .status-grid {
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-      gap:
-        10px;
-
-      margin-bottom:
-        15px;
-    }
-
-    .status-card {
-      padding:
-        15px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        16px;
-
-      background:
-        rgba(255,255,255,.035);
-    }
-
-    .status-card small {
-      display:
-        block;
-
-      color:
-        var(--muted2);
-
-      font-size:
-        7px;
-
-      font-weight:
-        800;
-
-      letter-spacing:
-        .7px;
-
-      text-transform:
-        uppercase;
-    }
-
-    .status-card strong {
-      display:
-        block;
-
-      margin-top:
-        8px;
-
-      font-size:
-        17px;
-    }
-
-    .badge {
-      display:
-        inline-flex;
-
-      align-items:
-        center;
-
-      padding:
-        5px 8px;
-
-      margin-top:
-        7px;
-
-      border-radius:
-        999px;
-
-      font-size:
-        7px;
-
-      font-weight:
-        800;
-    }
-
-    .badge-muted {
-      color:
-        #b5afb7;
-
-      background:
-        rgba(255,255,255,.05);
-    }
-
-    .badge-warning {
-      color:
-        #ffdd9a;
-
-      border:
-        1px solid
-        rgba(255,202,88,.1);
-
-      background:
-        rgba(255,202,88,.07);
-    }
-
-    .badge-success {
-      color:
-        #8cf2ca;
-
-      border:
-        1px solid
-        rgba(66,218,159,.11);
-
-      background:
-        rgba(66,218,159,.065);
-    }
-
-    .badge-danger {
-      color:
-        #ff9ead;
-
-      border:
-        1px solid
-        rgba(255,92,118,.11);
-
-      background:
-        rgba(255,92,118,.065);
-    }
-
-    /* =========================================================
+    /* ========================================================
        CARDS
-    ========================================================= */
+    ======================================================== */
 
     .card {
+
       margin-bottom:
-        15px;
+        14px;
 
       padding:
-        20px;
+        19px;
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
       border-radius:
-        19px;
+        18px;
 
       background:
         rgba(255,255,255,.035);
+
     }
 
+
     .card-title {
+
       font-size:
         15px;
 
       font-weight:
         800;
+
     }
 
+
     .card-subtitle {
+
       margin-top:
         5px;
 
@@ -978,13 +961,171 @@
 
       line-height:
         1.65;
+
     }
 
-    /* =========================================================
-       EVENT DETAILS
-    ========================================================= */
 
-    .event-facts {
+    /* ========================================================
+       STATUS
+    ======================================================== */
+
+    .status-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap:
+        9px;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .status-card {
+
+      padding:
+        14px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        rgba(255,255,255,.03);
+
+    }
+
+
+    .status-card small {
+
+      display:
+        block;
+
+      color:
+        var(--muted2);
+
+      font-size:
+        7px;
+
+      letter-spacing:
+        .7px;
+
+      text-transform:
+        uppercase;
+
+    }
+
+
+    .status-card strong {
+
+      display:
+        block;
+
+      margin-top:
+        7px;
+
+      font-size:
+        17px;
+
+    }
+
+
+    .badge {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      margin-top:
+        7px;
+
+      padding:
+        5px 8px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        7px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .badge-muted {
+
+      color:
+        #b5afb8;
+
+      background:
+        rgba(255,255,255,.05);
+
+    }
+
+
+    .badge-success {
+
+      color:
+        #8ef0c7;
+
+      border:
+        1px solid
+        rgba(67,217,158,.11);
+
+      background:
+        rgba(67,217,158,.06);
+
+    }
+
+
+    .badge-warning {
+
+      color:
+        #ffdc97;
+
+      border:
+        1px solid
+        rgba(255,204,91,.11);
+
+      background:
+        rgba(255,204,91,.06);
+
+    }
+
+
+    .badge-danger {
+
+      color:
+        #ff9dae;
+
+      border:
+        1px solid
+        rgba(255,92,118,.11);
+
+      background:
+        rgba(255,92,118,.06);
+
+    }
+
+
+    /* ========================================================
+       FACTS
+    ======================================================== */
+
+    .facts {
+
       display:
         grid;
 
@@ -992,27 +1133,34 @@
         repeat(4,minmax(0,1fr));
 
       gap:
-        8px;
+        7px;
 
       margin-top:
         14px;
+
     }
 
+
     .fact {
+
       padding:
         11px;
 
       border:
-        1px solid rgba(255,255,255,.06);
+        1px solid
+        rgba(255,255,255,.055);
 
       border-radius:
-        13px;
+        12px;
 
       background:
         rgba(255,255,255,.035);
+
     }
 
+
     .fact small {
+
       display:
         block;
 
@@ -1030,48 +1178,57 @@
 
       text-transform:
         uppercase;
+
     }
 
+
     .fact strong {
+
       display:
         block;
 
       font-size:
         10px;
+
     }
 
-    .warning-strip {
+
+    .rule-strip {
+
       margin-top:
-        11px;
+        10px;
 
       padding:
-        10px 11px;
+        10px;
 
       border:
         1px solid
-        rgba(242,73,112,.13);
+        rgba(242,73,112,.12);
 
       border-radius:
         11px;
 
       color:
-        #ffb4c2;
+        #ffb0bf;
 
       background:
-        rgba(242,73,112,.055);
+        rgba(242,73,112,.045);
 
       font-size:
-        9px;
+        8px;
 
       font-weight:
         700;
+
     }
 
-    /* =========================================================
-       FORM
-    ========================================================= */
+
+    /* ========================================================
+       FORMS
+    ======================================================== */
 
     .form-grid {
+
       display:
         grid;
 
@@ -1080,19 +1237,31 @@
 
       gap:
         13px;
+
+      margin-top:
+        18px;
+
     }
 
-    .full {
-      grid-column:
-        1 / -1;
-    }
 
     .field {
+
       min-width:
         0;
+
     }
 
+
+    .full {
+
+      grid-column:
+        1 / -1;
+
+    }
+
+
     .field label {
+
       display:
         block;
 
@@ -1100,16 +1269,19 @@
         6px;
 
       color:
-        #d8d2da;
+        #d9d1da;
 
       font-size:
-        9px;
+        8px;
 
       font-weight:
         700;
+
     }
 
+
     .input {
+
       width:
         100%;
 
@@ -1117,7 +1289,7 @@
         47px;
 
       padding:
-        0 13px;
+        0 12px;
 
       border:
         1px solid
@@ -1133,36 +1305,48 @@
         #fff;
 
       background:
-        rgba(255,255,255,.038);
+        rgba(255,255,255,.036);
 
       transition:
         border .18s ease,
         box-shadow .18s ease;
+
     }
+
 
     .input::placeholder {
+
       color:
-        #625c65;
+        #635d66;
+
     }
 
+
     .input:focus {
+
       border-color:
         rgba(255,159,67,.62);
 
       box-shadow:
         0 0 0 4px
-        rgba(255,133,31,.055);
+        rgba(255,134,31,.05);
+
     }
 
-    .input.readonly {
+
+    .readonly {
+
       opacity:
         .56;
 
       cursor:
         not-allowed;
+
     }
 
+
     .help {
+
       margin-top:
         5px;
 
@@ -1170,51 +1354,61 @@
         var(--muted2);
 
       font-size:
-        8px;
+        7px;
 
       line-height:
         1.5;
+
     }
 
-    /* =========================================================
-       ENTRY SWITCH
-    ========================================================= */
 
-    .entry-switch {
+    /* ========================================================
+       SWITCH
+    ======================================================== */
+
+    .switch-box {
+
       display:
         flex;
-
-      justify-content:
-        space-between;
 
       align-items:
         center;
 
-      gap:
-        15px;
+      justify-content:
+        space-between;
 
-      padding:
+      gap:
         14px;
 
+      padding:
+        13px;
+
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
       border-radius:
         14px;
 
       background:
         rgba(255,255,255,.025);
+
     }
 
-    .entry-switch strong {
+
+    .switch-box strong {
+
       display:
         block;
 
       font-size:
-        10px;
+        9px;
+
     }
 
-    .entry-switch p {
+
+    .switch-box p {
+
       margin:
         4px 0 0;
 
@@ -1222,13 +1416,16 @@
         var(--muted);
 
       font-size:
-        8px;
+        7px;
 
       line-height:
         1.5;
+
     }
 
+
     .switch {
+
       position:
         relative;
 
@@ -1240,20 +1437,23 @@
 
       flex:
         0 0 auto;
+
     }
 
+
     .switch input {
+
       position:
         absolute;
 
       opacity:
         0;
 
-      pointer-events:
-        none;
     }
 
+
     .switch-track {
+
       position:
         absolute;
 
@@ -1264,10 +1464,13 @@
         999px;
 
       background:
-        #29242b;
+        #29252c;
+
     }
 
+
     .switch-track::before {
+
       content:
         "";
 
@@ -1294,144 +1497,174 @@
 
       transition:
         .2s;
+
     }
+
 
     .switch input:checked +
     .switch-track {
+
       background:
         linear-gradient(
           135deg,
           var(--orange),
           var(--pink)
         );
+
     }
+
 
     .switch input:checked +
     .switch-track::before {
+
       transform:
         translateX(21px);
 
       background:
         #fff;
+
     }
 
-    /* =========================================================
+
+    /* ========================================================
        MEMBERS
-    ========================================================= */
+    ======================================================== */
 
     .members-head {
+
       display:
         flex;
-
-      justify-content:
-        space-between;
 
       align-items:
         center;
 
+      justify-content:
+        space-between;
+
       margin-bottom:
         8px;
+
     }
+
 
     .members-head strong {
+
       font-size:
-        10px;
+        9px;
+
     }
 
+
     .members-head span {
+
       color:
         var(--muted2);
 
       font-size:
-        8px;
+        7px;
+
     }
 
+
     .member-row {
+
       display:
         grid;
 
       grid-template-columns:
         minmax(0,1fr)
-        auto;
+        43px;
 
       gap:
-        7px;
+        6px;
 
       margin-bottom:
-        7px;
+        6px;
+
     }
 
-    .remove-btn {
-      width:
-        44px;
+
+    .remove-member {
 
       border:
         1px solid
-        rgba(255,92,118,.15);
+        rgba(255,92,118,.14);
 
       border-radius:
         10px;
 
       color:
-        #ff9cab;
+        #ff9cac;
 
       background:
-        rgba(255,92,118,.07);
+        rgba(255,92,118,.06);
+
     }
 
-    .add-btn {
+
+    .add-member {
+
       margin-top:
         2px;
 
       padding:
-        9px 11px;
+        8px 10px;
 
       border:
         1px dashed
-        rgba(255,159,67,.24);
+        rgba(255,159,67,.23);
 
       border-radius:
         10px;
 
       color:
-        #ffc27c;
+        #ffc27d;
 
       background:
-        rgba(255,133,31,.045);
+        rgba(255,134,31,.04);
 
       font-size:
         8px;
 
       font-weight:
         800;
+
     }
 
-    /* =========================================================
+
+    /* ========================================================
        PRICE
-    ========================================================= */
+    ======================================================== */
 
     .price-card {
+
       padding:
-        15px;
+        14px;
 
       border:
         1px solid
-        rgba(255,133,31,.14);
+        rgba(255,134,31,.13);
 
       border-radius:
-        16px;
+        15px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(255,133,31,.07),
-          rgba(242,73,112,.035)
+          rgba(255,134,31,.065),
+          rgba(242,73,112,.03)
         );
+
     }
 
+
     .price-line {
+
       display:
         flex;
+
+      align-items:
+        center;
 
       justify-content:
         space-between;
@@ -1444,14 +1677,20 @@
 
       font-size:
         9px;
+
     }
+
 
     .price-line span {
+
       color:
         var(--muted);
+
     }
 
+
     .price-total {
+
       margin-top:
         7px;
 
@@ -1467,56 +1706,68 @@
 
       font-weight:
         800;
+
     }
 
-    /* =========================================================
+
+    /* ========================================================
        PAYMENT
-    ========================================================= */
+    ======================================================== */
 
     .payment-grid {
+
       display:
         grid;
 
       grid-template-columns:
-        340px
+        335px
         minmax(0,1fr);
 
       gap:
-        15px;
+        14px;
+
     }
+
 
     .payment-card {
+
       text-align:
         center;
+
     }
 
-    .payment-qr-box {
+
+    .payment-qr {
+
       width:
-        230px;
+        225px;
 
       height:
-        230px;
+        225px;
 
       margin:
-        17px auto;
-
-      display:
-        grid;
-
-      place-items:
-        center;
+        16px auto;
 
       padding:
         10px;
 
+      display:
+        grid;
+
+      place-items:
+        center;
+
       border-radius:
-        17px;
+        16px;
 
       background:
         #fff;
+
     }
 
+
     #paymentQR {
+
       width:
         100%;
 
@@ -1528,15 +1779,24 @@
 
       place-items:
         center;
+
     }
 
-    #paymentQR img,
-    #paymentQR canvas {
-      display:
-        block;
+
+    #paymentQR canvas,
+    #paymentQR img {
+
+      max-width:
+        100%;
+
+      height:
+        auto !important;
+
     }
+
 
     .upi-chip {
+
       display:
         inline-block;
 
@@ -1544,7 +1804,7 @@
         100%;
 
       padding:
-        8px 10px;
+        7px 9px;
 
       border:
         1px solid
@@ -1554,16 +1814,13 @@
         999px;
 
       color:
-        #ffd49a;
+        #ffd498;
 
       background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.035);
 
       font-size:
-        8px;
-
-      font-weight:
-        800;
+        7px;
 
       overflow:
         hidden;
@@ -1573,20 +1830,26 @@
 
       text-overflow:
         ellipsis;
+
     }
 
-    .payment-amount {
+
+    .amount {
+
       margin-top:
-        12px;
+        11px;
 
       font-size:
-        30px;
+        29px;
 
       font-weight:
         800;
+
     }
 
+
     .payment-note {
+
       margin-top:
         4px;
 
@@ -1594,41 +1857,50 @@
         var(--muted2);
 
       font-size:
-        8px;
+        7px;
+
     }
 
-    .instruction-list {
+
+    .instructions {
+
       display:
         grid;
 
       gap:
-        9px;
+        8px;
 
       margin-top:
-        17px;
+        16px;
 
       text-align:
         left;
+
     }
 
+
     .instruction {
+
       display:
         grid;
 
       grid-template-columns:
-        28px
+        27px
         minmax(0,1fr);
 
       gap:
-        9px;
+        8px;
+
     }
 
+
     .instruction-num {
+
       width:
-        28px;
+        27px;
 
       height:
-        28px;
+        27px;
 
       display:
         grid;
@@ -1638,7 +1910,7 @@
 
       border:
         1px solid
-        rgba(255,133,31,.12);
+        rgba(255,134,31,.12);
 
       border-radius:
         8px;
@@ -1647,24 +1919,30 @@
         #ffc27c;
 
       background:
-        rgba(255,133,31,.06);
+        rgba(255,134,31,.055);
 
       font-size:
         8px;
 
       font-weight:
         800;
+
     }
 
+
     .instruction strong {
+
       display:
         block;
 
       font-size:
-        9px;
+        8px;
+
     }
 
+
     .instruction span {
+
       display:
         block;
 
@@ -1675,25 +1953,28 @@
         var(--muted);
 
       font-size:
-        8px;
+        7px;
 
       line-height:
-        1.45;
+        1.5;
+
     }
 
+
     .file-input {
+
       width:
         100%;
 
       padding:
-        11px;
+        10px;
 
       border:
         1px dashed
-        rgba(255,255,255,.13);
+        rgba(255,255,255,.12);
 
       border-radius:
-        11px;
+        10px;
 
       color:
         #aaa;
@@ -1703,65 +1984,97 @@
 
       font-size:
         8px;
+
     }
 
-    .manual-note {
+
+    .security-note {
+
       margin-top:
-        14px;
+        13px;
 
       padding:
-        11px;
+        10px;
 
       border:
         1px solid
-        rgba(255,202,88,.1);
+        rgba(255,202,88,.10);
 
       border-radius:
-        11px;
+        10px;
 
       color:
-        #ffdc9c;
+        #ffdb97;
 
       background:
-        rgba(255,202,88,.045);
+        rgba(255,202,88,.04);
 
       font-size:
-        8px;
+        7px;
 
       line-height:
-        1.6;
+        1.55;
+
     }
 
-    /* =========================================================
-       QR / ENTRY PASS
-    ========================================================= */
+
+    .turnstile-wrap {
+
+      min-height:
+        66px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      overflow:
+        hidden;
+
+    }
+
+
+    /* ========================================================
+       QR
+    ======================================================== */
 
     .qr-grid {
+
       display:
         grid;
 
       grid-template-columns:
-        350px
+        340px
         minmax(0,1fr);
 
       gap:
-        15px;
+        14px;
+
     }
+
 
     .qr-card {
+
       text-align:
         center;
+
     }
 
-    .entry-qr-box {
+
+    .entry-qr {
+
       width:
-        250px;
+        240px;
 
       height:
-        250px;
+        240px;
 
       margin:
-        18px auto;
+        16px auto;
+
+      padding:
+        11px;
 
       display:
         grid;
@@ -1769,43 +2082,46 @@
       place-items:
         center;
 
-      padding:
-        12px;
-
       border-radius:
-        18px;
+        17px;
 
       background:
         #fff;
+
     }
 
-    #entryQR {
-      display:
-        grid;
 
-      place-items:
-        center;
+    #entryQR {
 
       width:
         100%;
 
       height:
         100%;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
     }
+
 
     #entryQR img,
     #entryQR canvas {
-      display:
-        block;
 
       max-width:
         100%;
 
       height:
         auto !important;
+
     }
 
-    .qr-empty {
+
+    .qr-locked {
+
       width:
         100%;
 
@@ -1820,9 +2136,6 @@
 
       padding:
         20px;
-
-      text-align:
-        center;
 
       color:
         #777;
@@ -1835,10 +2148,16 @@
         11px;
 
       font-size:
-        9px;
+        8px;
+
+      line-height:
+        1.5;
+
     }
 
-    .qr-empty strong {
+
+    .qr-locked strong {
+
       display:
         block;
 
@@ -1849,62 +2168,66 @@
         #333;
 
       font-size:
-        12px;
+        11px;
+
     }
 
-    .qr-id {
-      margin-top:
-        10px;
-
-      color:
-        var(--muted2);
-
-      font-size:
-        8px;
-
-      letter-spacing:
-        .3px;
-    }
 
     .details {
+
       margin-top:
         13px;
+
     }
 
-    .detail-row {
+
+    .detail {
+
       display:
         flex;
+
+      align-items:
+        flex-start;
 
       justify-content:
         space-between;
 
       gap:
-        18px;
+        14px;
 
       padding:
-        11px 0;
+        10px 0;
 
       border-bottom:
         1px solid
         rgba(255,255,255,.055);
+
     }
 
-    .detail-row:last-child {
+
+    .detail:last-child {
+
       border-bottom:
         0;
+
     }
 
-    .detail-row span {
+
+    .detail span {
+
       color:
         var(--muted2);
 
       font-size:
         8px;
+
     }
 
-    .detail-row strong {
+
+    .detail strong {
+
       max-width:
-        66%;
+        68%;
 
       overflow-wrap:
         anywhere;
@@ -1914,277 +2237,82 @@
 
       font-size:
         9px;
+
     }
 
-    /* =========================================================
-       THANK YOU
-    ========================================================= */
 
-    .thank-card {
+    /* ========================================================
+       NOTICE
+    ======================================================== */
+
+    .notice {
+
       padding:
-        34px 22px;
-
-      text-align:
-        center;
+        14px;
 
       border:
         1px solid
         var(--border);
 
       border-radius:
-        22px;
+        14px;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255,255,255,.025);
 
-      box-shadow:
-        var(--shadow);
     }
 
-    .thank-icon {
-      width:
-        60px;
 
-      height:
-        60px;
-
-      margin:
-        0 auto 15px;
+    .notice strong {
 
       display:
-        grid;
-
-      place-items:
-        center;
-
-      border-radius:
-        18px;
-
-      color:
-        #8ff1ca;
-
-      background:
-        rgba(66,218,159,.08);
-
-      border:
-        1px solid
-        rgba(66,218,159,.13);
-
-      font-size:
-        25px;
-
-      font-weight:
-        800;
-    }
-
-    .thank-card h2 {
-      margin:
-        0;
-
-      font-family:
-        "Playfair Display",
-        serif;
-
-      font-size:
-        33px;
-    }
-
-    .thank-card p {
-      max-width:
-        520px;
-
-      margin:
-        8px auto 0;
-
-      color:
-        var(--muted);
+        block;
 
       font-size:
         9px;
 
-      line-height:
-        1.7;
     }
 
-    /* =========================================================
-       EMPTY / LOCKED
-    ========================================================= */
 
-    .locked-card {
-      padding:
-        28px 20px;
-
-      text-align:
-        center;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        20px;
-
-      background:
-        rgba(255,255,255,.03);
-    }
-
-    .locked-icon {
-      width:
-        55px;
-
-      height:
-        55px;
+    .notice p {
 
       margin:
-        0 auto 13px;
-
-      display:
-        grid;
-
-      place-items:
-        center;
-
-      border-radius:
-        16px;
-
-      color:
-        #ffd78c;
-
-      background:
-        rgba(255,202,88,.06);
-
-      border:
-        1px solid
-        rgba(255,202,88,.1);
-
-      font-size:
-        23px;
-    }
-
-    .locked-card h2 {
-      margin:
-        0;
-
-      font-family:
-        "Playfair Display",
-        serif;
-
-      font-size:
-        29px;
-    }
-
-    .locked-card p {
-      max-width:
-        500px;
-
-      margin:
-        7px auto 0;
+        5px 0 0;
 
       color:
         var(--muted);
-
-      font-size:
-        9px;
-
-      line-height:
-        1.7;
-    }
-
-    /* =========================================================
-       LOADER
-    ========================================================= */
-
-    .loader {
-      position:
-        fixed;
-
-      inset:
-        0;
-
-      z-index:
-        1000;
-
-      display:
-        grid;
-
-      place-items:
-        center;
-
-      background:
-        rgba(6,4,7,.84);
-
-      backdrop-filter:
-        blur(8px);
-
-      -webkit-backdrop-filter:
-        blur(8px);
-    }
-
-    .loader-inner {
-      text-align:
-        center;
-    }
-
-    .spinner {
-      width:
-        38px;
-
-      height:
-        38px;
-
-      margin:
-        0 auto 11px;
-
-      border:
-        3px solid
-        rgba(255,255,255,.1);
-
-      border-top-color:
-        var(--orange);
-
-      border-radius:
-        50%;
-
-      animation:
-        spin .7s linear infinite;
-    }
-
-    .loader-inner span {
-      color:
-        #bbb;
 
       font-size:
         8px;
+
+      line-height:
+        1.6;
+
     }
 
-    @keyframes spin {
-      to {
-        transform:
-          rotate(360deg);
-      }
-    }
 
-    /* =========================================================
+    /* ========================================================
        TOAST
-    ========================================================= */
+    ======================================================== */
 
     .toast-container {
+
       position:
         fixed;
 
       right:
-        15px;
+        14px;
 
       bottom:
-        15px;
+        14px;
 
       z-index:
-        1100;
+        1200;
 
       width:
         min(
           360px,
-          calc(100% - 30px)
+          calc(100% - 28px)
         );
 
       display:
@@ -2195,83 +2323,166 @@
 
       pointer-events:
         none;
+
     }
 
+
     .toast {
+
       padding:
-        12px;
+        11px;
 
       border:
         1px solid
         var(--border);
 
       border-radius:
-        12px;
-
-      color:
-        #fff;
+        11px;
 
       background:
-        rgba(18,14,19,.96);
+        rgba(18,13,19,.96);
 
       box-shadow:
         var(--shadow);
 
+      color:
+        white;
+
       font-size:
-        9px;
+        8px;
 
       line-height:
         1.5;
 
-      animation:
-        toast-in .18s ease;
     }
+
 
     .toast.success {
+
       border-color:
-        rgba(66,218,159,.17);
+        rgba(67,217,158,.17);
+
     }
+
+
+    .toast.warning {
+
+      border-color:
+        rgba(255,204,91,.15);
+
+    }
+
 
     .toast.error {
+
       border-color:
         rgba(255,92,118,.17);
+
     }
 
-    .toast.info {
-      border-color:
-        rgba(255,202,88,.16);
+
+    /* ========================================================
+       LOADER
+    ======================================================== */
+
+    .loader {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        2000;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        rgba(5,3,6,.85);
+
+      backdrop-filter:
+        blur(8px);
+
     }
 
-    @keyframes toast-in {
-      from {
-        opacity:
-          0;
 
-        transform:
-          translateY(5px);
-      }
+    .loader-box {
+
+      text-align:
+        center;
+
+    }
+
+
+    .spinner {
+
+      width:
+        38px;
+
+      height:
+        38px;
+
+      margin:
+        0 auto 10px;
+
+      border:
+        3px solid
+        rgba(255,255,255,.10);
+
+      border-top-color:
+        var(--orange);
+
+      border-radius:
+        50%;
+
+      animation:
+        spin .7s linear infinite;
+
+    }
+
+
+    .loader-box span {
+
+      color:
+        #bbb;
+
+      font-size:
+        8px;
+
+    }
+
+
+    @keyframes spin {
 
       to {
-        opacity:
-          1;
-
         transform:
-          translateY(0);
+          rotate(360deg);
       }
+
     }
 
-    /* =========================================================
+
+    /* ========================================================
        RESPONSIVE
-    ========================================================= */
+    ======================================================== */
 
     @media (max-width: 980px) {
 
       .dashboard {
+
         grid-template-columns:
           1fr;
+
       }
 
+
       .sidebar {
+
         position:
           static;
 
@@ -2279,199 +2490,258 @@
           flex;
 
         gap:
-          4px;
+          3px;
 
         overflow:
           hidden;
+
       }
+
 
       .sidebar-label {
+
         display:
           none;
+
       }
 
-      .nav-btn {
+
+      .nav-button {
+
         min-width:
           max-content;
 
         margin:
           0;
+
       }
+
 
       .payment-grid,
       .qr-grid {
+
         grid-template-columns:
           1fr;
+
       }
 
-      .event-facts {
+
+      .facts {
+
         grid-template-columns:
           repeat(2,minmax(0,1fr));
+
       }
 
     }
 
-    @media (max-width: 700px) {
+
+    @media (max-width: 620px) {
 
       .container {
+
         width:
-          calc(100% - 24px);
+          calc(100% - 22px);
+
       }
+
 
       .topbar {
+
         height:
-          67px;
+          65px;
+
       }
 
-      .brand-mark {
+
+      .brand-logo {
+
         width:
-          38px;
+          37px;
 
         height:
-          38px;
+          37px;
+
       }
 
-      .brand-text strong {
+
+      .brand-copy strong {
+
         font-size:
           10px;
+
       }
 
-      .brand-text span {
+
+      .brand-copy span {
+
         font-size:
           7px;
+
       }
 
-      .user-chip-text {
+
+      .account-copy {
+
         display:
           none;
+
       }
 
-      .user-chip {
-        padding:
-          5px;
-      }
-
-      .avatar {
-        width:
-          31px;
-
-        height:
-          31px;
-      }
 
       .page {
+
         padding:
           19px 0 40px;
+
       }
+
 
       .page-head {
+
         align-items:
           center;
+
       }
+
 
       .page-head h1 {
+
         font-size:
           27px;
+
       }
+
 
       .event-pill {
+
         padding:
-          8px 10px;
+          8px 9px;
+
       }
+
 
       .event-pill strong {
+
         font-size:
           8px;
+
       }
+
 
       .event-pill span {
+
         font-size:
-          7px;
+          6px;
+
       }
+
 
       .status-grid {
+
         grid-template-columns:
           1fr;
+
       }
+
 
       .form-grid {
+
         grid-template-columns:
           1fr;
+
       }
+
 
       .full {
+
         grid-column:
           auto;
+
       }
 
+
       .card {
+
         padding:
           16px;
 
         border-radius:
           17px;
+
       }
 
-      .event-facts {
-        grid-template-columns:
-          repeat(2,minmax(0,1fr));
-      }
 
-      .payment-qr-box,
-      .entry-qr-box {
+      .payment-qr,
+      .entry-qr {
+
         width:
-          215px;
+          210px;
 
         height:
-          215px;
-      }
+          210px;
 
-      .nav-btn {
-        padding:
-          10px;
       }
 
     }
 
-    @media (max-width: 400px) {
+
+    @media (max-width: 390px) {
 
       .container {
+
         width:
           calc(100% - 18px);
+
       }
+
 
       .page-head h1 {
+
         font-size:
           25px;
+
       }
+
 
       .event-pill {
+
         display:
           none;
+
       }
 
-      .event-facts {
-        grid-template-columns:
-          1fr 1fr;
+
+      .facts {
+
+        gap:
+          5px;
+
       }
 
-      .payment-qr-box,
-      .entry-qr-box {
+
+      .payment-qr,
+      .entry-qr {
+
         width:
-          200px;
+          198px;
 
         height:
-          200px;
+          198px;
+
       }
 
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- =======================================================
+
+  <!-- ========================================================
        LOADER
   ======================================================== -->
 
@@ -2480,12 +2750,12 @@
     class="loader"
   >
 
-    <div class="loader-inner">
+    <div class="loader-box">
 
       <div class="spinner"></div>
 
       <span id="loaderText">
-        Securing your session...
+        Verifying account...
       </span>
 
     </div>
@@ -2493,7 +2763,7 @@
   </div>
 
 
-  <!-- =======================================================
+  <!-- ========================================================
        HEADER
   ======================================================== -->
 
@@ -2501,13 +2771,14 @@
 
     <div class="container topbar-inner">
 
+
       <div class="brand">
 
-        <div class="brand-mark">
+        <div class="brand-logo">
           ✦
         </div>
 
-        <div class="brand-text">
+        <div class="brand-copy">
 
           <strong>
             Vanasthali Public School
@@ -2522,28 +2793,21 @@
       </div>
 
 
-      <div class="header-right">
+      <div class="account">
 
-        <div class="user-chip">
+        <div class="avatar" id="avatar">
+          U
+        </div>
 
-          <div
-            class="avatar"
-            id="avatar"
-          >
-            U
-          </div>
+        <div class="account-copy">
 
-          <div class="user-chip-text">
+          <strong id="accountEmail">
+            —
+          </strong>
 
-            <strong id="headerEmail">
-              —
-            </strong>
-
-            <span>
-              Participant
-            </span>
-
-          </div>
+          <span>
+            Participant
+          </span>
 
         </div>
 
@@ -2563,7 +2827,7 @@
   </header>
 
 
-  <!-- =======================================================
+  <!-- ========================================================
        MAIN
   ======================================================== -->
 
@@ -2571,18 +2835,28 @@
 
     <div class="container">
 
+
+      <!-- ====================================================
+           PAGE HEADER
+      ===================================================== -->
+
       <div class="page-head">
 
         <div>
 
           <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
+
+            <span class="dot"></span>
+
             Participant Portal
+
           </div>
+
 
           <h1>
             Your Garba Entry
           </h1>
+
 
           <p>
             16 October 2026 • 6:00 PM – 10:00 PM
@@ -2606,12 +2880,16 @@
       </div>
 
 
+      <!-- ====================================================
+           DASHBOARD
+      ===================================================== -->
+
       <div class="dashboard">
 
 
-        <!-- ===================================================
+        <!-- ==================================================
              SIDEBAR
-        ==================================================== -->
+        =================================================== -->
 
         <aside class="sidebar">
 
@@ -2621,7 +2899,7 @@
 
 
           <button
-            class="nav-btn active"
+            class="nav-button active"
             data-panel="overview"
             type="button"
           >
@@ -2630,7 +2908,7 @@
 
 
           <button
-            class="nav-btn"
+            class="nav-button"
             data-panel="registration"
             type="button"
           >
@@ -2639,7 +2917,7 @@
 
 
           <button
-            class="nav-btn"
+            class="nav-button"
             data-panel="payment"
             type="button"
           >
@@ -2648,7 +2926,7 @@
 
 
           <button
-            class="nav-btn"
+            class="nav-button"
             data-panel="qr"
             type="button"
           >
@@ -2662,7 +2940,7 @@
 
 
           <button
-            class="nav-btn"
+            class="nav-button"
             id="refreshBtn"
             type="button"
           >
@@ -2671,7 +2949,7 @@
 
 
           <button
-            class="nav-btn"
+            class="nav-button"
             id="logoutSideBtn"
             type="button"
           >
@@ -2681,9 +2959,9 @@
         </aside>
 
 
-        <!-- ===================================================
+        <!-- ==================================================
              CONTENT
-        ==================================================== -->
+        =================================================== -->
 
         <section class="content">
 
@@ -2697,6 +2975,7 @@
             id="panel-overview"
           >
 
+
             <div class="status-grid">
 
 
@@ -2706,15 +2985,13 @@
                   Registration
                 </small>
 
-                <strong
-                  id="statusRegistration"
-                >
+                <strong id="registrationStatusText">
                   Not Started
                 </strong>
 
                 <span
                   class="badge badge-muted"
-                  id="statusRegistrationBadge"
+                  id="registrationStatusBadge"
                 >
                   ● Not Started
                 </span>
@@ -2728,15 +3005,13 @@
                   Payment
                 </small>
 
-                <strong
-                  id="statusPayment"
-                >
+                <strong id="paymentStatusText">
                   Pending
                 </strong>
 
                 <span
                   class="badge badge-muted"
-                  id="statusPaymentBadge"
+                  id="paymentStatusBadge"
                 >
                   ● Awaiting
                 </span>
@@ -2750,15 +3025,13 @@
                   Entry QR
                 </small>
 
-                <strong
-                  id="statusQR"
-                >
+                <strong id="qrStatusText">
                   Inactive
                 </strong>
 
                 <span
                   class="badge badge-muted"
-                  id="statusQRBadge"
+                  id="qrStatusBadge"
                 >
                   ● Not Active
                 </span>
@@ -2774,16 +3047,18 @@
                 Raas Rang — Garba Night 2026
               </div>
 
+
               <div class="card-subtitle">
-                Your event entry is controlled by the
-                school verification process. Payment proof
-                is manually verified by the school team.
-                Only after permission is granted will your
-                unique QR become active.
+
+                Register your participation, submit your
+                payment proof and wait for manual verification.
+                Your unique QR becomes active only after the
+                school grants entry permission.
+
               </div>
 
 
-              <div class="event-facts">
+              <div class="facts">
 
 
                 <div class="fact">
@@ -2793,7 +3068,7 @@
                   </small>
 
                   <strong>
-                    16 October
+                    16 October 2026
                   </strong>
 
                 </div>
@@ -2840,8 +3115,8 @@
               </div>
 
 
-              <div class="warning-strip">
-                ✦ No stag entry • Minimum group entry is a couple
+              <div class="rule-strip">
+                ✦ No stag entry • Couple minimum for group entry
               </div>
 
 
@@ -2856,7 +3131,7 @@
 
                 <button
                   class="btn btn-primary"
-                  id="overviewStartBtn"
+                  id="startRegistrationBtn"
                   type="button"
                 >
                   Start Registration →
@@ -2865,10 +3140,10 @@
 
                 <button
                   class="btn btn-secondary"
-                  id="overviewQRBtn"
+                  id="openQRBtn"
                   type="button"
                 >
-                  Open My QR
+                  My QR
                 </button>
 
               </div>
@@ -2877,21 +3152,18 @@
 
 
             <div
-              class="card"
-              id="approvalInfoCard"
+              class="notice"
+              id="approvalNotice"
               hidden
             >
 
-              <div class="card-title">
-                Entry Permission
-              </div>
+              <strong>
+                Entry Status
+              </strong>
 
-              <div
-                class="card-subtitle"
-                id="approvalInfoText"
-              >
+              <p id="approvalNoticeText">
                 —
-              </div>
+              </p>
 
             </div>
 
@@ -2907,16 +3179,18 @@
             id="panel-registration"
           >
 
+
             <div class="card">
 
               <div class="card-title">
                 Participant Registration
               </div>
 
+
               <div class="card-subtitle">
-                Your email is taken from your authenticated
-                account. It cannot be replaced with another
-                email address.
+                Final pricing and validation are recalculated
+                by the secure backend. Values displayed here
+                are for user guidance only.
               </div>
 
 
@@ -2925,73 +3199,72 @@
                 novalidate
               >
 
+
                 <div class="form-grid">
 
 
                   <div class="field">
 
-                    <label for="name">
+                    <label for="fullName">
                       Full Name
                     </label>
 
                     <input
                       class="input"
-                      id="name"
+                      id="fullName"
                       type="text"
                       maxlength="100"
                       autocomplete="name"
                       placeholder="Enter your full name"
                       required
-                    />
+                    >
 
                   </div>
 
 
                   <div class="field">
 
-                    <label for="phone">
+                    <label for="mobile">
                       Mobile Number
                     </label>
 
                     <input
                       class="input"
-                      id="phone"
+                      id="mobile"
                       type="tel"
                       inputmode="numeric"
                       maxlength="10"
                       autocomplete="tel"
                       placeholder="10-digit mobile number"
                       required
-                    />
+                    >
 
                   </div>
 
 
                   <div class="field full">
 
-                    <label for="email">
+                    <label for="registeredEmail">
                       Registered Email
                     </label>
 
                     <input
                       class="input readonly"
-                      id="email"
+                      id="registeredEmail"
                       type="email"
                       readonly
-                    />
+                    >
 
                     <div class="help">
-                      This must remain the same email used for your account.
+                      This value comes from your authenticated account.
                     </div>
 
                   </div>
 
 
-                  <!-- ENTRY TYPE -->
-
                   <div class="field full">
 
-                    <div class="entry-switch">
+                    <div class="switch-box">
 
                       <div>
 
@@ -3000,8 +3273,8 @@
                         </strong>
 
                         <p>
-                          Select this only when one female participant
-                          is attending alone. Group members will disappear.
+                          Select this only for one female participant.
+                          Group member fields will be removed.
                         </p>
 
                       </div>
@@ -3012,7 +3285,7 @@
                         <input
                           id="singleFemale"
                           type="checkbox"
-                        />
+                        >
 
                         <span class="switch-track"></span>
 
@@ -3023,8 +3296,6 @@
                   </div>
 
 
-                  <!-- GROUP -->
-
                   <div
                     class="field full"
                     id="membersSection"
@@ -3033,16 +3304,15 @@
                     <div class="members-head">
 
                       <strong>
-                        Group Members
+                        Additional Members
                       </strong>
 
-                      <span
-                        id="memberCount"
-                      >
+                      <span id="memberCount">
                         2 Members
                       </span>
 
                     </div>
+
 
                     <div
                       id="membersContainer"
@@ -3050,7 +3320,7 @@
 
 
                     <button
-                      class="add-btn"
+                      class="add-member"
                       id="addMemberBtn"
                       type="button"
                     >
@@ -3059,18 +3329,17 @@
 
 
                     <div class="help">
-                      The registered participant counts as member 1.
-                      Minimum group size is 2.
+                      Registered participant is counted as member 1.
+                      Couple = 2 people minimum.
                     </div>
 
                   </div>
 
 
-                  <!-- PRICE -->
-
                   <div class="field full">
 
                     <div class="price-card">
+
 
                       <div class="price-line">
 
@@ -3078,7 +3347,7 @@
                           Entry Type
                         </span>
 
-                        <strong id="priceType">
+                        <strong id="entryTypeText">
                           Couple
                         </strong>
 
@@ -3091,7 +3360,7 @@
                           Group Size
                         </span>
 
-                        <strong id="priceGroupSize">
+                        <strong id="groupSizeText">
                           2
                         </strong>
 
@@ -3104,7 +3373,7 @@
                           Base Price
                         </span>
 
-                        <strong id="priceBase">
+                        <strong id="basePriceText">
                           ₹300
                         </strong>
 
@@ -3117,7 +3386,7 @@
                           Additional Members
                         </span>
 
-                        <strong id="priceAdditional">
+                        <strong id="extraPriceText">
                           ₹0
                         </strong>
 
@@ -3130,18 +3399,17 @@
                           Total Payable
                         </span>
 
-                        <strong id="priceTotal">
+                        <strong id="totalPriceText">
                           ₹300
                         </strong>
 
                       </div>
 
+
                     </div>
 
                   </div>
 
-
-                  <!-- TURNSTILE -->
 
                   <div class="field full">
 
@@ -3149,17 +3417,18 @@
                       Security Verification
                     </label>
 
+
                     <div
                       id="registrationTurnstile"
                       class="turnstile-wrap"
                     ></div>
 
+
                     <div class="help">
-                      Security verification is validated by the server.
+                      Turnstile verification protects this sensitive request.
                     </div>
 
                   </div>
-
 
                 </div>
 
@@ -3168,16 +3437,16 @@
                   style="
                     display:flex;
                     justify-content:flex-end;
-                    gap:8px;
                     flex-wrap:wrap;
+                    gap:8px;
                     margin-top:17px;
                   "
                 >
 
                   <button
                     class="btn btn-secondary"
-                    data-open-panel="overview"
                     type="button"
+                    data-open-panel="overview"
                   >
                     Cancel
                   </button>
@@ -3185,7 +3454,7 @@
 
                   <button
                     class="btn btn-primary"
-                    id="registrationSubmitBtn"
+                    id="saveRegistrationBtn"
                     type="submit"
                   >
                     Save Registration →
@@ -3209,40 +3478,32 @@
             id="panel-payment"
           >
 
+
             <div class="payment-grid">
 
 
               <div class="card payment-card">
 
+
                 <div class="eyebrow">
-                  Manual UPI Payment
+                  UPI Payment
                 </div>
 
 
-                <div class="payment-qr-box">
+                <div class="payment-qr">
 
-                  <div
-                    id="paymentQR"
-                  ></div>
+                  <div id="paymentQR"></div>
 
                 </div>
 
 
-                <div class="mini-text">
-                  Scan the QR using your UPI app.
-                </div>
-
-
-                <div
-                  class="upi-chip"
-                  id="upiChip"
-                >
-                  UPI ID: Configure in code
+                <div class="upi-chip" id="upiChip">
+                  UPI ID: shubham347779@ybl
                 </div>
 
 
                 <div
-                  class="payment-amount"
+                  class="amount"
                   id="paymentAmount"
                 >
                   ₹300
@@ -3250,11 +3511,11 @@
 
 
                 <div class="payment-note">
-                  Pay the exact amount.
+                  Pay the exact amount shown above.
                 </div>
 
 
-                <div class="instruction-list">
+                <div class="instructions">
 
 
                   <div class="instruction">
@@ -3270,7 +3531,7 @@
                       </strong>
 
                       <span>
-                        Make the exact UPI payment shown above.
+                        Pay through any supported UPI application.
                       </span>
 
                     </div>
@@ -3287,7 +3548,7 @@
                     <div>
 
                       <strong>
-                        Save Proof
+                        Save the Proof
                       </strong>
 
                       <span>
@@ -3321,19 +3582,24 @@
 
                 </div>
 
+
               </div>
 
 
               <div class="card">
 
+
                 <div class="card-title">
-                  Submit Payment Proof
+                  Payment Verification
                 </div>
 
+
                 <div class="card-subtitle">
-                  The payment is manually checked by the school
-                  against its actual bank/UPI record. Uploading
-                  proof does not grant entry permission.
+
+                  Upload your payment proof and enter the
+                  transaction reference. The school will verify
+                  the payment manually.
+
                 </div>
 
 
@@ -3342,21 +3608,24 @@
                   novalidate
                 >
 
-                  <div class="field">
+
+                  <div class="field" style="margin-top:18px;">
 
                     <label for="paymentProof">
                       Payment Screenshot / PDF
                     </label>
+
 
                     <input
                       class="file-input"
                       id="paymentProof"
                       type="file"
                       accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
-                    />
+                    >
+
 
                     <div class="help">
-                      Maximum 1 MB • JPG • JPEG • PNG • PDF
+                      Maximum 1 MB • JPG, JPEG, PNG or PDF.
                     </div>
 
                   </div>
@@ -3368,6 +3637,7 @@
                       UTR / UPI Reference Number / Transaction ID
                     </label>
 
+
                     <input
                       class="input"
                       id="utr"
@@ -3376,11 +3646,7 @@
                       autocomplete="off"
                       spellcheck="false"
                       placeholder="Enter transaction reference"
-                    />
-
-                    <div class="help">
-                      Enter exactly the reference shown in your payment record.
-                    </div>
+                    >
 
                   </div>
 
@@ -3391,6 +3657,7 @@
                       Security Verification
                     </label>
 
+
                     <div
                       id="paymentTurnstile"
                       class="turnstile-wrap"
@@ -3399,31 +3666,27 @@
                   </div>
 
 
-                  <div class="manual-note">
+                  <div class="security-note">
 
-                    <strong>
-                      Manual verification:
-                    </strong>
-
-                    Your payment will remain under review
-                    until the school verifies the transaction.
-                    Your QR will activate only after permission
-                    is granted by the administrator.
+                    Payment proof does not automatically approve
+                    your entry. The school administrator will verify
+                    the UTR and payment amount before activating
+                    your entry permission.
 
                   </div>
 
 
                   <div
                     style="
-                      margin-top:17px;
                       display:flex;
                       justify-content:flex-end;
+                      margin-top:16px;
                     "
                   >
 
                     <button
                       class="btn btn-primary"
-                      id="paymentSubmitBtn"
+                      id="submitPaymentBtn"
                       type="submit"
                     >
                       Submit Payment Proof →
@@ -3449,30 +3712,44 @@
             id="panel-qr"
           >
 
-            <div id="qrActiveView">
 
-              <div class="qr-grid">
+            <div
+              id="qrLockedView"
+            >
 
+              <div class="card">
 
-                <div class="card qr-card">
+                <div class="qr-card">
 
                   <div class="eyebrow">
                     Entry Pass
                   </div>
 
 
-                  <div class="entry-qr-box">
+                  <div class="entry-qr">
 
-                    <div
-                      id="entryQR"
-                    ></div>
+                    <div class="qr-locked">
+
+                      <div>
+
+                        <strong>
+                          QR NOT ACTIVE
+                        </strong>
+
+                        Your QR becomes available only
+                        after payment verification and
+                        entry permission.
+
+                      </div>
+
+                    </div>
 
                   </div>
 
 
                   <span
-                    id="qrBadge"
                     class="badge badge-warning"
+                    id="qrLockedBadge"
                   >
                     ● Awaiting Approval
                   </span>
@@ -3480,15 +3757,60 @@
 
                   <div
                     class="card-subtitle"
-                    id="qrMessage"
+                    id="qrLockedMessage"
                   >
-                    Your QR will appear after the school
-                    grants permission.
+                    Payment proof and admin approval are required.
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="qrActiveView"
+              hidden
+            >
+
+
+              <div class="qr-grid">
+
+
+                <div class="card qr-card">
+
+
+                  <div class="eyebrow">
+                    Active Entry Pass
+                  </div>
+
+
+                  <div class="entry-qr">
+
+                    <div id="entryQR"></div>
+
+                  </div>
+
+
+                  <span
+                    class="badge badge-success"
+                    id="qrActiveBadge"
+                  >
+                    ● Active
+                  </span>
+
+
+                  <div
+                    class="card-subtitle"
+                    id="qrActiveMessage"
+                  >
+                    Show this QR at Gate 1 or Gate 2.
                   </div>
 
 
                   <div
-                    class="qr-id"
+                    class="help"
                     id="qrPublicId"
                   >
                     —
@@ -3510,7 +3832,7 @@
                     <div class="details">
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Name
@@ -3523,7 +3845,7 @@
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Mobile
@@ -3536,7 +3858,7 @@
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Email
@@ -3549,7 +3871,7 @@
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Entry
@@ -3562,20 +3884,20 @@
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Group Size
                         </span>
 
-                        <strong id="detailGroupSize">
+                        <strong id="detailGroup">
                           —
                         </strong>
 
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Amount
@@ -3588,7 +3910,7 @@
                       </div>
 
 
-                      <div class="detail-row">
+                      <div class="detail">
 
                         <span>
                           Registration ID
@@ -3599,7 +3921,6 @@
                         </strong>
 
                       </div>
-
 
                     </div>
 
@@ -3612,14 +3933,19 @@
                       Entry Rule
                     </div>
 
+
                     <div class="card-subtitle">
-                      The QR is unique to this registration.
-                      The gate server will verify it before
-                      allowing entry. Once checked in, the QR
-                      becomes invalid.
+
+                      Your QR is intended for one-time entry.
+                      The gate server will verify the QR and
+                      atomically mark the entry as checked-in.
+
                     </div>
 
-                    <span class="badge badge-muted">
+
+                    <span
+                      class="badge badge-muted"
+                    >
                       One-time entry
                     </span>
 
@@ -3630,44 +3956,6 @@
               </div>
 
             </div>
-
-
-            <div
-              id="qrLockedView"
-              hidden
-            >
-
-              <div class="locked-card">
-
-                <div class="locked-icon">
-                  ▣
-                </div>
-
-                <h2>
-                  QR Not Active
-                </h2>
-
-                <p id="qrLockedMessage">
-                  Your event QR will appear here only after
-                  payment verification and admin permission.
-                </p>
-
-                <div style="margin-top:18px;">
-
-                  <button
-                    class="btn btn-secondary"
-                    data-open-panel="overview"
-                    type="button"
-                  >
-                    Back to Overview
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
 
           </div>
 
@@ -3681,29 +3969,62 @@
             id="panel-thankyou"
           >
 
-            <div class="thank-card">
-
-              <div class="thank-icon">
-                ✓
-              </div>
-
-              <h2>
-                Thank You!
-              </h2>
-
-              <p>
-                Your payment proof has been submitted successfully.
-                The school team will manually verify the transaction.
-                Once permission is granted, your unique event QR
-                code will become available in the My QR section.
-              </p>
-
+            <div class="card">
 
               <div
                 style="
-                  margin-top:14px;
+                  text-align:center;
+                  padding:20px 10px;
                 "
               >
+
+                <div
+                  style="
+                    width:58px;
+                    height:58px;
+                    margin:0 auto 14px;
+                    display:grid;
+                    place-items:center;
+                    border-radius:17px;
+                    color:#8ef0c7;
+                    background:rgba(67,217,158,.07);
+                    border:1px solid rgba(67,217,158,.12);
+                    font-size:24px;
+                    font-weight:800;
+                  "
+                >
+                  ✓
+                </div>
+
+
+                <h2
+                  style="
+                    margin:0;
+                    font-family:'Playfair Display',serif;
+                    font-size:32px;
+                  "
+                >
+                  Thank You!
+                </h2>
+
+
+                <p
+                  style="
+                    max-width:510px;
+                    margin:8px auto 0;
+                    color:var(--muted);
+                    font-size:9px;
+                    line-height:1.7;
+                  "
+                >
+
+                  Your payment proof has been submitted.
+                  The school team will manually verify the
+                  transaction. Your QR will become active
+                  only after permission is granted.
+
+                </p>
+
 
                 <span
                   class="badge badge-warning"
@@ -3712,34 +4033,35 @@
                   ● Under Review
                 </span>
 
-              </div>
 
-
-              <div
-                style="
-                  display:flex;
-                  justify-content:center;
-                  gap:8px;
-                  flex-wrap:wrap;
-                  margin-top:19px;
-                "
-              >
-
-                <button
-                  class="btn btn-primary"
-                  data-open-panel="qr"
-                  type="button"
+                <div
+                  style="
+                    display:flex;
+                    justify-content:center;
+                    flex-wrap:wrap;
+                    gap:8px;
+                    margin-top:18px;
+                  "
                 >
-                  Open My QR
-                </button>
 
-                <button
-                  class="btn btn-secondary"
-                  id="thankRefreshBtn"
-                  type="button"
-                >
-                  Refresh Status
-                </button>
+                  <button
+                    class="btn btn-primary"
+                    id="thankQRBtn"
+                    type="button"
+                  >
+                    Open My QR
+                  </button>
+
+
+                  <button
+                    class="btn btn-secondary"
+                    id="thankRefreshBtn"
+                    type="button"
+                  >
+                    Refresh Status
+                  </button>
+
+                </div>
 
               </div>
 
@@ -3757,7 +4079,7 @@
   </main>
 
 
-  <!-- =======================================================
+  <!-- ========================================================
        TOAST
   ======================================================== -->
 
@@ -3769,21 +4091,13 @@
 
 
   <script>
+
     "use strict";
 
-    /* =========================================================
-       CONFIGURATION
-       ---------------------------------------------------------
-       Replace ONLY these public configuration values.
 
-       NEVER place:
-       - Supabase Secret Key
-       - service_role key
-       - Turnstile Secret Key
-       - DB password
-
-       in this file.
-    ========================================================= */
+    /* ========================================================
+       CONFIG
+    ======================================================== */
 
     const CONFIG = Object.freeze({
 
@@ -3808,7 +4122,7 @@
       EVENT_TIME:
         "6:00 PM – 10:00 PM",
 
-      PRICING: Object.freeze({
+      PRICES: Object.freeze({
 
         SINGLE_FEMALE:
           200,
@@ -3821,42 +4135,42 @@
 
       }),
 
-      MAX_FILE_SIZE:
+      MAX_PROOF_SIZE:
         1024 * 1024,
 
-      ALLOWED_MIME_TYPES:
+      ALLOWED_PROOF_TYPES:
         Object.freeze([
           "image/jpeg",
           "image/png",
           "application/pdf"
         ]),
 
-      REFRESH_INTERVAL_MS:
+      REFRESH_INTERVAL:
         120000,
 
-      EDGE_FUNCTIONS: Object.freeze({
+      PROFILE_TABLE:
+        "profiles",
 
-        GET_DASHBOARD:
-          "get-my-dashboard",
+      EDGE_FUNCTIONS:
+        Object.freeze({
 
-        CREATE_REGISTRATION:
-          "create-registration",
+          GET_DASHBOARD:
+            "get-my-dashboard",
 
-        SUBMIT_PAYMENT:
-          "submit-payment"
+          CREATE_REGISTRATION:
+            "create-registration",
 
-      })
+          SUBMIT_PAYMENT:
+            "submit-payment"
+
+        })
 
     });
 
 
-    /* =========================================================
-       GLOBAL STATE
-       ---------------------------------------------------------
-       No passwords.
-       No sensitive data in localStorage.
-       No authentication state manually fabricated.
-    ========================================================= */
+    /* ========================================================
+       STATE
+    ======================================================== */
 
     const state = {
 
@@ -3872,56 +4186,61 @@
       members:
         [
           {
-            name: ""
+            name:
+              ""
           }
         ],
 
-      turnstile:
-        {
-          registrationWidgetId:
-            null,
+      registrationTurnstileId:
+        null,
 
-          paymentWidgetId:
-            null,
+      paymentTurnstileId:
+        null,
 
-          registrationToken:
-            null,
+      registrationToken:
+        null,
 
-          paymentToken:
-            null
-        },
+      paymentToken:
+        null,
 
-      registrationInFlight:
+      registrationBusy:
         false,
 
-      paymentInFlight:
+      paymentBusy:
         false,
 
       refreshTimer:
-        null
+        null,
+
+      lastRefresh:
+        0
 
     };
 
 
-    /* =========================================================
+    /* ========================================================
        DOM
-    ========================================================= */
+    ======================================================== */
 
     const $ =
       selector =>
-        document.querySelector(selector);
+        document.querySelector(
+          selector
+        );
 
 
     const $$ =
       selector =>
         Array.from(
-          document.querySelectorAll(selector)
+          document.querySelectorAll(
+            selector
+          )
         );
 
 
-    /* =========================================================
+    /* ========================================================
        BOOT
-    ========================================================= */
+    ======================================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
@@ -3935,71 +4254,57 @@
 
       renderMembers();
 
-      updatePricingUI();
+      updatePricing();
 
-      await waitForLibraries();
+      await waitForSupabase();
 
     }
 
 
-    async function waitForLibraries() {
+    async function waitForSupabase() {
 
       const started =
         Date.now();
 
 
-      const maxWait =
-        15000;
-
-
       while (
         (
           !window.supabase ||
-          !window.turnstile
+          typeof window.supabase.createClient !==
+            "function"
         ) &&
         Date.now() - started <
-          maxWait
+          15000
       ) {
 
-        await delay(100);
+        await delay(
+          100
+        );
+
+      }
+
+
+      if (
+        !window.supabase
+      ) {
+
+        fatal(
+          "Supabase library could not be loaded."
+        );
+
+        return;
 
       }
 
 
       try {
 
-        if (
-          !window.supabase ||
-          typeof window.supabase.createClient !==
-            "function"
-        ) {
-
-          throw new Error(
-            "Supabase library failed to load."
-          );
-
-        }
-
-
-        if (
-          CONFIG.SUPABASE_PUBLISHABLE_KEY
-            .includes(
-              "PASTE_YOUR"
-            )
-        ) {
-
-          throw new Error(
-            "Supabase publishable key is not configured."
-          );
-
-        }
-
-
         state.supabase =
           window.supabase.createClient(
             CONFIG.SUPABASE_URL,
             CONFIG.SUPABASE_PUBLISHABLE_KEY,
             {
+
               auth: {
 
                 autoRefreshToken:
@@ -4015,23 +4320,56 @@
                   "pkce"
 
               }
+
             }
           );
 
 
-        await authenticateUser();
+        await verifyUser();
+
+
+        state.supabase.auth.onAuthStateChange(
+          (
+            event,
+            session
+          ) => {
+
+            if (
+              event ===
+                "SIGNED_OUT"
+            ) {
+
+              redirectToLogin();
+
+            }
+
+
+            if (
+              (
+                event ===
+                  "TOKEN_REFRESHED"
+              ) &&
+              !session
+            ) {
+
+              redirectToLogin();
+
+            }
+
+          }
+        );
 
       } catch (error) {
 
         console.error(
-          "BOOT ERROR:",
+          "BOOT:",
           error
         );
 
-        stopLoader();
-
-        showFatalError(
-          error.message
+        fatal(
+          friendlyError(
+            error
+          )
         );
 
       }
@@ -4039,35 +4377,36 @@
     }
 
 
-    /* =========================================================
-       AUTHENTICATION
-       ---------------------------------------------------------
-       getUser() is intentionally used instead of trusting
-       arbitrary client-side session data.
-    ========================================================= */
+    /* ========================================================
+       USER VERIFICATION
+    ======================================================== */
 
-    async function authenticateUser() {
+    async function verifyUser() {
 
-      setLoader(
+      showLoader(
         "Verifying authenticated account..."
       );
 
+
+      /*
+        getUser() asks Supabase Auth to verify the
+        currently authenticated user instead of treating
+        browser state as authoritative.
+      */
 
       const {
         data,
         error
       } =
-        await state.supabase.auth.getUser();
+        await state.supabase
+          .auth
+          .getUser();
 
 
-      if (error) {
-
-        throw error;
-
-      }
-
-
-      if (!data?.user) {
+      if (
+        error ||
+        !data?.user
+      ) {
 
         redirectToLogin();
 
@@ -4080,146 +4419,102 @@
         data.user;
 
 
-      syncUserIdentity();
+      syncUserUI();
 
 
       /*
-        Role is NOT read from localStorage,
-        URL parameters, hidden fields or user input.
+        Role check:
 
-        The Edge Function below must read the role from
-        the protected server-side profile/database.
+        The participant page is fail-closed.
+
+        We NEVER assume participant if the profile
+        row is missing.
       */
-
-      await loadDashboard();
-
-
-      state.supabase.auth.onAuthStateChange(
-        (_event, session) => {
-
-          const user =
-            session?.user ||
-            null;
-
-
-          state.user =
-            user;
-
-
-          if (!user) {
-
-            redirectToLogin();
-
-            return;
-
-          }
-
-
-          syncUserIdentity();
-
-        }
-      );
-
-
-      startBackgroundRefresh();
-
-
-      stopLoader();
-
-    }
-
-
-    /* =========================================================
-       ROLE + DASHBOARD
-    ========================================================= */
-
-    async function loadDashboard() {
-
-      setLoader(
-        "Loading your secure event profile..."
-      );
-
 
       const {
-        data,
-        error
+        data:
+          profile,
+        error:
+          profileError
       } =
-        await invokeFunction(
-          CONFIG.EDGE_FUNCTIONS.GET_DASHBOARD,
-          {}
-        );
+        await state.supabase
+          .from(
+            CONFIG.PROFILE_TABLE
+          )
+          .select(
+            "role"
+          )
+          .eq(
+            "id",
+            state.user.id
+          )
+          .maybeSingle();
 
 
-      if (error) {
+      if (
+        profileError
+      ) {
 
-        /*
-          Important:
-
-          If this function is not deployed yet,
-          do NOT fall back to direct public table
-          access.
-
-          This keeps the final architecture fail-closed.
-        */
-
-        throw error;
+        throw profileError;
 
       }
 
 
-      if (!data) {
+      if (
+        !profile
+      ) {
 
         throw new Error(
-          "No secure dashboard response received."
+          "Your account role could not be verified."
         );
 
       }
 
-
-      /*
-        Expected server response:
-
-        {
-          role: "participant",
-
-          registration: {...} | null,
-
-          payment: {...} | null,
-
-          qr: {...} | null
-        }
-      */
 
       const role =
         String(
-          data.role ||
+          profile.role ||
           ""
-        ).toLowerCase();
+        )
+          .trim()
+          .toLowerCase();
 
 
-      if (role === "admin") {
+      if (
+        role !==
+        "participant"
+      ) {
 
-        window.location.replace(
-          "/admin.html"
-        );
+        if (
+          role ===
+          "admin"
+        ) {
 
-        return;
+          window.location.replace(
+            "/admin.html"
+          );
 
-      }
+          return;
 
-
-      if (role === "gate") {
-
-        window.location.replace(
-          "/gate.html"
-        );
-
-        return;
-
-      }
+        }
 
 
-      if (role !== "participant") {
+        if (
+          role ===
+          "gate"
+        ) {
+
+          window.location.replace(
+            "/gate.html"
+          );
+
+          return;
+
+        }
+
+
+        await state.supabase.auth.signOut();
+
 
         throw new Error(
           "This account is not authorized for the participant portal."
@@ -4228,26 +4523,121 @@
       }
 
 
-      state.dashboard =
-        normalizeDashboard(
-          data
-        );
+      await loadDashboard();
 
 
-      applyDashboardToUI();
+      stopLoader();
+
+
+      startControlledRefresh();
 
     }
 
 
-    function normalizeDashboard(
-      data
-    ) {
+    /* ========================================================
+       DASHBOARD
+    ======================================================== */
 
-      return {
+    async function loadDashboard() {
+
+      showLoader(
+        "Loading your secure profile..."
+      );
+
+
+      const {
+        data,
+        error
+      } =
+        await invokeFunction(
+          CONFIG
+            .EDGE_FUNCTIONS
+            .GET_DASHBOARD,
+          {}
+        );
+
+
+      if (
+        error
+      ) {
+
+        throw await normalizeFunctionError(
+          error
+        );
+
+      }
+
+
+      if (
+        !data
+      ) {
+
+        throw new Error(
+          "Secure dashboard response was empty."
+        );
+
+      }
+
+
+      const role =
+        String(
+          data.role ||
+          ""
+        )
+          .trim()
+          .toLowerCase();
+
+
+      /*
+        Backend ALSO needs to enforce this role check.
+        Frontend routing is not the security boundary.
+      */
+
+      if (
+        role !==
+        "participant"
+      ) {
+
+        if (
+          role ===
+          "admin"
+        ) {
+
+          window.location.replace(
+            "/admin.html"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          role ===
+          "gate"
+        ) {
+
+          window.location.replace(
+            "/gate.html"
+          );
+
+          return;
+
+        }
+
+
+        throw new Error(
+          "Participant access denied."
+        );
+
+      }
+
+
+      state.dashboard = {
 
         role:
-          data.role ||
-          "participant",
+
+          role,
 
         registration:
           data.registration ||
@@ -4263,19 +4653,20 @@
 
       };
 
+
+      applyDashboard();
+
     }
 
 
-    /* =========================================================
-       EDGE FUNCTION HELPER
-       ========================================================= */
-
     async function invokeFunction(
-      functionName,
+      name,
       body
     ) {
 
-      if (!state.supabase) {
+      if (
+        !state.supabase
+      ) {
 
         throw new Error(
           "Supabase client is not ready."
@@ -4284,139 +4675,123 @@
       }
 
 
-      return await state.supabase.functions.invoke(
-        functionName,
-        {
-
-          body
-
-        }
-      );
-
-    }
-
-
-    /* =========================================================
-       USER UI
-       ========================================================= */
-
-    function syncUserIdentity() {
-
-      if (!state.user) {
-
-        return;
-
-      }
-
-
-      const email =
-        state.user.email ||
-        "";
-
-
-      $("#headerEmail")
-        .textContent =
-        email;
-
-
-      $("#email")
-        .value =
-        email;
-
-
-      $("#avatar")
-        .textContent =
-        email
-          .charAt(0)
-          .toUpperCase() ||
-        "U";
+      return await state.supabase
+        .functions
+        .invoke(
+          name,
+          {
+            body
+          }
+        );
 
     }
 
 
-    function applyDashboardToUI() {
+    /* ========================================================
+       DASHBOARD UI
+    ======================================================== */
 
-      const dashboard =
-        state.dashboard;
-
-
-      if (!dashboard) {
-
-        return;
-
-      }
-
+    function applyDashboard() {
 
       const registration =
-        dashboard.registration;
+        state.dashboard
+          ?.registration ||
+        null;
 
 
       const payment =
-        dashboard.payment;
+        state.dashboard
+          ?.payment ||
+        null;
 
 
       const qr =
-        dashboard.qr;
+        state.dashboard
+          ?.qr ||
+        null;
 
 
-      /*
-        Populate server-returned registration data.
-      */
+      if (
+        registration
+      ) {
 
-      if (registration) {
-
-        populateRegistrationFromServer(
+        fillRegistration(
           registration
         );
 
       }
 
 
-      updateOverviewStatus(
+      updateStatusCards(
         registration,
         payment,
         qr
       );
 
 
-      renderQRState(
+      updateNotice(
+        payment,
         qr
       );
 
 
-      updateApprovalInfo(
-        payment,
+      renderQR(
         qr
+      );
+
+
+      updateDetails(
+        registration
+      );
+
+
+      /*
+        Payment QR should use amount from the
+        authoritative server registration once available.
+      */
+
+      const amount =
+        Number(
+          registration?.amount
+        );
+
+
+      updatePaymentQR(
+        Number.isFinite(amount) &&
+        amount > 0
+          ? amount
+          : calculateClientAmount()
       );
 
     }
 
 
-    function updateOverviewStatus(
+    function updateStatusCards(
       registration,
       payment,
       qr
     ) {
 
-      const registrationExists =
+      const hasRegistration =
         Boolean(
           registration
         );
 
 
-      $("#statusRegistration")
-        .textContent =
-        registrationExists
+      setText(
+        "#registrationStatusText",
+        hasRegistration
           ? "Completed"
-          : "Not Started";
+          : "Not Started"
+      );
 
 
-      updateBadge(
-        $("#statusRegistrationBadge"),
-        registrationExists
+      setBadge(
+        "#registrationStatusBadge",
+        hasRegistration
           ? "● Completed"
           : "● Not Started",
-        registrationExists
+        hasRegistration
           ? "success"
           : "muted"
       );
@@ -4432,14 +4807,17 @@
         "muted";
 
 
-      if (payment) {
+      if (
+        payment
+      ) {
 
         const status =
           String(
             payment.payment_status ||
             payment.status ||
             ""
-          ).toLowerCase();
+          )
+            .toLowerCase();
 
 
         if (
@@ -4458,7 +4836,7 @@
 
         } else if (
           status ===
-            "rejected"
+          "rejected"
         ) {
 
           paymentText =
@@ -4486,33 +4864,25 @@
       }
 
 
-      $("#statusPayment")
-        .textContent =
-        paymentText;
-
-
-      updateBadge(
-        $("#statusPaymentBadge"),
-        paymentBadge,
-        paymentType
+      setText(
+        "#paymentStatusText",
+        paymentText
       );
 
 
-      let qrText =
-        "Inactive";
-
-      let qrBadge =
-        "● Not Active";
-
-      let qrType =
-        "muted";
+      setBadge(
+        "#paymentStatusBadge",
+        paymentBadge,
+        paymentType
+      );
 
 
       const qrStatus =
         String(
           qr?.status ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       if (
@@ -4520,90 +4890,97 @@
         "active"
       ) {
 
-        qrText =
-          "Active";
+        setText(
+          "#qrStatusText",
+          "Active"
+        );
 
-        qrBadge =
-          "● Active";
+        setBadge(
+          "#qrStatusBadge",
+          "● Active",
+          "success"
+        );
 
-        qrType =
-          "success";
-
-      } else if (
-        qrStatus ===
-        "used"
-      ) {
-
-        qrText =
-          "Used";
-
-        qrBadge =
-          "● Already Used";
-
-        qrType =
-          "danger";
-
-      } else if (
-        qrStatus ===
-        "revoked"
-      ) {
-
-        qrText =
-          "Revoked";
-
-        qrBadge =
-          "● Revoked";
-
-        qrType =
-          "danger";
-
-      } else if (
-        qrStatus ===
-        "inactive"
-      ) {
-
-        qrText =
-          "Inactive";
-
-        qrBadge =
-          "● Awaiting Approval";
-
-        qrType =
-          "warning";
+        return;
 
       }
 
 
-      $("#statusQR")
-        .textContent =
-        qrText;
+      if (
+        qrStatus ===
+        "used"
+      ) {
+
+        setText(
+          "#qrStatusText",
+          "Used"
+        );
+
+        setBadge(
+          "#qrStatusBadge",
+          "● Already Used",
+          "danger"
+        );
+
+        return;
+
+      }
 
 
-      updateBadge(
-        $("#statusQRBadge"),
-        qrBadge,
-        qrType
+      if (
+        qrStatus ===
+        "revoked"
+      ) {
+
+        setText(
+          "#qrStatusText",
+          "Revoked"
+        );
+
+        setBadge(
+          "#qrStatusBadge",
+          "● Revoked",
+          "danger"
+        );
+
+        return;
+
+      }
+
+
+      setText(
+        "#qrStatusText",
+        "Inactive"
+      );
+
+
+      setBadge(
+        "#qrStatusBadge",
+        "● Awaiting Approval",
+        "warning"
       );
 
     }
 
 
-    function updateApprovalInfo(
+    function updateNotice(
       payment,
       qr
     ) {
 
-      const card =
-        $("#approvalInfoCard");
-
+      const notice =
+        $("#approvalNotice");
 
       const text =
-        $("#approvalInfoText");
+        $("#approvalNoticeText");
 
 
-      if (!payment && !qr) {
+      if (
+        !payment &&
+        !qr
+      ) {
 
-        card.hidden =
+        notice.hidden =
           true;
 
         return;
@@ -4611,7 +4988,7 @@
       }
 
 
-      card.hidden =
+      notice.hidden =
         false;
 
 
@@ -4620,14 +4997,16 @@
           payment?.payment_status ||
           payment?.status ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       const qrStatus =
         String(
           qr?.status ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       if (
@@ -4636,7 +5015,7 @@
       ) {
 
         text.textContent =
-          "Your payment has been verified and your entry permission has been granted. Your QR is now active.";
+          "Your payment has been verified and your entry permission has been granted. Your QR is active.";
 
         return;
 
@@ -4649,7 +5028,20 @@
       ) {
 
         text.textContent =
-          "Your entry has already been checked in. The QR is now invalid.";
+          "Your entry has already been checked in. This QR can no longer be used.";
+
+        return;
+
+      }
+
+
+      if (
+        qrStatus ===
+        "revoked"
+      ) {
+
+        text.textContent =
+          "Your QR has been revoked and is no longer valid.";
 
         return;
 
@@ -4662,7 +5054,7 @@
       ) {
 
         text.textContent =
-          "Payment verified. Your QR will become available once the administrator grants entry permission.";
+          "Payment verified. Your QR will be available when entry permission is activated.";
 
         return;
 
@@ -4675,68 +5067,66 @@
       ) {
 
         text.textContent =
-          "The submitted payment proof was rejected by the school. Please contact the school team for clarification.";
+          "The submitted payment proof was rejected. Please contact the school team.";
 
         return;
 
       }
 
 
-      if (
-        payment
-      ) {
-
-        text.textContent =
-          "Your payment proof is under manual verification. Please wait for the school team to complete the verification.";
-
-        return;
-
-      }
-
-
-      card.hidden =
-        true;
+      text.textContent =
+        "Your payment proof is under manual verification.";
 
     }
 
 
-    /* =========================================================
-       REGISTRATION FORM
-    ========================================================= */
+    /* ========================================================
+       REGISTRATION
+    ======================================================== */
 
-    function populateRegistrationFromServer(
+    function fillRegistration(
       registration
     ) {
 
-      $("#name")
-        .value =
+      setValue(
+        "#fullName",
         registration.name ||
-        "";
+        ""
+      );
 
-      $("#phone")
-        .value =
+
+      setValue(
+        "#mobile",
         registration.phone ||
-        "";
+        ""
+      );
 
-      $("#email")
-        .value =
+
+      setValue(
+        "#registeredEmail",
         state.user?.email ||
         registration.email ||
-        "";
+        ""
+      );
 
 
-      const entryType =
+      const type =
         String(
           registration.entry_type ||
           registration.entryType ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
+
+
+      const isSingleFemale =
+        type ===
+        "single_female";
 
 
       $("#singleFemale")
         .checked =
-        entryType ===
-        "single_female";
+        isSingleFemale;
 
 
       const serverMembers =
@@ -4747,62 +5137,41 @@
           : [];
 
 
-      if (
-        entryType ===
-          "single_female"
-      ) {
+      state.members =
+        serverMembers.length
+          ? serverMembers.map(
+              item => ({
 
-        state.members =
-          [
-            {
-              name:
-                ""
-            }
-          ];
+                name:
+                  typeof item ===
+                  "string"
+                    ? item
+                    : item?.name ||
+                      ""
 
-      } else {
-
-        /*
-          Server can return only additional
-          member names, not passwords/session data.
-        */
-
-        state.members =
-          serverMembers.length
-            ? serverMembers.map(
-                member => ({
-                  name:
-                    typeof member ===
-                    "string"
-                      ? member
-                      : member?.name ||
-                        ""
-                })
-              )
-            : [
-                {
-                  name:
-                    ""
-                }
-              ];
-
-      }
+              })
+            )
+          : [
+              {
+                name:
+                  ""
+              }
+            ];
 
 
       $("#membersSection")
         .hidden =
-        entryType ===
-        "single_female";
+        isSingleFemale;
 
 
       renderMembers();
 
-      updatePricingUI();
+      updatePricing();
 
     }
 
 
-    async function handleRegistrationSubmit(
+    async function handleRegistration(
       event
     ) {
 
@@ -4810,7 +5179,7 @@
 
 
       if (
-        state.registrationInFlight
+        state.registrationBusy
       ) {
 
         return;
@@ -4818,12 +5187,9 @@
       }
 
 
-      if (!state.user) {
-
-        showToast(
-          "Your session has expired. Please login again.",
-          "error"
-        );
+      if (
+        !state.user
+      ) {
 
         redirectToLogin();
 
@@ -4833,41 +5199,38 @@
 
 
       const name =
-        $("#name")
+        $("#fullName")
           .value
           .trim();
+
 
       const phone =
-        $("#phone")
+        $("#mobile")
           .value
           .trim();
 
-      const email =
-        $("#email")
-          .value
-          .trim()
-          .toLowerCase();
 
       const singleFemale =
         $("#singleFemale")
           .checked;
 
-      const turnstileToken =
-        state.turnstile
-          .registrationToken;
+
+      const email =
+        (
+          state.user.email ||
+          ""
+        )
+          .trim()
+          .toLowerCase();
 
 
-      /* -------------------------------------------------------
-         CLIENT-SIDE VALIDATION
-         -------------------------------------------------------
-         This is UX validation only.
-         Server will perform the authoritative validation.
-      ------------------------------------------------------- */
+      const token =
+        state.registrationToken;
 
 
       if (
         name.length <
-          2
+        2
       ) {
 
         showToast(
@@ -4882,7 +5245,9 @@
 
       if (
         !/^[0-9]{10}$/
-          .test(phone)
+          .test(
+            phone
+          )
       ) {
 
         showToast(
@@ -4896,29 +5261,12 @@
 
 
       if (
-        email !==
-        (
-          state.user.email ||
-          ""
-        )
-          .toLowerCase()
+        !token
       ) {
 
         showToast(
-          "Registered email does not match the authenticated account.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (!turnstileToken) {
-
-        showToast(
           "Please complete the security verification.",
-          "error"
+          "warning"
         );
 
         return;
@@ -4926,33 +5274,33 @@
       }
 
 
-      let memberNames =
+      let members =
         [];
 
 
-      if (!singleFemale) {
+      if (
+        !singleFemale
+      ) {
 
-        memberNames =
+        members =
           state.members
             .map(
-              member =>
+              item =>
                 String(
-                  member.name ||
+                  item.name ||
                   ""
-                ).trim()
-            )
-            .filter(
-              Boolean
+                )
+                  .trim()
             );
 
 
         if (
-          memberNames.length <
-            1
+          members.length <
+          1
         ) {
 
           showToast(
-            "A minimum of 2 people is required for group entry.",
+            "At least one additional member is required for couple entry.",
             "error"
           );
 
@@ -4962,15 +5310,15 @@
 
 
         if (
-          memberNames.some(
-            member =>
-              member.length <
-                2
+          members.some(
+            name =>
+              name.length <
+              2
           )
         ) {
 
           showToast(
-            "Please enter every additional member's name.",
+            "Please enter all member names.",
             "error"
           );
 
@@ -4981,23 +5329,32 @@
       }
 
 
-      /*
-        Important:
+      const button =
+        $("#saveRegistrationBtn");
 
-        We do NOT send the final amount as authority.
 
-        The Edge Function must recalculate:
+      state.registrationBusy =
+        true;
 
-        single female = ₹200
 
-        couple = ₹300
+      setLoading(
+        button,
+        "Saving..."
+      );
 
-        extra member =
-          ₹150 each
-      */
 
-      const payload =
-        {
+      try {
+
+        /*
+          DO NOT send amount as an authoritative field.
+
+          Backend must calculate:
+            female = ₹200
+            couple = ₹300
+            extra = ₹150
+        */
+
+        const payload = {
 
           idempotencyKey:
             crypto.randomUUID(),
@@ -5013,29 +5370,13 @@
               ? "single_female"
               : "group",
 
-          members:
-            memberNames,
+          members,
 
-          turnstileToken
+          turnstileToken:
+            token
 
         };
 
-
-      const submitButton =
-        $("#registrationSubmitBtn");
-
-
-      state.registrationInFlight =
-        true;
-
-
-      setButtonLoading(
-        submitButton,
-        "Saving..."
-      );
-
-
-      try {
 
         const {
           data,
@@ -5049,7 +5390,9 @@
           );
 
 
-        if (error) {
+        if (
+          error
+        ) {
 
           throw await normalizeFunctionError(
             error
@@ -5058,44 +5401,40 @@
         }
 
 
-        /*
-          Backend response should contain
-          the authoritative registration.
-        */
+        if (
+          !data
+        ) {
 
-        if (data?.registration) {
-
-          if (!state.dashboard) {
-
-            state.dashboard =
-              {};
-
-          }
-
-
-          state.dashboard
-            .registration =
-            data.registration;
-
-          state.dashboard
-            .payment =
-            data.payment ||
-            state.dashboard.payment ||
-            null;
-
-          state.dashboard
-            .qr =
-            data.qr ||
-            state.dashboard.qr ||
-            null;
+          throw new Error(
+            "Registration server returned no data."
+          );
 
         }
+
+
+        state.dashboard = {
+
+          ...state.dashboard,
+
+          registration:
+            data.registration ||
+            state.dashboard.registration,
+
+          payment:
+            data.payment ||
+            state.dashboard.payment,
+
+          qr:
+            data.qr ||
+            state.dashboard.qr
+
+        };
 
 
         resetRegistrationTurnstile();
 
 
-        applyDashboardToUI();
+        applyDashboard();
 
 
         showToast(
@@ -5109,14 +5448,16 @@
         );
 
 
-        startPaymentQR();
-
       } catch (error) {
 
         console.error(
-          "REGISTRATION SUBMIT ERROR:",
+          "REGISTRATION:",
           error
         );
+
+
+        resetRegistrationTurnstile();
+
 
         showToast(
           error.message ||
@@ -5124,16 +5465,13 @@
           "error"
         );
 
-
-        resetRegistrationTurnstile();
-
       } finally {
 
-        state.registrationInFlight =
+        state.registrationBusy =
           false;
 
         resetButton(
-          submitButton,
+          button,
           "Save Registration →"
         );
 
@@ -5142,11 +5480,11 @@
     }
 
 
-    /* =========================================================
-       PAYMENT SUBMISSION
-    ========================================================= */
+    /* ========================================================
+       PAYMENT
+    ======================================================== */
 
-    async function handlePaymentSubmit(
+    async function handlePayment(
       event
     ) {
 
@@ -5154,7 +5492,7 @@
 
 
       if (
-        state.paymentInFlight
+        state.paymentBusy
       ) {
 
         return;
@@ -5162,7 +5500,9 @@
       }
 
 
-      if (!state.user) {
+      if (
+        !state.user
+      ) {
 
         redirectToLogin();
 
@@ -5171,16 +5511,14 @@
       }
 
 
-      const registration =
-        state.dashboard
-          ?.registration;
-
-
-      if (!registration) {
+      if (
+        !state.dashboard
+          ?.registration
+      ) {
 
         showToast(
           "Complete your registration first.",
-          "error"
+          "warning"
         );
 
         openPanel(
@@ -5196,20 +5534,23 @@
         $("#paymentProof")
           .files[0];
 
+
       const utr =
         $("#utr")
           .value
           .trim();
 
-      const turnstileToken =
-        state.turnstile
-          .paymentToken;
+
+      const token =
+        state.paymentToken;
 
 
-      if (!file) {
+      if (
+        !file
+      ) {
 
         showToast(
-          "Please attach your payment proof.",
+          "Please upload your payment proof.",
           "error"
         );
 
@@ -5220,7 +5561,7 @@
 
       if (
         file.size >
-        CONFIG.MAX_FILE_SIZE
+        CONFIG.MAX_PROOF_SIZE
       ) {
 
         showToast(
@@ -5235,14 +5576,14 @@
 
       if (
         !CONFIG
-          .ALLOWED_MIME_TYPES
+          .ALLOWED_PROOF_TYPES
           .includes(
             file.type
           )
       ) {
 
         showToast(
-          "Only JPG, JPEG, PNG or PDF files are allowed.",
+          "Only JPG, JPEG, PNG and PDF files are allowed.",
           "error"
         );
 
@@ -5253,7 +5594,9 @@
 
       if (
         !/^[A-Za-z0-9\-]{6,100}$/
-          .test(utr)
+          .test(
+            utr
+          )
       ) {
 
         showToast(
@@ -5266,11 +5609,13 @@
       }
 
 
-      if (!turnstileToken) {
+      if (
+        !token
+      ) {
 
         showToast(
           "Please complete the security verification.",
-          "error"
+          "warning"
         );
 
         return;
@@ -5278,74 +5623,56 @@
       }
 
 
-      const submitButton =
-        $("#paymentSubmitBtn");
+      const button =
+        $("#submitPaymentBtn");
 
 
-      state.paymentInFlight =
+      state.paymentBusy =
         true;
 
 
-      setButtonLoading(
-        submitButton,
-        "Uploading proof..."
+      setLoading(
+        button,
+        "Uploading..."
       );
+
+
+      let storagePath =
+        null;
 
 
       try {
 
         /*
-          -----------------------------------------------------
-          FILE PATH
-          -----------------------------------------------------
+          IMPORTANT STORAGE DESIGN:
 
-          The first path segment MUST be the authenticated
-          user's UUID.
+          user UUID is the first folder.
+          Random UUID filename prevents predictable
+          filenames.
 
-          Random filename prevents predictable file names.
-
-          The Storage bucket itself already enforces:
-            - private bucket
-            - max 1 MB
-            - JPG/PNG/PDF MIME types
+          Bucket remains PRIVATE.
         */
 
         const extension =
-          getSafeExtension(
-            file.name,
+          getExtension(
             file.type
           );
 
 
-        if (!extension) {
+        if (
+          !extension
+        ) {
 
           throw new Error(
-            "Unsupported payment proof type."
+            "Unsupported file type."
           );
 
         }
 
 
-        const randomFileName =
-          `${crypto.randomUUID()}.${extension}`;
+        storagePath =
+          `${state.user.id}/${crypto.randomUUID()}.${extension}`;
 
-
-        const storagePath =
-          `${state.user.id}/${randomFileName}`;
-
-
-        setButtonLoading(
-          submitButton,
-          "Uploading proof..."
-        );
-
-
-        /*
-          Direct upload is restricted by the Storage RLS
-          policy already configured for this bucket.
-
-          No public URL is generated.
-        */
 
         const {
           error:
@@ -5374,30 +5701,20 @@
             );
 
 
-        if (uploadError) {
+        if (
+          uploadError
+        ) {
 
           throw uploadError;
 
         }
 
 
-        setButtonLoading(
-          submitButton,
+        setLoading(
+          button,
           "Submitting..."
         );
 
-
-        /*
-          The backend is authoritative for:
-
-          - user ownership
-          - registration ownership
-          - price
-          - payment uniqueness
-          - storage path ownership
-          - Turnstile verification
-          - duplicate submission prevention
-        */
 
         const {
           data,
@@ -5417,13 +5734,16 @@
               proofStoragePath:
                 storagePath,
 
-              turnstileToken
+              turnstileToken:
+                token
 
             }
           );
 
 
-        if (error) {
+        if (
+          error
+        ) {
 
           throw await normalizeFunctionError(
             error
@@ -5432,40 +5752,39 @@
         }
 
 
-        state.dashboard =
-          normalizeDashboard(
-            data ||
-            state.dashboard
-          );
+        state.dashboard = {
 
+          ...state.dashboard,
 
-        resetPaymentTurnstile();
+          registration:
+            data?.registration ||
+            state.dashboard.registration,
 
+          payment:
+            data?.payment ||
+            state.dashboard.payment,
 
-        /*
-          Clear file input so the same proof isn't
-          accidentally submitted twice through the UI.
-        */
+          qr:
+            data?.qr ||
+            state.dashboard.qr
+
+        };
+
 
         $("#paymentProof")
           .value =
           "";
+
 
         $("#utr")
           .value =
           "";
 
 
-        applyDashboardToUI();
+        resetPaymentTurnstile();
 
 
-        $("#thankStatus")
-          .textContent =
-          "● Under Review";
-
-        $("#thankStatus")
-          .className =
-          "badge badge-warning";
+        applyDashboard();
 
 
         showToast(
@@ -5482,9 +5801,24 @@
       } catch (error) {
 
         console.error(
-          "PAYMENT SUBMIT ERROR:",
+          "PAYMENT:",
           error
         );
+
+
+        /*
+          IMPORTANT:
+
+          If upload succeeded but backend rejected the
+          submission, the orphan object should eventually
+          be cleaned by the secure backend/storage cleanup job.
+
+          We do not expose or make the file public.
+        */
+
+
+        resetPaymentTurnstile();
+
 
         showToast(
           error.message ||
@@ -5492,16 +5826,13 @@
           "error"
         );
 
-
-        resetPaymentTurnstile();
-
       } finally {
 
-        state.paymentInFlight =
+        state.paymentBusy =
           false;
 
         resetButton(
-          submitButton,
+          button,
           "Submit Payment Proof →"
         );
 
@@ -5510,9 +5841,9 @@
     }
 
 
-    /* =========================================================
-       GROUP MEMBERS
-    ========================================================= */
+    /* ========================================================
+       MEMBERS
+    ======================================================== */
 
     function renderMembers() {
 
@@ -5520,7 +5851,9 @@
         $("#membersContainer");
 
 
-      if (!container) {
+      if (
+        !container
+      ) {
 
         return;
 
@@ -5533,7 +5866,10 @@
 
       state.members
         .forEach(
-          (member, index) => {
+          (
+            member,
+            index
+          ) => {
 
             const row =
               document.createElement(
@@ -5595,7 +5931,7 @@
               "button";
 
             remove.className =
-              "remove-btn";
+              "remove-member";
 
             remove.textContent =
               "×";
@@ -5603,11 +5939,10 @@
 
             remove.addEventListener(
               "click",
-              () => {
-
-                removeMember(index);
-
-              }
+              () =>
+                removeMember(
+                  index
+                )
             );
 
 
@@ -5641,7 +5976,7 @@
 
       renderMembers();
 
-      updatePricingUI();
+      updatePricing();
 
     }
 
@@ -5650,18 +5985,13 @@
       index
     ) {
 
-      /*
-        One additional member must always remain
-        because the minimum group is 2.
-      */
-
       if (
         state.members.length <=
-          1
+        1
       ) {
 
         showToast(
-          "Minimum group entry is 2 members.",
+          "Minimum group entry is a couple.",
           "error"
         );
 
@@ -5678,7 +6008,7 @@
 
       renderMembers();
 
-      updatePricingUI();
+      updatePricing();
 
     }
 
@@ -5690,18 +6020,19 @@
         1;
 
 
-      $("#memberCount")
-        .textContent =
+      setText(
+        "#memberCount",
         `${total} ${
           total === 1
             ? "Member"
             : "Members"
-        }`;
+        }`
+      );
 
     }
 
 
-    function handleSingleFemaleChange(
+    function handleSingleFemale(
       event
     ) {
 
@@ -5714,27 +6045,26 @@
         enabled;
 
 
-      updatePricingUI();
+      updatePricing();
 
     }
 
 
-    /* =========================================================
-       PRICING
-       ---------------------------------------------------------
-       UI calculation only.
+    /* ========================================================
+       CLIENT PRICE DISPLAY
+       --------------------------------------------------------
+       UX ONLY.
+       Backend MUST independently recalculate price.
+    ======================================================== */
 
-       Backend MUST recalculate and enforce final amount.
-    ========================================================= */
-
-    function calculateUIAmount() {
+    function calculateClientAmount() {
 
       if (
         $("#singleFemale")
           .checked
       ) {
 
-        return CONFIG.PRICING
+        return CONFIG.PRICES
           .SINGLE_FEMALE;
 
       }
@@ -5746,156 +6076,101 @@
 
 
       return (
-        CONFIG.PRICING.COUPLE +
+        CONFIG.PRICES.COUPLE +
         (
           Math.max(
             groupSize - 2,
             0
           )
           *
-          CONFIG.PRICING.EXTRA_MEMBER
+          CONFIG.PRICES.EXTRA_MEMBER
         )
       );
 
     }
 
 
-    function getUIGroupSize() {
+    function updatePricing() {
 
-      return $("#singleFemale")
-        .checked
-        ? 1
-        : state.members.length +
-          1;
-
-    }
-
-
-    function updatePricingUI() {
-
-      const single =
+      const singleFemale =
         $("#singleFemale")
           ?.checked ||
         false;
 
 
       const groupSize =
-        getUIGroupSize();
+        singleFemale
+          ? 1
+          : state.members.length +
+            1;
 
 
       const extras =
-        single
+        singleFemale
           ? 0
           : Math.max(
               groupSize - 2,
               0
             )
             *
-            CONFIG.PRICING.EXTRA_MEMBER;
+            CONFIG.PRICES.EXTRA_MEMBER;
 
 
-      const amount =
-        single
-          ? CONFIG.PRICING.SINGLE_FEMALE
-          : CONFIG.PRICING.COUPLE +
+      const total =
+        singleFemale
+          ? CONFIG.PRICES.SINGLE_FEMALE
+          : CONFIG.PRICES.COUPLE +
             extras;
 
 
-      if ($("#priceType")) {
-
-        $("#priceType")
-          .textContent =
-          single
-            ? "Single Female"
-            : groupSize === 2
-              ? "Couple"
-              : "Group";
-
-      }
+      setText(
+        "#entryTypeText",
+        singleFemale
+          ? "Single Female"
+          : groupSize === 2
+            ? "Couple"
+            : "Group"
+      );
 
 
-      if ($("#priceGroupSize")) {
-
-        $("#priceGroupSize")
-          .textContent =
-          groupSize;
-
-      }
+      setText(
+        "#groupSizeText",
+        groupSize
+      );
 
 
-      if ($("#priceBase")) {
-
-        $("#priceBase")
-          .textContent =
-          single
-            ? "₹200"
-            : "₹300";
-
-      }
+      setText(
+        "#basePriceText",
+        singleFemale
+          ? "₹200"
+          : "₹300"
+      );
 
 
-      if ($("#priceAdditional")) {
-
-        $("#priceAdditional")
-          .textContent =
-          "₹" +
-          extras;
-
-      }
+      setText(
+        "#extraPriceText",
+        "₹" +
+        extras
+      );
 
 
-      if ($("#priceTotal")) {
-
-        $("#priceTotal")
-          .textContent =
-          "₹" +
-          amount;
-
-      }
+      setText(
+        "#totalPriceText",
+        "₹" +
+        total
+      );
 
 
       updatePaymentQR(
-        amount
+        total
       );
 
     }
 
 
-    /* =========================================================
+    /* ========================================================
        PAYMENT QR
-    ========================================================= */
-
-    function startPaymentQR() {
-
-      const amount =
-        Number(
-          state.dashboard
-            ?.registration
-            ?.amount
-        );
-
-
-      if (
-        Number.isFinite(
-          amount
-        ) &&
-        amount > 0
-      ) {
-
-        updatePaymentQR(
-          amount
-        );
-
-      } else {
-
-        updatePaymentQR(
-          calculateUIAmount()
-        );
-
-      }
-
-    }
-
+    ======================================================== */
 
     function updatePaymentQR(
       amount
@@ -5905,7 +6180,9 @@
         $("#paymentQR");
 
 
-      if (!container) {
+      if (
+        !container
+      ) {
 
         return;
 
@@ -5916,30 +6193,27 @@
         "";
 
 
-      $("#upiChip")
-        .textContent =
+      setText(
+        "#upiChip",
         "UPI ID: " +
-        CONFIG.SCHOOL_UPI_ID;
+        CONFIG.SCHOOL_UPI_ID
+      );
 
 
-      $("#paymentAmount")
-        .textContent =
+      setText(
+        "#paymentAmount",
         "₹" +
-        amount;
+        amount
+      );
 
 
       if (
-        !window.QRCode ||
-        !CONFIG.SCHOOL_UPI_ID ||
-        CONFIG.SCHOOL_UPI_ID
-          .includes(
-            "HERE"
-          )
+        !window.QRCode
       ) {
 
-        renderSimpleQRPlaceholder(
+        renderQRPlaceholder(
           container,
-          "School UPI QR"
+          "UPI QR loading..."
         );
 
         return;
@@ -5949,20 +6223,24 @@
 
       const upiUri =
         "upi://pay" +
+
         "?pa=" +
         encodeURIComponent(
           CONFIG.SCHOOL_UPI_ID
         ) +
+
         "&pn=" +
         encodeURIComponent(
           CONFIG.SCHOOL_PAYEE_NAME
         ) +
+
         "&am=" +
         encodeURIComponent(
           Number(
             amount
           ).toFixed(2)
         ) +
+
         "&cu=INR";
 
 
@@ -5990,93 +6268,58 @@
     }
 
 
-    function renderSimpleQRPlaceholder(
+    function renderQRPlaceholder(
       container,
-      title
+      text
     ) {
 
       container.innerHTML =
         `
           <div
             style="
-              width:100%;
-              height:100%;
-              display:grid;
-              place-items:center;
-              color:#444;
+              color:#555;
               text-align:center;
               font-size:10px;
+              padding:20px;
             "
           >
-            <div>
-              <div
-                style="
-                  font-size:48px;
-                  margin-bottom:8px;
-                "
-              >
-                ▦
-              </div>
-
-              <strong>
-                ${escapeHtml(title)}
-              </strong>
-
-              <div
-                style="
-                  margin-top:4px;
-                  color:#777;
-                "
-              >
-                Configure school UPI ID
-              </div>
-            </div>
+            ▦<br><br>
+            ${escapeHtml(text)}
           </div>
         `;
 
     }
 
 
-    /* =========================================================
+    /* ========================================================
        ENTRY QR
-       ---------------------------------------------------------
-       The actual token is generated by the server.
+       ======================================================== */
 
-       Client only renders it.
-
-       Gate verification later happens server-side.
-    ========================================================= */
-
-    function renderQRState(
+    function renderQR(
       qr
     ) {
-
-      const activeView =
-        $("#qrActiveView");
 
       const lockedView =
         $("#qrLockedView");
 
 
-      const qrContainer =
+      const activeView =
+        $("#qrActiveView");
+
+
+      const container =
         $("#entryQR");
 
 
-      qrContainer.innerHTML =
-        "";
-
-
-      if (!qr) {
-
-        activeView.hidden =
-          true;
+      if (
+        !qr
+      ) {
 
         lockedView.hidden =
           false;
 
-        $("#qrLockedMessage")
-          .textContent =
-          "Your payment has not yet been verified and entry permission has not been granted.";
+        activeView.hidden =
+          true;
 
         return;
 
@@ -6087,18 +6330,20 @@
         String(
           qr.status ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       if (
-        status !== "active"
+        status !==
+        "active"
       ) {
-
-        activeView.hidden =
-          true;
 
         lockedView.hidden =
           false;
+
+        activeView.hidden =
+          true;
 
 
         if (
@@ -6106,24 +6351,60 @@
           "used"
         ) {
 
-          $("#qrLockedMessage")
-            .textContent =
-            "This entry has already been checked in. The QR is now null and void.";
+          setText(
+            "#qrLockedBadge",
+            "● Already Used"
+          );
+
+
+          $("#qrLockedBadge")
+            .className =
+            "badge badge-danger";
+
+
+          setText(
+            "#qrLockedMessage",
+            "This entry has already been checked in and the QR is no longer valid."
+          );
 
         } else if (
           status ===
           "revoked"
         ) {
 
-          $("#qrLockedMessage")
-            .textContent =
-            "This QR has been revoked by the school and can no longer be used.";
+          setText(
+            "#qrLockedBadge",
+            "● Revoked"
+          );
+
+
+          $("#qrLockedBadge")
+            .className =
+            "badge badge-danger";
+
+
+          setText(
+            "#qrLockedMessage",
+            "This QR has been revoked and cannot be used."
+          );
 
         } else {
 
-          $("#qrLockedMessage")
-            .textContent =
-            "Payment verification may be complete, but the administrator has not yet granted entry permission.";
+          setText(
+            "#qrLockedBadge",
+            "● Awaiting Approval"
+          );
+
+
+          $("#qrLockedBadge")
+            .className =
+            "badge badge-warning";
+
+
+          setText(
+            "#qrLockedMessage",
+            "Payment verification and entry permission are required."
+          );
 
         }
 
@@ -6133,46 +6414,41 @@
       }
 
 
-      /*
-        Active QR
-
-        Expected server response may contain:
-
-        qr.token
-        qr.public_id
-
-        Never use a predictable registration ID as the
-        actual QR authorization token.
-      */
-
-      const token =
+      const secureToken =
         qr.token ||
         qr.qr_token ||
         null;
 
 
-      if (!token) {
-
-        activeView.hidden =
-          true;
+      if (
+        !secureToken
+      ) {
 
         lockedView.hidden =
           false;
 
-        $("#qrLockedMessage")
-          .textContent =
-          "Entry permission is active, but the secure QR payload has not been returned. Please refresh.";
+        activeView.hidden =
+          true;
+
+        setText(
+          "#qrLockedMessage",
+          "Entry permission is active, but the secure QR token was not returned. Please refresh."
+        );
 
         return;
 
       }
 
 
+      lockedView.hidden =
+        true;
+
       activeView.hidden =
         false;
 
-      lockedView.hidden =
-        true;
+
+      container.innerHTML =
+        "";
 
 
       if (
@@ -6180,11 +6456,11 @@
       ) {
 
         new window.QRCode(
-          qrContainer,
+          container,
           {
 
             text:
-              token,
+              secureToken,
 
             width:
               210,
@@ -6200,57 +6476,36 @@
           }
         );
 
-      } else {
-
-        qrContainer.innerHTML =
-          `
-            <div
-              style="
-                color:#333;
-                text-align:center;
-                font-size:10px;
-              "
-            >
-              QR renderer loading...
-            </div>
-          `;
-
       }
 
 
-      $("#qrPublicId")
-        .textContent =
+      setText(
+        "#qrPublicId",
         qr.public_id ||
         qr.publicId ||
-        "Secure entry pass";
-
-
-      updateBadge(
-        $("#qrBadge"),
-        "● Active",
-        "success"
+        "Secure entry pass"
       );
 
 
-      $("#qrMessage")
-        .textContent =
-        "Show this QR at Gate 1 or Gate 2. The guard will verify it with the server before checking you in.";
+      setText(
+        "#qrActiveMessage",
+        "Show this QR at Gate 1 or Gate 2. The gate server will validate it before checking you in."
+      );
 
     }
 
 
-    /* =========================================================
-       REGISTRATION DETAILS FOR QR
-    ========================================================= */
+    /* ========================================================
+       DETAILS
+    ======================================================== */
 
-    function updateQRDetails() {
+    function updateDetails(
+      registration
+    ) {
 
-      const registration =
-        state.dashboard
-          ?.registration;
-
-
-      if (!registration) {
+      if (
+        !registration
+      ) {
 
         setText(
           "#detailName",
@@ -6274,7 +6529,7 @@
         );
 
         setText(
-          "#detailGroupSize",
+          "#detailGroup",
           "—"
         );
 
@@ -6298,13 +6553,21 @@
           registration.entry_type ||
           registration.entryType ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       const groupSize =
         Number(
           registration.group_size ??
           registration.groupSize ??
+          0
+        );
+
+
+      const amount =
+        Number(
+          registration.amount ??
           0
         );
 
@@ -6336,7 +6599,8 @@
         entryType ===
           "single_female"
           ? "Single Female"
-          : groupSize === 2
+          : groupSize ===
+              2
             ? "Couple"
             : groupSize > 2
               ? "Group"
@@ -6345,17 +6609,10 @@
 
 
       setText(
-        "#detailGroupSize",
+        "#detailGroup",
         groupSize ||
         "—"
       );
-
-
-      const amount =
-        Number(
-          registration.amount ??
-          0
-        );
 
 
       setText(
@@ -6378,100 +6635,16 @@
     }
 
 
-    /* =========================================================
-       PANEL NAVIGATION
-    ========================================================= */
-
-    function openPanel(
-      panelName
-    ) {
-
-      $$(".panel")
-        .forEach(
-          panel => {
-
-            panel.classList.toggle(
-              "active",
-              panel.id ===
-                "panel-" +
-                panelName
-            );
-
-          }
-        );
-
-
-      $$(".nav-btn[data-panel]")
-        .forEach(
-          button => {
-
-            button.classList.toggle(
-              "active",
-              button.dataset.panel ===
-                panelName
-            );
-
-          }
-        );
-
-
-      if (
-        panelName ===
-        "payment"
-      ) {
-
-        startPaymentQR();
-
-        renderPaymentTurnstile();
-
-      }
-
-
-      if (
-        panelName ===
-        "registration"
-      ) {
-
-        renderRegistrationTurnstile();
-
-      }
-
-
-      if (
-        panelName ===
-        "qr"
-      ) {
-
-        updateQRDetails();
-
-      }
-
-
-      window.scrollTo({
-        top:
-          0,
-        behavior:
-          "smooth"
-      });
-
-    }
-
-
-    /* =========================================================
+    /* ========================================================
        TURNSTILE
-       ---------------------------------------------------------
-       Site Key is public.
-
-       Backend function must validate the token using the
-       Turnstile Secret Key on the server.
-
-       Client token alone is NOT a security control.
-    ========================================================= */
+       ======================================================== */
 
     function renderRegistrationTurnstile() {
 
       if (
-        !window.turnstile
+        !window.turnstile ||
+        !CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY
       ) {
 
         return;
@@ -6480,13 +6653,8 @@
 
 
       if (
-        !CONFIG
-          .CLOUDFLARE_TURNSTILE_SITE_KEY ||
-        CONFIG
-          .CLOUDFLARE_TURNSTILE_SITE_KEY
-          .includes(
-            "PASTE_YOUR"
-          )
+        state.registrationTurnstileId !==
+        null
       ) {
 
         return;
@@ -6498,26 +6666,7 @@
         $("#registrationTurnstile");
 
 
-      if (!container) {
-
-        return;
-
-      }
-
-
-      if (
-        state.turnstile
-          .registrationWidgetId !==
-          null
-      ) {
-
-        return;
-
-      }
-
-
-      state.turnstile
-        .registrationWidgetId =
+      state.registrationTurnstileId =
         window.turnstile.render(
           container,
           {
@@ -6532,11 +6681,13 @@
             size:
               "flexible",
 
+            action:
+              "registration",
+
             callback:
               token => {
 
-                state.turnstile
-                  .registrationToken =
+                state.registrationToken =
                   token;
 
               },
@@ -6544,8 +6695,7 @@
             "expired-callback":
               () => {
 
-                state.turnstile
-                  .registrationToken =
+                state.registrationToken =
                   null;
 
               },
@@ -6553,14 +6703,13 @@
             "error-callback":
               code => {
 
+                state.registrationToken =
+                  null;
+
                 console.error(
-                  "REGISTRATION TURNSTILE ERROR:",
+                  "REGISTRATION TURNSTILE:",
                   code
                 );
-
-                state.turnstile
-                  .registrationToken =
-                  null;
 
               }
 
@@ -6573,7 +6722,9 @@
     function renderPaymentTurnstile() {
 
       if (
-        !window.turnstile
+        !window.turnstile ||
+        !CONFIG
+          .CLOUDFLARE_TURNSTILE_SITE_KEY
       ) {
 
         return;
@@ -6582,13 +6733,8 @@
 
 
       if (
-        !CONFIG
-          .CLOUDFLARE_TURNSTILE_SITE_KEY ||
-        CONFIG
-          .CLOUDFLARE_TURNSTILE_SITE_KEY
-          .includes(
-            "PASTE_YOUR"
-          )
+        state.paymentTurnstileId !==
+        null
       ) {
 
         return;
@@ -6600,26 +6746,7 @@
         $("#paymentTurnstile");
 
 
-      if (!container) {
-
-        return;
-
-      }
-
-
-      if (
-        state.turnstile
-          .paymentWidgetId !==
-          null
-      ) {
-
-        return;
-
-      }
-
-
-      state.turnstile
-        .paymentWidgetId =
+      state.paymentTurnstileId =
         window.turnstile.render(
           container,
           {
@@ -6634,11 +6761,13 @@
             size:
               "flexible",
 
+            action:
+              "payment",
+
             callback:
               token => {
 
-                state.turnstile
-                  .paymentToken =
+                state.paymentToken =
                   token;
 
               },
@@ -6646,8 +6775,7 @@
             "expired-callback":
               () => {
 
-                state.turnstile
-                  .paymentToken =
+                state.paymentToken =
                   null;
 
               },
@@ -6655,14 +6783,13 @@
             "error-callback":
               code => {
 
+                state.paymentToken =
+                  null;
+
                 console.error(
-                  "PAYMENT TURNSTILE ERROR:",
+                  "PAYMENT TURNSTILE:",
                   code
                 );
-
-                state.turnstile
-                  .paymentToken =
-                  null;
 
               }
 
@@ -6674,21 +6801,18 @@
 
     function resetRegistrationTurnstile() {
 
-      state.turnstile
-        .registrationToken =
+      state.registrationToken =
         null;
 
 
       if (
         window.turnstile &&
-        state.turnstile
-          .registrationWidgetId !==
+        state.registrationTurnstileId !==
           null
       ) {
 
         window.turnstile.reset(
-          state.turnstile
-            .registrationWidgetId
+          state.registrationTurnstileId
         );
 
       }
@@ -6698,21 +6822,18 @@
 
     function resetPaymentTurnstile() {
 
-      state.turnstile
-        .paymentToken =
+      state.paymentToken =
         null;
 
 
       if (
         window.turnstile &&
-        state.turnstile
-          .paymentWidgetId !==
+        state.paymentTurnstileId !==
           null
       ) {
 
         window.turnstile.reset(
-          state.turnstile
-            .paymentWidgetId
+          state.paymentTurnstileId
         );
 
       }
@@ -6720,30 +6841,22 @@
     }
 
 
-    /* =========================================================
-       BACKGROUND REFRESH
-       ---------------------------------------------------------
-       Designed to avoid aggressive polling.
+    /* ========================================================
+       CONTROLLED REFRESH
+       ======================================================== */
 
-       500 users at 120 seconds average =
-       ~4.2 dashboard requests/sec.
+    function startControlledRefresh() {
 
-       The backend still needs rate limiting and efficient
-       DB queries.
-    ========================================================= */
-
-    function startBackgroundRefresh() {
-
-      stopBackgroundRefresh();
+      stopControlledRefresh();
 
 
       state.refreshTimer =
-        window.setInterval(
+        setInterval(
           async () => {
 
             if (
               document.visibilityState !==
-                "visible"
+              "visible"
             ) {
 
               return;
@@ -6753,7 +6866,7 @@
 
             try {
 
-              await refreshDashboardSilently();
+              await refreshSilently();
 
             } catch (error) {
 
@@ -6765,19 +6878,13 @@
             }
 
           },
-          CONFIG.REFRESH_INTERVAL_MS
+          CONFIG.REFRESH_INTERVAL
         );
-
-
-      document.addEventListener(
-        "visibilitychange",
-        handleVisibilityRefresh
-      );
 
     }
 
 
-    function stopBackgroundRefresh() {
+    function stopControlledRefresh() {
 
       if (
         state.refreshTimer
@@ -6795,35 +6902,16 @@
     }
 
 
-    let lastVisibilityRefresh =
-      0;
-
-
-    async function handleVisibilityRefresh() {
-
-      if (
-        document.visibilityState !==
-          "visible"
-      ) {
-
-        return;
-
-      }
-
+    async function refreshSilently() {
 
       const now =
         Date.now();
 
 
-      /*
-        Prevent repeated refresh requests when
-        browser fires multiple visibility events.
-      */
-
       if (
         now -
-          lastVisibilityRefresh <
-          15000
+        state.lastRefresh <
+        15000
       ) {
 
         return;
@@ -6831,31 +6919,12 @@
       }
 
 
-      lastVisibilityRefresh =
+      state.lastRefresh =
         now;
 
 
-      try {
-
-        await refreshDashboardSilently();
-
-      } catch (error) {
-
-        console.warn(
-          "VISIBILITY REFRESH:",
-          error
-        );
-
-      }
-
-    }
-
-
-    async function refreshDashboardSilently() {
-
       if (
-        !state.user ||
-        !state.supabase
+        !state.user
       ) {
 
         return;
@@ -6875,14 +6944,20 @@
         );
 
 
-      if (error) {
+      if (
+        error
+      ) {
 
-        throw error;
+        throw await normalizeFunctionError(
+          error
+        );
 
       }
 
 
-      if (!data) {
+      if (
+        !data
+      ) {
 
         return;
 
@@ -6893,7 +6968,8 @@
         String(
           data.role ||
           ""
-        ).toLowerCase();
+        )
+          .toLowerCase();
 
 
       if (
@@ -6901,53 +6977,157 @@
         "participant"
       ) {
 
-        if (
-          role ===
-          "admin"
-        ) {
-
-          window.location.replace(
-            "/admin.html"
-          );
-
-          return;
-
-        }
-
-
-        if (
-          role ===
-          "gate"
-        ) {
-
-          window.location.replace(
-            "/gate.html"
-          );
-
-          return;
-
-        }
-
-
         return;
 
       }
 
 
-      state.dashboard =
-        normalizeDashboard(
-          data
-        );
+      state.dashboard = {
+
+        role:
+
+          role,
+
+        registration:
+          data.registration ||
+          null,
+
+        payment:
+          data.payment ||
+          null,
+
+        qr:
+          data.qr ||
+          null
+
+      };
 
 
-      applyDashboardToUI();
+      applyDashboard();
 
     }
 
 
-    /* =========================================================
+    async function manualRefresh() {
+
+      const button =
+        $("#refreshBtn");
+
+
+      setLoading(
+        button,
+        "Refreshing..."
+      );
+
+
+      try {
+
+        await refreshSilently();
+
+
+        showToast(
+          "Status refreshed.",
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "REFRESH:",
+          error
+        );
+
+
+        showToast(
+          error.message ||
+          "Could not refresh status.",
+          "error"
+        );
+
+      } finally {
+
+        resetButton(
+          button,
+          "↻   Refresh Status"
+        );
+
+      }
+
+    }
+
+
+    /* ========================================================
+       PANEL NAVIGATION
+       ======================================================== */
+
+    function openPanel(
+      name
+    ) {
+
+      $$(".panel")
+        .forEach(
+          panel => {
+
+            panel.classList.toggle(
+              "active",
+              panel.id ===
+                `panel-${name}`
+            );
+
+          }
+        );
+
+
+      $$(".nav-button[data-panel]")
+        .forEach(
+          button => {
+
+            button.classList.toggle(
+              "active",
+              button.dataset.panel ===
+                name
+            );
+
+          }
+        );
+
+
+      if (
+        name ===
+        "registration"
+      ) {
+
+        renderRegistrationTurnstile();
+
+      }
+
+
+      if (
+        name ===
+        "payment"
+      ) {
+
+        renderPaymentTurnstile();
+
+      }
+
+
+      window.scrollTo({
+
+        top:
+          0,
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+
+
+    /* ========================================================
        EVENTS
-    ========================================================= */
+    ======================================================== */
 
     function bindEvents() {
 
@@ -6979,29 +7159,27 @@
         );
 
 
-      $("#overviewStartBtn")
+      $("#thankQRBtn")
         .addEventListener(
           "click",
-          () => {
-
-            openPanel(
-              "registration"
-            );
-
-          }
+          () =>
+            openPanel("qr")
         );
 
 
-      $("#overviewQRBtn")
+      $("#openQRBtn")
         .addEventListener(
           "click",
-          () => {
+          () =>
+            openPanel("qr")
+        );
 
-            openPanel(
-              "qr"
-            );
 
-          }
+      $("#startRegistrationBtn")
+        .addEventListener(
+          "click",
+          () =>
+            openPanel("registration")
         );
 
 
@@ -7015,28 +7193,41 @@
       $("#singleFemale")
         .addEventListener(
           "change",
-          handleSingleFemaleChange
+          handleSingleFemale
         );
 
 
-      $("#phone")
+      $("#mobile")
         .addEventListener(
           "input",
-          sanitizePhone
+          event => {
+
+            event.target.value =
+              event.target.value
+                .replace(
+                  /\D/g,
+                  ""
+                )
+                .slice(
+                  0,
+                  10
+                );
+
+          }
         );
 
 
       $("#registrationForm")
         .addEventListener(
           "submit",
-          handleRegistrationSubmit
+          handleRegistration
         );
 
 
       $("#paymentForm")
         .addEventListener(
           "submit",
-          handlePaymentSubmit
+          handlePayment
         );
 
 
@@ -7049,7 +7240,8 @@
               () => {
 
                 openPanel(
-                  button.dataset.panel
+                  button.dataset
+                    .panel
                 );
 
               }
@@ -7068,7 +7260,8 @@
               () => {
 
                 openPanel(
-                  button.dataset.openPanel
+                  button.dataset
+                    .openPanel
                 );
 
               }
@@ -7080,128 +7273,51 @@
     }
 
 
-    /* =========================================================
-       MANUAL REFRESH
-    ========================================================= */
-
-    async function manualRefresh() {
-
-      const button =
-        $("#refreshBtn");
-
-
-      setButtonLoading(
-        button,
-        "Refreshing..."
-      );
-
-
-      try {
-
-        await refreshDashboardSilently();
-
-        showToast(
-          "Status refreshed.",
-          "success"
-        );
-
-      } catch (error) {
-
-        console.error(
-          "MANUAL REFRESH ERROR:",
-          error
-        );
-
-        showToast(
-          error.message ||
-          "Unable to refresh status.",
-          "error"
-        );
-
-      } finally {
-
-        resetButton(
-          button,
-          "↻   Refresh Status"
-        );
-
-      }
-
-    }
-
-
-    /* =========================================================
+    /* ========================================================
        LOGOUT
-    ========================================================= */
+    ======================================================== */
 
     async function logout() {
 
       try {
 
-        setLoader(
+        showLoader(
           "Signing out securely..."
         );
 
-        showLoader();
 
-        await state.supabase.auth.signOut();
+        await state.supabase
+          .auth
+          .signOut();
 
       } catch (error) {
 
         console.error(
-          "LOGOUT ERROR:",
+          "LOGOUT:",
           error
         );
 
       } finally {
 
-        window.location.replace(
-          "/index.html"
-        );
+        redirectToLogin();
 
       }
 
     }
 
 
-    /* =========================================================
-       FILE HELPERS
-    ========================================================= */
+    /* ========================================================
+       STORAGE
+    ======================================================== */
 
-    function getSafeExtension(
-      fileName,
+    function getExtension(
       mimeType
     ) {
-
-      const name =
-        String(
-          fileName ||
-          ""
-        ).toLowerCase();
-
-
-      const extension =
-        name.includes(".")
-          ? name.split(".").pop()
-          : "";
-
 
       if (
         mimeType ===
         "image/jpeg"
       ) {
-
-        if (
-          extension ===
-            "jpg" ||
-          extension ===
-            "jpeg"
-        ) {
-
-          return extension;
-
-        }
-
 
         return "jpg";
 
@@ -7233,29 +7349,45 @@
     }
 
 
-    /* =========================================================
+    /* ========================================================
        UI HELPERS
-    ========================================================= */
+    ======================================================== */
 
-    function updateBadge(
-      element,
-      text,
-      type
-    ) {
+    function syncUserUI() {
 
-      if (!element) {
+      if (
+        !state.user
+      ) {
 
         return;
 
       }
 
 
-      element.textContent =
-        text;
+      const email =
+        state.user.email ||
+        "";
 
-      element.className =
-        "badge badge-" +
-        type;
+
+      setText(
+        "#accountEmail",
+        email
+      );
+
+
+      setValue(
+        "#registeredEmail",
+        email
+      );
+
+
+      setText(
+        "#avatar",
+        email
+          .charAt(0)
+          .toUpperCase() ||
+        "U"
+      );
 
     }
 
@@ -7274,58 +7406,76 @@
       ) {
 
         element.textContent =
-          value;
+          String(
+            value
+          );
 
       }
 
     }
 
 
-    function setLoader(
-      text
+    function setValue(
+      selector,
+      value
     ) {
 
-      $("#loaderText")
-        .textContent =
+      const element =
+        $(selector);
+
+
+      if (
+        element
+      ) {
+
+        element.value =
+          String(
+            value
+          );
+
+      }
+
+    }
+
+
+    function setBadge(
+      selector,
+      text,
+      type
+    ) {
+
+      const element =
+        $(selector);
+
+
+      if (
+        !element
+      ) {
+
+        return;
+
+      }
+
+
+      element.textContent =
         text;
 
-    }
 
-
-    function showLoader() {
-
-      document.body.classList
-        .add(
-          "busy"
-        );
-
-      $("#loader")
-        .hidden =
-        false;
+      element.className =
+        "badge badge-" +
+        type;
 
     }
 
 
-    function stopLoader() {
-
-      document.body.classList
-        .remove(
-          "busy"
-        );
-
-      $("#loader")
-        .hidden =
-        true;
-
-    }
-
-
-    function setButtonLoading(
+    function setLoading(
       button,
       text
     ) {
 
-      if (!button) {
+      if (
+        !button
+      ) {
 
         return;
 
@@ -7345,6 +7495,7 @@
       button.disabled =
         true;
 
+
       button.textContent =
         text;
 
@@ -7356,7 +7507,9 @@
       fallback
     ) {
 
-      if (!button) {
+      if (
+        !button
+      ) {
 
         return;
 
@@ -7378,77 +7531,14 @@
     }
 
 
-    function sanitizePhone(
-      event
-    ) {
-
-      event.target.value =
-        event.target.value
-          .replace(
-            /\D/g,
-            ""
-          )
-          .slice(
-            0,
-            10
-          );
-
-    }
-
-
-    function delay(
-      milliseconds
-    ) {
-
-      return new Promise(
-        resolve =>
-          setTimeout(
-            resolve,
-            milliseconds
-          )
-      );
-
-    }
-
-
-    function escapeHtml(
-      value
-    ) {
-
-      return String(
-        value
-      )
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-    /* =========================================================
+    /* ========================================================
        TOAST
-    ========================================================= */
+    ======================================================== */
 
     function showToast(
       message,
-      type = "success"
+      type =
+        "success"
     ) {
 
       const container =
@@ -7487,37 +7577,19 @@
     }
 
 
-    /* =========================================================
-       ERROR NORMALIZATION
-    ========================================================= */
+    /* ========================================================
+       ERRORS
+    ======================================================== */
 
     async function normalizeFunctionError(
       error
     ) {
 
-      if (
-        !error
-      ) {
-
-        return new Error(
-          "Request failed."
-        );
-
-      }
-
-
-      /*
-        Supabase FunctionsHttpError provides
-        response context. Try to read a structured
-        backend error message if available.
-      */
-
       try {
 
         if (
-          error.context &&
-          typeof
-            error.context.json ===
+          error?.context &&
+          typeof error.context.json ===
             "function"
         ) {
 
@@ -7550,22 +7622,110 @@
 
       } catch (_) {
 
-        /* ignore parsing failure */
+        /* ignore */
 
       }
 
 
       return new Error(
-        error.message ||
+        error?.message ||
         "Secure backend request failed."
       );
 
     }
 
 
-    /* =========================================================
-       REDIRECT
-    ========================================================= */
+    function friendlyError(
+      error
+    ) {
+
+      const message =
+        String(
+          error?.message ||
+          ""
+        )
+          .toLowerCase();
+
+
+      if (
+        message.includes(
+          "invalid login credentials"
+        )
+      ) {
+
+        return:
+          "Please login again.";
+
+      }
+
+
+      if (
+        message.includes(
+          "failed to fetch"
+        ) ||
+        message.includes(
+          "network"
+        )
+      ) {
+
+        return:
+          "Unable to connect to the secure server.";
+
+      }
+
+
+      return:
+        error?.message ||
+        "Unable to securely load this page.";
+
+    }
+
+
+    /* ========================================================
+       LOADER
+    ======================================================== */
+
+    function showLoader(
+      message
+    ) {
+
+      setText(
+        "#loaderText",
+        message
+      );
+
+
+      $("#loader")
+        .hidden =
+        false;
+
+
+      document.body.classList
+        .add(
+          "locked"
+        );
+
+    }
+
+
+    function stopLoader() {
+
+      $("#loader")
+        .hidden =
+        true;
+
+
+      document.body.classList
+        .remove(
+          "locked"
+        );
+
+    }
+
+
+    /* ========================================================
+       REDIRECT / FATAL
+    ======================================================== */
 
     function redirectToLogin() {
 
@@ -7576,7 +7736,7 @@
     }
 
 
-    function showFatalError(
+    function fatal(
       message
     ) {
 
@@ -7587,7 +7747,9 @@
         $(".content");
 
 
-      if (!content) {
+      if (
+        !content
+      ) {
 
         return;
 
@@ -7596,32 +7758,51 @@
 
       content.innerHTML =
         `
-          <div class="locked-card">
-
-            <div class="locked-icon">
-              !
-            </div>
-
-            <h2>
-              Secure Connection Required
-            </h2>
-
-            <p>
-              ${escapeHtml(
-                message ||
-                "Unable to securely load this account."
-              )}
-            </p>
+          <div
+            class="card"
+            style="
+              text-align:center;
+              padding:35px 20px;
+            "
+          >
 
             <div
               style="
-                margin-top:17px;
+                width:56px;
+                height:56px;
+                margin:0 auto 13px;
+                display:grid;
+                place-items:center;
+                border-radius:16px;
+                color:#ff9ead;
+                background:rgba(255,92,118,.06);
+                border:1px solid rgba(255,92,118,.12);
+                font-size:21px;
               "
             >
+              !
+            </div>
+
+            <div
+              class="card-title"
+              style="font-family:'Playfair Display',serif;font-size:28px;"
+            >
+              Secure Access Error
+            </div>
+
+            <div
+              class="card-subtitle"
+              style="max-width:500px;margin:8px auto 0;"
+            >
+              ${escapeHtml(
+                message
+              )}
+            </div>
+
+            <div style="margin-top:17px;">
 
               <button
                 class="btn btn-primary"
-                type="button"
                 onclick="
                   window.location.replace('/index.html')
                 "
@@ -7637,43 +7818,70 @@
     }
 
 
-    /* =========================================================
-       CLEANUP
-    ========================================================= */
+    /* ========================================================
+       MISC
+    ======================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value
+      )
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function delay(
+      milliseconds
+    ) {
+
+      return new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            milliseconds
+          )
+      );
+
+    }
+
 
     window.addEventListener(
       "beforeunload",
       () => {
 
-        stopBackgroundRefresh();
+        stopControlledRefresh();
 
       }
     );
 
-
-    /* =========================================================
-       POST-LOAD UI
-    ========================================================= */
-
-    /*
-      Once DOM and server data are available,
-      keep the QR details synchronized.
-    */
-
-    const originalApplyDashboard =
-      applyDashboardToUI;
-
-
-    applyDashboardToUI =
-      function() {
-
-        originalApplyDashboard();
-
-        updateQRDetails();
-
-        startPaymentQR();
-
-      };
 
   </script>
 
