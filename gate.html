@@ -5277,15 +5277,38 @@
 
     async function logout() {
 
+      /*
+        FIX:
+        - Pehle camera safely band karo
+        - Phir sign-out try karo (agar fail bhi ho to bhi aage badho)
+        - FINALLY hamesha login page pe redirect karo
+          (redirectToLogin() undefined tha, isliye direct
+           window.location.replace use kar rahe hain)
+      */
+
+
+      // Camera ko silently band karo (error ho to bhi rukna nahi)
       try {
 
         await stopCamera();
 
+      } catch (error) {
 
-        showLoader(
-          "Signing out..."
+        console.warn(
+          "CAMERA STOP DURING LOGOUT:",
+          error
         );
 
+      }
+
+
+      showLoader(
+        "Signing out..."
+      );
+
+
+      // Supabase sign-out
+      try {
 
         await state.supabase
           .auth
@@ -5298,11 +5321,28 @@
           error
         );
 
-      } finally {
+      }
 
-        redirectToLogin();
+
+      /*
+        Chahe sign-out success ho ya fail,
+        session clear karke login page pe bhejo.
+      */
+
+      try {
+
+        stopStatsRefresh();
+
+      } catch (_) {
+
+        /* ignore */
 
       }
+
+
+      window.location.replace(
+        "/index.html"
+      );
 
     }
 
