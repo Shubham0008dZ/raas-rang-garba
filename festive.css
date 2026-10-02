@@ -526,3 +526,48 @@ body::after  { right: -80px; top: 120px; opacity: .8; transform: rotate(90deg); 
   .attr-badge { width: 42px; height: 42px; font-size: 22px; }
   .attr-card { padding: 8px 6px; gap: 4px; }
 }
+
+/* =====================================================
+   UPDATE 4: COUPLE CENTER ME + PATLI DANDIYA STICKS
+   (bada X hata kar, bansuri jaisi patli lambi sticks)
+===================================================== */
+
+.event-card::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 100'%3E%3Cg transform='rotate(17 35 50)'%3E%3Crect x='31.5' y='0' width='7' height='100' rx='3.5' fill='%23ff3d8b'/%3E%3Crect x='31.5' y='18' width='7' height='6' fill='%23ffd23f'/%3E%3Crect x='31.5' y='76' width='7' height='6' fill='%23ffd23f'/%3E%3C/g%3E%3Cg transform='rotate(-17 35 50)'%3E%3Crect x='31.5' y='0' width='7' height='100' rx='3.5' fill='%23ff9a1f'/%3E%3Crect x='31.5' y='18' width='7' height='6' fill='%23fff3b0'/%3E%3Crect x='31.5' y='76' width='7' height='6' fill='%23fff3b0'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  filter: drop-shadow(0 0 8px rgba(255, 207, 63, .75));
+  width: 64px;
+  height: 92px;
+  top: 108px;
+  animation: clack 2s ease-in-out infinite;
+}
+@keyframes clack {
+  0%, 100% { transform: translateX(-50%) rotate(-5deg) scale(1); }
+  50% { transform: translateX(-50%) rotate(6deg) scale(1.05); }
+}
+
+@media (max-width: 600px) {
+  .event-card::before { width: 48px; height: 72px; top: 99px; }
+}
+
+@media (min-width: 981px) and (min-height: 500px) {
+  .event-card {
+    --info: 176px;
+    --M: calc(var(--hc) * .46);
+    --dd: calc(var(--hc) * .18);
+    --mt: calc((var(--hc) - var(--info) - var(--M)) / 2);
+  }
+  .mandala { top: var(--mt); }
+  .dance { top: calc(var(--mt) + (var(--M) - var(--dd)) / 2); }
+  .event-card::before {
+    width: calc(var(--dd) * .95);
+    height: calc(var(--dd) * 1.35);
+    top: calc(var(--mt) + (var(--M) - var(--dd)) / 2 + var(--dd) / 2 - var(--dd) * .675);
+  }
+  .spark.one { top: calc(var(--mt) + 10px); }
+  .spark.two { top: calc(var(--mt) + 50px); }
+  .spark.three { top: calc(var(--mt) + 100px); }
+  .spark.four { top: calc(var(--mt) + 140px); }
+}
+@media (min-width: 981px) and (min-height: 500px) and (max-height: 620px) {
+  .event-card { --info: 150px; }
+}
