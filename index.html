@@ -1109,363 +1109,549 @@
 
 
     /* =======================================================
-       AUTH
+       AUTH — FULLSCREEN GARBA LOGIN
     ======================================================== */
 
     .auth-page {
 
-      min-height:
-        calc(100vh - 78px);
+      position: relative;
 
-      display:
-        flex;
+      min-height: calc(100vh - 78px);
 
-      align-items:
-        center;
+      display: flex;
 
-      padding:
-        35px 0 50px;
+      align-items: center;
+
+      padding: 32px 0 45px;
+
+      overflow: hidden;
+
+      isolation: isolate;
+
+      background:
+        linear-gradient(90deg, rgba(8,5,14,.36), rgba(8,5,14,.60)),
+        url("login-bg.webp") center center / cover no-repeat;
+
+    }
+
+
+    .auth-page::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: -2;
+
+      background:
+        radial-gradient(circle at 18% 25%, rgba(255,138,42,.16), transparent 32%),
+        radial-gradient(circle at 78% 70%, rgba(243,74,114,.14), transparent 34%),
+        linear-gradient(180deg, rgba(7,4,14,.08), rgba(7,4,14,.34));
+
+      pointer-events: none;
+
+    }
+
+
+    .auth-page::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: -1;
+
+      background: rgba(10,5,14,.18);
+
+      backdrop-filter: saturate(1.08);
+
+      -webkit-backdrop-filter: saturate(1.08);
+
+      pointer-events: none;
+
+    }
+
+
+    .auth-page > .container {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+
+    .auth-layout {
+
+      width: min(1160px, 100%);
+
+      margin: 0 auto;
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.08fr) minmax(390px, .72fr);
+
+      gap: 48px;
+
+      align-items: center;
+
+    }
+
+
+    .auth-showcase {
+
+      max-width: 650px;
+
+      padding: 24px 8px;
+
+    }
+
+
+    .auth-brand-kicker {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 8px 13px;
+
+      border: 1px solid rgba(255,216,122,.30);
+
+      border-radius: 999px;
+
+      color: #fff0ca;
+
+      background: rgba(26,12,28,.35);
+
+      backdrop-filter: blur(12px);
+
+      -webkit-backdrop-filter: blur(12px);
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: .8px;
+
+      text-transform: uppercase;
+
+      box-shadow: 0 10px 35px rgba(0,0,0,.16);
+
+    }
+
+
+    .auth-brand-kicker::before {
+
+      content: "✦";
+
+      color: var(--gold);
+
+      font-size: 13px;
+
+    }
+
+
+    .auth-showcase h1 {
+
+      margin: 18px 0 0;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(44px, 5vw, 74px);
+
+      line-height: .95;
+
+      letter-spacing: -2.8px;
+
+      text-shadow: 0 18px 50px rgba(0,0,0,.45);
+
+    }
+
+
+    .auth-showcase h1 span {
+
+      color: transparent;
+
+      background: linear-gradient(90deg, #fff, #ffd36d 42%, #ff5e93);
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+    }
+
+
+    .auth-showcase p {
+
+      max-width: 560px;
+
+      margin: 16px 0 0;
+
+      color: rgba(255,255,255,.86);
+
+      font-size: 13px;
+
+      line-height: 1.75;
+
+      text-shadow: 0 8px 24px rgba(0,0,0,.38);
+
+    }
+
+
+    .auth-event-bar {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top: 24px;
+
+    }
+
+
+    .auth-event-chip {
+
+      min-width: 118px;
+
+      padding: 10px 12px;
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      border-radius: 14px;
+
+      background: rgba(13,7,18,.38);
+
+      backdrop-filter: blur(14px);
+
+      -webkit-backdrop-filter: blur(14px);
+
+      box-shadow: 0 12px 35px rgba(0,0,0,.18);
+
+    }
+
+
+    .auth-event-chip small {
+
+      display: block;
+
+      color: rgba(255,255,255,.62);
+
+      font-size: 7px;
+
+      font-weight: 800;
+
+      letter-spacing: .9px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .auth-event-chip strong {
+
+      display: block;
+
+      margin-top: 4px;
+
+      color: #fff8e9;
+
+      font-size: 11px;
+
+    }
+
+
+    .auth-pricing {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 14px;
+
+      color: #fff4dd;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+    }
+
+
+    .auth-pricing span {
+
+      padding: 7px 10px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(255,255,255,.11);
+
+      background: rgba(13,7,18,.28);
+
+      backdrop-filter: blur(10px);
+
+      -webkit-backdrop-filter: blur(10px);
+
+    }
+
+
+    .auth-pricing .accent {
+
+      color: #ffd978;
+
+      border-color: rgba(255,216,122,.24);
+
+    }
+
+
+    .auth-footnote {
+
+      margin-top: 15px;
+
+      color: rgba(255,255,255,.70);
+
+      font-size: 8px;
+
+      letter-spacing: .25px;
 
     }
 
 
     .auth-wrap {
 
-      width:
-        min(
-          460px,
-          100%
-        );
+      width: 100%;
 
-      margin:
-        0 auto;
+      margin: 0;
 
     }
 
 
     .auth-card {
 
-      padding:
-        28px;
+      position: relative;
 
-      border:
-        1px solid
-        var(--border);
+      padding: 29px;
 
-      border-radius:
-        24px;
+      border: 1px solid rgba(255,255,255,.19);
 
-      background:
-        rgba(26,18,31,.9);
+      border-radius: 28px;
 
-      box-shadow:
-        var(--shadow);
+      background: linear-gradient(180deg, rgba(24,12,28,.84), rgba(17,9,21,.91));
 
-      backdrop-filter:
-        blur(22px);
+      box-shadow: 0 30px 90px rgba(0,0,0,.44), 0 0 0 1px rgba(255,138,42,.04);
 
-      -webkit-backdrop-filter:
-        blur(22px);
+      backdrop-filter: blur(24px) saturate(1.10);
+
+      -webkit-backdrop-filter: blur(24px) saturate(1.10);
+
+    }
+
+
+    .auth-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 18px;
+
+      right: 18px;
+
+      top: 0;
+
+      height: 2px;
+
+      border-radius: 999px;
+
+      background: linear-gradient(90deg, transparent, #ffd978, #ff5e93, transparent);
+
+      opacity: .82;
 
     }
 
 
     .auth-title {
 
-      margin:
-        16px 0 0;
+      margin: 16px 0 0;
 
-      font-family:
-        "Playfair Display",
-        serif;
+      font-family: "Playfair Display", serif;
 
-      font-size:
-        35px;
+      font-size: 36px;
 
-      line-height:
-        1;
+      line-height: 1;
+
+      letter-spacing: -.6px;
 
     }
 
 
     .auth-description {
 
-      margin:
-        8px 0 0;
+      margin: 9px 0 0;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
-      font-size:
-        10px;
+      font-size: 10px;
 
-      line-height:
-        1.7;
+      line-height: 1.7;
 
     }
 
 
     .form {
 
-      margin-top:
-        23px;
+      margin-top: 22px;
 
     }
 
 
     .field {
 
-      margin-bottom:
-        15px;
+      margin-bottom: 14px;
 
     }
 
 
     .field label {
 
-      display:
-        block;
+      display: block;
 
-      margin-bottom:
-        6px;
+      margin-bottom: 6px;
 
-      color:
-        #e2dae6;
+      color: #e2dae6;
 
-      font-size:
-        9px;
+      font-size: 9px;
 
-      font-weight:
-        700;
+      font-weight: 700;
 
     }
 
 
     .input {
 
-      width:
-        100%;
+      width: 100%;
 
-      height:
-        48px;
+      height: 48px;
 
-      padding:
-        0 13px;
+      padding: 0 13px;
 
-      border:
-        1px solid
-        rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.14);
 
-      border-radius:
-        11px;
+      border-radius: 12px;
 
-      outline:
-        none;
+      outline: none;
 
-      color:
-        white;
+      color: white;
 
-      background:
-        rgba(255,255,255,.05);
+      background: rgba(255,255,255,.065);
 
-      transition:
-        border .18s,
-        box-shadow .18s,
-        background .18s;
+      transition: border .18s, box-shadow .18s, background .18s, transform .18s;
 
     }
 
 
     .input:focus {
 
-      border-color:
-        rgba(255,159,67,.72);
+      border-color: rgba(255,183,92,.82);
 
-      background:
-        rgba(255,255,255,.075);
+      background: rgba(255,255,255,.09);
 
-      box-shadow:
-        0 0 0 4px
-        rgba(255,138,42,.09);
+      box-shadow: 0 0 0 4px rgba(255,138,42,.09);
 
     }
 
 
     .input::placeholder {
-
-      color:
-        #7a7284;
-
+      color: #7a7284;
     }
 
 
     .password-wrap {
-      position:
-        relative;
+      position: relative;
     }
 
 
     .password-wrap .input {
-      padding-right:
-        48px;
+      padding-right: 48px;
     }
 
 
     .password-btn {
-
-      position:
-        absolute;
-
-      top:
-        5px;
-
-      right:
-        7px;
-
-      width:
-        38px;
-
-      height:
-        38px;
-
-      border:
-        0;
-
-      background:
-        transparent;
-
-      color:
-        #a89fb2;
-
+      position: absolute;
+      top: 5px;
+      right: 7px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      background: transparent;
+      color: #a89fb2;
     }
 
 
     .turnstile-box {
-
-      min-height:
-        70px;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      overflow:
-        hidden;
-
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
     }
 
 
     .auth-switch {
-
-      margin-top:
-        16px;
-
-      text-align:
-        center;
-
-      color:
-        var(--muted);
-
-      font-size:
-        9px;
-
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 9px;
     }
 
 
     .text-button {
-
-      border:
-        0;
-
-      padding:
-        0;
-
-      color:
-        #ffcf94;
-
-      background:
-        transparent;
-
-      font-weight:
-        800;
-
+      border: 0;
+      padding: 0;
+      color: #ffcf94;
+      background: transparent;
+      font-weight: 800;
     }
 
 
     .auth-message {
-
-      display:
-        none;
-
-      margin-top:
-        13px;
-
-      padding:
-        10px 11px;
-
-      border-radius:
-        11px;
-
-      font-size:
-        9px;
-
-      line-height:
-        1.5;
-
+      display: none;
+      margin-top: 13px;
+      padding: 10px 11px;
+      border-radius: 11px;
+      font-size: 9px;
+      line-height: 1.5;
     }
 
 
-    .auth-message.show {
-      display:
-        block;
-    }
-
+    .auth-message.show { display: block; }
 
     .auth-message.success {
-
-      color:
-        #a1f5cf;
-
-      background:
-        rgba(79,224,168,.09);
-
-      border:
-        1px solid
-        rgba(79,224,168,.18);
-
+      color: #a1f5cf;
+      background: rgba(79,224,168,.09);
+      border: 1px solid rgba(79,224,168,.18);
     }
-
 
     .auth-message.error {
-
-      color:
-        #ffadbb;
-
-      background:
-        rgba(255,101,121,.09);
-
-      border:
-        1px solid
-        rgba(255,101,121,.18);
-
+      color: #ffadbb;
+      background: rgba(255,101,121,.09);
+      border: 1px solid rgba(255,101,121,.18);
     }
-
 
     .auth-message.info {
-
-      color:
-        #ffe0a8;
-
-      background:
-        rgba(255,214,112,.08);
-
-      border:
-        1px solid
-        rgba(255,214,112,.16);
-
+      color: #ffe0a8;
+      background: rgba(255,214,112,.08);
+      border: 1px solid rgba(255,214,112,.16);
     }
+
 
 
     /* =======================================================
@@ -1983,30 +2169,64 @@
 
       .auth-page {
 
-        min-height:
-          calc(100vh - 70px);
+        min-height: calc(100vh - 70px);
 
-        padding:
-          23px 0 35px;
+        padding: 18px 0 28px;
+
+        background-position: center center;
 
       }
 
+      .auth-layout {
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+      }
+
+      .auth-showcase {
+
+        max-width: none;
+
+        padding: 10px 4px 0;
+
+      }
+
+      .auth-showcase h1 {
+
+        font-size: clamp(38px, 12vw, 56px);
+
+        letter-spacing: -1.8px;
+
+      }
+
+      .auth-showcase p {
+        max-width: none;
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .auth-event-bar {
+        margin-top: 15px;
+      }
+
+      .auth-event-chip {
+        flex: 1 1 30%;
+        min-width: 0;
+      }
 
       .auth-card {
 
-        padding:
-          20px;
+        padding: 20px;
 
-        border-radius:
-          19px;
+        border-radius: 21px;
 
       }
 
-
       .auth-title {
 
-        font-size:
-          30px;
+        font-size: 30px;
 
       }
 
@@ -2022,6 +2242,20 @@
 
 
     @media (max-width: 420px) {
+
+      .auth-showcase p,
+      .auth-pricing,
+      .auth-footnote {
+        font-size: 8px;
+      }
+
+      .auth-event-chip {
+        padding: 8px 9px;
+      }
+
+      .auth-event-chip strong {
+        font-size: 10px;
+      }
 
       .brand-text {
 
@@ -2085,6 +2319,8 @@
     }
 
   </style>
+
+     <link rel="stylesheet" href="festive.css">
 
 </head>
 
@@ -2424,6 +2660,53 @@
 
     </section>
 
+
+    <section class="attractions" aria-label="Attractions">
+
+      <div class="container">
+
+        <div class="attr-title">
+          <span>Attractions</span>
+        </div>
+
+        <div class="attr-grid">
+
+          <div class="attr-card a1">
+            <div class="attr-badge">🎡</div>
+            <div class="attr-name">Games</div>
+          </div>
+
+          <div class="attr-card a2">
+            <div class="attr-badge">🍛</div>
+            <div class="attr-name">Food</div>
+          </div>
+
+          <div class="attr-card a3">
+            <div class="attr-badge">🎪</div>
+            <div class="attr-name">Stalls</div>
+          </div>
+
+          <div class="attr-card a4">
+            <div class="attr-badge">🏆</div>
+            <div class="attr-name">Prizes</div>
+          </div>
+
+          <div class="attr-card a5">
+            <div class="attr-badge">💃</div>
+            <div class="attr-name">Dance</div>
+          </div>
+
+        </div>
+
+        <div class="attr-fun">And lots of fun!</div>
+
+        <p class="attr-foot">Let's make it a night to remember!</p>
+
+      </div>
+
+    </section>
+    
+
   </main>
 
 
@@ -2439,9 +2722,59 @@
 
     <div class="container">
 
-      <div class="auth-wrap">
+      <div class="auth-layout">
 
-        <div class="auth-card">
+        <div class="auth-showcase">
+
+          <div class="auth-brand-kicker">
+            Vanasthali Public School • Vasundhara Sector-3
+          </div>
+
+          <h1>
+            Raas Rang<br>
+            <span>Dandiya Night 2026.</span>
+          </h1>
+
+          <p>
+            An evening of music, colours, dance and celebration.
+            Register your entry, complete payment verification, and get your secure QR for event entry.
+          </p>
+
+          <div class="auth-event-bar">
+
+            <div class="auth-event-chip">
+              <small>Date</small>
+              <strong>16 October 2026</strong>
+            </div>
+
+            <div class="auth-event-chip">
+              <small>Time</small>
+              <strong>6:00 PM – 10:00 PM</strong>
+            </div>
+
+            <div class="auth-event-chip">
+              <small>Venue</small>
+              <strong>Vanasthali Public School</strong>
+            </div>
+
+          </div>
+
+          <div class="auth-pricing">
+            <span class="accent">Female ₹200</span>
+            <span class="accent">Couple ₹300</span>
+            <span>Extra Member +₹150</span>
+            <span>No Stag Entry</span>
+          </div>
+
+          <div class="auth-footnote">
+            🔐 Secure participant portal • Payment verification • QR-based gate entry
+          </div>
+
+        </div>
+
+        <div class="auth-wrap">
+
+          <div class="auth-card">
 
 
           <!-- =================================================
@@ -2464,9 +2797,8 @@
 
             <p class="auth-description">
 
-              Create your participant account.
-              New participants must verify their
-              email before logging in.
+              Create your participant account and continue
+              to the event registration process.
 
             </p>
 
@@ -2619,9 +2951,8 @@
 
             <p class="auth-description">
 
-              Participants, administrators and gate
-              staff all use their pre-assigned account.
-              Your role controls which portal opens.
+              Sign in with your registered email and password.
+              Your assigned role determines which portal opens.
 
             </p>
 
@@ -2737,11 +3068,11 @@
 
       </div>
 
+      </div>
+
     </div>
 
   </section>
-
-
   <!-- =======================================================
        TOAST
   ======================================================== -->
