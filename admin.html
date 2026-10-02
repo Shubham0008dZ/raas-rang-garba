@@ -1,49 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta
-    name="theme-color"
-    content="#080508"
-  >
+  <meta name="theme-color" content="#080508">
 
-  <meta
-    name="description"
-    content="Vanasthali Public School Raas Rang Garba Night 2026 admin portal."
-  >
+  <meta name="description" content="Vanasthali Public School Raas Rang Garba Night 2026 admin portal.">
 
   <title>
     Admin Portal | Raas Rang Garba Night
   </title>
 
-  <link
-    rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E"
-  >
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-size='52' fill='white'%3E✦%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-    defer
-  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
 
   <style>
-
     :root {
 
       --bg:
@@ -53,10 +38,10 @@
         #110811;
 
       --surface:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       --surface2:
-        rgba(255,255,255,.05);
+        rgba(255, 255, 255, .05);
 
       --text:
         #fff;
@@ -89,13 +74,13 @@
         #6da8ff;
 
       --border:
-        rgba(255,255,255,.085);
+        rgba(255, 255, 255, .085);
 
       --border2:
-        rgba(255,255,255,.14);
+        rgba(255, 255, 255, .14);
 
       --shadow:
-        0 28px 90px rgba(0,0,0,.52);
+        0 28px 90px rgba(0, 0, 0, .52);
 
       --container:
         1450px;
@@ -135,23 +120,17 @@
 
       background:
 
-        radial-gradient(
-          circle at 5% 5%,
-          rgba(255,134,31,.09),
-          transparent 25%
-        ),
+        radial-gradient(circle at 5% 5%,
+          rgba(255, 134, 31, .09),
+          transparent 25%),
 
-        radial-gradient(
-          circle at 95% 12%,
-          rgba(242,73,112,.08),
-          transparent 26%
-        ),
+        radial-gradient(circle at 95% 12%,
+          rgba(242, 73, 112, .08),
+          transparent 26%),
 
-        linear-gradient(
-          180deg,
+        linear-gradient(180deg,
           var(--bg2),
-          var(--bg)
-        );
+          var(--bg));
 
     }
 
@@ -194,10 +173,8 @@
     .container {
 
       width:
-        min(
-          var(--container),
-          calc(100% - 36px)
-        );
+        min(var(--container),
+          calc(100% - 36px));
 
       margin:
         0 auto;
@@ -224,11 +201,10 @@
         72px;
 
       border-bottom:
-        1px solid
-        rgba(255,255,255,.055);
+        1px solid rgba(255, 255, 255, .055);
 
       background:
-        rgba(7,4,8,.84);
+        rgba(7, 4, 8, .84);
 
       backdrop-filter:
         blur(20px);
@@ -300,15 +276,12 @@
         #fff;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--orange),
-          var(--pink)
-        );
+          var(--pink));
 
       box-shadow:
-        0 10px 28px
-        rgba(242,73,112,.18);
+        0 10px 28px rgba(242, 73, 112, .18);
 
     }
 
@@ -388,14 +361,13 @@
         5px 9px 5px 5px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         999px;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
     }
 
@@ -421,11 +393,9 @@
         #fff;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--orange),
-          var(--pink)
-        );
+          var(--pink));
 
       font-size:
         10px;
@@ -499,11 +469,9 @@
         #18100a;
 
       background:
-        linear-gradient(
-          135deg,
+        linear-gradient(135deg,
           var(--gold),
-          var(--orange)
-        );
+          var(--orange));
 
     }
 
@@ -514,11 +482,10 @@
         #fff;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       background:
-        rgba(255,255,255,.045);
+        rgba(255, 255, 255, .045);
 
     }
 
@@ -540,11 +507,10 @@
         #fff;
 
       border:
-        1px solid
-        rgba(255,92,118,.14);
+        1px solid rgba(255, 92, 118, .14);
 
       background:
-        rgba(255,92,118,.08);
+        rgba(255, 92, 118, .08);
 
     }
 
@@ -555,11 +521,10 @@
         #fff;
 
       border:
-        1px solid
-        rgba(109,168,255,.14);
+        1px solid rgba(109, 168, 255, .14);
 
       background:
-        rgba(109,168,255,.08);
+        rgba(109, 168, 255, .08);
 
     }
 
@@ -596,6 +561,23 @@
     }
 
 
+    .page-head-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      flex-wrap:
+        wrap;
+
+    }
+
+
     .eyebrow {
 
       display:
@@ -611,8 +593,7 @@
         7px 10px;
 
       border:
-        1px solid
-        rgba(255,134,31,.17);
+        1px solid rgba(255, 134, 31, .17);
 
       border-radius:
         999px;
@@ -621,7 +602,7 @@
         #ffce9b;
 
       background:
-        rgba(255,134,31,.06);
+        rgba(255, 134, 31, .06);
 
       font-size:
         8px;
@@ -653,8 +634,7 @@
         var(--green);
 
       box-shadow:
-        0 0 14px
-        rgba(67,217,158,.7);
+        0 0 14px rgba(67, 217, 158, .7);
 
     }
 
@@ -701,7 +681,7 @@
         grid;
 
       grid-template-columns:
-        repeat(5,minmax(0,1fr));
+        repeat(5, minmax(0, 1fr));
 
       gap:
         9px;
@@ -718,14 +698,13 @@
         14px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         15px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -794,11 +773,7 @@
         grid;
 
       grid-template-columns:
-        minmax(250px,1fr)
-        180px
-        180px
-        165px
-        auto;
+        minmax(250px, 1fr) 180px 180px 165px auto;
 
       gap:
         8px;
@@ -810,14 +785,13 @@
         14px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         15px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -835,8 +809,7 @@
         0 11px;
 
       border:
-        1px solid
-        rgba(255,255,255,.085);
+        1px solid rgba(255, 255, 255, .085);
 
       border-radius:
         10px;
@@ -848,7 +821,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       font-size:
         9px;
@@ -866,11 +839,10 @@
     .select:focus {
 
       border-color:
-        rgba(255,159,67,.58);
+        rgba(255, 159, 67, .58);
 
       box-shadow:
-        0 0 0 4px
-        rgba(255,134,31,.045);
+        0 0 0 4px rgba(255, 134, 31, .045);
 
     }
 
@@ -896,14 +868,13 @@
         hidden;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         18px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -926,8 +897,7 @@
         15px 16px;
 
       border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
+        1px solid rgba(255, 255, 255, .06);
 
     }
 
@@ -968,7 +938,7 @@
         100%;
 
       min-width:
-        1100px;
+        1300px;
 
       border-collapse:
         collapse;
@@ -985,7 +955,7 @@
         #77707b;
 
       background:
-        rgba(255,255,255,.018);
+        rgba(255, 255, 255, .018);
 
       font-size:
         7px;
@@ -1014,8 +984,7 @@
         12px;
 
       border-top:
-        1px solid
-        rgba(255,255,255,.045);
+        1px solid rgba(255, 255, 255, .045);
 
       font-size:
         8px;
@@ -1029,7 +998,7 @@
     tbody tr:hover {
 
       background:
-        rgba(255,255,255,.018);
+        rgba(255, 255, 255, .018);
 
     }
 
@@ -1097,11 +1066,10 @@
         #ffdc99;
 
       background:
-        rgba(255,204,91,.07);
+        rgba(255, 204, 91, .07);
 
       border:
-        1px solid
-        rgba(255,204,91,.1);
+        1px solid rgba(255, 204, 91, .1);
 
     }
 
@@ -1112,11 +1080,10 @@
         #8ff0c8;
 
       background:
-        rgba(67,217,158,.06);
+        rgba(67, 217, 158, .06);
 
       border:
-        1px solid
-        rgba(67,217,158,.1);
+        1px solid rgba(67, 217, 158, .1);
 
     }
 
@@ -1127,11 +1094,10 @@
         #ff9dad;
 
       background:
-        rgba(255,92,118,.06);
+        rgba(255, 92, 118, .06);
 
       border:
-        1px solid
-        rgba(255,92,118,.1);
+        1px solid rgba(255, 92, 118, .1);
 
     }
 
@@ -1142,11 +1108,10 @@
         #a8c7ff;
 
       background:
-        rgba(109,168,255,.06);
+        rgba(109, 168, 255, .06);
 
       border:
-        1px solid
-        rgba(109,168,255,.1);
+        1px solid rgba(109, 168, 255, .1);
 
     }
 
@@ -1157,11 +1122,10 @@
         #ff9dad;
 
       background:
-        rgba(255,92,118,.055);
+        rgba(255, 92, 118, .055);
 
       border:
-        1px solid
-        rgba(255,92,118,.09);
+        1px solid rgba(255, 92, 118, .09);
 
     }
 
@@ -1192,8 +1156,7 @@
         0 9px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         8px;
@@ -1202,7 +1165,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.04);
+        rgba(255, 255, 255, .04);
 
       font-size:
         7px;
@@ -1233,10 +1196,10 @@
         #fff;
 
       border-color:
-        rgba(255,92,118,.13);
+        rgba(255, 92, 118, .13);
 
       background:
-        rgba(255,92,118,.07);
+        rgba(255, 92, 118, .07);
 
     }
 
@@ -1247,10 +1210,10 @@
         #fff;
 
       border-color:
-        rgba(109,168,255,.13);
+        rgba(109, 168, 255, .13);
 
       background:
-        rgba(109,168,255,.07);
+        rgba(109, 168, 255, .07);
 
     }
 
@@ -1277,8 +1240,7 @@
         12px 15px;
 
       border-top:
-        1px solid
-        rgba(255,255,255,.055);
+        1px solid rgba(255, 255, 255, .055);
 
     }
 
@@ -1314,8 +1276,7 @@
         32px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         8px;
@@ -1324,7 +1285,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       font-size:
         8px;
@@ -1368,8 +1329,7 @@
         center;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         16px;
@@ -1378,7 +1338,7 @@
         #aaa;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
       font-size:
         21px;
@@ -1430,7 +1390,7 @@
         500;
 
       background:
-        rgba(0,0,0,.60);
+        rgba(0, 0, 0, .60);
 
       backdrop-filter:
         blur(5px);
@@ -1456,10 +1416,8 @@
         510;
 
       width:
-        min(
-          650px,
-          100%
-        );
+        min(650px,
+          100%);
 
       overflow:
         auto;
@@ -1468,15 +1426,13 @@
         22px;
 
       border-left:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       background:
         #0d090f;
 
       box-shadow:
-        -30px 0 90px
-        rgba(0,0,0,.45);
+        -30px 0 90px rgba(0, 0, 0, .45);
 
       animation:
         drawer-in .22s ease;
@@ -1521,8 +1477,7 @@
         15px;
 
       border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
+        1px solid rgba(255, 255, 255, .06);
 
     }
 
@@ -1565,8 +1520,7 @@
         34px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         9px;
@@ -1575,7 +1529,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.04);
+        rgba(255, 255, 255, .04);
 
     }
 
@@ -1586,7 +1540,7 @@
         grid;
 
       grid-template-columns:
-        repeat(2,minmax(0,1fr));
+        repeat(2, minmax(0, 1fr));
 
       gap:
         8px;
@@ -1603,14 +1557,13 @@
         11px;
 
       border:
-        1px solid
-        rgba(255,255,255,.06);
+        1px solid rgba(255, 255, 255, .06);
 
       border-radius:
         11px;
 
       background:
-        rgba(255,255,255,.028);
+        rgba(255, 255, 255, .028);
 
     }
 
@@ -1661,14 +1614,13 @@
         14px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         14px;
 
       background:
-        rgba(255,255,255,.03);
+        rgba(255, 255, 255, .03);
 
     }
 
@@ -1736,8 +1688,7 @@
         10px;
 
       border:
-        1px solid
-        rgba(255,255,255,.08);
+        1px solid rgba(255, 255, 255, .08);
 
       border-radius:
         10px;
@@ -1749,7 +1700,7 @@
         #fff;
 
       background:
-        rgba(255,255,255,.035);
+        rgba(255, 255, 255, .035);
 
       font-size:
         8px;
@@ -1782,7 +1733,7 @@
         15px;
 
       background:
-        rgba(0,0,0,.72);
+        rgba(0, 0, 0, .72);
 
       backdrop-filter:
         blur(7px);
@@ -1793,17 +1744,14 @@
     .modal {
 
       width:
-        min(
-          430px,
-          100%
-        );
+        min(430px,
+          100%);
 
       padding:
         20px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         18px;
@@ -1891,7 +1839,7 @@
         center;
 
       background:
-        rgba(5,3,6,.86);
+        rgba(5, 3, 6, .86);
 
       backdrop-filter:
         blur(8px);
@@ -1919,8 +1867,7 @@
         0 auto 10px;
 
       border:
-        3px solid
-        rgba(255,255,255,.10);
+        3px solid rgba(255, 255, 255, .10);
 
       border-top-color:
         var(--orange);
@@ -1974,10 +1921,8 @@
         2200;
 
       width:
-        min(
-          380px,
-          calc(100% - 28px)
-        );
+        min(380px,
+          calc(100% - 28px));
 
       display:
         grid;
@@ -1997,8 +1942,7 @@
         11px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
       border-radius:
         11px;
@@ -2007,7 +1951,7 @@
         #fff;
 
       background:
-        rgba(18,13,19,.97);
+        rgba(18, 13, 19, .97);
 
       box-shadow:
         var(--shadow);
@@ -2024,7 +1968,7 @@
     .toast.success {
 
       border-color:
-        rgba(67,217,158,.18);
+        rgba(67, 217, 158, .18);
 
     }
 
@@ -2032,7 +1976,7 @@
     .toast.error {
 
       border-color:
-        rgba(255,92,118,.18);
+        rgba(255, 92, 118, .18);
 
     }
 
@@ -2040,7 +1984,7 @@
     .toast.warning {
 
       border-color:
-        rgba(255,204,91,.18);
+        rgba(255, 204, 91, .18);
 
     }
 
@@ -2054,7 +1998,7 @@
       .stats {
 
         grid-template-columns:
-          repeat(3,minmax(0,1fr));
+          repeat(3, minmax(0, 1fr));
 
       }
 
@@ -2141,6 +2085,17 @@
         align-items:
           flex-start;
 
+        flex-direction:
+          column;
+
+      }
+
+
+      .page-head-actions {
+
+        width:
+          100%;
+
       }
 
 
@@ -2220,7 +2175,6 @@
       }
 
     }
-
   </style>
 
 </head>
@@ -2233,10 +2187,7 @@
        LOADER
   ======================================================= -->
 
-  <div
-    class="loader"
-    id="loader"
-  >
+  <div class="loader" id="loader">
 
     <div class="loader-box">
 
@@ -2286,10 +2237,7 @@
 
         <div class="admin-chip">
 
-          <div
-            class="avatar"
-            id="avatar"
-          >
+          <div class="avatar" id="avatar">
             A
           </div>
 
@@ -2300,11 +2248,7 @@
         </div>
 
 
-        <button
-          class="btn btn-secondary"
-          id="logoutBtn"
-          type="button"
-        >
+        <button class="btn btn-secondary" id="logoutBtn" type="button">
           Logout
         </button>
 
@@ -2349,13 +2293,18 @@
         </div>
 
 
-        <button
-          class="btn btn-primary"
-          id="refreshBtn"
-          type="button"
-        >
-          ↻ Refresh
-        </button>
+        <div class="page-head-actions">
+
+          <button class="btn btn-blue" id="exportBtn" type="button">
+            ⬇ Export
+          </button>
+
+
+          <button class="btn btn-primary" id="refreshBtn" type="button">
+            ↻ Refresh
+          </button>
+
+        </div>
 
       </div>
 
@@ -2461,20 +2410,11 @@
       <section class="filter-card">
 
 
-        <input
-          class="input search"
-          id="searchInput"
-          type="search"
-          maxlength="100"
-          autocomplete="off"
-          placeholder="Search name, email, phone, UTR or registration ID..."
-        >
+        <input class="input search" id="searchInput" type="search" maxlength="100" autocomplete="off"
+          placeholder="Search name, email, phone, UTR or registration ID...">
 
 
-        <select
-          class="select"
-          id="paymentFilter"
-        >
+        <select class="select" id="paymentFilter">
 
           <option value="all">
             All Payments
@@ -2495,10 +2435,7 @@
         </select>
 
 
-        <select
-          class="select"
-          id="entryFilter"
-        >
+        <select class="select" id="entryFilter">
 
           <option value="all">
             All Entry Status
@@ -2523,10 +2460,7 @@
         </select>
 
 
-        <select
-          class="select"
-          id="typeFilter"
-        >
+        <select class="select" id="typeFilter">
 
           <option value="all">
             All Entry Types
@@ -2536,18 +2470,14 @@
             Single Female
           </option>
 
-          <option value="group">
-            Couple / Group
+          <option value="couple">
+            Couple
           </option>
 
         </select>
 
 
-        <button
-          class="btn btn-secondary"
-          id="clearFiltersBtn"
-          type="button"
-        >
+        <button class="btn btn-secondary" id="clearFiltersBtn" type="button">
           Clear
         </button>
 
@@ -2596,6 +2526,10 @@
                 </th>
 
                 <th>
+                  Partner
+                </th>
+
+                <th>
                   Entry
                 </th>
 
@@ -2628,9 +2562,7 @@
             </thead>
 
 
-            <tbody
-              id="registrationTableBody"
-            ></tbody>
+            <tbody id="registrationTableBody"></tbody>
 
           </table>
 
@@ -2638,11 +2570,7 @@
         </div>
 
 
-        <div
-          class="empty"
-          id="emptyState"
-          hidden
-        >
+        <div class="empty" id="emptyState" hidden>
 
           <div class="empty-icon">
             ∅
@@ -2661,30 +2589,19 @@
 
         <div class="pagination">
 
-          <div
-            class="page-info"
-            id="pageInfo"
-          >
+          <div class="page-info" id="pageInfo">
             —
           </div>
 
 
           <div class="page-buttons">
 
-            <button
-              class="page-btn"
-              id="prevBtn"
-              type="button"
-            >
+            <button class="page-btn" id="prevBtn" type="button">
               ‹
             </button>
 
 
-            <button
-              class="page-btn"
-              id="nextBtn"
-              type="button"
-            >
+            <button class="page-btn" id="nextBtn" type="button">
               ›
             </button>
 
@@ -2703,22 +2620,14 @@
        DRAWER OVERLAY
   ======================================================= -->
 
-  <div
-    class="drawer-overlay"
-    id="drawerOverlay"
-    hidden
-  ></div>
+  <div class="drawer-overlay" id="drawerOverlay" hidden></div>
 
 
   <!-- ======================================================
        DRAWER
   ======================================================= -->
 
-  <aside
-    class="drawer"
-    id="detailsDrawer"
-    hidden
-  >
+  <aside class="drawer" id="detailsDrawer" hidden>
 
     <div class="drawer-header">
 
@@ -2735,124 +2644,236 @@
       </div>
 
 
-      <button
-        class="close-btn"
-        id="closeDrawerBtn"
-        type="button"
-      >
+      <button class="close-btn" id="closeDrawerBtn" type="button">
         ×
       </button>
 
     </div>
 
 
-    <div class="detail-grid">
+    <!-- PRIMARY PARTICIPANT -->
+    <section class="proof-section">
+
+      <h3>
+        Primary Participant
+      </h3>
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+
+          <small>
+            Name
+          </small>
+
+          <strong id="drawerName">
+            —
+          </strong>
+
+        </div>
 
 
-      <div class="detail-box">
+        <div class="detail-box">
 
-        <small>
-          Name
-        </small>
+          <small>
+            Gender
+          </small>
 
-        <strong id="drawerName">
-          —
-        </strong>
+          <strong id="drawerGender">
+            —
+          </strong>
 
-      </div>
-
-
-      <div class="detail-box">
-
-        <small>
-          Email
-        </small>
-
-        <strong id="drawerEmail">
-          —
-        </strong>
-
-      </div>
+        </div>
 
 
-      <div class="detail-box">
+        <div class="detail-box">
 
-        <small>
-          Mobile
-        </small>
+          <small>
+            Email
+          </small>
 
-        <strong id="drawerPhone">
-          —
-        </strong>
+          <strong id="drawerEmail">
+            —
+          </strong>
 
-      </div>
-
-
-      <div class="detail-box">
-
-        <small>
-          Entry Type
-        </small>
-
-        <strong id="drawerEntryType">
-          —
-        </strong>
-
-      </div>
+        </div>
 
 
-      <div class="detail-box">
+        <div class="detail-box">
 
-        <small>
-          Group Size
-        </small>
+          <small>
+            Mobile
+          </small>
 
-        <strong id="drawerGroupSize">
-          —
-        </strong>
+          <strong id="drawerPhone">
+            —
+          </strong>
+
+        </div>
 
       </div>
 
+    </section>
 
-      <div class="detail-box">
 
-        <small>
-          Amount
-        </small>
+    <!-- PARTNER (Couple only) -->
+    <section class="proof-section" id="drawerPartnerSection" hidden>
 
-        <strong id="drawerAmount">
-          —
-        </strong>
+      <h3>
+        Partner Details
+      </h3>
+
+      <p>
+        The partner is the second person in this Couple entry.
+      </p>
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+
+          <small>
+            Partner Name
+          </small>
+
+          <strong id="drawerPartnerName">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Partner Gender
+          </small>
+
+          <strong id="drawerPartnerGender">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Partner Email
+          </small>
+
+          <strong id="drawerPartnerEmail">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Partner Mobile
+          </small>
+
+          <strong id="drawerPartnerPhone">
+            —
+          </strong>
+
+        </div>
 
       </div>
 
+    </section>
 
-      <div class="detail-box">
 
-        <small>
-          UTR
-        </small>
+    <!-- REGISTRATION SUMMARY -->
+    <section class="proof-section">
 
-        <strong id="drawerUTR">
-          —
-        </strong>
+      <h3>
+        Registration Summary
+      </h3>
+
+      <div class="detail-grid">
+
+        <div class="detail-box">
+
+          <small>
+            Entry Type
+          </small>
+
+          <strong id="drawerEntryType">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Participants
+          </small>
+
+          <strong id="drawerGroupSize">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Amount
+          </small>
+
+          <strong id="drawerAmount">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            Payment Status
+          </small>
+
+          <strong id="drawerPaymentStatus">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            UTR
+          </small>
+
+          <strong id="drawerUTR">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <small>
+            QR / Permission
+          </small>
+
+          <strong id="drawerQrStatus">
+            —
+          </strong>
+
+        </div>
 
       </div>
 
-
-      <div class="detail-box">
-
-        <small>
-          Payment Status
-        </small>
-
-        <strong id="drawerPaymentStatus">
-          —
-        </strong>
-
-      </div>
-
-    </div>
+    </section>
 
 
     <!-- ====================================================
@@ -2873,33 +2894,22 @@
 
       <div class="proof-actions">
 
-        <button
-          class="btn btn-blue"
-          id="viewProofBtn"
-          type="button"
-        >
+        <button class="btn btn-blue" id="viewProofBtn" type="button">
           View Proof
         </button>
 
-        <button
-          class="btn btn-secondary"
-          id="copyUTRBtn"
-          type="button"
-        >
+        <button class="btn btn-secondary" id="copyUTRBtn" type="button">
           Copy UTR
         </button>
 
       </div>
 
 
-      <div
-        id="proofMessage"
-        style="
+      <div id="proofMessage" style="
           margin-top:8px;
           color:var(--muted2);
           font-size:7px;
-        "
-      >
+        ">
         —
 
       </div>
@@ -2923,30 +2933,17 @@
       </p>
 
 
-      <textarea
-        class="admin-note"
-        id="adminNote"
-        maxlength="500"
-        placeholder="Optional admin note..."
-      ></textarea>
+      <textarea class="admin-note" id="adminNote" maxlength="500" placeholder="Optional admin note..."></textarea>
 
 
       <div class="proof-actions">
 
-        <button
-          class="btn btn-success"
-          id="verifyPaymentBtn"
-          type="button"
-        >
+        <button class="btn btn-success" id="verifyPaymentBtn" type="button">
           ✓ Verify Payment
         </button>
 
 
-        <button
-          class="btn btn-danger"
-          id="rejectPaymentBtn"
-          type="button"
-        >
+        <button class="btn btn-danger" id="rejectPaymentBtn" type="button">
           ✕ Reject Payment
         </button>
 
@@ -2972,20 +2969,12 @@
 
       <div class="proof-actions">
 
-        <button
-          class="btn btn-primary"
-          id="grantEntryBtn"
-          type="button"
-        >
+        <button class="btn btn-primary" id="grantEntryBtn" type="button">
           Grant Entry Permission
         </button>
 
 
-        <button
-          class="btn btn-danger"
-          id="revokeEntryBtn"
-          type="button"
-        >
+        <button class="btn btn-danger" id="revokeEntryBtn" type="button">
           Revoke Permission
         </button>
 
@@ -3000,11 +2989,7 @@
        CONFIRM MODAL
   ======================================================= -->
 
-  <div
-    class="modal-overlay"
-    id="confirmOverlay"
-    hidden
-  >
+  <div class="modal-overlay" id="confirmOverlay" hidden>
 
     <div class="modal">
 
@@ -3019,20 +3004,12 @@
 
       <div class="modal-actions">
 
-        <button
-          class="btn btn-secondary"
-          id="cancelConfirmBtn"
-          type="button"
-        >
+        <button class="btn btn-secondary" id="cancelConfirmBtn" type="button">
           Cancel
         </button>
 
 
-        <button
-          class="btn btn-primary"
-          id="confirmActionBtn"
-          type="button"
-        >
+        <button class="btn btn-primary" id="confirmActionBtn" type="button">
           Confirm
         </button>
 
@@ -3047,11 +3024,7 @@
        TOAST
   ======================================================= -->
 
-  <div
-    class="toast-container"
-    id="toastContainer"
-    aria-live="polite"
-  ></div>
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
 
   <script>
@@ -3076,6 +3049,9 @@
 
       PAGE_SIZE:
         25,
+
+      EXPORT_PAGE_SIZE:
+        5000,
 
       SEARCH_DEBOUNCE:
         350,
@@ -3148,6 +3124,9 @@
       loading:
         false,
 
+      exporting:
+        false,
+
       searchTimer:
         null
 
@@ -3203,11 +3182,11 @@
         (
           !window.supabase ||
           typeof window.supabase.createClient !==
-            "function"
+          "function"
         ) &&
         Date.now() -
-          started <
-          15000
+        started <
+        15000
       ) {
 
         await delay(
@@ -3290,12 +3269,6 @@
       );
 
 
-      /*
-        getUser() is used to verify the authenticated
-        identity instead of trusting browser-only session
-        state.
-      */
-
       const {
         data,
         error
@@ -3339,21 +3312,11 @@
       );
 
 
-      /*
-        Role check.
-
-        This is only the page-level guard.
-
-        IMPORTANT:
-        admin-dashboard and admin-payment-action MUST
-        perform their own server-side role checks too.
-      */
-
       const {
         data:
-          profile,
+        profile,
         error:
-          profileError
+        profileError
       } =
         await state.supabase
           .from(
@@ -3526,16 +3489,6 @@
 
       }
 
-
-      /*
-        Expected response:
-
-        {
-          registrations: [],
-          total: number,
-          stats: {...}
-        }
-      */
 
       state.registrations =
         Array.isArray(
@@ -3728,7 +3681,8 @@
 
       const name =
         safeValue(
-          registration.name,
+          registration.name ||
+          registration.primary_name,
           "—"
         );
 
@@ -3740,17 +3694,35 @@
         );
 
 
+      const phone =
+        safeValue(
+          registration.phone ||
+          registration.primary_phone,
+          ""
+        );
+
+
       const entryType =
         normalizeEntryType(
           registration
         );
 
 
-      const groupSize =
-        Number(
-          registration.group_size ??
-          registration.groupSize ??
-          0
+      const partner =
+        getPartnerData(
+          registration
+        );
+
+
+      const isCouple =
+        isCoupleEntry(
+          registration
+        );
+
+
+      const participantCount =
+        getParticipantCount(
+          registration
         );
 
 
@@ -3792,15 +3764,6 @@
         );
 
 
-      const id =
-        safeValue(
-          registration.registration_code ||
-          registration.registrationCode ||
-          registration.id,
-          "—"
-        );
-
-
       row.innerHTML =
         `
           <td>
@@ -3811,7 +3774,36 @@
 
             <span class="secondary-text">
               ${escapeHtml(email)}
+              ${phone
+          ? ` • ${escapeHtml(phone)}`
+          : ""
+        }
             </span>
+
+          </td>
+
+
+          <td>
+
+            ${isCouple && partner.name
+          ? `
+                  <span class="primary-text">
+                    ${escapeHtml(partner.name)}
+                  </span>
+
+                  <span class="secondary-text">
+                    ${partner.phone
+            ? escapeHtml(partner.phone)
+            : "—"
+          }
+                  </span>
+                `
+          : `
+                  <span class="secondary-text">
+                    —
+                  </span>
+                `
+        }
 
           </td>
 
@@ -3823,11 +3815,10 @@
             </span>
 
             <span class="secondary-text">
-              ${
-                groupSize
-                  ? `${groupSize} member${groupSize === 1 ? "" : "s"}`
-                  : "—"
-              }
+              ${participantCount === 1
+          ? "1 participant"
+          : `${participantCount} participants`
+        }
             </span>
 
           </td>
@@ -3836,12 +3827,11 @@
           <td>
 
             <span class="primary-text">
-              ${
-                amount
-                  ? "₹" +
-                    amount
-                  : "—"
-              }
+              ${amount
+          ? "₹" +
+          amount
+          : "—"
+        }
             </span>
 
           </td>
@@ -3850,8 +3840,8 @@
           <td>
 
             ${statusBadge(
-              paymentStatus
-            )}
+          paymentStatus
+        )}
 
           </td>
 
@@ -3860,8 +3850,8 @@
 
             <span class="secondary-text">
               ${escapeHtml(
-                utr
-              )}
+          utr
+        )}
             </span>
 
           </td>
@@ -3870,8 +3860,8 @@
           <td>
 
             ${qrBadge(
-              qrStatus
-            )}
+          qrStatus
+        )}
 
           </td>
 
@@ -3880,8 +3870,8 @@
 
             <span class="secondary-text">
               ${escapeHtml(
-                createdAt
-              )}
+          createdAt
+        )}
             </span>
 
           </td>
@@ -3895,8 +3885,8 @@
                 class="small-btn blue"
                 data-action="open"
                 data-id="${escapeAttribute(
-                  registration.id
-                )}"
+          registration.id
+        )}"
                 type="button"
               >
                 Review
@@ -4072,11 +4062,21 @@
         );
 
 
-      const groupSize =
-        Number(
-          registration.group_size ??
-          registration.groupSize ??
-          0
+      const partner =
+        getPartnerData(
+          registration
+        );
+
+
+      const isCouple =
+        isCoupleEntry(
+          registration
+        );
+
+
+      const participantCount =
+        getParticipantCount(
+          registration
         );
 
 
@@ -4095,6 +4095,15 @@
         );
 
 
+      const qrStatus =
+        normalizeStatus(
+          registration.qr_status ||
+          registration.qrStatus ||
+          registration.permission_status ||
+          "pending"
+        );
+
+
       setText(
         "#drawerRegistrationId",
         registration.registration_code ||
@@ -4104,9 +4113,12 @@
       );
 
 
+      /* PRIMARY */
+
       setText(
         "#drawerName",
         registration.name ||
+        registration.primary_name ||
         "—"
       );
 
@@ -4121,9 +4133,74 @@
       setText(
         "#drawerPhone",
         registration.phone ||
+        registration.primary_phone ||
         "—"
       );
 
+
+      setText(
+        "#drawerGender",
+        capitalize(
+          registration.gender ||
+          registration.primary_gender ||
+          "—"
+        )
+      );
+
+
+      /* PARTNER */
+
+      const partnerSection =
+        $("#drawerPartnerSection");
+
+
+      if (
+        isCouple
+      ) {
+
+        partnerSection.hidden =
+          false;
+
+
+        setText(
+          "#drawerPartnerName",
+          partner.name ||
+          "—"
+        );
+
+
+        setText(
+          "#drawerPartnerPhone",
+          partner.phone ||
+          "—"
+        );
+
+
+        setText(
+          "#drawerPartnerEmail",
+          partner.email ||
+          "—"
+        );
+
+
+        setText(
+          "#drawerPartnerGender",
+          partner.gender
+            ? capitalize(
+              partner.gender
+            )
+            : "—"
+        );
+
+      } else {
+
+        partnerSection.hidden =
+          true;
+
+      }
+
+
+      /* SUMMARY */
 
       setText(
         "#drawerEntryType",
@@ -4133,8 +4210,7 @@
 
       setText(
         "#drawerGroupSize",
-        groupSize ||
-        "—"
+        participantCount
       );
 
 
@@ -4142,7 +4218,7 @@
         "#drawerAmount",
         amount
           ? "₹" +
-            amount
+          amount
           : "—"
       );
 
@@ -4162,6 +4238,16 @@
       );
 
 
+      setText(
+        "#drawerQrStatus",
+        capitalize(
+          qrStatus
+        )
+      );
+
+
+      /* BUTTON STATES */
+
       const verified =
         paymentStatus ===
         "verified";
@@ -4170,15 +4256,6 @@
       const rejected =
         paymentStatus ===
         "rejected";
-
-
-      const qrStatus =
-        normalizeStatus(
-          registration.qr_status ||
-          registration.qrStatus ||
-          registration.permission_status ||
-          "pending"
-        );
 
 
       const grantBtn =
@@ -4246,7 +4323,7 @@
       setText(
         "#proofMessage",
         registration.payment_proof_path ||
-        registration.paymentProofPath
+          registration.paymentProofPath
           ? "Payment proof is available."
           : "No payment proof has been submitted."
       );
@@ -4339,18 +4416,6 @@
 
       try {
 
-        /*
-          IMPORTANT:
-
-          We deliberately do NOT create a public storage URL.
-
-          Edge Function performs:
-            - admin role verification
-            - registration lookup
-            - private storage access
-            - short-lived signed URL generation
-        */
-
         const {
           data,
           error
@@ -4393,13 +4458,6 @@
 
         }
 
-
-        /*
-          Open signed URL in a new tab.
-
-          The URL should have a short expiry on the
-          backend.
-        */
 
         window.open(
           url,
@@ -4499,7 +4557,7 @@
     ) {
 
       switch (
-        action
+      action
       ) {
 
         case "verify_payment":
@@ -4670,33 +4728,16 @@
         );
 
 
-        /*
-          Refresh from server.
-
-          Never manually mutate the local payment/QR status
-          as if the action succeeded; server remains source
-          of truth.
-
-          Silent refresh so the full-screen loader does NOT
-          flash every time an action completes.
-        */
-
         await loadDashboard(
           true
         );
 
 
-        /*
-          Grant / Revoke are terminal actions for this
-          review session, so close the side panel
-          automatically.
-        */
-
         if (
           action ===
-            "grant_entry" ||
+          "grant_entry" ||
           action ===
-            "revoke_entry"
+          "revoke_entry"
         ) {
 
           closeDrawer();
@@ -4773,6 +4814,500 @@
 
       state.pendingAction =
         null;
+
+    }
+
+
+    /* ======================================================
+       EXPORT (NEW)
+       ------------------------------------------------------
+       Downloads the currently filtered set as a CSV file
+       (opens directly in Excel / Google Sheets / Numbers).
+
+       Security notes:
+         - Same admin-dashboard edge function is used, so
+           server-side role check remains the boundary.
+         - CSV injection protected by prefixing formula-
+           triggering cells with a single quote.
+         - UTF-8 BOM included so ₹ and other symbols are
+           rendered correctly by Excel.
+         - Respects the current search + filter state.
+    ======================================================= */
+
+    async function exportRegistrations() {
+
+      if (state.exporting) return;
+
+      state.exporting = true;
+
+      const button =
+        $("#exportBtn");
+
+      setLoading(
+        button,
+        "Preparing export..."
+      );
+
+
+      try {
+
+        /*
+          Fetch all matching records for the current filters.
+
+          We rely on the backend to honour pageSize.
+          If the backend clamps pageSize, the admin can
+          narrow the filter to get a smaller export.
+        */
+
+        const {
+          data,
+          error
+        } =
+          await invokeFunction(
+            CONFIG.FUNCTIONS.DASHBOARD,
+            {
+
+              page:
+                1,
+
+              pageSize:
+                CONFIG.EXPORT_PAGE_SIZE,
+
+              search:
+                state.search,
+
+              paymentStatus:
+                state.paymentFilter,
+
+              entryStatus:
+                state.entryFilter,
+
+              entryType:
+                state.typeFilter,
+
+              exportMode:
+                true
+
+            }
+          );
+
+
+        if (
+          error
+        ) {
+
+          throw await normalizeFunctionError(
+            error
+          );
+
+        }
+
+
+        const registrations =
+          Array.isArray(
+            data?.registrations
+          )
+            ? data.registrations
+            : [];
+
+
+        if (
+          !registrations.length
+        ) {
+
+          showToast(
+            "No records to export for the current filters.",
+            "warning"
+          );
+
+          return;
+
+        }
+
+
+        const csv =
+          buildCSV(
+            registrations
+          );
+
+
+        const stamp =
+          new Date()
+            .toISOString()
+            .slice(
+              0,
+              10
+            );
+
+
+        const filename =
+          `raas-rang-registrations-${stamp}.csv`;
+
+
+        downloadCSV(
+          csv,
+          filename
+        );
+
+
+        showToast(
+          `Exported ${registrations.length} record${registrations.length === 1 ? "" : "s"}.`,
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "EXPORT:",
+          error
+        );
+
+
+        showToast(
+          error.message ||
+          "Export failed.",
+          "error"
+        );
+
+      } finally {
+
+        state.exporting =
+          false;
+
+        resetButton(
+          button,
+          "⬇ Export"
+        );
+
+      }
+
+    }
+
+
+    function buildCSV(
+      registrations
+    ) {
+
+      const headers = [
+
+        "Registration ID",
+
+        "Entry Type",
+
+        "Primary Name",
+
+        "Primary Mobile",
+
+        "Primary Email",
+
+        "Primary Gender",
+
+        "Partner Name",
+
+        "Partner Mobile",
+
+        "Partner Email",
+
+        "Partner Gender",
+
+        "Amount (INR)",
+
+        "Payment Status",
+
+        "UTR",
+
+        "Permission / QR",
+
+        "Registered At"
+
+      ];
+
+
+      const rows =
+        registrations.map(
+          registration => {
+
+            const partner =
+              getPartnerData(
+                registration
+              );
+
+
+            const isCouple =
+              isCoupleEntry(
+                registration
+              );
+
+
+            const entryType =
+              normalizeEntryType(
+                registration
+              );
+
+
+            return [
+
+              safeValue(
+                registration.registration_code ||
+                registration.registrationCode ||
+                registration.id,
+                ""
+              ),
+
+              entryType,
+
+              safeValue(
+                registration.name ||
+                registration.primary_name,
+                ""
+              ),
+
+              safeValue(
+                registration.phone ||
+                registration.primary_phone,
+                ""
+              ),
+
+              safeValue(
+                registration.email,
+                ""
+              ),
+
+              safeValue(
+                registration.gender ||
+                registration.primary_gender,
+                ""
+              ),
+
+              isCouple
+                ? safeValue(
+                  partner.name,
+                  ""
+                )
+                : "",
+
+              isCouple
+                ? safeValue(
+                  partner.phone,
+                  ""
+                )
+                : "",
+
+              isCouple
+                ? safeValue(
+                  partner.email,
+                  ""
+                )
+                : "",
+
+              isCouple
+                ? safeValue(
+                  partner.gender,
+                  ""
+                )
+                : "",
+
+              Number(
+                registration.amount ??
+                0
+              ),
+
+              normalizeStatus(
+                registration.payment_status ||
+                registration.paymentStatus ||
+                "pending"
+              ),
+
+              safeValue(
+                registration.utr,
+                ""
+              ),
+
+              normalizeStatus(
+                registration.qr_status ||
+                registration.qrStatus ||
+                registration.permission_status ||
+                "pending"
+              ),
+
+              formatDate(
+                registration.created_at ||
+                registration.createdAt
+              )
+
+            ];
+
+          }
+        );
+
+
+      const allRows = [
+        headers,
+        ...rows
+      ];
+
+
+      return allRows
+        .map(
+          row =>
+            row
+              .map(
+                csvEscape
+              )
+              .join(
+                ","
+              )
+        )
+        .join(
+          "\r\n"
+        );
+
+    }
+
+
+    function csvEscape(
+      value
+    ) {
+
+      if (
+        value ===
+        null ||
+        value ===
+        undefined
+      ) {
+
+        return "";
+
+      }
+
+
+      let str =
+        String(
+          value
+        );
+
+
+      /*
+        CSV formula injection protection:
+        Excel/Sheets treat cells starting with
+        = + - @ as formulas. Prefix with a single
+        quote so they remain literal text.
+      */
+
+      if (
+        /^[=+\-@\t\r]/.test(
+          str
+        )
+      ) {
+
+        str =
+          "'" +
+          str;
+
+      }
+
+
+      if (
+        str.includes(
+          ","
+        ) ||
+        str.includes(
+          '"'
+        ) ||
+        str.includes(
+          "\n"
+        ) ||
+        str.includes(
+          "\r"
+        )
+      ) {
+
+        return (
+          '"' +
+          str.replace(
+            /"/g,
+            '""'
+          ) +
+          '"'
+        );
+
+      }
+
+
+      return str;
+
+    }
+
+
+    function downloadCSV(
+      csv,
+      filename
+    ) {
+
+      /*
+        UTF-8 BOM ensures Excel reads the file with the
+        correct encoding (crucial for ₹ symbol and any
+        non-ASCII characters).
+      */
+
+      const blob =
+        new Blob(
+          [
+            "\uFEFF" +
+            csv
+          ],
+          {
+            type:
+              "text/csv;charset=utf-8;"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+
+      link.href =
+        url;
+
+      link.download =
+        filename;
+
+      link.rel =
+        "noopener";
+
+      link.style.display =
+        "none";
+
+
+      document.body.appendChild(
+        link
+      );
+
+
+      link.click();
+
+
+      document.body.removeChild(
+        link
+      );
+
+
+      setTimeout(
+        () =>
+          URL.revokeObjectURL(
+            url
+          ),
+        2000
+      );
 
     }
 
@@ -5091,7 +5626,7 @@
           .signOut();
 
       } catch (
-        error
+      error
       ) {
 
         console.error(
@@ -5137,6 +5672,13 @@
               );
 
           }
+        );
+
+
+      $("#exportBtn")
+        .addEventListener(
+          "click",
+          exportRegistrations
         );
 
 
@@ -5353,11 +5895,6 @@
       );
 
 
-      /*
-        When the tab becomes visible again, one controlled
-        silent refresh is useful, but never aggressive polling.
-      */
-
       document.addEventListener(
         "visibilitychange",
         () => {
@@ -5408,6 +5945,16 @@
     }
 
 
+    /*
+      Entry type normalization.
+
+      Priority:
+        1. Explicit entry_type / entryType:
+             "single_female" -> Single Female
+             "couple"        -> Couple
+        2. Legacy fallback using group_size.
+    */
+
     function normalizeEntryType(
       registration
     ) {
@@ -5432,12 +5979,37 @@
       }
 
 
+      if (
+        type ===
+        "couple"
+      ) {
+
+        return "Couple";
+
+      }
+
+
+      /*
+        Legacy fallback (older records that only had
+        entry_type = "group" and a group_size).
+      */
+
       const groupSize =
         Number(
           registration.group_size ??
           registration.groupSize ??
           0
         );
+
+
+      if (
+        groupSize ===
+        1
+      ) {
+
+        return "Single Female";
+
+      }
 
 
       if (
@@ -5465,6 +6037,232 @@
     }
 
 
+    function isCoupleEntry(
+      registration
+    ) {
+
+      const type =
+        String(
+          registration.entry_type ||
+          registration.entryType ||
+          ""
+        )
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        type ===
+        "couple"
+      ) {
+
+        return true;
+
+      }
+
+
+      if (
+        type ===
+        "single_female"
+      ) {
+
+        return false;
+
+      }
+
+
+      /*
+        Legacy fallback: only treat as couple when
+        group_size is exactly 2.
+      */
+
+      const groupSize =
+        Number(
+          registration.group_size ??
+          registration.groupSize ??
+          0
+        );
+
+
+      if (
+        groupSize ===
+        2
+      ) {
+
+        return true;
+
+      }
+
+
+      /*
+        Last-resort: if any partner data exists.
+      */
+
+      const partner =
+        getPartnerData(
+          registration
+        );
+
+
+      return Boolean(
+        partner.name ||
+        partner.phone ||
+        partner.email
+      );
+
+    }
+
+
+    function getParticipantCount(
+      registration
+    ) {
+
+      const type =
+        String(
+          registration.entry_type ||
+          registration.entryType ||
+          ""
+        )
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        type ===
+        "single_female"
+      ) {
+
+        return 1;
+
+      }
+
+
+      if (
+        type ===
+        "couple"
+      ) {
+
+        return 2;
+
+      }
+
+
+      const groupSize =
+        Number(
+          registration.group_size ??
+          registration.groupSize ??
+          0
+        );
+
+
+      if (
+        groupSize
+      ) {
+
+        return groupSize;
+
+      }
+
+
+      return isCoupleEntry(
+        registration
+      )
+        ? 2
+        : 1;
+
+    }
+
+
+    /*
+      Extracts partner details from a registration.
+
+      Supports both:
+        - registration.partner = { name, phone, email, gender }
+        - flattened: registration.partner_name, partner_phone, ...
+      This keeps us resilient to whichever shape the
+      backend decides to return.
+    */
+
+    function getPartnerData(
+      registration
+    ) {
+
+      const raw =
+        registration?.partner;
+
+
+      if (
+        raw &&
+        typeof raw ===
+        "object"
+      ) {
+
+        return {
+
+          name:
+            safeValue(
+              raw.name,
+              ""
+            ),
+
+          phone:
+            safeValue(
+              raw.phone,
+              ""
+            ),
+
+          email:
+            safeValue(
+              raw.email,
+              ""
+            ),
+
+          gender:
+            safeValue(
+              raw.gender,
+              ""
+            )
+
+        };
+
+      }
+
+
+      return {
+
+        name:
+          safeValue(
+            registration?.partner_name ||
+            registration?.partnerName,
+            ""
+          ),
+
+        phone:
+          safeValue(
+            registration?.partner_phone ||
+            registration?.partnerPhone,
+            ""
+          ),
+
+        email:
+          safeValue(
+            registration?.partner_email ||
+            registration?.partnerEmail,
+            ""
+          ),
+
+        gender:
+          safeValue(
+            registration?.partner_gender ||
+            registration?.partnerGender,
+            ""
+          )
+
+      };
+
+    }
+
+
     function safeValue(
       value,
       fallback
@@ -5472,11 +6270,11 @@
 
       if (
         value ===
-          null ||
+        null ||
         value ===
-          undefined ||
+        undefined ||
         value ===
-          ""
+        ""
       ) {
 
         return fallback;
@@ -5822,7 +6620,7 @@
         if (
           error?.context &&
           typeof error.context.json ===
-            "function"
+          "function"
         ) {
 
           const body =
@@ -5978,8 +6776,8 @@
                 "
               >
                 ${escapeHtml(
-                  message
-                )}
+          message
+        )}
               </p>
 
 
@@ -6042,4 +6840,5 @@
   </script>
 
 </body>
+
 </html>
