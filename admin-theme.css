@@ -595,3 +595,91 @@ tbody tr:hover {
     transition: none !important;
   }
 }
+
+
+
+
+
+/* =====================================================
+   FIX: Light background context pe buttons visible
+   (drawer, modal, aur page body me btn-secondary)
+===================================================== */
+
+/* Drawer aur modal (light background) me btn-secondary dark banao */
+.drawer .btn-secondary,
+.modal .btn-secondary {
+  color: #2a0f45 !important;
+  background: #fff !important;
+  border: 1.5px solid #c9b8e0 !important;
+  box-shadow: 0 4px 12px rgba(42, 15, 69, .08);
+}
+
+.drawer .btn-secondary:hover,
+.modal .btn-secondary:hover {
+  background: linear-gradient(135deg, #fff3c9, #ffe4ee) !important;
+  border-color: #ff3d8b !important;
+  color: #a3124a !important;
+  box-shadow: 0 8px 20px rgba(255, 61, 139, .2);
+}
+
+.drawer .btn-secondary:disabled,
+.modal .btn-secondary:disabled {
+  opacity: .45 !important;
+  cursor: not-allowed;
+}
+
+/* Drawer/modal me btn-blue (View Proof) bhi clearly visible karo */
+.drawer .btn-blue,
+.modal .btn-blue {
+  color: #fff !important;
+  background: linear-gradient(135deg, #6da8ff, #b46bff) !important;
+  border: 0 !important;
+  box-shadow: 0 6px 18px rgba(109, 168, 255, .4);
+}
+
+.drawer .btn-blue:hover,
+.modal .btn-blue:hover {
+  background: linear-gradient(135deg, #4d8df0, #9d4dff) !important;
+  box-shadow: 0 10px 24px rgba(109, 168, 255, .55);
+}
+
+/* Drawer/modal me btn-success (Verify Payment) dark text */
+.drawer .btn-success,
+.modal .btn-success {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #3df0b8, #19c3b1) !important;
+  box-shadow: 0 8px 22px rgba(61, 240, 184, .35);
+  text-shadow: 0 1px 2px rgba(0, 60, 40, .35);
+}
+
+/* Drawer/modal me btn-danger (Reject/Revoke) clearly visible */
+.drawer .btn-danger,
+.modal .btn-danger {
+  color: #fff !important;
+  background: linear-gradient(135deg, #ff5c76, #d81b72) !important;
+  border: 0 !important;
+  box-shadow: 0 8px 22px rgba(216, 27, 114, .35);
+}
+
+.drawer .btn-danger:hover,
+.modal .btn-danger:hover {
+  background: linear-gradient(135deg, #ff3d5c, #b01560) !important;
+  box-shadow: 0 10px 26px rgba(216, 27, 114, .5);
+}
+
+/* Drawer/modal me btn-primary (Grant Entry) festive gradient */
+.drawer .btn-primary,
+.modal .btn-primary {
+  color: #fff !important;
+  background: linear-gradient(135deg, #ff3d8b, #ff7a1a 60%, #ffc928) !important;
+  box-shadow: 0 10px 26px rgba(255, 61, 139, .42) !important;
+}
+
+/* Disabled states — clearly gray */
+.drawer .btn:disabled,
+.modal .btn:disabled {
+  opacity: .4 !important;
+  cursor: not-allowed !important;
+  filter: grayscale(.5);
+  box-shadow: none !important;
+}
