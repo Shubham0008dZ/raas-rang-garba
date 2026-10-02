@@ -3238,10 +3238,10 @@
           10,
 
         SCAN_COOLDOWN:
-          1800,
+          8000,
 
         STATS_REFRESH:
-          120000
+          300000
 
       });
 
@@ -3597,6 +3597,23 @@
 
       startStatsRefresh();
 
+
+      /*
+        Try to start the camera immediately after login so the
+        gate operator does not need an extra click. If the browser
+        requires a user gesture or permission is denied, the normal
+        Start Camera button remains available.
+      */
+
+      startCamera()
+        .catch(
+          error =>
+            console.warn(
+              "AUTO CAMERA START:",
+              error
+            )
+        );
+
     }
 
 
@@ -3764,6 +3781,16 @@
             if (
               document.visibilityState !==
               "visible"
+            ) {
+
+              return;
+
+            }
+
+
+            if (
+              state.scanLocked ||
+              state.actionBusy
             ) {
 
               return;
@@ -4120,10 +4147,11 @@
 
 
       /*
-        Same QR is often detected in many consecutive frames.
+        The camera can decode the same QR in many consecutive
+        frames. Ignore the SAME token for a few seconds, while
+        still allowing a different guest's QR immediately.
 
-        Short local cooldown prevents repeated modal opening.
-        This is UX protection only; backend remains authoritative.
+        Backend remains authoritative and blocks replay regardless.
       */
 
       const now =
@@ -4149,54 +4177,46 @@
       state.lastScannedAt =
         now;
 
-
       state.scanLocked =
         true;
-
 
       state.pendingToken =
         token;
 
 
-      showLoader(
-        "Verifying secure entry pass..."
+      setScanStatus(
+        "Checking QR..."
       );
 
 
-      verifyToken(
+      /*
+        FAST PATH:
+
+        One QR scan -> ONE authenticated Edge Function call.
+
+        The server's check-in operation must itself revalidate:
+        - JWT / gate role
+        - gate number
+        - QR token
+        - payment approval
+        - QR active state
+        - one-time check-in state
+
+        No separate verify request.
+        No confirm modal.
+        No post-check-in dashboard request.
+      */
+
+      processScannedToken(
         token
-      )
-        .finally(
-          () => {
-
-            stopLoader();
-
-          }
-        );
+      );
 
     }
 
 
-    async function verifyToken(
+    async function processScannedToken(
       token
     ) {
-
-      /*
-        We deliberately call the same authenticated
-        gate function for both camera and manual input.
-
-        The server must:
-          1. Verify JWT.
-          2. Verify role = gate.
-          3. Verify gate_number.
-          4. Find the QR.
-          5. Verify payment/permission.
-          6. Return participant data.
-          7. NOT consume the QR yet.
-
-        Final consumption/check-in happens in gate-checkin
-        after operator confirmation.
-      */
 
       try {
 
@@ -4211,7 +4231,7 @@
             {
 
               mode:
-                "verify",
+                "checkin",
 
               qrToken:
                 token
@@ -4236,25 +4256,14 @@
         ) {
 
           throw new Error(
-            "Verification server returned no data."
+            "Check-in server returned no data."
           );
 
         }
 
 
-        /*
-          For verify mode we expect:
-
-          {
-            valid: true,
-            participant: {...},
-            qr_status: "active",
-            payment_status: "verified"
-          }
-        */
-
         if (
-          data.valid !==
+          data.success !==
           true
         ) {
 
@@ -4267,10 +4276,23 @@
             data
               ?.participant
               ?.name ||
-            "Invalid QR",
+            "Entry denied",
             data
               ?.reason ||
             "Entry denied"
+          );
+
+          bumpGateStats(
+            false
+          );
+
+          /*
+            Errors/denials are shown in the result card.
+            No full-screen loader is used during scanning.
+          */
+
+          setScanStatus(
+            "Camera Live"
           );
 
           return;
@@ -4278,43 +4300,53 @@
         }
 
 
-        state.pendingParticipant =
-          data;
+        /*
+          Success means the backend has already performed
+          the authoritative one-time check-in.
+        */
 
-
-        renderValidResult(
+        renderCheckedInResult(
           data
         );
-
 
         addRecent(
           true,
           data
             ?.participant
             ?.name ||
-          "Valid participant",
-          "QR verified"
+          "Participant",
+          "Entry checked in"
+        );
+
+        bumpGateStats(
+          true
+        );
+
+        setScanStatus(
+          "Camera Live"
         );
 
 
       } catch (error) {
 
         console.error(
-          "QR VERIFY:",
+          "QR CHECK-IN:",
           error
         );
-
 
         renderSystemError(
           error
         );
-
 
         addRecent(
           false,
           "Verification error",
           error.message ||
           "Server error"
+        );
+
+        setScanStatus(
+          "Camera Live"
         );
 
       }
@@ -4553,7 +4585,7 @@
         );
 
 
-        await loadDashboard(
+        bumpGateStats(
           true
         );
 
@@ -4587,6 +4619,122 @@
           button,
           "Confirm Check-In"
         );
+
+      }
+
+    }
+
+
+    /* ======================================================
+       FAST SCAN STATUS + LOCAL STATS
+    ======================================================= */
+
+    function setScanStatus(
+      message
+    ) {
+
+      const text =
+        $("#cameraStateText");
+
+
+      const stateBox =
+        $("#cameraState");
+
+
+      if (
+        !text ||
+        !stateBox
+      ) {
+
+        return;
+
+      }
+
+
+      const value =
+        String(
+          message ||
+          "Camera Live"
+        );
+
+
+      text.textContent =
+        value;
+
+      stateBox.classList.toggle(
+        "live",
+        value ===
+          "Camera Live"
+      );
+
+    }
+
+
+    function bumpGateStats(
+      success
+    ) {
+
+      const successEl =
+        $("#statSuccess");
+
+      const gateEl =
+        $("#statGate");
+
+      const deniedEl =
+        $("#statDenied");
+
+
+      if (
+        success
+      ) {
+
+        if (
+          successEl
+        ) {
+
+          successEl.textContent =
+            formatNumber(
+              Number(
+                successEl.textContent
+                  .replace(/,/g, "")
+              ) +
+              1
+            );
+
+        }
+
+        if (
+          gateEl
+        ) {
+
+          gateEl.textContent =
+            formatNumber(
+              Number(
+                gateEl.textContent
+                  .replace(/,/g, "")
+              ) +
+              1
+            );
+
+        }
+
+        return;
+
+      }
+
+
+      if (
+        deniedEl
+      ) {
+
+        deniedEl.textContent =
+          formatNumber(
+            Number(
+              deniedEl.textContent
+                .replace(/,/g, "")
+            ) +
+            1
+          );
 
       }
 
@@ -4634,7 +4782,7 @@
 
       $("#confirmEntryBtn")
         .hidden =
-        false;
+        true;
 
 
       $("#dismissResultBtn")
@@ -5373,6 +5521,21 @@
     ======================================================= */
 
     function bindEvents() {
+
+      /*
+        Event-day fast mode: QR scan performs the one-step
+        check-in directly. The old confirmation button/modal
+        remains in the markup only for backwards compatibility
+        and is never shown by the fast scanner path.
+      */
+
+      $("#confirmEntryBtn")
+        .hidden =
+        true;
+
+      $("#confirmOverlay")
+        .hidden =
+        true;
 
 
       $("#startCameraBtn")
