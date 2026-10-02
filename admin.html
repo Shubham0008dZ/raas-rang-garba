@@ -4251,6 +4251,14 @@
 
       /* BUTTON STATES */
 
+      /* BUTTON STATES
+         Logic:
+           - Verify / Reject: sirf tab enable jab payment pending hai
+           - Grant: sirf tab enable jab payment verified ho aur QR active/used na ho
+           - Revoke: sirf tab enable jab QR active ho
+         Check-in (used) ke baad chaaro disabled ho jaate hain.
+      */
+
       const verified =
         paymentStatus ===
         "verified";
@@ -4261,6 +4269,26 @@
         "rejected";
 
 
+      const qrActive =
+        qrStatus ===
+        "active";
+
+
+      const qrUsed =
+        qrStatus ===
+        "used";
+
+
+      const qrRevoked =
+        qrStatus ===
+        "revoked";
+
+
+      const paymentPending =
+        !verified &&
+        !rejected;
+
+
       const grantBtn =
         $("#grantEntryBtn");
 
@@ -4269,33 +4297,59 @@
         $("#revokeEntryBtn");
 
 
+      /* Grant: enabled ONLY if payment verified AND QR is not active/used */
       grantBtn.disabled =
         !verified ||
-        qrStatus ===
-        "active";
+        qrActive ||
+        qrUsed;
 
 
+      /* Revoke: enabled ONLY if QR is active */
       revokeBtn.disabled =
-        qrStatus !==
-        "active";
+        !qrActive;
 
 
+      /* Verify / Reject: enabled ONLY if payment is pending */
       $("#verifyPaymentBtn")
         .disabled =
-        verified ||
-        rejected;
+        !paymentPending;
 
 
       $("#rejectPaymentBtn")
         .disabled =
-        rejected ||
-        verified;
+        !paymentPending;
 
 
+      /* Permission help message */
       if (
-        verified &&
-        qrStatus !==
-        "active"
+        qrUsed
+      ) {
+
+        setText(
+          "#permissionHelp",
+          "This entry has already been checked in at the gate. No further action is available."
+        );
+
+      } else if (
+        qrRevoked
+      ) {
+
+        setText(
+          "#permissionHelp",
+          "Entry permission was revoked. You may grant it again if needed."
+        );
+
+      } else if (
+        qrActive
+      ) {
+
+        setText(
+          "#permissionHelp",
+          "Entry permission is active. The participant QR can be used at the gate."
+        );
+
+      } else if (
+        verified
       ) {
 
         setText(
@@ -4304,13 +4358,12 @@
         );
 
       } else if (
-        qrStatus ===
-        "active"
+        rejected
       ) {
 
         setText(
           "#permissionHelp",
-          "Entry permission is active. The participant QR can be used at the gate."
+          "Payment was rejected. The participant must resubmit payment proof."
         );
 
       } else {
