@@ -1,7 +1,6 @@
 /* =====================================================
    RAAS RANG - INDEX.CSS
-   Sirf gender selector ko sundar aur clear banata hai.
-   Baaki kisi bhi existing element ko touch nahi karta.
+   Gender selector — light auth card ke liye
    ===================================================== */
 
 /* ========== GENDER OPTIONS ========== */
@@ -16,22 +15,20 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  padding: 16px 18px;
-  border: 2px solid rgba(255, 255, 255, .22);
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 14px;
+  border: 2px solid #e2d3f2;
   border-radius: 14px;
-  background: rgba(255, 255, 255, .06);
+  background: #ffffff;
   cursor: pointer;
   user-select: none;
   transition: all .22s ease;
-  font-size: 13px;
-  font-weight: 700;
-  color: #f0e4ff;
+  font-size: 14px;
+  font-weight: 800;
+  color: #2a0f45;
   letter-spacing: .3px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  box-shadow: 0 4px 12px rgba(42, 15, 69, .06);
 }
 
 /* Hide native radio input */
@@ -46,17 +43,16 @@
 /* Custom radio circle */
 .gender-option .radio-dot {
   position: relative;
-  width: 22px;
-  height: 22px;
-  flex: 0 0 22px;
-  border: 2.5px solid rgba(255, 255, 255, .42);
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border: 2.5px solid #c9b8e0;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .18);
+  background: #fff;
   transition: all .22s ease;
   box-sizing: border-box;
 }
 
-/* Inner filled dot when selected */
 .gender-option .radio-dot::after {
   content: "";
   position: absolute;
@@ -65,78 +61,69 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #ffd23f;
+  background: linear-gradient(135deg, #ff3d8b, #ff7a1a);
   transform: translate(-50%, -50%) scale(0);
   transition: transform .22s cubic-bezier(.34, 1.56, .64, 1);
-  box-shadow: 0 0 10px rgba(255, 210, 63, .9);
+  box-shadow: 0 0 8px rgba(255, 61, 139, .6);
 }
 
-/* Label text */
-.gender-option > span:last-child {
-  flex: 1;
-  text-align: left;
-}
-
-/* Hover state */
+/* Hover state — text stays dark, border glows */
 .gender-option:hover {
-  border-color: rgba(255, 210, 63, .7);
-  background: rgba(255, 210, 63, .1);
-  color: #fff;
+  border-color: #ff3d8b;
+  background: linear-gradient(135deg, #fff7fb, #fff0f5);
+  color: #2a0f45;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 138, 42, .22);
+  box-shadow: 0 8px 22px rgba(255, 61, 139, .2);
 }
 
 .gender-option:hover .radio-dot {
-  border-color: #ffd23f;
+  border-color: #ff3d8b;
+  background: #fff0f5;
 }
 
-/* Checked state — selected */
+/* Selected state */
 .gender-option input[type="radio"]:checked ~ .radio-dot {
-  border-color: #ffd23f;
-  background: rgba(255, 210, 63, .18);
-  box-shadow: 0 0 0 4px rgba(255, 210, 63, .14);
+  border-color: #ff3d8b;
+  background: #ffe4ee;
+  box-shadow: 0 0 0 3px rgba(255, 61, 139, .15);
 }
 
 .gender-option input[type="radio"]:checked ~ .radio-dot::after {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Checked state — highlight whole card */
+/* Whole card highlight when selected */
 .gender-option:has(input[type="radio"]:checked) {
-  border-color: #ffd23f;
-  background: linear-gradient(135deg, rgba(255, 210, 63, .18), rgba(255, 138, 42, .14));
-  color: #fff;
+  border-color: #ff3d8b;
+  background: linear-gradient(135deg, #ffe4ee, #fff3c9);
+  color: #a3124a;
   box-shadow:
-    0 0 0 4px rgba(255, 210, 63, .12),
-    0 10px 24px rgba(255, 138, 42, .25);
+    0 0 0 3px rgba(255, 61, 139, .16),
+    0 10px 24px rgba(255, 61, 139, .25);
 }
 
-/* Focus state (keyboard accessibility) */
+/* Focus ring (keyboard) */
 .gender-option:focus-within {
-  border-color: #ffd23f;
-  box-shadow: 0 0 0 4px rgba(255, 210, 63, .25);
+  border-color: #ff3d8b;
+  box-shadow: 0 0 0 4px rgba(255, 61, 139, .22);
 }
 
-.gender-option input[type="radio"]:focus-visible ~ .radio-dot {
-  box-shadow: 0 0 0 4px rgba(255, 210, 63, .3);
-}
-
-/* ========== MOBILE RESPONSIVE ========== */
+/* ========== MOBILE ========== */
 @media (max-width: 480px) {
   .gender-options {
     gap: 10px;
   }
 
   .gender-option {
-    padding: 14px 14px;
-    gap: 10px;
-    font-size: 12px;
+    padding: 14px 10px;
+    gap: 8px;
+    font-size: 13px;
   }
 
   .gender-option .radio-dot {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 20px;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
   }
 
   .gender-option .radio-dot::after {
