@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#2a0f55" />
   <meta name="description"
-    content="Raas Rang Garba Night 2026 — Vanasthali Public School. Registration portal launching soon." />
+    content="Raas Rang Garba Night 2026 — Vanasthali Public School. Scheduled maintenance in progress." />
   <meta name="robots" content="noindex, nofollow" />
 
-  <title>Raas Rang — Launching Soon</title>
+  <title>Raas Rang — Scheduled Maintenance</title>
 
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E" />
@@ -33,8 +33,6 @@
       --pink: #ff3d8b;
       --teal: #19c3b1;
       --purple: #b46bff;
-      --cream: #fffaf0;
-      --ink: #2a0f45;
     }
 
     * {
@@ -43,20 +41,21 @@
       padding: 0;
     }
 
-    html,
-    body {
-      height: 100%;
+    html {
       overflow-x: hidden;
+      height: 100%;
     }
 
     body {
       font-family: "DM Sans", system-ui, -apple-system, sans-serif;
       color: #fff;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 18px;
+      padding: 40px 24px 40px;
+      overflow-x: hidden;
       position: relative;
       isolation: isolate;
       background:
@@ -69,7 +68,15 @@
       background-attachment: fixed;
     }
 
-    /* ============ Floating dandiya sticks in corners ============ */
+    /* ============ Desktop: prevent scroll, tight layout ============ */
+    @media (min-width: 900px) and (min-height: 700px) {
+      body {
+        overflow: hidden;
+        padding: 34px 24px 34px;
+      }
+    }
+
+    /* ============ Floating dandiya sticks ============ */
     body::before,
     body::after {
       content: "";
@@ -82,7 +89,6 @@
       background-repeat: no-repeat;
       background-size: contain;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cg transform='rotate(45 110 110)'%3E%3Crect x='99' y='8' width='22' height='204' rx='11' fill='%23ff3d8b'/%3E%3Crect x='99' y='46' width='22' height='12' fill='%23ffd23f'/%3E%3Crect x='99' y='162' width='22' height='12' fill='%23ffd23f'/%3E%3Ccircle cx='110' cy='110' r='5' fill='%23fff'/%3E%3C/g%3E%3Cg transform='rotate(-45 110 110)'%3E%3Crect x='99' y='8' width='22' height='204' rx='11' fill='%23ff9a1f'/%3E%3Crect x='99' y='46' width='22' height='12' fill='%23fff3b0'/%3E%3Crect x='99' y='162' width='22' height='12' fill='%23fff3b0'/%3E%3C/g%3E%3C/svg%3E");
-      animation: floatSticks 6s ease-in-out infinite;
     }
 
     body::before {
@@ -94,38 +100,9 @@
       right: -90px;
       top: 60px;
       transform: rotate(90deg);
-      animation-delay: 1.5s;
     }
 
-    @keyframes floatSticks {
-
-      0%,
-      100% {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-18px) rotate(3deg);
-      }
-    }
-
-    body::after {
-      animation-name: floatSticksAlt;
-    }
-
-    @keyframes floatSticksAlt {
-
-      0%,
-      100% {
-        transform: translateY(0) rotate(90deg);
-      }
-
-      50% {
-        transform: translateY(-18px) rotate(93deg);
-      }
-    }
-
-    /* ============ Floating sparkles ============ */
+    /* ============ Sparkles ============ */
     .sparkle {
       position: fixed;
       width: 6px;
@@ -141,7 +118,6 @@
     .sparkle.s1 {
       top: 12%;
       left: 8%;
-      animation-delay: 0s;
     }
 
     .sparkle.s2 {
@@ -188,31 +164,32 @@
       }
     }
 
-    /* ============ Main card ============ */
+    /* ============ Wrap ============ */
     .wrap {
       position: relative;
       z-index: 2;
-      width: min(720px, 100%);
+      width: min(760px, 100%);
       text-align: center;
     }
 
+    /* ============ Badge ============ */
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 16px;
+      padding: 8px 15px;
       border: 1px solid rgba(255, 207, 63, .5);
       border-radius: 999px;
       color: #fff0ca;
-      background: rgba(26, 12, 28, .4);
+      background: rgba(26, 12, 28, .42);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
-      animation: fadeInDown .8s ease both;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+      animation: fadeInDown .7s ease both;
     }
 
     .badge .dot {
@@ -222,6 +199,7 @@
       background: #3df0b8;
       box-shadow: 0 0 12px rgba(61, 240, 184, .9);
       animation: pulse 1.8s ease-in-out infinite;
+      flex: 0 0 8px;
     }
 
     @keyframes pulse {
@@ -241,7 +219,7 @@
     @keyframes fadeInDown {
       from {
         opacity: 0;
-        transform: translateY(-14px);
+        transform: translateY(-10px);
       }
 
       to {
@@ -250,16 +228,28 @@
       }
     }
 
-    /* ============ Brand title ============ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============ Title ============ */
     h1 {
-      margin: 22px 0 0;
+      margin: 16px 0 0;
       font-family: "Playfair Display", serif;
-      font-size: clamp(46px, 8vw, 86px);
-      line-height: .94;
-      letter-spacing: -2.5px;
+      font-size: clamp(38px, 5.6vw, 66px);
+      line-height: .96;
+      letter-spacing: -1.8px;
       font-weight: 900;
-      text-shadow: 0 18px 50px rgba(0, 0, 0, .45);
-      animation: fadeInUp 1s ease .2s both;
+      text-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+      animation: fadeInUp .9s ease .15s both;
     }
 
     h1 span {
@@ -267,122 +257,109 @@
       background: linear-gradient(90deg, #ffe066, #ff9a3d 30%, #ff4d94 62%, #c77dff);
       -webkit-background-clip: text;
       background-clip: text;
-      filter: drop-shadow(0 6px 18px rgba(255, 77, 148, .45));
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      filter: drop-shadow(0 5px 15px rgba(255, 77, 148, .4));
     }
 
     /* ============ Message ============ */
     .message {
-      max-width: 560px;
-      margin: 22px auto 0;
+      max-width: 620px;
+      margin: 16px auto 0;
       color: #f1e6ff;
-      font-size: clamp(14px, 1.6vw, 17px);
-      line-height: 1.75;
+      font-size: clamp(12.5px, 1.15vw, 14px);
+      line-height: 1.65;
       text-shadow: 0 4px 16px rgba(0, 0, 0, .35);
-      animation: fadeInUp 1s ease .35s both;
+      animation: fadeInUp .9s ease .25s both;
     }
 
     .message strong {
       color: #ffd978;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     /* ============ Divider ============ */
     .divider {
-      width: 80px;
+      width: 70px;
       height: 3px;
-      margin: 34px auto 30px;
+      margin: 20px auto 18px;
       border-radius: 3px;
       background: linear-gradient(90deg, transparent, var(--gold), var(--pink), var(--gold), transparent);
-      animation: fadeInUp 1s ease .45s both;
+      animation: fadeInUp .9s ease .35s both;
     }
 
-    /* ============ Info chips ============ */
+    /* ============ Chips ============ */
     .chips {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin-top: 4px;
-      animation: fadeInUp 1s ease .55s both;
+      gap: 8px;
+      animation: fadeInUp .9s ease .45s both;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 11px 16px;
+      gap: 7px;
+      padding: 9px 14px;
       border: 1.5px solid rgba(255, 255, 255, .22);
-      border-radius: 14px;
+      border-radius: 12px;
       background: rgba(13, 7, 18, .4);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       color: #fff8e9;
       font-size: 12px;
       font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .2);
     }
 
     .chip .ic {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     /* ============ Contact card ============ */
     .contact {
-      margin-top: 40px;
-      padding: 26px 22px;
+      margin-top: 22px;
+      padding: 18px 20px;
       border: 2px solid transparent;
-      border-radius: 22px;
+      border-radius: 20px;
       background:
-        linear-gradient(rgba(26, 12, 28, .75), rgba(26, 12, 28, .85)) padding-box,
+        linear-gradient(rgba(26, 12, 28, .78), rgba(26, 12, 28, .88)) padding-box,
         linear-gradient(135deg, #ffcf3f, #ff3d8b, #19c3b1, #b46bff) border-box;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 26px 70px rgba(0, 0, 0, .4);
-      animation: fadeInUp 1s ease .7s both;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, .4);
+      animation: fadeInUp .9s ease .55s both;
     }
 
     .contact-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
       color: #ffe29a;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .contact-sub {
       color: #cdb8f2;
-      font-size: 12px;
-      margin-bottom: 18px;
+      font-size: 11.5px;
+      margin-bottom: 13px;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      max-width: 540px;
+      gap: 10px;
+      max-width: 560px;
       margin: 0 auto;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
+      gap: 11px;
+      padding: 11px 14px;
       border: 1.5px solid rgba(255, 255, 255, .16);
-      border-radius: 14px;
+      border-radius: 13px;
       background: rgba(255, 255, 255, .06);
       text-decoration: none;
       color: inherit;
@@ -394,19 +371,19 @@
       transform: translateY(-2px);
       border-color: rgba(255, 207, 63, .65);
       background: rgba(255, 207, 63, .1);
-      box-shadow: 0 12px 28px rgba(255, 138, 42, .28);
+      box-shadow: 0 12px 28px rgba(255, 138, 42, .3);
     }
 
     .contact-icon {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
       display: grid;
       place-items: center;
-      border-radius: 12px;
-      font-size: 20px;
+      border-radius: 11px;
+      font-size: 18px;
       background: linear-gradient(135deg, #ffcf3f, #ff7a1a);
-      box-shadow: 0 6px 16px rgba(255, 138, 42, .35);
+      box-shadow: 0 6px 14px rgba(255, 138, 42, .35);
     }
 
     .contact-info {
@@ -416,17 +393,17 @@
     .contact-info small {
       display: block;
       color: #cdb8f2;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: .8px;
       text-transform: uppercase;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .contact-info strong {
       display: block;
       color: #fff;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       letter-spacing: .3px;
       white-space: nowrap;
@@ -436,11 +413,12 @@
 
     /* ============ Footer ============ */
     .footer {
-      margin-top: 34px;
-      color: rgba(255, 255, 255, .65);
-      font-size: 11px;
+      margin-top: 16px;
+      color: rgba(255, 255, 255, .68);
+      font-size: 10.5px;
       letter-spacing: .3px;
-      animation: fadeInUp 1s ease .85s both;
+      line-height: 1.5;
+      animation: fadeInUp .9s ease .65s both;
     }
 
     .footer strong {
@@ -450,81 +428,144 @@
 
     .footer .sep {
       display: inline-block;
-      margin: 0 8px;
+      margin: 0 6px;
       opacity: .5;
     }
 
-    /* ============ Bottom festive lights strip ============ */
-    .lights {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 26px;
-      pointer-events: none;
-      z-index: 3;
-      background:
-        radial-gradient(circle at 12px 10px, #ffd23f 0 5px, transparent 6px),
-        radial-gradient(circle at 40px 10px, #ff3d8b 0 5px, transparent 6px),
-        radial-gradient(circle at 68px 10px, #19c3b1 0 5px, transparent 6px),
-        radial-gradient(circle at 96px 10px, #ff7a1a 0 5px, transparent 6px),
-        radial-gradient(circle at 124px 10px, #b46bff 0 5px, transparent 6px);
-      background-size: 144px 26px;
-      background-repeat: repeat-x;
-      animation: twinkle 3s ease-in-out infinite;
-      opacity: .95;
-    }
-
-    /* ============ Top hanging lights strip ============ */
+    /* ============ Lights ============ */
     .lights-top {
       position: fixed;
       left: 0;
       right: 0;
       top: 0;
-      height: 22px;
+      height: 18px;
       pointer-events: none;
       z-index: 3;
       background:
-        radial-gradient(circle at 10px 9px, #ffd23f 0 4px, transparent 5px),
-        radial-gradient(circle at 34px 9px, #ff3d8b 0 4px, transparent 5px),
-        radial-gradient(circle at 58px 9px, #19c3b1 0 4px, transparent 5px),
-        radial-gradient(circle at 82px 9px, #ff7a1a 0 4px, transparent 5px),
-        radial-gradient(circle at 106px 9px, #b46bff 0 4px, transparent 5px);
-      background-size: 120px 22px;
+        radial-gradient(circle at 10px 8px, #ffd23f 0 4px, transparent 5px),
+        radial-gradient(circle at 34px 8px, #ff3d8b 0 4px, transparent 5px),
+        radial-gradient(circle at 58px 8px, #19c3b1 0 4px, transparent 5px),
+        radial-gradient(circle at 82px 8px, #ff7a1a 0 4px, transparent 5px),
+        radial-gradient(circle at 106px 8px, #b46bff 0 4px, transparent 5px);
+      background-size: 120px 18px;
       background-repeat: repeat-x;
       animation: twinkle 2.4s ease-in-out infinite;
       opacity: .95;
     }
 
-    /* ============ Responsive ============ */
-    @media (max-width: 620px) {
-      body {
-        padding: 68px 16px 60px;
-      }
+    .lights {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 18px;
+      pointer-events: none;
+      z-index: 3;
+      background:
+        radial-gradient(circle at 12px 9px, #ffd23f 0 4px, transparent 5px),
+        radial-gradient(circle at 40px 9px, #ff3d8b 0 4px, transparent 5px),
+        radial-gradient(circle at 68px 9px, #19c3b1 0 4px, transparent 5px),
+        radial-gradient(circle at 96px 9px, #ff7a1a 0 4px, transparent 5px),
+        radial-gradient(circle at 124px 9px, #b46bff 0 4px, transparent 5px);
+      background-size: 144px 18px;
+      background-repeat: repeat-x;
+      animation: twinkle 3s ease-in-out infinite;
+      opacity: .95;
+    }
 
+    /* ============ Small desktop / laptop (short height) ============ */
+    @media (min-width: 900px) and (max-height: 760px) {
       h1 {
-        margin-top: 18px;
-        letter-spacing: -1.5px;
+        font-size: clamp(32px, 4.5vw, 54px);
+        margin-top: 12px;
       }
 
       .message {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-top: 18px;
+        font-size: 12px;
+        margin-top: 12px;
+        line-height: 1.55;
       }
 
       .divider {
-        margin: 26px auto 24px;
+        margin: 14px auto 14px;
       }
 
       .chip {
-        padding: 9px 13px;
+        padding: 7px 12px;
         font-size: 11px;
       }
 
       .contact {
-        padding: 22px 16px;
-        margin-top: 30px;
+        margin-top: 16px;
+        padding: 14px 16px;
+      }
+
+      .contact-title {
+        font-size: 10px;
+      }
+
+      .contact-sub {
+        font-size: 10.5px;
+        margin-bottom: 10px;
+      }
+
+      .contact-item {
+        padding: 9px 12px;
+      }
+
+      .contact-icon {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+        font-size: 16px;
+      }
+
+      .contact-info strong {
+        font-size: 13px;
+      }
+
+      .footer {
+        margin-top: 12px;
+        font-size: 10px;
+      }
+    }
+
+    /* ============ Tablet / Mobile ============ */
+    @media (max-width: 899px) {
+      body {
+        padding: 46px 18px 46px;
+        align-items: flex-start;
+        padding-top: 60px;
+      }
+
+      .wrap {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: clamp(34px, 9vw, 58px);
+        margin-top: 14px;
+        letter-spacing: -1.2px;
+      }
+
+      .message {
+        font-size: 13.5px;
+        line-height: 1.65;
+        margin-top: 16px;
+      }
+
+      .divider {
+        margin: 22px auto 20px;
+      }
+
+      .chip {
+        padding: 9px 13px;
+        font-size: 11.5px;
+      }
+
+      .contact {
+        padding: 20px 16px;
+        margin-top: 26px;
         border-radius: 18px;
       }
 
@@ -533,20 +574,8 @@
         gap: 10px;
       }
 
-      .contact-item {
-        padding: 12px 14px;
-      }
-
       .contact-info strong {
         font-size: 14px;
-      }
-
-      .contact-icon {
-        width: 38px;
-        height: 38px;
-        flex: 0 0 38px;
-        font-size: 18px;
-        border-radius: 11px;
       }
 
       body::before,
@@ -567,18 +596,27 @@
 
       .footer {
         font-size: 10px;
-        margin-top: 26px;
+        margin-top: 22px;
+      }
+
+      .lights-top {
+        height: 16px;
+      }
+
+      .lights {
+        height: 16px;
       }
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: 400px) {
       h1 {
-        font-size: 38px;
+        font-size: 34px;
       }
 
       .badge {
-        font-size: 10px;
-        padding: 8px 13px;
+        font-size: 9.5px;
+        padding: 7px 12px;
+        letter-spacing: 1.1px;
       }
 
       .contact-info strong {
@@ -602,13 +640,9 @@
 
 <body>
 
-  <!-- Top hanging string lights -->
   <div class="lights-top" aria-hidden="true"></div>
-
-  <!-- Bottom festive lights -->
   <div class="lights" aria-hidden="true"></div>
 
-  <!-- Floating sparkles -->
   <span class="sparkle s1" aria-hidden="true"></span>
   <span class="sparkle s2" aria-hidden="true"></span>
   <span class="sparkle s3" aria-hidden="true"></span>
@@ -619,43 +653,36 @@
 
   <main class="wrap">
 
-    <!-- Status badge -->
-   <div class="badge">
-  <span class="dot"></span>
-  Scheduled Maintenance
-</div>
+    <div class="badge">
+      <span class="dot"></span>
+      Scheduled Maintenance
+    </div>
 
-    <!-- Title -->
     <h1>
       Raas Rang<br>
       <span>Dandiya Night 2026.</span>
     </h1>
 
-    <!-- Message -->
-<p class="message">
-  Our registration portal is currently offline for a scheduled
-  <strong>security and infrastructure upgrade</strong>.
-  <br>
-  This is part of our ongoing commitment to keeping your
-  registration and payment data fully protected. The portal will
-  be back online very shortly.
-</p>
+    <p class="message">
+      Our registration portal is currently offline for a scheduled
+      <strong>security and infrastructure upgrade</strong>.
+      <br>
+      This is part of our ongoing commitment to keeping your registration
+      and payment data fully protected. The portal will be back online very shortly.
+    </p>
 
-    <!-- Divider -->
     <div class="divider" aria-hidden="true"></div>
 
-    <!-- Event chips -->
     <div class="chips">
-      <span class="chip"><span class="ic">📅</span> 14 October 2026</span>
+      <span class="chip"><span class="ic">📅</span> 16 October 2026</span>
       <span class="chip"><span class="ic">🕕</span> 6 PM – 10 PM</span>
       <span class="chip"><span class="ic">📍</span> Vanasthali Public School</span>
     </div>
 
-    <!-- Contact card -->
     <section class="contact" aria-label="Contact information">
 
-<div class="contact-title">Need urgent assistance?</div>
-<div class="contact-sub">Reach out to our technical team directly.</div>
+      <div class="contact-title">Need urgent assistance?</div>
+      <div class="contact-sub">Reach out to our technical team directly.</div>
 
       <div class="contact-grid">
 
@@ -671,7 +698,7 @@
           <div class="contact-icon" aria-hidden="true">📞</div>
           <div class="contact-info">
             <small>Developer</small>
-            <strong>7355176870</strong>
+            <strong>9811880792</strong>
           </div>
         </a>
 
@@ -679,12 +706,11 @@
 
     </section>
 
-    <!-- Footer -->
     <div class="footer">
       <strong>Vanasthali Public School</strong>
       <span class="sep">•</span>
       Vasundhara Sector-3
-      <br style="margin-top:6px;">
+      <br>
       © 2026 — All rights reserved
     </div>
 
@@ -692,20 +718,9 @@
 
 
   <script>
-    /* ============================================================
-       Tiny extras — page already works without this
-       ============================================================ */
-
-    // Prevent accidental back-button cache from showing old page
     window.addEventListener("pageshow", (e) => {
       if (e.persisted) window.location.reload();
     });
-
-    // Auto-refresh every 60 seconds to check if portal went live
-    // Comment out if not needed
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 60000);
   </script>
 
 </body>
