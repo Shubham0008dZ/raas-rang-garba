@@ -1,7 +1,6 @@
 /* =====================================================
    RAAS RANG - INDEX.CSS
-   Gender selector + Premium header nav + Social sidebar
-   + macOS-style Genie Terms Modal (orange / gold / pink theme)
+   Gender selector + Social sidebar + Smooth Modal
    ===================================================== */
 
 /* ========== GENDER OPTIONS ========== */
@@ -111,7 +110,7 @@
 }
 
 /* =====================================================
-   ✦ SOCIAL SIDEBAR (desktop: vertical left)
+   ✦ SOCIAL SIDEBAR
    ===================================================== */
 
 .social-sidebar {
@@ -248,7 +247,6 @@
   box-shadow: 0 0 0 4px rgba(255, 138, 42, .35);
 }
 
-/* Brand glows */
 .social-icon.youtube:hover {
   background: linear-gradient(135deg, #ff3d3d, #b30000);
   border-color: rgba(255, 90, 90, .55);
@@ -286,7 +284,6 @@
   background: radial-gradient(circle, rgba(214, 41, 118, .7), transparent 70%);
 }
 
-/* Terms & Support icon — site theme (pink → orange) instead of green */
 .social-icon.pages:hover {
   background: linear-gradient(135deg, var(--pink), var(--orange));
   border-color: rgba(255, 127, 154, .55);
@@ -300,17 +297,11 @@
 }
 
 /* =====================================================
-   ✦ TERMS MODAL — real macOS "Genie" open / close
-
-   How it works
-   - JS sets  --origin  (transform-origin) = centre of the pages icon.
-   - Panel is squeezed with transform: scale(...) toward that point
-     AND clipped with a curved funnel polygon (clip-path) whose narrow
-     tip points at the icon  → that is the genie "pinch".
-   - Open and close are the same transition in opposite directions,
-     so both look identical (reverse of each other), like macOS.
-   - Desktop: the icon is on the LEFT  → horizontal genie.
-   - Mobile (<=600px): the icon is at the BOTTOM → vertical genie.
+   ✦ TERMS MODAL — Smooth open / close
+   Simple, GPU-friendly:
+     - scale from icon origin (var --origin from JS)
+     - opacity fade
+     - duration ~340ms — snappy, works on all devices
    ===================================================== */
 
 .pages-modal {
@@ -322,8 +313,8 @@
   padding: 24px;
   visibility: hidden;
   pointer-events: none;
-  /* stay visible while the close animation is playing, then hide */
-  transition: visibility 0s linear .66s;
+  /* wait out the close duration before hiding */
+  transition: visibility 0s linear .38s;
 }
 
 .pages-modal.open {
@@ -336,67 +327,27 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 12% 20%, rgba(255, 138, 42, .16), transparent 38%),
-    radial-gradient(circle at 90% 85%, rgba(243, 74, 114, .14), transparent 40%),
-    rgba(8, 4, 12, .74);
+    radial-gradient(circle at 12% 20%, rgba(255, 138, 42, .14), transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(243, 74, 114, .12), transparent 42%),
+    rgba(8, 4, 12, .72);
   opacity: 0;
-  backdrop-filter: blur(0px) saturate(1);
-  -webkit-backdrop-filter: blur(0px) saturate(1);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   transition:
-    opacity .5s ease .1s,
-    backdrop-filter .6s ease .1s,
-    -webkit-backdrop-filter .6s ease .1s;
+    opacity .3s ease,
+    backdrop-filter .35s ease,
+    -webkit-backdrop-filter .35s ease;
 }
 
 .pages-modal.open .pages-backdrop {
   opacity: 1;
-  backdrop-filter: blur(16px) saturate(1.15);
-  -webkit-backdrop-filter: blur(16px) saturate(1.15);
-  transition-delay: 0s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* ---------- Panel ---------- */
 
 .pages-panel {
-  /* Funnel shapes (12 points each, same count so they can animate).
-     E = extra margin so the box-shadow is never cut when fully open. */
-  --E: 180px;
-
-  /* OPEN = full rectangle (with shadow margin) */
-  --genie-open: polygon(
-    calc(-1 * var(--E)) calc(-1 * var(--E)),
-    20% calc(-1 * var(--E)),
-    40% calc(-1 * var(--E)),
-    60% calc(-1 * var(--E)),
-    80% calc(-1 * var(--E)),
-    calc(100% + var(--E)) calc(-1 * var(--E)),
-    calc(100% + var(--E)) calc(100% + var(--E)),
-    80% calc(100% + var(--E)),
-    60% calc(100% + var(--E)),
-    40% calc(100% + var(--E)),
-    20% calc(100% + var(--E)),
-    calc(-1 * var(--E)) calc(100% + var(--E))
-  );
-
-  /* CLOSED (desktop) = horizontal funnel, tip on the LEFT (towards sidebar) */
-  --genie-closed: polygon(
-    0% 50%,
-    8% 47%,
-    25% 38%,
-    50% 16%,
-    78% 3%,
-    100% 0%,
-    100% 100%,
-    78% 97%,
-    50% 84%,
-    25% 62%,
-    8% 53%,
-    0% 50%
-  );
-
-  /* squeeze towards the icon (origin comes from JS) */
-  --genie-scale: scale(0.03, 0.42);
-
   position: relative;
   width: min(760px, 100%);
   height: min(86vh, 820px);
@@ -416,32 +367,24 @@
     0 0 0 1px rgba(255, 138, 42, .08),
     inset 0 1px 0 rgba(255, 255, 255, .07);
 
+  /* Origin set by JS = icon centre → panel appears to grow from the icon */
   transform-origin: var(--origin, 50% 50%);
-  transform: var(--genie-scale);
-  clip-path: var(--genie-closed);
+  transform: scale(.7);
   opacity: 0;
-  will-change: transform, clip-path, opacity;
 
-  /* CLOSING: accelerates into the icon, fades only at the very end */
+  /* Only transform + opacity → fastest path on every device */
   transition:
-    transform .99s cubic-bezier(.55, .05, .3, 1),
-    clip-path .99s cubic-bezier(.45, .0, .25, 1),
-    opacity .18s ease .44s;
+    transform .34s cubic-bezier(.22, 1, .36, 1),
+    opacity .28s ease;
+  will-change: transform, opacity;
 }
 
 .pages-modal.open .pages-panel {
-  transform: none;
-  clip-path: var(--genie-open);
+  transform: scale(1);
   opacity: 1;
-
-  /* OPENING: flows out of the icon */
-  transition:
-    transform .99s cubic-bezier(.2, .8, .25, 1),
-    clip-path .99s cubic-bezier(.22, .9, .3, 1),
-    opacity .12s ease 0s;
 }
 
-/* gradient accent line on top (same as login card) */
+/* gradient accent line on top */
 .pages-panel::before {
   content: "";
   position: absolute;
@@ -520,7 +463,7 @@
     0 0 14px rgba(255, 189, 46, .55);
 }
 
-/* ---------- Scroll area (content fades in after the genie lands) ---------- */
+/* ---------- Scroll area ---------- */
 
 .pages-scroll {
   flex: 1 1 auto;
@@ -531,16 +474,16 @@
   scrollbar-color: rgba(255, 255, 255, .14) transparent;
 
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .16s ease, transform .2s ease;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .25s ease;
 }
 
 .pages-modal.open .pages-scroll {
   opacity: 1;
   transform: translateY(0);
   transition:
-    opacity .4s ease .2s,
-    transform .5s cubic-bezier(.22, 1, .36, 1) .2s;
+    opacity .35s ease .1s,
+    transform .4s cubic-bezier(.22, 1, .36, 1) .1s;
 }
 
 .pages-scroll::-webkit-scrollbar { width: 8px; }
@@ -690,10 +633,7 @@
   font-weight: 800;
 }
 
-.pages-section strong {
-  color: #fff;
-  font-weight: 700;
-}
+.pages-section strong { color: #fff; font-weight: 700; }
 
 .pages-note {
   margin: 16px 0 18px;
@@ -841,7 +781,6 @@ body.pages-locked { overflow: hidden; }
 }
 
 @media (max-width: 600px) {
-  /* Sidebar becomes bottom bar */
   .social-sidebar {
     left: 50%;
     top: auto;
@@ -866,31 +805,12 @@ body.pages-locked { overflow: hidden; }
   body { padding-bottom: 82px; }
   .toast-container { bottom: 84px; }
 
-  /* Modal — full-width */
   .pages-modal { padding: 12px; }
 
   .pages-panel {
     width: 100%;
     height: 88vh;
     border-radius: 20px;
-
-    /* CLOSED (mobile) = vertical funnel, tip at the BOTTOM (towards the bar) */
-    --genie-closed: polygon(
-      0% 0%,
-      3% 20%,
-      12% 45%,
-      30% 70%,
-      45% 90%,
-      50% 100%,
-      50% 100%,
-      55% 90%,
-      70% 70%,
-      88% 45%,
-      97% 20%,
-      100% 0%
-    );
-
-    --genie-scale: scale(0.42, 0.03);
   }
 
   .mac-dot {
@@ -915,7 +835,10 @@ body.pages-locked { overflow: hidden; }
   .pages-meta span { font-size: 9px; padding: 5px 9px; }
 }
 
-/* Reduced motion: simple fade instead of genie */
+/* =====================================================
+   ✦ REDUCED MOTION
+   ===================================================== */
+
 @media (prefers-reduced-motion: reduce) {
   .social-sidebar,
   .social-icon,
@@ -925,7 +848,6 @@ body.pages-locked { overflow: hidden; }
   .gender-option,
   .gender-option .radio-dot,
   .gender-option .radio-dot::after,
-  .pages-modal,
   .pages-panel,
   .pages-scroll,
   .pages-backdrop,
@@ -937,12 +859,6 @@ body.pages-locked { overflow: hidden; }
 
   .pages-panel,
   .pages-modal.open .pages-panel {
-    transform: none !important;
-    clip-path: none !important;
-  }
-
-  .pages-scroll,
-  .pages-modal.open .pages-scroll {
     transform: none !important;
   }
 }
