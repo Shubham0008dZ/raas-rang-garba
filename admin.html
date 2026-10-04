@@ -1062,14 +1062,18 @@
 
     .status.pending {
 
-      color:
-        #ffdc99;
+      .status.not-submitted {
+        color: #8a5200;
+        background: rgba(255, 204, 91, .06);
+        border: 1px solid rgba(255, 204, 91, .15);
+        opacity: .85;
+      }
 
-      background:
-        rgba(255, 204, 91, .07);
+      color: #ffdc99;
 
-      border:
-        1px solid rgba(255, 204, 91, .1);
+      background: rgba(255, 204, 91, .07);
+
+      border: 1px solid rgba(255, 204, 91, .1);
 
     }
 
@@ -2418,23 +2422,11 @@
 
 
         <select class="select" id="paymentFilter">
-
-          <option value="all">
-            All Payments
-          </option>
-
-          <option value="pending">
-            Pending
-          </option>
-
-          <option value="verified">
-            Verified
-          </option>
-
-          <option value="rejected">
-            Rejected
-          </option>
-
+          <option value="all">All Payments</option>
+          <option value="not_submitted">Not Submitted</option>
+          <option value="pending">Pending (Under Review)</option>
+          <option value="verified">Verified</option>
+          <option value="rejected">Rejected</option>
         </select>
 
 
@@ -3736,12 +3728,10 @@
         );
 
 
-      const paymentStatus =
-        normalizeStatus(
-          registration.payment_status ||
-          registration.paymentStatus ||
-          "pending"
-        );
+      const hasPaymentRow = registration.payment_status || registration.paymentStatus;
+      const paymentStatus = hasPaymentRow
+        ? normalizeStatus(hasPaymentRow)
+        : "not_submitted";
 
 
       const qrStatus =
@@ -3910,44 +3900,17 @@
        STATUS BADGES
     ======================================================= */
 
-    function statusBadge(
-      status
-    ) {
-
-      if (
-        status ===
-        "verified"
-      ) {
-
-        return `
-          <span class="status verified">
-            ● Verified
-          </span>
-        `;
-
+    function statusBadge(status) {
+      if (status === "verified") {
+        return `<span class="status verified">● Verified</span>`;
       }
-
-
-      if (
-        status ===
-        "rejected"
-      ) {
-
-        return `
-          <span class="status rejected">
-            ● Rejected
-          </span>
-        `;
-
+      if (status === "rejected") {
+        return `<span class="status rejected">● Rejected</span>`;
       }
-
-
-      return `
-        <span class="status pending">
-          ● Pending
-        </span>
-      `;
-
+      if (status === "not_submitted") {
+        return `<span class="status not-submitted">● Not Submitted</span>`;
+      }
+      return `<span class="status pending">● Pending</span>`;
     }
 
 
@@ -4090,12 +4053,10 @@
         );
 
 
-      const paymentStatus =
-        normalizeStatus(
-          registration.payment_status ||
-          registration.paymentStatus ||
-          "pending"
-        );
+      const hasPaymentRow = registration.payment_status || registration.paymentStatus;
+      const paymentStatus = hasPaymentRow
+        ? normalizeStatus(hasPaymentRow)
+        : "not_submitted";
 
 
       const qrStatus =
@@ -4285,8 +4246,7 @@
 
 
       const paymentPending =
-        !verified &&
-        !rejected;
+        paymentStatus === "pending";
 
 
       const grantBtn =
