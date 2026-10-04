@@ -1001,7 +1001,7 @@
         <select class="select" id="paymentFilter">
           <option value="all">All Payments</option>
           <option value="not_submitted">Not Submitted</option>
-          <option value="pending">Pending (Under Review)</option>
+          <option value="pending">Awaiting Verification</option>
           <option value="verified">Verified</option>
           <option value="rejected">Rejected</option>
         </select>
@@ -1488,7 +1488,7 @@
       if (status === "verified") return `<span class="status verified">● Verified</span>`;
       if (status === "rejected") return `<span class="status rejected">● Rejected</span>`;
       if (status === "not_submitted") return `<span class="status not-submitted">● Not Submitted</span>`;
-      return `<span class="status pending">● Pending</span>`;
+      return `<span class="status pending">● Awaiting Verification</span>`;
     }
 
     function qrBadge(status, paymentStatus) {
@@ -1564,7 +1564,17 @@
       setText("#drawerGroupSize", participantCount);
       setText("#drawerAmount", amount ? "₹" + amount : "—");
       setText("#drawerUTR", registration.utr || "—");
-      setText("#drawerPaymentStatus", capitalize(paymentStatus));
+
+      
+const paymentLabelMap = {
+  "not_submitted": "Not Submitted",
+  "pending": "Awaiting Verification",
+  "verified": "Verified",
+  "rejected": "Rejected"
+};
+setText("#drawerPaymentStatus", paymentLabelMap[paymentStatus] || capitalize(paymentStatus));
+
+      
       setText("#drawerQrStatus", capitalize(qrStatus));
 
       /* BUTTON STATES */
