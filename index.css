@@ -1,6 +1,7 @@
 /* =====================================================
    RAAS RANG - INDEX.CSS
-   Gender selector — light auth card ke liye
+   Gender selector + Premium header nav + Social sidebar
+   + macOS-style Genie Terms Modal (orange / gold / pink theme)
    ===================================================== */
 
 /* ========== GENDER OPTIONS ========== */
@@ -31,7 +32,6 @@
   box-shadow: 0 4px 12px rgba(42, 15, 69, .06);
 }
 
-/* Hide native radio input */
 .gender-option input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -40,7 +40,6 @@
   pointer-events: none;
 }
 
-/* Custom radio circle */
 .gender-option .radio-dot {
   position: relative;
   width: 20px;
@@ -67,7 +66,6 @@
   box-shadow: 0 0 8px rgba(255, 61, 139, .6);
 }
 
-/* Hover state — text stays dark, border glows */
 .gender-option:hover {
   border-color: #ff3d8b;
   background: linear-gradient(135deg, #fff7fb, #fff0f5);
@@ -81,7 +79,6 @@
   background: #fff0f5;
 }
 
-/* Selected state */
 .gender-option input[type="radio"]:checked ~ .radio-dot {
   border-color: #ff3d8b;
   background: #ffe4ee;
@@ -92,7 +89,6 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Whole card highlight when selected */
 .gender-option:has(input[type="radio"]:checked) {
   border-color: #ff3d8b;
   background: linear-gradient(135deg, #ffe4ee, #fff3c9);
@@ -102,41 +98,851 @@
     0 10px 24px rgba(255, 61, 139, .25);
 }
 
-/* Focus ring (keyboard) */
 .gender-option:focus-within {
   border-color: #ff3d8b;
   box-shadow: 0 0 0 4px rgba(255, 61, 139, .22);
 }
 
-/* ========== MOBILE ========== */
 @media (max-width: 480px) {
-  .gender-options {
-    gap: 10px;
-  }
-
-  .gender-option {
-    padding: 14px 10px;
-    gap: 8px;
-    font-size: 13px;
-  }
-
-  .gender-option .radio-dot {
-    width: 18px;
-    height: 18px;
-    flex: 0 0 18px;
-  }
-
-  .gender-option .radio-dot::after {
-    width: 9px;
-    height: 9px;
-  }
+  .gender-options { gap: 10px; }
+  .gender-option { padding: 14px 10px; gap: 8px; font-size: 13px; }
+  .gender-option .radio-dot { width: 18px; height: 18px; flex: 0 0 18px; }
+  .gender-option .radio-dot::after { width: 9px; height: 9px; }
 }
 
-/* ========== REDUCED MOTION ========== */
+/* =====================================================
+   ✦ SOCIAL SIDEBAR (desktop: vertical left)
+   ===================================================== */
+
+.social-sidebar {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 10px;
+  border-radius: 999px;
+  background: rgba(13, 9, 17, .58);
+  border: 1px solid rgba(255, 255, 255, .09);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, .45),
+    inset 0 1px 0 rgba(255, 255, 255, .05);
+  animation: sidebar-in .9s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes sidebar-in {
+  from { opacity: 0; transform: translateY(-50%) translateX(-24px); }
+  to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+.social-sidebar::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg,
+      rgba(255, 216, 122, .45),
+      rgba(243, 74, 114, .22),
+      rgba(255, 138, 42, .38));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: .55;
+  transition: opacity .4s ease;
+}
+
+.social-sidebar:hover::before { opacity: 1; }
+
+.social-icon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #d9d1de;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .08);
+  text-decoration: none;
+  isolation: isolate;
+  transition:
+    transform .35s cubic-bezier(.34, 1.56, .64, 1),
+    color .3s ease,
+    background .3s ease,
+    border-color .3s ease,
+    box-shadow .35s ease;
+}
+
+.social-icon svg {
+  width: 19px;
+  height: 19px;
+  position: relative;
+  z-index: 1;
+  transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.social-icon::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(255, 138, 42, .55), transparent 70%);
+  opacity: 0;
+  filter: blur(9px);
+  transition: opacity .35s ease;
+  z-index: 0;
+}
+
+.social-icon:hover::before { opacity: 1; }
+
+.social-icon:hover {
+  transform: translateY(-3px) scale(1.08);
+  color: #ffffff;
+  border-color: rgba(255, 216, 122, .45);
+  box-shadow:
+    0 12px 28px rgba(255, 138, 42, .3),
+    0 0 0 4px rgba(255, 138, 42, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .15);
+}
+
+.social-icon:hover svg { transform: scale(1.1); }
+.social-icon:active { transform: translateY(-1px) scale(1.02); }
+
+.social-icon::after {
+  content: attr(data-label);
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  padding: 7px 12px;
+  border-radius: 9px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .4px;
+  color: #fff;
+  background: rgba(13, 9, 17, .95);
+  border: 1px solid rgba(255, 216, 122, .25);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .5);
+  z-index: 2;
+}
+
+.social-icon:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.social-icon:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 138, 42, .35);
+}
+
+/* Brand glows */
+.social-icon.youtube:hover {
+  background: linear-gradient(135deg, #ff3d3d, #b30000);
+  border-color: rgba(255, 90, 90, .55);
+  box-shadow: 0 12px 30px rgba(255, 61, 61, .38), 0 0 0 4px rgba(255, 61, 61, .08);
+}
+.social-icon.youtube::before {
+  background: radial-gradient(circle, rgba(255, 61, 61, .65), transparent 70%);
+}
+
+.social-icon.website:hover {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #1a1108;
+  border-color: rgba(255, 216, 122, .6);
+  box-shadow: 0 12px 30px rgba(255, 138, 42, .45), 0 0 0 4px rgba(255, 138, 42, .1);
+}
+.social-icon.website::before {
+  background: radial-gradient(circle, rgba(255, 216, 122, .7), transparent 70%);
+}
+
+.social-icon.facebook:hover {
+  background: linear-gradient(135deg, #4a7dff, #185adb);
+  border-color: rgba(90, 140, 255, .55);
+  box-shadow: 0 12px 30px rgba(74, 125, 255, .4), 0 0 0 4px rgba(74, 125, 255, .08);
+}
+.social-icon.facebook::before {
+  background: radial-gradient(circle, rgba(74, 125, 255, .65), transparent 70%);
+}
+
+.social-icon.instagram:hover {
+  background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  border-color: rgba(214, 41, 118, .55);
+  box-shadow: 0 12px 30px rgba(214, 41, 118, .45), 0 0 0 4px rgba(214, 41, 118, .08);
+}
+.social-icon.instagram::before {
+  background: radial-gradient(circle, rgba(214, 41, 118, .7), transparent 70%);
+}
+
+/* Terms & Support icon — site theme (pink → orange) instead of green */
+.social-icon.pages:hover {
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  border-color: rgba(255, 127, 154, .55);
+  color: #fff;
+  box-shadow:
+    0 12px 30px rgba(243, 74, 114, .42),
+    0 0 0 4px rgba(243, 74, 114, .09);
+}
+.social-icon.pages::before {
+  background: radial-gradient(circle, rgba(243, 74, 114, .65), transparent 70%);
+}
+
+/* =====================================================
+   ✦ TERMS MODAL — real macOS "Genie" open / close
+
+   How it works
+   - JS sets  --origin  (transform-origin) = centre of the pages icon.
+   - Panel is squeezed with transform: scale(...) toward that point
+     AND clipped with a curved funnel polygon (clip-path) whose narrow
+     tip points at the icon  → that is the genie "pinch".
+   - Open and close are the same transition in opposite directions,
+     so both look identical (reverse of each other), like macOS.
+   - Desktop: the icon is on the LEFT  → horizontal genie.
+   - Mobile (<=600px): the icon is at the BOTTOM → vertical genie.
+   ===================================================== */
+
+.pages-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  visibility: hidden;
+  pointer-events: none;
+  /* stay visible while the close animation is playing, then hide */
+  transition: visibility 0s linear .66s;
+}
+
+.pages-modal.open {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.pages-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 138, 42, .16), transparent 38%),
+    radial-gradient(circle at 90% 85%, rgba(243, 74, 114, .14), transparent 40%),
+    rgba(8, 4, 12, .74);
+  opacity: 0;
+  backdrop-filter: blur(0px) saturate(1);
+  -webkit-backdrop-filter: blur(0px) saturate(1);
+  transition:
+    opacity .5s ease .1s,
+    backdrop-filter .6s ease .1s,
+    -webkit-backdrop-filter .6s ease .1s;
+}
+
+.pages-modal.open .pages-backdrop {
+  opacity: 1;
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  transition-delay: 0s;
+}
+
+/* ---------- Panel ---------- */
+
+.pages-panel {
+  /* Funnel shapes (12 points each, same count so they can animate).
+     E = extra margin so the box-shadow is never cut when fully open. */
+  --E: 180px;
+
+  /* OPEN = full rectangle (with shadow margin) */
+  --genie-open: polygon(
+    calc(-1 * var(--E)) calc(-1 * var(--E)),
+    20% calc(-1 * var(--E)),
+    40% calc(-1 * var(--E)),
+    60% calc(-1 * var(--E)),
+    80% calc(-1 * var(--E)),
+    calc(100% + var(--E)) calc(-1 * var(--E)),
+    calc(100% + var(--E)) calc(100% + var(--E)),
+    80% calc(100% + var(--E)),
+    60% calc(100% + var(--E)),
+    40% calc(100% + var(--E)),
+    20% calc(100% + var(--E)),
+    calc(-1 * var(--E)) calc(100% + var(--E))
+  );
+
+  /* CLOSED (desktop) = horizontal funnel, tip on the LEFT (towards sidebar) */
+  --genie-closed: polygon(
+    0% 50%,
+    8% 47%,
+    25% 38%,
+    50% 16%,
+    78% 3%,
+    100% 0%,
+    100% 100%,
+    78% 97%,
+    50% 84%,
+    25% 62%,
+    8% 53%,
+    0% 50%
+  );
+
+  /* squeeze towards the icon (origin comes from JS) */
+  --genie-scale: scale(0.03, 0.42);
+
+  position: relative;
+  width: min(760px, 100%);
+  height: min(86vh, 820px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  background:
+    radial-gradient(circle at 50% -6%, rgba(255, 216, 122, .16), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgba(255, 138, 42, .14), transparent 42%),
+    radial-gradient(circle at 100% 88%, rgba(243, 74, 114, .13), transparent 46%),
+    linear-gradient(180deg, #1c1322, #0f0a14);
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, .78),
+    0 0 0 1px rgba(255, 138, 42, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+
+  transform-origin: var(--origin, 50% 50%);
+  transform: var(--genie-scale);
+  clip-path: var(--genie-closed);
+  opacity: 0;
+  will-change: transform, clip-path, opacity;
+
+  /* CLOSING: accelerates into the icon, fades only at the very end */
+  transition:
+    transform .99s cubic-bezier(.55, .05, .3, 1),
+    clip-path .99s cubic-bezier(.45, .0, .25, 1),
+    opacity .18s ease .44s;
+}
+
+.pages-modal.open .pages-panel {
+  transform: none;
+  clip-path: var(--genie-open);
+  opacity: 1;
+
+  /* OPENING: flows out of the icon */
+  transition:
+    transform .99s cubic-bezier(.2, .8, .25, 1),
+    clip-path .99s cubic-bezier(.22, .9, .3, 1),
+    opacity .12s ease 0s;
+}
+
+/* gradient accent line on top (same as login card) */
+.pages-panel::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #ffd978, #ff5e93, transparent);
+  opacity: .85;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ---------- Mac minimize dot ---------- */
+
+.mac-dot {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ffbd2e;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, .35),
+    inset 0 -1px 1px rgba(0, 0, 0, .18),
+    inset 0 1px 1px rgba(255, 255, 255, .28);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  transition:
+    transform .2s cubic-bezier(.22, 1, .36, 1),
+    filter .2s ease,
+    box-shadow .25s ease;
+}
+
+.mac-dot:hover {
+  transform: scale(1.15);
+  filter: brightness(1.06);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, .38),
+    0 0 14px rgba(255, 189, 46, .55),
+    inset 0 -1px 1px rgba(0, 0, 0, .2),
+    inset 0 1px 1px rgba(255, 255, 255, .3);
+}
+
+.mac-dot:active { transform: scale(.95); }
+
+.mac-dot-icon {
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(0, 0, 0, .68);
+  margin-top: -1px;
+  opacity: 0;
+  transform: scale(.7);
+  transition:
+    opacity .18s ease,
+    transform .22s cubic-bezier(.22, 1, .36, 1);
+  user-select: none;
+}
+
+.mac-dot:hover .mac-dot-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mac-dot:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 189, 46, .45),
+    0 0 14px rgba(255, 189, 46, .55);
+}
+
+/* ---------- Scroll area (content fades in after the genie lands) ---------- */
+
+.pages-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 52px 40px 40px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .14) transparent;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .16s ease, transform .2s ease;
+}
+
+.pages-modal.open .pages-scroll {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity .4s ease .2s,
+    transform .5s cubic-bezier(.22, 1, .36, 1) .2s;
+}
+
+.pages-scroll::-webkit-scrollbar { width: 8px; }
+.pages-scroll::-webkit-scrollbar-track { background: transparent; }
+.pages-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .14);
+  border-radius: 4px;
+}
+.pages-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, .22);
+}
+
+/* ---------- Header ---------- */
+
+.pages-header {
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  margin-bottom: 28px;
+}
+
+.pages-eyebrow {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: #ffd5a4;
+  background: rgba(255, 138, 42, .10);
+  border: 1px solid rgba(255, 138, 42, .28);
+}
+
+.pages-heading {
+  margin: 14px 0 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(26px, 3.6vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+.pages-heading span {
+  color: transparent;
+  background: linear-gradient(90deg, #ffffff, #ffdc8b 45%, #ff8299);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pages-sub {
+  margin: 12px 0 0;
+  max-width: 580px;
+  color: #b9b1bd;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.pages-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pages-meta span {
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #e2dae6;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .09);
+}
+
+/* ---------- Sections ---------- */
+
+.pages-section {
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, .055);
+}
+
+.pages-section:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.pages-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -.2px;
+  color: #fff;
+}
+
+.pages-section h3::before {
+  content: "";
+  width: 4px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ffd87a, #ff8a2a, #f34a72);
+  box-shadow: 0 0 14px rgba(255, 138, 42, .55);
+}
+
+.pages-section h4 {
+  margin: 18px 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: #ffd5a4;
+  text-transform: uppercase;
+}
+
+.pages-section p {
+  margin: 0 0 12px;
+  color: #cbc3d0;
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+.pages-section ul {
+  margin: 8px 0 14px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pages-section li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+  color: #cbc3d0;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.pages-section li::before {
+  content: "▸";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  color: #ff8a2a;
+  font-weight: 800;
+}
+
+.pages-section strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.pages-note {
+  margin: 16px 0 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border-left: 3px solid #ffd87a;
+  background: linear-gradient(90deg, rgba(255, 216, 122, .09), rgba(255, 138, 42, .035));
+  font-size: 12px;
+  line-height: 1.7;
+  color: #e8dfeb;
+}
+
+.pages-note.danger {
+  border-left-color: #ff6579;
+  background: linear-gradient(90deg, rgba(255, 101, 121, .10), rgba(255, 101, 121, .03));
+}
+
+.pages-note strong { color: #ffd87a; }
+.pages-note.danger strong { color: #ffadbb; }
+
+/* ---------- Support cards ---------- */
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 16px 0 6px;
+}
+
+.support-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  background: rgba(255, 255, 255, .035);
+  transition: all .3s cubic-bezier(.22, 1, .36, 1);
+  overflow: hidden;
+}
+
+.support-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 138, 42, .12), transparent 60%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+
+.support-card:hover {
+  border-color: rgba(255, 216, 122, .32);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .38);
+}
+
+.support-card:hover::before { opacity: 1; }
+
+.support-role {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+  color: #ffd5a4;
+  background: rgba(255, 138, 42, .10);
+  border: 1px solid rgba(255, 138, 42, .28);
+}
+
+.support-card h4 {
+  margin: 10px 0 4px;
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: -.1px;
+  text-transform: none;
+}
+
+.support-card p {
+  margin: 0 0 12px;
+  color: #8b8494;
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.support-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, .11);
+  background: rgba(255, 255, 255, .05);
+  transition: all .22s ease;
+}
+
+.support-btn:hover {
+  border-color: rgba(255, 216, 122, .4);
+  background: rgba(255, 216, 122, .10);
+  transform: translateY(-1px);
+}
+
+.support-btn svg {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+}
+
+body.pages-locked { overflow: hidden; }
+
+/* =====================================================
+   ✦ RESPONSIVE — sidebar + modal
+   ===================================================== */
+
+@media (max-width: 1100px) {
+  .social-sidebar {
+    left: 12px;
+    padding: 12px 8px;
+    gap: 10px;
+  }
+  .social-icon { width: 38px; height: 38px; }
+  .social-icon svg { width: 17px; height: 17px; }
+}
+
+@media (max-width: 900px) {
+  .social-sidebar {
+    left: 10px;
+    padding: 10px 8px;
+    gap: 8px;
+  }
+  .social-icon { width: 36px; height: 36px; }
+  .social-icon svg { width: 16px; height: 16px; }
+}
+
+@media (max-width: 600px) {
+  /* Sidebar becomes bottom bar */
+  .social-sidebar {
+    left: 50%;
+    top: auto;
+    bottom: 14px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    padding: 8px 12px;
+    gap: 10px;
+    animation: none;
+    border-radius: 999px;
+    z-index: 95;
+    background: rgba(13, 9, 17, .78);
+  }
+
+  .social-sidebar::before { opacity: .65; }
+
+  .social-icon { width: 40px; height: 40px; }
+  .social-icon svg { width: 18px; height: 18px; }
+  .social-icon::after { display: none; }
+  .social-icon:hover { transform: translateY(-2px) scale(1.06); }
+
+  body { padding-bottom: 82px; }
+  .toast-container { bottom: 84px; }
+
+  /* Modal — full-width */
+  .pages-modal { padding: 12px; }
+
+  .pages-panel {
+    width: 100%;
+    height: 88vh;
+    border-radius: 20px;
+
+    /* CLOSED (mobile) = vertical funnel, tip at the BOTTOM (towards the bar) */
+    --genie-closed: polygon(
+      0% 0%,
+      3% 20%,
+      12% 45%,
+      30% 70%,
+      45% 90%,
+      50% 100%,
+      50% 100%,
+      55% 90%,
+      70% 70%,
+      88% 45%,
+      97% 20%,
+      100% 0%
+    );
+
+    --genie-scale: scale(0.42, 0.03);
+  }
+
+  .mac-dot {
+    top: 12px;
+    left: 12px;
+    width: 14px;
+    height: 14px;
+  }
+  .mac-dot-icon { font-size: 10px; }
+
+  .pages-scroll { padding: 44px 20px 24px; }
+
+  .pages-heading { font-size: 24px; letter-spacing: -.6px; }
+  .pages-sub { font-size: 11.5px; }
+
+  .pages-section h3 { font-size: 16px; gap: 9px; }
+  .pages-section h3::before { height: 15px; width: 3px; }
+  .pages-section p,
+  .pages-section li { font-size: 11.5px; }
+
+  .support-grid { grid-template-columns: 1fr; }
+  .pages-meta span { font-size: 9px; padding: 5px 9px; }
+}
+
+/* Reduced motion: simple fade instead of genie */
 @media (prefers-reduced-motion: reduce) {
+  .social-sidebar,
+  .social-icon,
+  .social-icon svg,
+  .social-icon::before,
+  .social-icon::after,
   .gender-option,
   .gender-option .radio-dot,
-  .gender-option .radio-dot::after {
-    transition: none !important;
+  .gender-option .radio-dot::after,
+  .pages-modal,
+  .pages-panel,
+  .pages-scroll,
+  .pages-backdrop,
+  .mac-dot,
+  .mac-dot-icon {
+    animation: none !important;
+    transition: opacity .2s ease !important;
+  }
+
+  .pages-panel,
+  .pages-modal.open .pages-panel {
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .pages-scroll,
+  .pages-modal.open .pages-scroll {
+    transform: none !important;
   }
 }
