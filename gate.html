@@ -1795,7 +1795,11 @@
 
       const gateNumber = Number(profile.gate_number);
 
-      if (!Number.isInteger(gateNumber) || ![1, 2].includes(gateNumber)) {
+if (!Number.isInteger(gateNumber) || gateNumber < 1 || gateNumber > 20) {
+
+
+
+        
         throw new Error("Gate number is not configured correctly.");
       }
 
