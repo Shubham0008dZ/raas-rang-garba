@@ -1491,10 +1491,11 @@
       return `<span class="status pending">● Pending</span>`;
     }
 
-    function qrBadge(status) {
+    function qrBadge(status, paymentStatus) {
       if (status === "active") return `<span class="status active">● QR Active</span>`;
       if (status === "used") return `<span class="status used">● Checked In</span>`;
       if (status === "revoked") return `<span class="status rejected">● Revoked</span>`;
+      if (paymentStatus === "rejected") return `<span class="status rejected">● Payment Rejected</span>`;
       return `<span class="status pending">● Permission Pending</span>`;
     }
 
