@@ -1468,7 +1468,7 @@
         <td><span class="primary-text">${amount ? "₹" + amount : "—"}</span></td>
         <td>${statusBadge(paymentStatus)}</td>
         <td><span class="secondary-text">${escapeHtml(utr)}</span></td>
-        <td>${qrBadge(qrStatus)}</td>
+<td>${qrBadge(qrStatus, paymentStatus)}</td>
         <td><span class="secondary-text">${escapeHtml(createdAt)}</span></td>
         <td>
           <div class="action-row">
