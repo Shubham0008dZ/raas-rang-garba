@@ -1719,12 +1719,25 @@
       setLoading(button, "Processing...");
 
       try {
-        const { data, error } = await invokeFunction(CONFIG.FUNCTIONS.ACTION, {
-          action,
-          registrationId: registration.id,
-          note: $("#adminNote").value.trim().slice(0, 500),
-          idempotencyKey: crypto.randomUUID()
-        });
+        const note = $("#adminNote").value.trim().slice(0, 500);
+        let rpcCall;
+        if (action === "verify_payment") {
+          rpcCall = state.supabase.rpc("admin_verify_payment", { p_registration_id: registration.id });
+        } else if (action === "reject_payment") {
+          rpcCall = state.supabase.rpc("admin_reject_payment", { p_registration_id: registration.id, p_note: note });
+        } else if (action === "grant_entry") {
+          rpcCall = state.supabase.rpc("admin_grant_entry", { p_registration_id: registration.id });
+        } else if (action === "revoke_entry") {
+          rpcCall = state.supabase.rpc("admin_revoke_entry", { p_registration_id: registration.id });
+        } else {
+          throw new Error("Invalid action");
+        }
+
+        const { data: rpcResult, error } = await rpcCall;
+        const data = rpcResult ? {
+          success: rpcResult.success === true,
+          message: rpcResult.message || "Action completed successfully."
+        } : null;
 
         if (error) throw await normalizeFunctionError(error);
 
