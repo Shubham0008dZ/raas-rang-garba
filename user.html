@@ -16,7 +16,7 @@
     rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
 
   <style>
     :root {
@@ -1582,8 +1582,10 @@
                   </div>
                   <div class="instruction">
                     <div class="instruction-num">2</div>
+
                     <div><strong>Save Payment Proof</strong><span>Keep a clear JPG / JPEG screenshot of the successful
                         transaction.</span></div>
+
                   </div>
                   <div class="instruction">
                     <div class="instruction-num">3</div>
@@ -1594,10 +1596,10 @@
 
                 <form id="paymentForm" novalidate>
 
-                  <!-- JPG/JPEG only, 15 MB max upload, auto-compressed to <500 KB -->
+                  <!-- Any image format, 15 MB max upload, auto-compressed to <500 KB -->
                   <div class="field" style="margin-top:18px;">
                     <label for="paymentProof">Payment Screenshot (JPG / JPEG only)</label>
-                    <input class="file-input" id="paymentProof" type="file" accept=".jpg,.jpeg,image/jpeg">
+                    <input class="file-input" id="paymentProof" type="file" accept="image/*">
                     <div class="help">Upload up to 15 MB.</div>
                     <div class="compress-status" id="compressStatus"></div>
                   </div>
@@ -2083,8 +2085,8 @@
         hasRegistration ? "success" : "muted"
       );
 
-      let paymentText = "Pending";
-      let paymentBadge = "● Awaiting";
+      let paymentText = "Not Submitted";
+      let paymentBadge = "● Not Submitted";
       let paymentType = "muted";
 
       if (payment) {
@@ -2100,8 +2102,8 @@
           paymentBadge = "● Rejected";
           paymentType = "danger";
         } else {
-          paymentText = "Under Review";
-          paymentBadge = "● Under Review";
+          paymentText = "Awaiting Verification";
+          paymentBadge = "● Awaiting Verification";
           paymentType = "warning";
         }
       }
@@ -2411,8 +2413,8 @@
         return;
       }
 
-      if (!CONFIG.ALLOWED_PROOF_TYPES.includes(rawFile.type)) {
-        showToast("Only JPG / JPEG files are allowed.", "error");
+      if (!rawFile.type.startsWith("image/")) {
+        showToast("Only image files are allowed.", "error");
         return;
       }
 
@@ -2516,8 +2518,8 @@
     ======================================================== */
     async function compressJpeg(file, targetBytes) {
 
-      if (file.type !== "image/jpeg") {
-        throw new Error("Only JPG / JPEG files are allowed.");
+      if (!file.type.startsWith("image/")) {
+        throw new Error("Only image files are allowed.");
       }
 
       const dataUrl = await readFileAsDataURL(file);
@@ -2535,6 +2537,8 @@
       canvas.width = w;
       canvas.height = h;
       const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, w, h);
       ctx.drawImage(img, 0, 0, w, h);
 
       // Iterative quality reduction
@@ -2559,13 +2563,19 @@
         const small = document.createElement("canvas");
         small.width = nw;
         small.height = nh;
-        small.getContext("2d").drawImage(canvas, 0, 0, nw, nh);
+        const sctx = small.getContext("2d");
+        sctx.fillStyle = "#ffffff";
+        sctx.fillRect(0, 0, nw, nh);
+        sctx.drawImage(canvas, 0, 0, nw, nh);
 
         blob = await canvasToBlob(small, "image/jpeg", 0.82);
 
         canvas.width = nw;
         canvas.height = nh;
-        canvas.getContext("2d").drawImage(small, 0, 0);
+        const cctx = canvas.getContext("2d");
+        cctx.fillStyle = "#ffffff";
+        cctx.fillRect(0, 0, nw, nh);
+        cctx.drawImage(small, 0, 0);
 
         scaleGuard++;
       }
@@ -2958,8 +2968,8 @@
           return;
         }
 
-        if (f.type !== "image/jpeg") {
-          status.textContent = "Only JPG / JPEG is allowed.";
+        if (!f.type.startsWith("image/")) {
+          status.textContent = "Only image files are allowed.";
           status.className = "compress-status err";
           e.target.value = "";
           return;
