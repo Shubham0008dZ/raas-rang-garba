@@ -3,1486 +3,1473 @@
 
 <head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Raas Rang Garba Night 2026 - Vanasthali Public School" />
-    <meta name="theme-color" content="#0d0911" />
-    <title>Raas Rang — Vanasthali Public School</title> 
-
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
-        rel="stylesheet" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-
-    <style>
-        :root {
-            --bg: #0d0a10;
-            --bg-2: #1a121f;
-            --surface: rgba(255, 255, 255, .06);
-            --surface-2: rgba(255, 255, 255, .09);
-            --text: #ffffff;
-            --muted: #b9b1bd;
-            --muted-2: #8b8494;
-            --orange: #ff8a2a;
-            --orange-2: #ffb85a;
-            --pink: #f34a72;
-            --pink-2: #ff7f9a;
-            --gold: #ffd87a;
-            --green: #4fe0a8;
-            --red: #ff6579;
-            --yellow: #ffd670;
-            --border: rgba(255, 255, 255, .11);
-            --border-strong: rgba(255, 255, 255, .18);
-            --shadow: 0 30px 90px rgba(0, 0, 0, .55);
-            --container: 1180px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: var(--text);
-            font-family: "DM Sans", sans-serif;
-            background:
-                radial-gradient(circle at 8% 8%, rgba(255, 138, 42, .18), transparent 30%),
-                radial-gradient(circle at 94% 15%, rgba(243, 74, 114, .15), transparent 30%),
-                radial-gradient(circle at 48% 100%, rgba(255, 216, 122, .09), transparent 34%),
-                radial-gradient(circle at 30% 55%, rgba(243, 74, 114, .06), transparent 40%),
-                linear-gradient(180deg, var(--bg-2), var(--bg));
-        }
-
-        body.locked {
-            overflow: hidden;
-        }
-
-        button,
-        input {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        button:disabled {
-            cursor: not-allowed;
-            opacity: .5;
-        }
-
-        [hidden] {
-            display: none !important;
-        }
-
-        .container {
-            width: min(var(--container), calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .btn {
-            min-height: 46px;
-            padding: 0 18px;
-            border: 0;
-            border-radius: 13px;
-            font-size: 12px;
-            font-weight: 800;
-            transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn-primary {
-            color: #1a1108;
-            background: linear-gradient(135deg, var(--gold), var(--orange));
-            box-shadow: 0 15px 42px rgba(255, 138, 42, .30);
-        }
-
-        .btn-secondary {
-            color: #fff;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, .06);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--border-strong);
-            background: rgba(255, 255, 255, .09);
-        }
-
-        .btn-full {
-            width: 100%;
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            height: 78px;
-            border-bottom: 1px solid rgba(255, 255, 255, .07);
-            background: rgba(13, 9, 17, .86);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-        }
-
-        .topbar-inner {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            min-width: 0;
-        }
-
-        .brand-logo-wrap {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6px 12px;
-            height: 52px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .10);
-        }
-
-        .brand-logo-img {
-            display: block;
-            height: 38px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .brand-text {
-            min-width: 0;
-            padding-left: 14px;
-            border-left: 1px solid rgba(255, 255, 255, .10);
-        }
-
-        .brand-text strong {
-            display: block;
-            font-size: 11px;
-            letter-spacing: .3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .brand-text span {
-            display: block;
-            margin-top: 4px;
-            color: var(--muted);
-            font-size: 8px;
-            letter-spacing: .5px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 8px;
-            flex: 0 0 auto;
-        }
-
-        .hero-section {
-            min-height: calc(100vh - 78px);
-            display: flex;
-            align-items: center;
-            padding: 55px 0 65px;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.03fr) minmax(350px, .97fr);
-            gap: 42px;
-            align-items: center;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 12px;
-            border: 1px solid rgba(255, 138, 42, .28);
-            border-radius: 999px;
-            color: #ffd5a4;
-            background: rgba(255, 138, 42, .10);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: .6px;
-            text-transform: uppercase;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--red);
-            box-shadow: 0 0 16px rgba(79, 224, 168, .9);
-        }
-
-        .hero-title {
-            margin: 20px 0 0;
-            font-family: "Playfair Display", serif;
-            font-size: clamp(50px, 7vw, 87px);
-            line-height: .92;
-            letter-spacing: -3px;
-        }
-
-        .hero-title span {
-            color: transparent;
-            background: linear-gradient(90deg, #ffffff, #ffdc8b 45%, #ff8299);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .hero-description {
-            max-width: 620px;
-            margin: 23px 0 0;
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 27px;
-        }
-
-        .hero-note {
-            margin-top: 13px;
-            color: var(--muted-2);
-            font-size: 9px;
-        }
-
-        .event-card {
-            position: relative;
-            min-height: 535px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .13);
-            border-radius: 33px;
-            background:
-                radial-gradient(circle at 50% 14%, rgba(255, 216, 122, .26), transparent 22%),
-                radial-gradient(circle at 10% 100%, rgba(255, 138, 42, .24), transparent 42%),
-                radial-gradient(circle at 100% 85%, rgba(243, 74, 114, .22), transparent 46%),
-                #1a1119;
-            box-shadow: var(--shadow);
-        }
-
-        .mandala {
-            position: absolute;
-            width: 365px;
-            height: 365px;
-            top: 47px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 1px solid rgba(255, 255, 255, .17);
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 22px rgba(255, 255, 255, .025),
-                0 0 0 47px rgba(255, 255, 255, .017),
-                0 0 0 73px rgba(255, 255, 255, .010);
-        }
-
-        .mandala::before,
-        .mandala::after {
-            content: "";
-            position: absolute;
-            inset: 24px;
-            border: 1px dashed rgba(255, 216, 122, .4);
-            border-radius: 50%;
-        }
-
-        .mandala::after {
-            inset: 79px;
-            border-color: rgba(255, 138, 42, .38);
-        }
-
-        .dance {
-            position: absolute;
-            top: 112px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 88px;
-            filter: drop-shadow(0 20px 25px rgba(0, 0, 0, .45));
-        }
-
-        .spark {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #ffd477;
-            box-shadow: 0 0 16px rgba(255, 212, 119, .95);
-        }
-
-        .spark.one {
-            top: 82px;
-            left: 17%;
-        }
-
-        .spark.two {
-            top: 158px;
-            right: 15%;
-        }
-
-        .spark.three {
-            top: 278px;
-            left: 10%;
-        }
-
-        .spark.four {
-            top: 315px;
-            right: 12%;
-        }
-
-        .event-info {
-            position: absolute;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, .11);
-            border-radius: 22px;
-            background: rgba(10, 5, 12, .55);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .event-info h2 {
-            margin: 0;
-            font-size: 25px;
-        }
-
-        .event-info p {
-            margin: 6px 0 0;
-            color: #d0c8d4;
-            font-size: 10px;
-            line-height: 1.6;
-        }
-
-        .facts {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 7px;
-            margin-top: 14px;
-        }
-
-        .fact {
-            padding: 11px;
-            border: 1px solid rgba(255, 255, 255, .085);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, .055);
-        }
-
-        .fact small {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--muted-2);
-            font-size: 7px;
-            text-transform: uppercase;
-            letter-spacing: .7px;
-        }
-
-        .fact strong {
-            display: block;
-            font-size: 11px;
-        }
-
-        .no-stag {
-            margin-top: 10px;
-            color: #ffbed0;
-            font-size: 9px;
-            font-weight: 800;
-            text-align: center;
-        }
-
-        .auth-page {
-            position: relative;
-            min-height: calc(100vh - 78px);
-            display: flex;
-            align-items: center;
-            padding: 32px 0 45px;
-            overflow: hidden;
-            isolation: isolate;
-            background:
-                linear-gradient(90deg, rgba(8, 5, 14, .36), rgba(8, 5, 14, .60)),
-                url("login-bg.webp") center center / cover no-repeat;
-        }
-
-        .auth-page::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -2;
-            background:
-                radial-gradient(circle at 18% 25%, rgba(255, 138, 42, .16), transparent 32%),
-                radial-gradient(circle at 78% 70%, rgba(243, 74, 114, .14), transparent 34%),
-                linear-gradient(180deg, rgba(7, 4, 14, .08), rgba(7, 4, 14, .34));
-            pointer-events: none;
-        }
-
-        .auth-page::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(10, 5, 14, .18);
-            backdrop-filter: saturate(1.08);
-            -webkit-backdrop-filter: saturate(1.08);
-            pointer-events: none;
-        }
-
-        .auth-page>.container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .auth-layout {
-            width: min(1160px, 100%);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.08fr) minmax(390px, .72fr);
-            gap: 48px;
-            align-items: center;
-        }
-
-        .auth-showcase {
-            max-width: 650px;
-            padding: 24px 8px;
-        }
-
-        .auth-brand-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 13px;
-            border: 1px solid rgba(255, 216, 122, .30);
-            border-radius: 999px;
-            color: #fff0ca;
-            background: rgba(26, 12, 28, .35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, .16);
-        }
-
-        .auth-brand-kicker::before {
-            content: "✦";
-            color: var(--gold);
-            font-size: 13px;
-        }
-
-        .auth-showcase h1 {
-            margin: 18px 0 0;
-            font-family: "Playfair Display", serif;
-            font-size: clamp(44px, 5vw, 74px);
-            line-height: .95;
-            letter-spacing: -2.8px;
-            text-shadow: 0 18px 50px rgba(0, 0, 0, .45);
-        }
-
-        .auth-showcase h1 span {
-            color: transparent;
-            background: linear-gradient(90deg, #fff, #ffd36d 42%, #ff5e93);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .auth-showcase p {
-            max-width: 560px;
-            margin: 16px 0 0;
-            color: rgba(255, 255, 255, .86);
-            font-size: 13px;
-            line-height: 1.75;
-            text-shadow: 0 8px 24px rgba(0, 0, 0, .38);
-        }
-
-        .auth-event-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 24px;
-        }
-
-        .auth-event-chip {
-            min-width: 118px;
-            padding: 10px 12px;
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 14px;
-            background: rgba(13, 7, 18, .38);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, .18);
-        }
-
-        .auth-event-chip small {
-            display: block;
-            color: rgba(255, 255, 255, .62);
-            font-size: 7px;
-            font-weight: 800;
-            letter-spacing: .9px;
-            text-transform: uppercase;
-        }
-
-        .auth-event-chip strong {
-            display: block;
-            margin-top: 4px;
-            color: #fff8e9;
-            font-size: 11px;
-        }
-
-        .auth-pricing {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-            color: #fff4dd;
-            font-size: 9px;
-            font-weight: 800;
-        }
-
-        .auth-pricing span {
-            padding: 7px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, .11);
-            background: rgba(13, 7, 18, .28);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .auth-pricing .accent {
-            color: #ffd978;
-            border-color: rgba(255, 216, 122, .24);
-        }
-
-        .auth-footnote {
-            margin-top: 15px;
-            color: rgba(255, 255, 255, .70);
-            font-size: 8px;
-            letter-spacing: .25px;
-        }
-
-        .auth-wrap {
-            width: 100%;
-            margin: 0;
-        }
-
-        .auth-card {
-            position: relative;
-            padding: 29px;
-            border: 1px solid rgba(255, 255, 255, .19);
-            border-radius: 28px;
-            background: linear-gradient(180deg, rgba(24, 12, 28, .84), rgba(17, 9, 21, .91));
-            box-shadow: 0 30px 90px rgba(0, 0, 0, .44), 0 0 0 1px rgba(255, 138, 42, .04);
-            backdrop-filter: blur(24px) saturate(1.10);
-            -webkit-backdrop-filter: blur(24px) saturate(1.10);
-        }
-
-        .auth-card::before {
-            content: "";
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            top: 0;
-            height: 2px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, transparent, #ffd978, #ff5e93, transparent);
-            opacity: .82;
-        }
-
-        .auth-title {
-            margin: 16px 0 0;
-            font-family: "Playfair Display", serif;
-            font-size: 36px;
-            line-height: 1;
-            letter-spacing: -.6px;
-        }
-
-        .auth-description {
-            margin: 9px 0 0;
-            color: var(--muted);
-            font-size: 10px;
-            line-height: 1.7;
-        }
-
-        .form {
-            margin-top: 22px;
-        }
-
-        .field {
-            margin-bottom: 14px;
-        }
-
-        .field label {
-            display: block;
-            margin-bottom: 6px;
-            color: #e2dae6;
-            font-size: 9px;
-            font-weight: 700;
-        }
-
-        .input {
-            width: 100%;
-            height: 48px;
-            padding: 0 13px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            border-radius: 12px;
-            outline: none;
-            color: white;
-            background: rgba(255, 255, 255, .065);
-            transition: border .18s, box-shadow .18s, background .18s, transform .18s;
-        }
-
-        .input:focus {
-            border-color: rgba(255, 183, 92, .82);
-            background: rgba(255, 255, 255, .09);
-            box-shadow: 0 0 0 4px rgba(255, 138, 42, .09);
-        }
-
-        .input::placeholder {
-            color: #7a7284;
-        }
-
-        .password-wrap {
-            position: relative;
-        }
-
-        .password-wrap .input {
-            padding-right: 48px;
-        }
-
-        .password-btn {
-            position: absolute;
-            top: 5px;
-            right: 7px;
-            width: 38px;
-            height: 38px;
-            border: 0;
-            background: transparent;
-            color: #a89fb2;
-        }
-
-        .turnstile-box {
-            min-height: 70px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .auth-switch {
-            margin-top: 16px;
-            text-align: center;
-            color: var(--muted);
-            font-size: 9px;
-        }
-
-        .text-button {
-            border: 0;
-            padding: 0;
-            color: #ffcf94;
-            background: transparent;
-            font-weight: 800;
-        }
-
-        .auth-message {
-            display: none;
-            margin-top: 13px;
-            padding: 10px 11px;
-            border-radius: 11px;
-            font-size: 9px;
-            line-height: 1.5;
-        }
-
-        .auth-message.show {
-            display: block;
-        }
-
-        .auth-message.success {
-            color: #a1f5cf;
-            background: rgba(79, 224, 168, .09);
-            border: 1px solid rgba(79, 224, 168, .18);
-        }
-
-        .auth-message.error {
-            color: #ffadbb;
-            background: rgba(255, 101, 121, .09);
-            border: 1px solid rgba(255, 101, 121, .18);
-        }
-
-        .auth-message.info {
-            color: #ffe0a8;
-            background: rgba(255, 214, 112, .08);
-            border: 1px solid rgba(255, 214, 112, .16);
-        }
-
-        .process-strip {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 8px;
-            margin-top: 17px;
-        }
-
-        .process-item {
-            padding: 11px;
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 13px;
-            background: rgba(255, 255, 255, .035);
-        }
-
-        .process-item strong {
-            display: block;
-            font-size: 9px;
-        }
-
-        .process-item span {
-            display: block;
-            margin-top: 4px;
-            color: var(--muted-2);
-            font-size: 8px;
-            line-height: 1.5;
-        }
-
-        .loader {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: grid;
-            place-items: center;
-            background: rgba(13, 9, 17, .88);
-            backdrop-filter: blur(9px);
-            -webkit-backdrop-filter: blur(9px);
-        }
-
-        .loader-box {
-            text-align: center;
-        }
-
-        .spinner {
-            width: 38px;
-            height: 38px;
-            margin: 0 auto 11px;
-            border: 3px solid rgba(255, 255, 255, .13);
-            border-top-color: var(--orange);
-            border-radius: 50%;
-            animation: spin .7s linear infinite;
-        }
-
-        .loader-box span {
-            color: #d0c8d4;
-            font-size: 8px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .toast-container {
-            position: fixed;
-            right: 15px;
-            bottom: 15px;
-            z-index: 1100;
-            width: min(360px, calc(100% - 30px));
-            display: grid;
-            gap: 7px;
-            pointer-events: none;
-        }
-
-        .toast {
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: #fff;
-            background: rgba(26, 18, 31, .97);
-            box-shadow: var(--shadow);
-            font-size: 9px;
-            line-height: 1.5;
-            animation: toast-in .18s ease;
-        }
-
-        .toast.success {
-            border-color: rgba(79, 224, 168, .25);
-        }
-
-        .toast.error {
-            border-color: rgba(255, 101, 121, .25);
-        }
-
-        .toast.info {
-            border-color: rgba(255, 214, 112, .22);
-        }
-
-        @keyframes toast-in {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 980px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .event-card {
-                min-height: 470px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                width: calc(100% - 22px);
-            }
-
-            .topbar {
-                height: 70px;
-            }
-
-            .brand {
-                gap: 10px;
-            }
-
-            .brand-logo-wrap {
-                height: 44px;
-                padding: 5px 10px;
-                border-radius: 10px;
-            }
-
-            .brand-logo-img {
-                height: 32px;
-            }
-
-            .brand-text {
-                padding-left: 10px;
-            }
-
-            .brand-text strong {
-                font-size: 9px;
-            }
-
-            .brand-text span {
-                font-size: 7px;
-            }
-
-            .header-actions {
-                gap: 5px;
-            }
-
-            .header-actions .btn {
-                min-height: 39px;
-                padding: 0 10px;
-                font-size: 9px;
-            }
-
-            .hero-section {
-                min-height: auto;
-                padding: 34px 0 45px;
-            }
-
-            .hero-title {
-                font-size: 48px;
-                letter-spacing: -1.8px;
-            }
-
-            .hero-description {
-                font-size: 11px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .hero-buttons .btn {
-                width: 100%;
-            }
-
-            .event-card {
-                min-height: 420px;
-                border-radius: 25px;
-            }
-
-            .mandala {
-                width: 285px;
-                height: 285px;
-                top: 45px;
-            }
-
-            .dance {
-                top: 102px;
-                font-size: 73px;
-            }
-
-            .event-info {
-                left: 11px;
-                right: 11px;
-                bottom: 11px;
-                padding: 15px;
-                border-radius: 18px;
-            }
-
-            .event-info h2 {
-                font-size: 21px;
-            }
-
-            .fact strong {
-                font-size: 9px;
-            }
-
-            .auth-page {
-                min-height: calc(100vh - 70px);
-                padding: 18px 0 28px;
-                background-position: center center;
-            }
-
-            .auth-layout {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .auth-showcase {
-                max-width: none;
-                padding: 10px 4px 0;
-            }
-
-            .auth-showcase h1 {
-                font-size: clamp(38px, 12vw, 56px);
-                letter-spacing: -1.8px;
-            }
-
-            .auth-showcase p {
-                max-width: none;
-                font-size: 10px;
-                line-height: 1.6;
-            }
-
-            .auth-event-bar {
-                margin-top: 15px;
-            }
-
-            .auth-event-chip {
-                flex: 1 1 30%;
-                min-width: 0;
-            }
-
-            .auth-card {
-                padding: 20px;
-                border-radius: 21px;
-            }
-
-            .auth-title {
-                font-size: 30px;
-            }
-
-            .process-strip {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 420px) {
-
-            .auth-showcase p,
-            .auth-pricing,
-            .auth-footnote {
-                font-size: 8px;
-            }
-
-            .auth-event-chip {
-                padding: 8px 9px;
-            }
-
-            .auth-event-chip strong {
-                font-size: 10px;
-            }
-
-            .brand-text {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 42px;
-            }
-
-            .event-card {
-                min-height: 405px;
-            }
-        }
-    </style>
-
-    <link rel="stylesheet" href="festive.css">
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Raas Rang Garba Night 2026 - Vanasthali Public School" />
+  <meta name="theme-color" content="#0d0911" />
+  <title>Raas Rang — Vanasthali Public School</title>
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff861f'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+
+  <style>
+    :root {
+      --bg: #0d0a10;
+      --bg-2: #1a121f;
+      --surface: rgba(255, 255, 255, .06);
+      --surface-2: rgba(255, 255, 255, .09);
+      --text: #ffffff;
+      --muted: #b9b1bd;
+      --muted-2: #8b8494;
+      --orange: #ff8a2a;
+      --orange-2: #ffb85a;
+      --pink: #f34a72;
+      --pink-2: #ff7f9a;
+      --gold: #ffd87a;
+      --green: #4fe0a8;
+      --red: #ff6579;
+      --yellow: #ffd670;
+      --border: rgba(255, 255, 255, .11);
+      --border-strong: rgba(255, 255, 255, .18);
+      --shadow: 0 30px 90px rgba(0, 0, 0, .55);
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255, 138, 42, .18), transparent 30%),
+        radial-gradient(circle at 94% 15%, rgba(243, 74, 114, .15), transparent 30%),
+        radial-gradient(circle at 48% 100%, rgba(255, 216, 122, .09), transparent 34%),
+        radial-gradient(circle at 30% 55%, rgba(243, 74, 114, .06), transparent 40%),
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 13px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      color: #1a1108;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      box-shadow: 0 15px 42px rgba(255, 138, 42, .30);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-strong);
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 78px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      background: rgba(13, 9, 17, .86);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .topbar-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo-wrap {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      height: 52px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .10);
+    }
+
+    .brand-logo-img {
+      display: block;
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      min-width: 0;
+      padding-left: 14px;
+      border-left: 1px solid rgba(255, 255, 255, .10);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: .5px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .hero-section {
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+      padding: 55px 0 65px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(350px, .97fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 138, 42, .28);
+      border-radius: 999px;
+      color: #ffd5a4;
+      background: rgba(255, 138, 42, .10);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 16px rgba(79, 224, 168, .9);
+    }
+
+    .hero-title {
+      margin: 20px 0 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(50px, 7vw, 87px);
+      line-height: .92;
+      letter-spacing: -3px;
+    }
+
+    .hero-title span {
+      color: transparent;
+      background: linear-gradient(90deg, #ffffff, #ffdc8b 45%, #ff8299);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      margin: 23px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 27px;
+    }
+
+    .hero-note {
+      margin-top: 13px;
+      color: var(--muted-2);
+      font-size: 9px;
+    }
+
+    .event-card {
+      position: relative;
+      min-height: 535px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 33px;
+      background:
+        radial-gradient(circle at 50% 14%, rgba(255, 216, 122, .26), transparent 22%),
+        radial-gradient(circle at 10% 100%, rgba(255, 138, 42, .24), transparent 42%),
+        radial-gradient(circle at 100% 85%, rgba(243, 74, 114, .22), transparent 46%),
+        #1a1119;
+      box-shadow: var(--shadow);
+    }
+
+    .mandala {
+      position: absolute;
+      width: 365px;
+      height: 365px;
+      top: 47px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 22px rgba(255, 255, 255, .025),
+        0 0 0 47px rgba(255, 255, 255, .017),
+        0 0 0 73px rgba(255, 255, 255, .010);
+    }
+
+    .mandala::before,
+    .mandala::after {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px dashed rgba(255, 216, 122, .4);
+      border-radius: 50%;
+    }
+
+    .mandala::after {
+      inset: 79px;
+      border-color: rgba(255, 138, 42, .38);
+    }
+
+    .dance {
+      position: absolute;
+      top: 112px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 88px;
+      filter: drop-shadow(0 20px 25px rgba(0, 0, 0, .45));
+    }
+
+    .spark {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffd477;
+      box-shadow: 0 0 16px rgba(255, 212, 119, .95);
+    }
+
+    .spark.one {
+      top: 82px;
+      left: 17%;
+    }
+
+    .spark.two {
+      top: 158px;
+      right: 15%;
+    }
+
+    .spark.three {
+      top: 278px;
+      left: 10%;
+    }
+
+    .spark.four {
+      top: 315px;
+      right: 12%;
+    }
+
+    .event-info {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 22px;
+      background: rgba(10, 5, 12, .55);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .event-info h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .event-info p {
+      margin: 6px 0 0;
+      color: #d0c8d4;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .fact {
+      padding: 11px;
+      border: 1px solid rgba(255, 255, 255, .085);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .fact small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted-2);
+      font-size: 7px;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 11px;
+    }
+
+    .no-stag {
+      margin-top: 10px;
+      color: #ffbed0;
+      font-size: 9px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .auth-page {
+      position: relative;
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+      padding: 32px 0 45px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(8, 5, 14, .36), rgba(8, 5, 14, .60)),
+        url("login-bg.webp") center center / cover no-repeat;
+    }
+
+    .auth-page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 18% 25%, rgba(255, 138, 42, .16), transparent 32%),
+        radial-gradient(circle at 78% 70%, rgba(243, 74, 114, .14), transparent 34%),
+        linear-gradient(180deg, rgba(7, 4, 14, .08), rgba(7, 4, 14, .34));
+      pointer-events: none;
+    }
+
+    .auth-page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(10, 5, 14, .18);
+      backdrop-filter: saturate(1.08);
+      -webkit-backdrop-filter: saturate(1.08);
+      pointer-events: none;
+    }
+
+    .auth-page>.container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .auth-layout {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(390px, .72fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .auth-showcase {
+      max-width: 650px;
+      padding: 24px 8px;
+    }
+
+    .auth-brand-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 216, 122, .30);
+      border-radius: 999px;
+      color: #fff0ca;
+      background: rgba(26, 12, 28, .35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .16);
+    }
+
+    .auth-brand-kicker::before {
+      content: "✦";
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    .auth-showcase h1 {
+      margin: 18px 0 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(44px, 5vw, 74px);
+      line-height: .95;
+      letter-spacing: -2.8px;
+      text-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+    }
+
+    .auth-showcase h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, #fff, #ffd36d 42%, #ff5e93);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .auth-showcase p {
+      max-width: 560px;
+      margin: 16px 0 0;
+      color: rgba(255, 255, 255, .86);
+      font-size: 13px;
+      line-height: 1.75;
+      text-shadow: 0 8px 24px rgba(0, 0, 0, .38);
+    }
+
+    .auth-event-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .auth-event-chip {
+      min-width: 118px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 14px;
+      background: rgba(13, 7, 18, .38);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .18);
+    }
+
+    .auth-event-chip small {
+      display: block;
+      color: rgba(255, 255, 255, .62);
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+    }
+
+    .auth-event-chip strong {
+      display: block;
+      margin-top: 4px;
+      color: #fff8e9;
+      font-size: 11px;
+    }
+
+    .auth-pricing {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      color: #fff4dd;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .auth-pricing span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      background: rgba(13, 7, 18, .28);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .auth-pricing .accent {
+      color: #ffd978;
+      border-color: rgba(255, 216, 122, .24);
+    }
+
+    .auth-footnote {
+      margin-top: 15px;
+      color: rgba(255, 255, 255, .70);
+      font-size: 8px;
+      letter-spacing: .25px;
+    }
+
+    .auth-wrap {
+      width: 100%;
+      margin: 0;
+    }
+
+    .auth-card {
+      position: relative;
+      padding: 29px;
+      border: 1px solid rgba(255, 255, 255, .19);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(24, 12, 28, .84), rgba(17, 9, 21, .91));
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .44), 0 0 0 1px rgba(255, 138, 42, .04);
+      backdrop-filter: blur(24px) saturate(1.10);
+      -webkit-backdrop-filter: blur(24px) saturate(1.10);
+    }
+
+    .auth-card::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, #ffd978, #ff5e93, transparent);
+      opacity: .82;
+    }
+
+    .auth-title {
+      margin: 16px 0 0;
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -.6px;
+    }
+
+    .auth-description {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .form {
+      margin-top: 22px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: #e2dae6;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .input {
+      width: 100%;
+      height: 48px;
+      padding: 0 13px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 12px;
+      outline: none;
+      color: white;
+      background: rgba(255, 255, 255, .065);
+      transition: border .18s, box-shadow .18s, background .18s, transform .18s;
+    }
+
+    .input:focus {
+      border-color: rgba(255, 183, 92, .82);
+      background: rgba(255, 255, 255, .09);
+      box-shadow: 0 0 0 4px rgba(255, 138, 42, .09);
+    }
+
+    .input::placeholder {
+      color: #7a7284;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap .input {
+      padding-right: 48px;
+    }
+
+    .password-btn {
+      position: absolute;
+      top: 5px;
+      right: 7px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      background: transparent;
+      color: #a89fb2;
+    }
+
+    .turnstile-box {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .auth-switch {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .text-button {
+      border: 0;
+      padding: 0;
+      color: #ffcf94;
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .auth-message {
+      display: none;
+      margin-top: 13px;
+      padding: 10px 11px;
+      border-radius: 11px;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .auth-message.show {
+      display: block;
+    }
+
+    .auth-message.success {
+      color: #a1f5cf;
+      background: rgba(79, 224, 168, .09);
+      border: 1px solid rgba(79, 224, 168, .18);
+    }
+
+    .auth-message.error {
+      color: #ffadbb;
+      background: rgba(255, 101, 121, .09);
+      border: 1px solid rgba(255, 101, 121, .18);
+    }
+
+    .auth-message.info {
+      color: #ffe0a8;
+      background: rgba(255, 214, 112, .08);
+      border: 1px solid rgba(255, 214, 112, .16);
+    }
+
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .process-item {
+      padding: 11px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .process-item strong {
+      display: block;
+      font-size: 9px;
+    }
+
+    .process-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-2);
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      background: rgba(13, 9, 17, .88);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .loader-box {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 11px;
+      border: 3px solid rgba(255, 255, 255, .13);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    .loader-box span {
+      color: #d0c8d4;
+      font-size: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .toast-container {
+      position: fixed;
+      right: 15px;
+      bottom: 15px;
+      z-index: 1100;
+      width: min(360px, calc(100% - 30px));
+      display: grid;
+      gap: 7px;
+      pointer-events: none;
+    }
+
+    .toast {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #fff;
+      background: rgba(26, 18, 31, .97);
+      box-shadow: var(--shadow);
+      font-size: 9px;
+      line-height: 1.5;
+      animation: toast-in .18s ease;
+    }
+
+    .toast.success {
+      border-color: rgba(79, 224, 168, .25);
+    }
+
+    .toast.error {
+      border-color: rgba(255, 101, 121, .25);
+    }
+
+    .toast.info {
+      border-color: rgba(255, 214, 112, .22);
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .event-card {
+        min-height: 470px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 22px);
+      }
+
+      .topbar {
+        height: 70px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .brand-logo-wrap {
+        height: 44px;
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
+
+      .brand-logo-img {
+        height: 32px;
+      }
+
+      .brand-text {
+        padding-left: 10px;
+      }
+
+      .brand-text strong {
+        font-size: 9px;
+      }
+
+      .brand-text span {
+        font-size: 7px;
+      }
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .header-actions .btn {
+        min-height: 39px;
+        padding: 0 10px;
+        font-size: 9px;
+      }
+
+      .hero-section {
+        min-height: auto;
+        padding: 34px 0 45px;
+      }
+
+      .hero-title {
+        font-size: 48px;
+        letter-spacing: -1.8px;
+      }
+
+      .hero-description {
+        font-size: 11px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .event-card {
+        min-height: 420px;
+        border-radius: 25px;
+      }
+
+      .mandala {
+        width: 285px;
+        height: 285px;
+        top: 45px;
+      }
+
+      .dance {
+        top: 102px;
+        font-size: 73px;
+      }
+
+      .event-info {
+        left: 11px;
+        right: 11px;
+        bottom: 11px;
+        padding: 15px;
+        border-radius: 18px;
+      }
+
+      .event-info h2 {
+        font-size: 21px;
+      }
+
+      .fact strong {
+        font-size: 9px;
+      }
+
+      .auth-page {
+        min-height: calc(100vh - 70px);
+        padding: 18px 0 28px;
+        background-position: center center;
+      }
+
+      .auth-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .auth-showcase {
+        max-width: none;
+        padding: 10px 4px 0;
+      }
+
+      .auth-showcase h1 {
+        font-size: clamp(38px, 12vw, 56px);
+        letter-spacing: -1.8px;
+      }
+
+      .auth-showcase p {
+        max-width: none;
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .auth-event-bar {
+        margin-top: 15px;
+      }
+
+      .auth-event-chip {
+        flex: 1 1 30%;
+        min-width: 0;
+      }
+
+      .auth-card {
+        padding: 20px;
+        border-radius: 21px;
+      }
+
+      .auth-title {
+        font-size: 30px;
+      }
+
+      .process-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 420px) {
+
+      .auth-showcase p,
+      .auth-pricing,
+      .auth-footnote {
+        font-size: 8px;
+      }
+
+      .auth-event-chip {
+        padding: 8px 9px;
+      }
+
+      .auth-event-chip strong {
+        font-size: 10px;
+      }
+
+      .brand-text {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 42px;
+      }
+
+      .event-card {
+        min-height: 405px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="festive.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
 
-    <!-- LOADER -->
-    <div id="loader" class="loader">
-        <div class="loader-box">
-            <div class="spinner"></div>
-            <span id="loaderText">Checking secure session...</span>
-        </div>
+  <!-- LOADER -->
+  <div id="loader" class="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <span id="loaderText">Checking secure session...</span>
     </div>
+  </div>
 
-    <!-- SOCIAL SIDEBAR (LEFT VERTICAL) -->
-    <aside class="social-sidebar" aria-label="Connect with us">
+  <!-- SOCIAL SIDEBAR (LEFT VERTICAL) -->
+  <aside class="social-sidebar" aria-label="Connect with us">
 
-        <a class="social-icon youtube" href="https://youtube.com/@vanasthalipublicschoolsec3" target="_blank"
-            rel="noopener noreferrer" aria-label="YouTube" data-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
-            </svg>
-        </a>
+    <a class="social-icon youtube" href="https://youtube.com/@vanasthalipublicschoolsec3" target="_blank"
+      rel="noopener noreferrer" aria-label="YouTube" data-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
+      </svg>
+    </a>
 
-        <a class="social-icon website" href="https://vanasthalischool.in/" target="_blank" rel="noopener noreferrer"
-            aria-label="Website" data-label="Website">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
-            </svg>
-        </a>
+    <a class="social-icon website" href="https://vanasthalischool.in/" target="_blank" rel="noopener noreferrer"
+      aria-label="Website" data-label="Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
+      </svg>
+    </a>
 
-        <a class="social-icon facebook" href="https://www.facebook.com/profile.php?id=100092033057684" target="_blank"
-            rel="noopener noreferrer" aria-label="Facebook" data-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                    d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z" />
-            </svg>
-        </a>
+    <a class="social-icon facebook" href="https://www.facebook.com/profile.php?id=100092033057684" target="_blank"
+      rel="noopener noreferrer" aria-label="Facebook" data-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z" />
+      </svg>
+    </a>
 
-        <a class="social-icon instagram" href="https://www.instagram.com/vanasthalipublicschool_3/" target="_blank"
-            rel="noopener noreferrer" aria-label="Instagram" data-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <path d="M16 11.4a4 4 0 1 1-7.9 1.2 4 4 0 0 1 7.9-1.2Z" />
-                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
-            </svg>
-        </a>
+    <a class="social-icon instagram" href="https://www.instagram.com/vanasthalipublicschool_3/" target="_blank"
+      rel="noopener noreferrer" aria-label="Instagram" data-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" />
+        <path d="M16 11.4a4 4 0 1 1-7.9 1.2 4 4 0 0 1 7.9-1.2Z" />
+        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+      </svg>
+    </a>
 
-        <a class="social-icon pages" href="#" id="pagesToggle" aria-label="Terms & Support"
-            data-label="Terms & Support">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" rx="1.6" />
-                <rect x="14" y="3" width="7" height="7" rx="1.6" />
-                <rect x="3" y="14" width="7" height="7" rx="1.6" />
-                <rect x="14" y="14" width="7" height="7" rx="1.6" />
-            </svg>
-        </a>
+    <a class="social-icon pages" href="#" id="pagesToggle" aria-label="Terms & Support" data-label="Terms & Support">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1.6" />
+        <rect x="14" y="3" width="7" height="7" rx="1.6" />
+        <rect x="3" y="14" width="7" height="7" rx="1.6" />
+        <rect x="14" y="14" width="7" height="7" rx="1.6" />
+      </svg>
+    </a>
 
-    </aside>
+  </aside>
 
-    <!-- HEADER -->
-    <header class="topbar">
-        <div class="container topbar-inner">
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container topbar-inner">
 
-            <div class="brand">
-                <div class="brand-logo-wrap">
-                    <img src="widelogo.jpg" alt="Vanasthali Public School" class="brand-logo-img" />
-                </div>
-                <div class="brand-text">
-                    <strong>Raas Rang • Garba Night 2026</strong>
-                    <span>Vanasthali Public School</span>
-                </div>
+      <div class="brand">
+        <div class="brand-logo-wrap">
+          <img src="widelogo.jpg" alt="Vanasthali Public School" class="brand-logo-img" />
+        </div>
+        <div class="brand-text">
+          <strong>Raas Rang • Garba Night 2026</strong>
+          <span>Vanasthali Public School</span>
+        </div>
+      </div>
+
+      <div class="header-actions" id="publicHeader">
+        <button class="btn btn-secondary" id="headerLoginBtn" type="button">Login</button>
+        <button class="btn btn-primary" id="headerRegisterBtn" type="button">Register</button>
+      </div>
+
+      <div class="header-actions" id="authenticatedHeader" hidden>
+        <button class="btn btn-secondary" id="headerLogoutBtn" type="button">Logout</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- LANDING -->
+  <main id="landingView">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero">
+
+          <div>
+            <div class="eyebrow">
+              <span class="status-dot"></span>
+              Registration Open
             </div>
 
-            <div class="header-actions" id="publicHeader">
-                <button class="btn btn-secondary" id="headerLoginBtn" type="button">Login</button>
-                <!-- <button class="btn btn-primary" id="headerRegisterBtn" type="button">Register</button> -->
+            <h1 class="hero-title">
+              Rang, Raas &<br>
+              <span>Garba Night.</span>
+            </h1>
+
+            <p class="hero-description">
+              An evening of music, colours, dance and celebration at Vanasthali Public School.
+              Register your entry and experience the festive spirit together.
+            </p>
+
+            <div class="hero-buttons">
+              <button class="btn btn-primary" id="heroRegisterBtn" type="button">
+                Start Registration →
+              </button>
+              <button class="btn btn-secondary" id="heroLoginBtn" type="button">
+                Already Registered
+              </button>
             </div>
 
-            <div class="header-actions" id="authenticatedHeader" hidden>
-                <button class="btn btn-secondary" id="headerLogoutBtn" type="button">Logout</button>
+            <div class="hero-note">
+              Female ₹200 • Couple ₹300 • No Stag Entry
             </div>
+
+            <div class="process-strip">
+              <div class="process-item">
+                <strong>01 · Register</strong>
+                <span>Create your participant account.</span>
+              </div>
+              <div class="process-item">
+                <strong>02 · Pay</strong>
+                <span>Pay via school UPI and submit proof.</span>
+              </div>
+              <div class="process-item">
+                <strong>03 · Enter</strong>
+                <span>Get your QR after verification.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="mandala"></div>
+            <div class="dance">💃</div>
+            <div class="spark one"></div>
+            <div class="spark two"></div>
+            <div class="spark three"></div>
+            <div class="spark four"></div>
+
+            <div class="event-info">
+              <h2>Garba Night 2026</h2>
+              <p>Celebrate the night with rhythm, energy and the colours of Garba.</p>
+
+              <div class="facts">
+                <div class="fact"><small>Date</small><strong>16 October 2026</strong></div>
+                <div class="fact"><small>Time</small><strong>6:00 PM – 10:00 PM</strong></div>
+                <div class="fact"><small>Single Female</small><strong>₹200</strong></div>
+                <div class="fact"><small>Couple</small><strong>₹300</strong></div>
+              </div>
+
+              <div class="no-stag">✦ No Stag Entry</div>
+            </div>
+          </div>
 
         </div>
-    </header>
-
-    <!-- LANDING -->
-    <main id="landingView">
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero">
-
-                    <div>
-                        <div class="eyebrow">
-                            <span class="status-dot"></span>
-                            Registration Closed
-                        </div>
-
-                        <h1 class="hero-title">
-                            Rang, Raas &<br>
-                            <span>Garba Night.</span>
-                        </h1>
-
-                        <p class="hero-description">
-                            An evening of music, colours, dance and celebration at Vanasthali Public School.
-                            Register your entry and experience the festive spirit together.
-                        </p>
-
-                        <div class="hero-buttons">
-                            <!-- <button class="btn btn-primary" id="heroRegisterBtn" type="button">
-                                Start Registration →
-                            </button> -->
-                            <button class="btn btn-secondary" id="heroLoginBtn" type="button">
-                                Already Registered
-                            </button>
-                        </div>
-
-                        <div class="hero-note">
-                            Female ₹200 • Couple ₹300 • No Stag Entry
-                        </div>
-
-                        <div class="process-strip">
-                            <div class="process-item">
-                                <strong>01 · Register</strong>
-                                <span>Create your participant account.</span>
-                            </div>
-                            <div class="process-item">
-                                <strong>02 · Pay</strong>
-                                <span>Pay via school UPI and submit proof.</span>
-                            </div>
-                            <div class="process-item">
-                                <strong>03 · Enter</strong>
-                                <span>Get your QR after verification.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="mandala"></div>
-                        <div class="dance">💃</div>
-                        <div class="spark one"></div>
-                        <div class="spark two"></div>
-                        <div class="spark three"></div>
-                        <div class="spark four"></div>
-
-                        <div class="event-info">
-                            <h2>Garba Night 2026</h2>
-                            <p>Celebrate the night with rhythm, energy and the colours of Garba.</p>
-
-                            <div class="facts">
-                                <div class="fact"><small>Date</small><strong>16 October 2026</strong></div>
-                                <div class="fact"><small>Time</small><strong>6:00 PM – 10:00 PM</strong></div>
-                                <div class="fact"><small>Single Female</small><strong>₹200</strong></div>
-                                <div class="fact"><small>Couple</small><strong>₹300</strong></div>
-                            </div>
-
-                            <div class="no-stag">✦ No Stag Entry</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="attractions" aria-label="Attractions">
-            <div class="container">
-                <div class="attr-title"><span>Attractions</span></div>
-
-                <div class="attr-grid">
-                    <div class="attr-card a1">
-                        <div class="attr-badge">🎡</div>
-                        <div class="attr-name">Games</div>
-                    </div>
-                    <div class="attr-card a2">
-                        <div class="attr-badge">🍛</div>
-                        <div class="attr-name">Food</div>
-                    </div>
-                    <div class="attr-card a3">
-                        <div class="attr-badge">🎪</div>
-                        <div class="attr-name">Stalls</div>
-                    </div>
-                    <div class="attr-card a4">
-                        <div class="attr-badge">🏆</div>
-                        <div class="attr-name">Prizes</div>
-                    </div>
-                    <div class="attr-card a5">
-                        <div class="attr-badge">💃</div>
-                        <div class="attr-name">Dance</div>
-                    </div>
-                </div>
-
-                <div class="attr-fun">And lots of fun!</div>
-                <p class="attr-foot">Let's make it a night to remember!</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- AUTH VIEW -->
-    <section id="authView" class="auth-page" hidden>
-        <div class="container">
-            <div class="auth-layout">
-
-                <div class="auth-showcase">
-                    <div class="auth-brand-kicker">
-                        Vanasthali Public School • Vasundhara Sector-3
-                    </div>
-
-                    <h1>
-                        Raas Rang<br>
-                        <span>Dandiya Night 2026.</span>
-                    </h1>
-
-                    <p>
-                        An evening of music, colours, dance and celebration.
-                        Register your entry, complete payment verification, and get your secure QR for event entry.
-                    </p>
-
-                    <div class="auth-event-bar">
-                        <div class="auth-event-chip">
-                            <small>Date</small>
-                            <strong>16 October 2026</strong>
-                        </div>
-                        <div class="auth-event-chip">
-                            <small>Time</small>
-                            <strong>6:00 PM – 10:00 PM</strong>
-                        </div>
-                        <div class="auth-event-chip">
-                            <small>Venue</small>
-                            <strong>Vanasthali Public School</strong>
-                        </div>
-                    </div>
-
-                    <div class="auth-pricing">
-                        <span class="accent">Single Female ₹200</span>
-                        <span class="accent">Couple ₹300</span>
-                        <span>No Stag Entry</span>
-                    </div>
-
-                    <div class="auth-footnote">
-                        🔐 Secure participant portal • Payment verification • QR-based gate entry
-                    </div>
-                </div>
-
-                <div class="auth-wrap">
-                    <div class="auth-card">
-
-                        <!-- REGISTER -->
-                        <div id="registerView">
-
-                            <div class="eyebrow">Create Account</div>
-
-                            <h2 class="auth-title">Join the celebration</h2>
-
-                            <p class="auth-description">
-                                Create your participant account and continue to the event registration process.
-                            </p>
-
-                            <form id="registerForm" class="form" novalidate>
-
-                                <div class="field">
-                                    <label for="registerName">Full Name</label>
-                                    <input class="input" id="registerName" type="text" maxlength="100"
-                                        autocomplete="name" placeholder="Enter your full name" required />
-                                </div>
-
-                                <div class="field">
-                                    <label for="registerMobile">Mobile Number</label>
-                                    <input class="input" id="registerMobile" type="tel" inputmode="numeric"
-                                        maxlength="10" autocomplete="tel" placeholder="10-digit mobile number"
-                                        required />
-                                </div>
-
-                                <div class="field">
-                                    <label for="registerEmail">Email Address</label>
-                                    <input class="input" id="registerEmail" type="email" inputmode="email"
-                                        autocomplete="email" maxlength="254" placeholder="you@example.com" required />
-                                </div>
-
-                                <div class="field">
-                                    <label>Gender</label>
-                                    <div class="gender-options">
-                                        <label class="gender-option">
-                                            <input type="radio" name="registerGender" value="male" required />
-                                            <span class="radio-dot" aria-hidden="true"></span>
-                                            <span>Male</span>
-                                        </label>
-                                        <label class="gender-option">
-                                            <input type="radio" name="registerGender" value="female" required />
-                                            <span class="radio-dot" aria-hidden="true"></span>
-                                            <span>Female</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="field">
-                                    <label for="registerPassword">Create New Password</label>
-                                    <div class="password-wrap">
-                                        <input class="input" id="registerPassword" type="password"
-                                            autocomplete="new-password" minlength="8" maxlength="128"
-                                            placeholder="Minimum 8 characters" required />
-                                        <button class="password-btn" type="button"
-                                            data-password-toggle="registerPassword"
-                                            aria-label="Show password">◉</button>
-                                    </div>
-                                </div>
-
-                                <div class="field">
-                                    <label for="registerConfirmPassword">Confirm New Password</label>
-                                    <input class="input" id="registerConfirmPassword" type="password"
-                                        autocomplete="new-password" maxlength="128"
-                                        placeholder="Re-enter Your New Password" required />
-                                </div>
-
-                                <div class="field">
-                                    <label>Security Verification</label>
-                                    <div id="registerTurnstile" class="turnstile-box"></div>
-                                </div>
-
-                                <div id="registerMessage" class="auth-message"></div>
-
-                                <button class="btn btn-primary btn-full" id="registerSubmitBtn" type="submit">
-                                    Create Account
-                                </button>
-                            </form>
-
-                            <div class="auth-switch">
-                                Already have an account?
-                                <button class="text-button" type="button" data-auth-switch="login">Login</button>
-                            </div>
-                        </div>
-
-                        <!-- LOGIN -->
-                        <div id="loginView" hidden>
-
-                            <div class="eyebrow">Secure Login</div>
-
-                            <h2 class="auth-title">Welcome back</h2>
-
-                            <p class="auth-description">
-                                Sign in with your registered email and password.
-                                Your assigned role determines which portal opens.
-                            </p>
-
-                            <form id="loginForm" class="form" novalidate>
-
-                                <div class="field">
-                                    <label for="loginEmail">Email Address</label>
-                                    <input class="input" id="loginEmail" type="email" inputmode="email"
-                                        autocomplete="username" maxlength="254" placeholder="you@example.com"
-                                        required />
-                                </div>
-
-                                <div class="field">
-                                    <label for="loginPassword">Password</label>
-                                    <div class="password-wrap">
-                                        <input class="input" id="loginPassword" type="password"
-                                            autocomplete="current-password" maxlength="128" placeholder="Your password"
-                                            required />
-                                        <button class="password-btn" type="button" data-password-toggle="loginPassword"
-                                            aria-label="Show password">◉</button>
-                                    </div>
-                                </div>
-
-                                <div class="field">
-                                    <label>Security Verification</label>
-                                    <div id="loginTurnstile" class="turnstile-box"></div>
-                                </div>
-
-                                <div id="loginMessage" class="auth-message"></div>
-
-                                <button class="btn btn-primary btn-full" id="loginSubmitBtn" type="submit">
-                                    Login
-                                </button>
-                            </form>
-
-                            <div class="auth-switch">
-                                New participant?
-                                <button class="text-button" type="button" data-auth-switch="register">Create
-                                    Account</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- TERMS MODAL — genie effect -->
-    <div id="pagesModal" class="pages-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="pages-backdrop" data-pages-close></div>
+    <section class="attractions" aria-label="Attractions">
+      <div class="container">
+        <div class="attr-title"><span>Attractions</span></div>
 
-        <div class="pages-panel" id="pagesPanel" role="document">
+        <div class="attr-grid">
+          <div class="attr-card a1">
+            <div class="attr-badge">🎡</div>
+            <div class="attr-name">Games</div>
+          </div>
+          <div class="attr-card a2">
+            <div class="attr-badge">🍛</div>
+            <div class="attr-name">Food</div>
+          </div>
+          <div class="attr-card a3">
+            <div class="attr-badge">🎪</div>
+            <div class="attr-name">Stalls</div>
+          </div>
+          <div class="attr-card a4">
+            <div class="attr-badge">🏆</div>
+            <div class="attr-name">Prizes</div>
+          </div>
+          <div class="attr-card a5">
+            <div class="attr-badge">💃</div>
+            <div class="attr-name">Dance</div>
+          </div>
+        </div>
 
-            <button class="mac-dot" type="button" data-pages-close aria-label="Minimize">
-                <span class="mac-dot-icon">−</span>
-            </button>
+        <div class="attr-fun">And lots of fun!</div>
+        <p class="attr-foot">Let's make it a night to remember!</p>
+      </div>
+    </section>
+  </main>
 
-            <div class="pages-scroll">
+  <!-- AUTH VIEW -->
+  <section id="authView" class="auth-page" hidden>
+    <div class="container">
+      <div class="auth-layout">
 
-                <header class="pages-header">
-                    <span class="pages-eyebrow">Legal & Support</span>
-                    <h2 class="pages-heading">Terms & Conditions<br><span>& Technical Support.</span></h2>
-                    <p class="pages-sub">
-                        Please read the following terms carefully before registering for Raas Rang • Garba Night 2026.
-                        By making the payment, you acknowledge and agree to all policies stated below.
-                    </p>
-                    <div class="pages-meta">
-                        <span>📅 Updated Oct 2026</span>
-                        <span>🏫 Vanasthali Public School</span>
-                        <span>🎉 Garba Night 2026</span>
-                    </div>
-                </header>
+        <div class="auth-showcase">
+          <div class="auth-brand-kicker">
+            Vanasthali Public School • Vasundhara Sector-3
+          </div>
 
-                <section class="pages-section">
-                    <h3>Terms &amp; Conditions</h3>
-                    <p>These terms govern your registration and participation in <strong>Raas Rang • Garba Night
-                            2026</strong>,
-                        organised by Vanasthali Public School, Vasundhara Sector-3.</p>
-                    <ul>
-                        <li>Entry is strictly against a valid event pass/ticket.</li>
-                        <li>Children below 12 years will have free entry.</li>
-                        <li>Tickets/passes once issued are non-transferable, and the amount paid is strictly
-                            non-refundable.</li>
-                        <li>The school will not be responsible for any loss or damage to personal belongings during the
-                            event.</li>
-                        <li>All guests are requested to maintain discipline and follow the school’s event guidelines.
-                            The school reserves the right to deny entry or take necessary action in case of misconduct.
-                        </li>
-                    </ul>
-                </section>
+          <h1>
+            Raas Rang<br>
+            <span>Dandiya Night 2026.</span>
+          </h1>
 
-                <!-- <section class="pages-section">
+          <p>
+            An evening of music, colours, dance and celebration.
+            Register your entry, complete payment verification, and get your secure QR for event entry.
+          </p>
+
+          <div class="auth-event-bar">
+            <div class="auth-event-chip">
+              <small>Date</small>
+              <strong>16 October 2026</strong>
+            </div>
+            <div class="auth-event-chip">
+              <small>Time</small>
+              <strong>6:00 PM – 10:00 PM</strong>
+            </div>
+            <div class="auth-event-chip">
+              <small>Venue</small>
+              <strong>Vanasthali Public School</strong>
+            </div>
+          </div>
+
+          <div class="auth-pricing">
+            <span class="accent">Single Female ₹200</span>
+            <span class="accent">Couple ₹300</span>
+            <span>No Stag Entry</span>
+          </div>
+
+          <div class="auth-footnote">
+            🔐 Secure participant portal • Payment verification • QR-based gate entry
+          </div>
+        </div>
+
+        <div class="auth-wrap">
+          <div class="auth-card">
+
+            <!-- REGISTER -->
+            <div id="registerView">
+
+              <div class="eyebrow">Create Account</div>
+
+              <h2 class="auth-title">Join the celebration</h2>
+
+              <p class="auth-description">
+                Create your participant account and continue to the event registration process.
+              </p>
+
+              <form id="registerForm" class="form" novalidate>
+
+                <div class="field">
+                  <label for="registerName">Full Name</label>
+                  <input class="input" id="registerName" type="text" maxlength="100" autocomplete="name"
+                    placeholder="Enter your full name" required />
+                </div>
+
+                <div class="field">
+                  <label for="registerMobile">Mobile Number</label>
+                  <input class="input" id="registerMobile" type="tel" inputmode="numeric" maxlength="10"
+                    autocomplete="tel" placeholder="10-digit mobile number" required />
+                </div>
+
+                <div class="field">
+                  <label for="registerEmail">Email Address</label>
+                  <input class="input" id="registerEmail" type="email" inputmode="email" autocomplete="email"
+                    maxlength="254" placeholder="you@example.com" required />
+                </div>
+
+                <div class="field">
+                  <label>Gender</label>
+                  <div class="gender-options">
+                    <label class="gender-option">
+                      <input type="radio" name="registerGender" value="male" required />
+                      <span class="radio-dot" aria-hidden="true"></span>
+                      <span>Male</span>
+                    </label>
+                    <label class="gender-option">
+                      <input type="radio" name="registerGender" value="female" required />
+                      <span class="radio-dot" aria-hidden="true"></span>
+                      <span>Female</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="registerPassword">Create New Password</label>
+                  <div class="password-wrap">
+                    <input class="input" id="registerPassword" type="password" autocomplete="new-password" minlength="8"
+                      maxlength="128" placeholder="Minimum 8 characters" required />
+                    <button class="password-btn" type="button" data-password-toggle="registerPassword"
+                      aria-label="Show password">◉</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="registerConfirmPassword">Confirm New Password</label>
+                  <input class="input" id="registerConfirmPassword" type="password" autocomplete="new-password"
+                    maxlength="128" placeholder="Re-enter Your New Password" required />
+                </div>
+
+                <div class="field">
+                  <label>Security Verification</label>
+                  <div id="registerTurnstile" class="turnstile-box"></div>
+                </div>
+
+                <div id="registerMessage" class="auth-message"></div>
+
+                <button class="btn btn-primary btn-full" id="registerSubmitBtn" type="submit">
+                  Create Account
+                </button>
+              </form>
+
+              <div class="auth-switch">
+                Already have an account?
+                <button class="text-button" type="button" data-auth-switch="login">Login</button>
+              </div>
+            </div>
+
+            <!-- LOGIN -->
+            <div id="loginView" hidden>
+
+              <div class="eyebrow">Secure Login</div>
+
+              <h2 class="auth-title">Welcome back</h2>
+
+              <p class="auth-description">
+                Sign in with your registered email and password.
+                Your assigned role determines which portal opens.
+              </p>
+
+              <form id="loginForm" class="form" novalidate>
+
+                <div class="field">
+                  <label for="loginEmail">Email Address</label>
+                  <input class="input" id="loginEmail" type="email" inputmode="email" autocomplete="username"
+                    maxlength="254" placeholder="you@example.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="loginPassword">Password</label>
+                  <div class="password-wrap">
+                    <input class="input" id="loginPassword" type="password" autocomplete="current-password"
+                      maxlength="128" placeholder="Your password" required />
+                    <button class="password-btn" type="button" data-password-toggle="loginPassword"
+                      aria-label="Show password">◉</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>Security Verification</label>
+                  <div id="loginTurnstile" class="turnstile-box"></div>
+                </div>
+
+                <div id="loginMessage" class="auth-message"></div>
+
+                <button class="btn btn-primary btn-full" id="loginSubmitBtn" type="submit">
+                  Login
+                </button>
+              </form>
+
+              <div class="auth-switch">
+                New participant?
+                <button class="text-button" type="button" data-auth-switch="register">Create Account</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMS MODAL — genie effect -->
+  <div id="pagesModal" class="pages-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="pages-backdrop" data-pages-close></div>
+
+    <div class="pages-panel" id="pagesPanel" role="document">
+
+      <button class="mac-dot" type="button" data-pages-close aria-label="Minimize">
+        <span class="mac-dot-icon">−</span>
+      </button>
+
+      <div class="pages-scroll">
+
+        <header class="pages-header">
+          <span class="pages-eyebrow">Legal & Support</span>
+          <h2 class="pages-heading">Terms & Conditions<br><span>& Technical Support.</span></h2>
+          <p class="pages-sub">
+            Please read the following terms carefully before registering for Raas Rang • Garba Night 2026.
+            By making the payment, you acknowledge and agree to all policies stated below.
+          </p>
+          <div class="pages-meta">
+            <span>📅 Updated Oct 2026</span>
+            <span>🏫 Vanasthali Public School</span>
+            <span>🎉 Garba Night 2026</span>
+          </div>
+        </header>
+
+        <section class="pages-section">
+          <h3>Terms &amp; Conditions</h3>
+          <p>These terms govern your registration and participation in <strong>Raas Rang • Garba Night 2026</strong>,
+            organised by Vanasthali Public School, Vasundhara Sector-3.</p>
+          <ul>
+            <li>Entry is strictly against a valid event pass/ticket.</li>
+            <li>Children below 12 years will have free entry.</li>
+            <li>Tickets/passes once issued are non-transferable, and the amount paid is strictly non-refundable.</li>
+            <li>The school will not be responsible for any loss or damage to personal belongings during the event.</li>
+            <li>All guests are requested to maintain discipline and follow the school’s event guidelines. The school reserves the right to deny entry or take necessary action in case of misconduct.</li>
+          </ul>
+        </section>
+
+        <!-- <section class="pages-section">
           <h3>Eligibility &amp; Entry</h3>
           <ul>
             <li><strong>No Stag Entry</strong> — single male participants are not permitted.</li>
@@ -1497,18 +1484,17 @@
           </div>
         </section> -->
 
-                <section class="pages-section">
-                    <h3>Payments</h3>
-                    <ul>
-                        <li>Single Female — <strong>₹200</strong></li>
-                        <li>Couple (Male + Female) — <strong>₹300</strong></li>
-                        <li>Payment must be made only to the official school UPI ID shown on the registration portal.
-                        </li>
-                        <li>Keep the UPI reference number safe until the event ends.</li>
-                    </ul>
-                </section>
+        <section class="pages-section">
+          <h3>Payments</h3>
+          <ul>
+            <li>Single Female — <strong>₹200</strong></li>
+            <li>Couple (Male + Female) — <strong>₹300</strong></li>
+            <li>Payment must be made only to the official school UPI ID shown on the registration portal.</li>
+            <li>Keep the UPI reference number safe until the event ends.</li>
+          </ul>
+        </section>
 
-                <!-- <section class="pages-section">
+        <!-- <section class="pages-section">
           <h3>Refund Policy</h3>
           <div class="pages-note danger">
             <strong>No Refunds:</strong> Once payment is made and submitted through the portal, it is <strong>strictly
@@ -1527,89 +1513,83 @@
           </p>
         </section> -->
 
-                <section class="pages-section">
-                    <h3>Code of Conduct</h3>
-                    <ul>
-                        <li>Alcohol, tobacco and any intoxicating substance is strictly prohibited on campus.</li>
-                        <li>Misbehaviour, harassment or violence will lead to immediate removal and possible legal
-                            action.</li>
-                        <li>Respect school property, staff, volunteers and fellow participants.</li>
-                        <li>Damage to decorations, lights, sound equipment or stalls will be recovered from the
-                            responsible party.
-                        </li>
-                        <li>Traditional / festive attire is encouraged. Please dress respectfully for a school event.
-                        </li>
-                    </ul>
-                </section>
+        <section class="pages-section">
+          <h3>Code of Conduct</h3>
+          <ul>
+            <li>Alcohol, tobacco and any intoxicating substance is strictly prohibited on campus.</li>
+            <li>Misbehaviour, harassment or violence will lead to immediate removal and possible legal action.</li>
+            <li>Respect school property, staff, volunteers and fellow participants.</li>
+            <li>Damage to decorations, lights, sound equipment or stalls will be recovered from the responsible party.
+            </li>
+            <li>Traditional / festive attire is encouraged. Please dress respectfully for a school event.</li>
+          </ul>
+        </section>
 
-                <section class="pages-section">
-                    <h3>Liability</h3>
-                    <p>Vanasthali Public School and event organisers shall not be responsible for:</p>
-                    <ul>
-                        <li>Loss, theft or damage to personal belongings.</li>
-                        <li>Injury sustained due to participant negligence.</li>
-                        <li>Disruptions beyond organisers' control (weather, power, restrictions).</li>
-                        <li>False information submitted during registration.</li>
-                    </ul>
-                </section>
+        <section class="pages-section">
+          <h3>Liability</h3>
+          <p>Vanasthali Public School and event organisers shall not be responsible for:</p>
+          <ul>
+            <li>Loss, theft or damage to personal belongings.</li>
+            <li>Injury sustained due to participant negligence.</li>
+            <li>Disruptions beyond organisers' control (weather, power, restrictions).</li>
+            <li>False information submitted during registration.</li>
+          </ul>
+        </section>
 
-                <section class="pages-section">
-                    <h3>Technical Support</h3>
-                    <p>Facing issues with registration, login, payment submission or QR access? Our team is available
-                        via WhatsApp
-                        or call between <strong>08:00 AM – 5:00 PM</strong>.</p>
+        <section class="pages-section">
+          <h3>Technical Support</h3>
+          <p>Facing issues with registration, login, payment submission or QR access? Our team is available via WhatsApp
+            or call between <strong>08:00 AM – 5:00 PM</strong>.</p>
 
-                    <div class="support-grid">
+          <div class="support-grid">
 
-                        <div class="support-card">
-                            <span class="support-role">Tech Support</span>
-                            <h4>Ms. Geetika</h4>
-                            <p>Registration, login &amp; payment proof issues.</p>
-                            <div class="support-actions">
-                                <a class="support-btn" href="tel:+8130058828">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
-                                    </svg>
-                                    Call
-                                </a>
-                                <a class="support-btn" href="https://wa.me/9355203700" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path
-                                            d="M20.5 3.5A11.4 11.4 0 0 0 3.2 17.9L2 22l4.2-1.2A11.5 11.5 0 0 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.5.7.7-2.4-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7 1c-.1.1-.3.2-.5 0a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.5-1.3-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c2.1.8 2.1.6 2.5.5a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c-.1-.1-.3-.2-.4-.3Z" />
-                                    </svg>
-                                    WhatsApp
-                                </a>
-                            </div>
-                        </div>
+            <div class="support-card">
+              <span class="support-role">Tech Support</span>
+              <h4>Ms. Geetika</h4>
+              <p>Registration, login &amp; payment proof issues.</p>
+              <div class="support-actions">
+                <a class="support-btn" href="tel:+8130058828">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                  </svg>
+                  Call
+                </a>
+                <a class="support-btn" href="https://wa.me/9355203700" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M20.5 3.5A11.4 11.4 0 0 0 3.2 17.9L2 22l4.2-1.2A11.5 11.5 0 0 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.5.7.7-2.4-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7 1c-.1.1-.3.2-.5 0a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.5-1.3-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c2.1.8 2.1.6 2.5.5a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c-.1-.1-.3-.2-.4-.3Z" />
+                  </svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
 
-                        <div class="support-card">
-                            <span class="support-role">Tech Support</span>
-                            <h4>Ms. Bani Kaur</h4>
-                            <p>QR code, gate entry &amp; verification issues.</p>
-                            <div class="support-actions">
-                                <a class="support-btn" href="tel:+9355203700">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
-                                    </svg>
-                                    Call
-                                </a>
-                                <a class="support-btn" href="https://wa.me/9355203700" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path
-                                            d="M20.5 3.5A11.4 11.4 0 0 0 3.2 17.9L2 22l4.2-1.2A11.5 11.5 0 0 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.5.7.7-2.4-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7 1c-.1.1-.3.2-.5 0a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.5-1.3-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c2.1.8 2.1.6 2.5.5a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c-.1-.1-.3-.2-.4-.3Z" />
-                                    </svg>
-                                    WhatsApp
-                                </a>
-                            </div>
-                        </div>
+            <div class="support-card">
+              <span class="support-role">Tech Support</span>
+              <h4>Ms. Bani Kaur</h4>
+              <p>QR code, gate entry &amp; verification issues.</p>
+              <div class="support-actions">
+                <a class="support-btn" href="tel:+9355203700">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+                  </svg>
+                  Call
+                </a>
+                <a class="support-btn" href="https://wa.me/9355203700" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M20.5 3.5A11.4 11.4 0 0 0 3.2 17.9L2 22l4.2-1.2A11.5 11.5 0 0 0 20.5 3.5ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.5.7.7-2.4-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7 1c-.1.1-.3.2-.5 0a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.5-1.3-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c2.1.8 2.1.6 2.5.5a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c-.1-.1-.3-.2-.4-.3Z" />
+                  </svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
 
-                        <!-- <div class="support-card">
+            <!-- <div class="support-card">
               <span class="support-role">Tech Support</span>
               <h4>Person 3</h4>
               <p>General queries &amp; payment clarification.</p>
@@ -1632,644 +1612,643 @@
               </div>
             </div> -->
 
-                    </div>
+          </div>
 
-                    <div class="pages-note">
-                        For urgent help, WhatsApp us with your <strong>Full Name</strong>, <strong>Registered
-                            Email</strong> and
-                        <strong>UPI Reference Number</strong> (if applicable).
-                    </div>
-                </section>
+          <div class="pages-note">
+            For urgent help, WhatsApp us with your <strong>Full Name</strong>, <strong>Registered Email</strong> and
+            <strong>UPI Reference Number</strong> (if applicable).
+          </div>
+        </section>
 
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
-    <script>
-        "use strict";
+  <script>
+    "use strict";
 
-        const CONFIG = Object.freeze({
-            SUPABASE_URL: "https://fhpudmstnldyqggrnqme.supabase.co",
-            SUPABASE_PUBLISHABLE_KEY: "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw",
-            CLOUDFLARE_TURNSTILE_SITE_KEY: "0x4AAAAAAFLF-_CLSf16-AaW",
-            SITE_URL: "https://raas-rang-garba.vercel.app",
-            PROFILE_TABLE: "profiles",
-            PARTICIPANT_PAGE: "/user.html",
-            ADMIN_PAGE: "/admin.html",
-            GATE_PAGE: "/gate.html",
-            MAX_EMAIL_LENGTH: 254,
-            MAX_NAME_LENGTH: 100,
-            MIN_PASSWORD_LENGTH: 8
+    const CONFIG = Object.freeze({
+      SUPABASE_URL: "https://fhpudmstnldyqggrnqme.supabase.co",
+      SUPABASE_PUBLISHABLE_KEY: "sb_publishable_W4lBqfz3gZDGCiGw_qLLoQ_X9v8Squw",
+      CLOUDFLARE_TURNSTILE_SITE_KEY: "0x4AAAAAAFLF-_CLSf16-AaW",
+      SITE_URL: "https://raas-rang-garba.vercel.app",
+      PROFILE_TABLE: "profiles",
+      PARTICIPANT_PAGE: "/user.html",
+      ADMIN_PAGE: "/admin.html",
+      GATE_PAGE: "/gate.html",
+      MAX_EMAIL_LENGTH: 254,
+      MAX_NAME_LENGTH: 100,
+      MIN_PASSWORD_LENGTH: 8
+    });
+
+    const state = {
+      supabase: null,
+      currentUser: null,
+      authMode: null,
+      registerTurnstileId: null,
+      loginTurnstileId: null,
+      registerToken: null,
+      loginToken: null,
+      redirectInProgress: false
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    document.addEventListener("DOMContentLoaded", bootstrap);
+
+    async function bootstrap() {
+      bindEvents();
+      setTimeout(initializeApp, 100);
+    }
+
+    async function initializeApp() {
+      try {
+        showLoader("Starting secure connection...");
+        await waitForSupabase();
+        validatePublicConfig();
+
+        state.supabase = window.supabase.createClient(
+          CONFIG.SUPABASE_URL,
+          CONFIG.SUPABASE_PUBLISHABLE_KEY,
+          {
+            auth: {
+              autoRefreshToken: true,
+              persistSession: true,
+              detectSessionInUrl: true,
+              flowType: "pkce"
+            }
+          }
+        );
+
+        const { data: sessionData } = await state.supabase.auth.getSession();
+
+        if (sessionData?.session) {
+          await routeAuthenticatedUser();
+        } else {
+          stopLoader();
+          openLanding();
+        }
+
+        state.supabase.auth.onAuthStateChange(async (event, session) => {
+          if (state.redirectInProgress) return;
+
+          if (event === "SIGNED_OUT") {
+            state.currentUser = null;
+            openLanding();
+            return;
+          }
+
+          if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session?.user) {
+            if (event === "SIGNED_IN" && !state.redirectInProgress) {
+              await routeAuthenticatedUser();
+            }
+          }
         });
 
-        const state = {
-            supabase: null,
-            currentUser: null,
-            authMode: null,
-            registerTurnstileId: null,
-            loginTurnstileId: null,
-            registerToken: null,
-            loginToken: null,
-            redirectInProgress: false
-        };
+      } catch (error) {
+        console.error("APPLICATION BOOT ERROR:", error);
+        stopLoader();
+        showToast(getFriendlyError(error), "error");
+        openLanding();
+      }
+    }
 
-        const $ = (selector) => document.querySelector(selector);
-        const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+    async function waitForSupabase() {
+      const start = Date.now();
+      const timeout = 15000;
 
-        document.addEventListener("DOMContentLoaded", bootstrap);
+      while (
+        (!window.supabase || typeof window.supabase.createClient !== "function") &&
+        Date.now() - start < timeout
+      ) {
+        await delay(100);
+      }
 
-        async function bootstrap() {
-            bindEvents();
-            setTimeout(initializeApp, 100);
+      if (!window.supabase) {
+        throw new Error("Supabase library did not load.");
+      }
+    }
+
+    function validatePublicConfig() {
+      if (!CONFIG.SUPABASE_PUBLISHABLE_KEY || CONFIG.SUPABASE_PUBLISHABLE_KEY.includes("PASTE_")) {
+        throw new Error("Supabase publishable key is missing.");
+      }
+      if (!CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY || CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY.includes("PASTE_")) {
+        throw new Error("Cloudflare Turnstile Site Key is missing.");
+      }
+    }
+
+    function bindEvents() {
+      $("#headerLoginBtn").addEventListener("click", () => openAuth("login"));
+      $("#headerRegisterBtn").addEventListener("click", () => openAuth("register"));
+      $("#heroLoginBtn").addEventListener("click", () => openAuth("login"));
+      $("#heroRegisterBtn").addEventListener("click", () => openAuth("register"));
+      $("#headerLogoutBtn").addEventListener("click", logout);
+
+      $("#registerForm").addEventListener("submit", handleRegister);
+      $("#loginForm").addEventListener("submit", handleLogin);
+
+      $("#registerMobile").addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+      });
+
+      $$("[data-auth-switch]").forEach((button) => {
+        button.addEventListener("click", () => {
+          openAuth(button.dataset.authSwitch);
+        });
+      });
+
+      $$("[data-password-toggle]").forEach((button) => {
+        button.addEventListener("click", () => {
+          togglePassword(button.dataset.passwordToggle, button);
+        });
+      });
+
+      initTermsModal();
+    }
+
+    function openLanding() {
+      $("#landingView").hidden = false;
+      $("#authView").hidden = true;
+      $("#publicHeader").hidden = false;
+      $("#authenticatedHeader").hidden = true;
+      state.authMode = null;
+      hideMessage("#registerMessage");
+      hideMessage("#loginMessage");
+      stopLoader();
+    }
+
+    function openAuth(mode) {
+      if (state.currentUser) {
+        routeAuthenticatedUser();
+        return;
+      }
+
+      $("#landingView").hidden = true;
+      $("#authView").hidden = false;
+      $("#publicHeader").hidden = false;
+      $("#authenticatedHeader").hidden = true;
+
+      $("#registerView").hidden = mode !== "register";
+      $("#loginView").hidden = mode !== "login";
+
+      state.authMode = mode;
+
+      hideMessage("#registerMessage");
+      hideMessage("#loginMessage");
+
+      setTimeout(() => {
+        if (mode === "register") renderRegisterTurnstile();
+        else renderLoginTurnstile();
+      }, 100);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderRegisterTurnstile() {
+      if (!window.turnstile) { setTimeout(renderRegisterTurnstile, 300); return; }
+      if (state.registerTurnstileId !== null) return;
+      const container = $("#registerTurnstile");
+      if (!container) return;
+
+      state.registerTurnstileId = window.turnstile.render(container, {
+        sitekey: CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
+        theme: "dark",
+        size: "flexible",
+        action: "signup",
+        callback: (token) => { state.registerToken = token; },
+        "expired-callback": () => { state.registerToken = null; },
+        "error-callback": (errorCode) => {
+          state.registerToken = null;
+          console.error("REGISTER TURNSTILE:", errorCode);
         }
+      });
+    }
 
-        async function initializeApp() {
-            try {
-                showLoader("Starting secure connection...");
-                await waitForSupabase();
-                validatePublicConfig();
+    function renderLoginTurnstile() {
+      if (!window.turnstile) { setTimeout(renderLoginTurnstile, 300); return; }
+      if (state.loginTurnstileId !== null) return;
+      const container = $("#loginTurnstile");
+      if (!container) return;
 
-                state.supabase = window.supabase.createClient(
-                    CONFIG.SUPABASE_URL,
-                    CONFIG.SUPABASE_PUBLISHABLE_KEY,
-                    {
-                        auth: {
-                            autoRefreshToken: true,
-                            persistSession: true,
-                            detectSessionInUrl: true,
-                            flowType: "pkce"
-                        }
-                    }
-                );
-
-                const { data: sessionData } = await state.supabase.auth.getSession();
-
-                if (sessionData?.session) {
-                    await routeAuthenticatedUser();
-                } else {
-                    stopLoader();
-                    openLanding();
-                }
-
-                state.supabase.auth.onAuthStateChange(async (event, session) => {
-                    if (state.redirectInProgress) return;
-
-                    if (event === "SIGNED_OUT") {
-                        state.currentUser = null;
-                        openLanding();
-                        return;
-                    }
-
-                    if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session?.user) {
-                        if (event === "SIGNED_IN" && !state.redirectInProgress) {
-                            await routeAuthenticatedUser();
-                        }
-                    }
-                });
-
-            } catch (error) {
-                console.error("APPLICATION BOOT ERROR:", error);
-                stopLoader();
-                showToast(getFriendlyError(error), "error");
-                openLanding();
-            }
+      state.loginTurnstileId = window.turnstile.render(container, {
+        sitekey: CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
+        theme: "dark",
+        size: "flexible",
+        action: "login",
+        callback: (token) => { state.loginToken = token; },
+        "expired-callback": () => { state.loginToken = null; },
+        "error-callback": (errorCode) => {
+          state.loginToken = null;
+          console.error("LOGIN TURNSTILE:", errorCode);
         }
+      });
+    }
 
-        async function waitForSupabase() {
-            const start = Date.now();
-            const timeout = 15000;
+    function resetRegisterTurnstile() {
+      state.registerToken = null;
+      if (window.turnstile && state.registerTurnstileId !== null) {
+        window.turnstile.reset(state.registerTurnstileId);
+      }
+    }
 
-            while (
-                (!window.supabase || typeof window.supabase.createClient !== "function") &&
-                Date.now() - start < timeout
-            ) {
-                await delay(100);
+    function resetLoginTurnstile() {
+      state.loginToken = null;
+      if (window.turnstile && state.loginTurnstileId !== null) {
+        window.turnstile.reset(state.loginTurnstileId);
+      }
+    }
+
+    async function handleRegister(event) {
+      event.preventDefault();
+      const button = $("#registerSubmitBtn");
+
+      const fullName = cleanName($("#registerName").value);
+      const mobile = String($("#registerMobile").value || "").replace(/\D/g, "").slice(0, 10);
+      const genderInput = document.querySelector('input[name="registerGender"]:checked');
+      const gender = genderInput ? String(genderInput.value).toLowerCase() : "";
+
+      const email = normalizeEmail($("#registerEmail").value);
+      const password = $("#registerPassword").value;
+      const confirmPassword = $("#registerConfirmPassword").value;
+      const captchaToken = state.registerToken;
+
+      hideMessage("#registerMessage");
+
+      if (fullName.length < 2 || fullName.length > CONFIG.MAX_NAME_LENGTH) {
+        showMessage("#registerMessage", "Please enter a valid full name (2–100 characters).", "error");
+        return;
+      }
+      if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+        showMessage("#registerMessage", "Please enter a valid 10-digit mobile number.", "error");
+        return;
+      }
+      if (gender !== "male" && gender !== "female") {
+        showMessage("#registerMessage", "Please select your gender.", "error");
+        return;
+      }
+      if (!isValidEmail(email)) {
+        showMessage("#registerMessage", "Please enter a valid email address.", "error");
+        return;
+      }
+      if (password.length < CONFIG.MIN_PASSWORD_LENGTH) {
+        showMessage("#registerMessage", "Password must contain at least 8 characters.", "error");
+        return;
+      }
+      if (password !== confirmPassword) {
+        showMessage("#registerMessage", "Passwords do not match.", "error");
+        return;
+      }
+      if (!captchaToken) {
+        showMessage("#registerMessage", "Please complete the security verification.", "error");
+        return;
+      }
+
+      setButtonLoading(button, "Creating account...");
+
+      try {
+        const { data, error } = await state.supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            captchaToken,
+            emailRedirectTo: CONFIG.SITE_URL + "/index.html",
+            data: {
+              full_name: fullName,
+              phone: mobile,
+              gender: gender
             }
-
-            if (!window.supabase) {
-                throw new Error("Supabase library did not load.");
-            }
-        }
-
-        function validatePublicConfig() {
-            if (!CONFIG.SUPABASE_PUBLISHABLE_KEY || CONFIG.SUPABASE_PUBLISHABLE_KEY.includes("PASTE_")) {
-                throw new Error("Supabase publishable key is missing.");
-            }
-            if (!CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY || CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY.includes("PASTE_")) {
-                throw new Error("Cloudflare Turnstile Site Key is missing.");
-            }
-        }
-
-        function bindEvents() {
-            $("#headerLoginBtn").addEventListener("click", () => openAuth("login"));
-            $("#headerRegisterBtn").addEventListener("click", () => openAuth("register"));
-            $("#heroLoginBtn").addEventListener("click", () => openAuth("login"));
-            $("#heroRegisterBtn").addEventListener("click", () => openAuth("register"));
-            $("#headerLogoutBtn").addEventListener("click", logout);
-
-            $("#registerForm").addEventListener("submit", handleRegister);
-            $("#loginForm").addEventListener("submit", handleLogin);
-
-            $("#registerMobile").addEventListener("input", (e) => {
-                e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
-            });
-
-            $$("[data-auth-switch]").forEach((button) => {
-                button.addEventListener("click", () => {
-                    openAuth(button.dataset.authSwitch);
-                });
-            });
-
-            $$("[data-password-toggle]").forEach((button) => {
-                button.addEventListener("click", () => {
-                    togglePassword(button.dataset.passwordToggle, button);
-                });
-            });
-
-            initTermsModal();
-        }
-
-        function openLanding() {
-            $("#landingView").hidden = false;
-            $("#authView").hidden = true;
-            $("#publicHeader").hidden = false;
-            $("#authenticatedHeader").hidden = true;
-            state.authMode = null;
-            hideMessage("#registerMessage");
-            hideMessage("#loginMessage");
-            stopLoader();
-        }
-
-        function openAuth(mode) {
-            if (state.currentUser) {
-                routeAuthenticatedUser();
-                return;
-            }
-
-            $("#landingView").hidden = true;
-            $("#authView").hidden = false;
-            $("#publicHeader").hidden = false;
-            $("#authenticatedHeader").hidden = true;
-
-            $("#registerView").hidden = mode !== "register";
-            $("#loginView").hidden = mode !== "login";
-
-            state.authMode = mode;
-
-            hideMessage("#registerMessage");
-            hideMessage("#loginMessage");
-
-            setTimeout(() => {
-                if (mode === "register") renderRegisterTurnstile();
-                else renderLoginTurnstile();
-            }, 100);
-
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        function renderRegisterTurnstile() {
-            if (!window.turnstile) { setTimeout(renderRegisterTurnstile, 300); return; }
-            if (state.registerTurnstileId !== null) return;
-            const container = $("#registerTurnstile");
-            if (!container) return;
-
-            state.registerTurnstileId = window.turnstile.render(container, {
-                sitekey: CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
-                theme: "dark",
-                size: "flexible",
-                action: "signup",
-                callback: (token) => { state.registerToken = token; },
-                "expired-callback": () => { state.registerToken = null; },
-                "error-callback": (errorCode) => {
-                    state.registerToken = null;
-                    console.error("REGISTER TURNSTILE:", errorCode);
-                }
-            });
-        }
-
-        function renderLoginTurnstile() {
-            if (!window.turnstile) { setTimeout(renderLoginTurnstile, 300); return; }
-            if (state.loginTurnstileId !== null) return;
-            const container = $("#loginTurnstile");
-            if (!container) return;
-
-            state.loginTurnstileId = window.turnstile.render(container, {
-                sitekey: CONFIG.CLOUDFLARE_TURNSTILE_SITE_KEY,
-                theme: "dark",
-                size: "flexible",
-                action: "login",
-                callback: (token) => { state.loginToken = token; },
-                "expired-callback": () => { state.loginToken = null; },
-                "error-callback": (errorCode) => {
-                    state.loginToken = null;
-                    console.error("LOGIN TURNSTILE:", errorCode);
-                }
-            });
-        }
-
-        function resetRegisterTurnstile() {
-            state.registerToken = null;
-            if (window.turnstile && state.registerTurnstileId !== null) {
-                window.turnstile.reset(state.registerTurnstileId);
-            }
-        }
-
-        function resetLoginTurnstile() {
-            state.loginToken = null;
-            if (window.turnstile && state.loginTurnstileId !== null) {
-                window.turnstile.reset(state.loginTurnstileId);
-            }
-        }
-
-        async function handleRegister(event) {
-            event.preventDefault();
-            const button = $("#registerSubmitBtn");
-
-            const fullName = cleanName($("#registerName").value);
-            const mobile = String($("#registerMobile").value || "").replace(/\D/g, "").slice(0, 10);
-            const genderInput = document.querySelector('input[name="registerGender"]:checked');
-            const gender = genderInput ? String(genderInput.value).toLowerCase() : "";
-
-            const email = normalizeEmail($("#registerEmail").value);
-            const password = $("#registerPassword").value;
-            const confirmPassword = $("#registerConfirmPassword").value;
-            const captchaToken = state.registerToken;
-
-            hideMessage("#registerMessage");
-
-            if (fullName.length < 2 || fullName.length > CONFIG.MAX_NAME_LENGTH) {
-                showMessage("#registerMessage", "Please enter a valid full name (2–100 characters).", "error");
-                return;
-            }
-            if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-                showMessage("#registerMessage", "Please enter a valid 10-digit mobile number.", "error");
-                return;
-            }
-            if (gender !== "male" && gender !== "female") {
-                showMessage("#registerMessage", "Please select your gender.", "error");
-                return;
-            }
-            if (!isValidEmail(email)) {
-                showMessage("#registerMessage", "Please enter a valid email address.", "error");
-                return;
-            }
-            if (password.length < CONFIG.MIN_PASSWORD_LENGTH) {
-                showMessage("#registerMessage", "Password must contain at least 8 characters.", "error");
-                return;
-            }
-            if (password !== confirmPassword) {
-                showMessage("#registerMessage", "Passwords do not match.", "error");
-                return;
-            }
-            if (!captchaToken) {
-                showMessage("#registerMessage", "Please complete the security verification.", "error");
-                return;
-            }
-
-            setButtonLoading(button, "Creating account...");
-
-            try {
-                const { data, error } = await state.supabase.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        captchaToken,
-                        emailRedirectTo: CONFIG.SITE_URL + "/index.html",
-                        data: {
-                            full_name: fullName,
-                            phone: mobile,
-                            gender: gender
-                        }
-                    }
-                });
-
-                if (error) throw error;
-
-                if (data?.user && !data?.session) {
-                    showMessage(
-                        "#registerMessage",
-                        "Account created. Please check your email and confirm your account before logging in.",
-                        "success"
-                    );
-                    $("#registerForm").reset();
-                    resetRegisterTurnstile();
-                    return;
-                }
-
-                if (data?.user) {
-                    state.currentUser = data.user;
-                    await routeAuthenticatedUser();
-                }
-
-            } catch (error) {
-                console.error("REGISTER ERROR:", error);
-                resetRegisterTurnstile();
-                showMessage("#registerMessage", getFriendlyError(error), "error");
-            } finally {
-                resetButton(button, "Create Account");
-            }
-        }
-
-        async function handleLogin(event) {
-            event.preventDefault();
-            if (state.redirectInProgress) return;
-
-            const button = $("#loginSubmitBtn");
-            const email = normalizeEmail($("#loginEmail").value);
-            const password = $("#loginPassword").value;
-            const captchaToken = state.loginToken;
-
-            hideMessage("#loginMessage");
-
-            if (!isValidEmail(email)) {
-                showMessage("#loginMessage", "Please enter a valid email address.", "error");
-                return;
-            }
-            if (!password) {
-                showMessage("#loginMessage", "Please enter your password.", "error");
-                return;
-            }
-            if (!captchaToken) {
-                showMessage("#loginMessage", "Please complete the security verification.", "error");
-                return;
-            }
-
-            setButtonLoading(button, "Signing in...");
-
-            try {
-                const { data, error } = await state.supabase.auth.signInWithPassword({
-                    email,
-                    password,
-                    options: { captchaToken }
-                });
-
-                resetLoginTurnstile();
-
-                if (error) throw error;
-                if (!data?.user) throw new Error("Login did not return a valid user.");
-
-                state.currentUser = data.user;
-                await routeAuthenticatedUser();
-
-            } catch (error) {
-                console.error("LOGIN ERROR:", error);
-                resetLoginTurnstile();
-                showMessage("#loginMessage", getFriendlyError(error), "error");
-            } finally {
-                resetButton(button, "Login");
-            }
-        }
-
-        async function routeAuthenticatedUser() {
-            if (state.redirectInProgress) return;
-            state.redirectInProgress = true;
-
-            try {
-                showLoader("Verifying account role...");
-
-                const { data, error } = await state.supabase.auth.getUser();
-                if (error) throw error;
-                if (!data?.user) throw new Error("Authenticated user could not be verified.");
-
-                state.currentUser = data.user;
-
-                const { data: profile, error: profileError } = await state.supabase
-                    .from(CONFIG.PROFILE_TABLE)
-                    .select("role, gate_number")
-                    .eq("id", data.user.id)
-                    .maybeSingle();
-
-                if (profileError) throw profileError;
-                if (!profile) {
-                    throw new Error("Your account role could not be verified. Please contact the administrator.");
-                }
-
-                const role = String(profile.role || "").trim().toLowerCase();
-
-                if (role === "participant") { redirectTo(CONFIG.PARTICIPANT_PAGE); return; }
-                if (role === "admin") { redirectTo(CONFIG.ADMIN_PAGE); return; }
-                if (role === "gate") { redirectTo(CONFIG.GATE_PAGE); return; }
-
-                await state.supabase.auth.signOut();
-                state.currentUser = null;
-                throw new Error("Your account has an invalid or unauthorized role.");
-
-            } catch (error) {
-                state.redirectInProgress = false;
-                stopLoader();
-                console.error("ROLE ROUTING ERROR:", error);
-                showToast(getFriendlyError(error), "error");
-                openLanding();
-            }
-        }
-
-        function redirectTo(path) { window.location.replace(path); }
-
-        async function logout() {
-            try {
-                showLoader("Signing out securely...");
-                if (state.supabase) await state.supabase.auth.signOut();
-            } catch (error) {
-                console.error("LOGOUT ERROR:", error);
-            } finally {
-                window.location.replace("/index.html");
-            }
-        }
-
-        function togglePassword(id, button) {
-            const input = document.getElementById(id);
-            if (!input) return;
-            const hidden = input.type === "password";
-            input.type = hidden ? "text" : "password";
-            button.textContent = hidden ? "◌" : "◉";
-        }
-
-        function normalizeEmail(value) {
-            return String(value || "").trim().toLowerCase().slice(0, CONFIG.MAX_EMAIL_LENGTH);
-        }
-
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function cleanName(value) {
-            return String(value || "")
-                .replace(/[\u0000-\u001F\u007F]/g, "")
-                .replace(/\s+/g, " ")
-                .trim()
-                .slice(0, CONFIG.MAX_NAME_LENGTH);
-        }
-
-        function setButtonLoading(button, text) {
-            if (!button) return;
-            if (!button.dataset.originalText) button.dataset.originalText = button.textContent;
-            button.disabled = true;
-            button.textContent = text;
-        }
-
-        function resetButton(button, fallback) {
-            if (!button) return;
-            button.disabled = false;
-            button.textContent = button.dataset.originalText || fallback;
-            delete button.dataset.originalText;
-        }
-
-        function showMessage(selector, message, type) {
-            const element = $(selector);
-            if (!element) return;
-            element.textContent = message;
-            element.className = "auth-message show " + type;
-        }
-
-        function hideMessage(selector) {
-            const element = $(selector);
-            if (!element) return;
-            element.textContent = "";
-            element.className = "auth-message";
-        }
-
-        function getFriendlyError(error) {
-            const code = String(error?.code || "").toLowerCase();
-            const message = String(error?.message || "").toLowerCase();
-
-            if (code === "email_not_confirmed" || message.includes("email not confirmed")) {
-                return "Please confirm your email before logging in.";
-            }
-            if (code === "invalid_credentials" || message.includes("invalid login credentials")) {
-                return "Incorrect email or password.";
-            }
-            if (
-                code === "user_already_exists" ||
-                message.includes("already registered") ||
-                message.includes("already exists")
-            ) {
-                return "This email is already registered. Please login.";
-            }
-            if (message.includes("captcha")) {
-                return "Security verification failed. Please try again.";
-            }
-            if (message.includes("rate limit")) {
-                return "Too many attempts. Please try again later.";
-            }
-            if (
-                message.includes("failed to fetch") ||
-                message.includes("network") ||
-                message.includes("name_not_resolved")
-            ) {
-                return "Unable to reach the authentication server. Please check your internet connection and try again.";
-            }
-            return error?.message || "Something went wrong. Please try again.";
-        }
-
-        function showLoader(text) {
-            $("#loaderText").textContent = text;
-            $("#loader").hidden = false;
-            document.body.classList.add("locked");
-        }
-
-        function stopLoader() {
-            $("#loader").hidden = true;
-            document.body.classList.remove("locked");
-        }
-
-        function showToast(message, type = "success") {
-            const container = $("#toastContainer");
-            const toast = document.createElement("div");
-            toast.className = "toast " + type;
-            toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => { toast.remove(); }, 3500);
-        }
-
-        function delay(milliseconds) {
-            return new Promise((resolve) => setTimeout(resolve, milliseconds));
-        }
-
-        /* =========================================================
-           TERMS MODAL — Genie open/close from icon
-        ========================================================= */
-
-        function initTermsModal() {
-            const toggle = document.getElementById("pagesToggle");
-            const modal = document.getElementById("pagesModal");
-            const panel = document.getElementById("pagesPanel");
-
-            if (!toggle || !modal || !panel) return;
-
-            let closeTimer = null;
-
-            function computeOrigin() {
-                const panelW = panel.offsetWidth;
-                const panelH = panel.offsetHeight;
-                const panelLeft = (window.innerWidth - panelW) / 2;
-                const panelTop = (window.innerHeight - panelH) / 2;
-
-                const iconRect = toggle.getBoundingClientRect();
-                const iconCX = iconRect.left + iconRect.width / 2;
-                const iconCY = iconRect.top + iconRect.height / 2;
-
-                const originX = iconCX - panelLeft;
-                const originY = iconCY - panelTop;
-
-                panel.style.setProperty("--origin", `${originX}px ${originY}px`);
-            }
-
-            function openModal() {
-                if (modal.classList.contains("open")) return;
-                if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-
-                modal.setAttribute("aria-hidden", "false");
-                void modal.offsetWidth;
-
-                computeOrigin();
-
-                requestAnimationFrame(() => {
-                    modal.classList.add("open");
-                    document.body.classList.add("pages-locked");
-                });
-            }
-
-            function closeModal() {
-                if (!modal.classList.contains("open")) return;
-
-                modal.classList.remove("open");
-                document.body.classList.remove("pages-locked");
-
-                closeTimer = setTimeout(() => {
-                    if (!modal.classList.contains("open")) {
-                        modal.setAttribute("aria-hidden", "true");
-                    }
-                    closeTimer = null;
-                }, 650);
-            }
-
-            window.addEventListener("resize", () => {
-                if (modal.classList.contains("open")) computeOrigin();
-            });
-
-            toggle.addEventListener("click", (e) => {
-                e.preventDefault();
-                openModal();
-            });
-
-            document.querySelectorAll("[data-pages-close]").forEach((el) => {
-                el.addEventListener("click", closeModal);
-            });
-
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape" && modal.classList.contains("open")) {
-                    closeModal();
-                }
-            });
-        }
-
-        window.addEventListener("pageshow", () => {
-            state.redirectInProgress = false;
+          }
         });
 
-    </script>
+        if (error) throw error;
+
+        if (data?.user && !data?.session) {
+          showMessage(
+            "#registerMessage",
+            "Account created. Please check your email and confirm your account before logging in.",
+            "success"
+          );
+          $("#registerForm").reset();
+          resetRegisterTurnstile();
+          return;
+        }
+
+        if (data?.user) {
+          state.currentUser = data.user;
+          await routeAuthenticatedUser();
+        }
+
+      } catch (error) {
+        console.error("REGISTER ERROR:", error);
+        resetRegisterTurnstile();
+        showMessage("#registerMessage", getFriendlyError(error), "error");
+      } finally {
+        resetButton(button, "Create Account");
+      }
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+      if (state.redirectInProgress) return;
+
+      const button = $("#loginSubmitBtn");
+      const email = normalizeEmail($("#loginEmail").value);
+      const password = $("#loginPassword").value;
+      const captchaToken = state.loginToken;
+
+      hideMessage("#loginMessage");
+
+      if (!isValidEmail(email)) {
+        showMessage("#loginMessage", "Please enter a valid email address.", "error");
+        return;
+      }
+      if (!password) {
+        showMessage("#loginMessage", "Please enter your password.", "error");
+        return;
+      }
+      if (!captchaToken) {
+        showMessage("#loginMessage", "Please complete the security verification.", "error");
+        return;
+      }
+
+      setButtonLoading(button, "Signing in...");
+
+      try {
+        const { data, error } = await state.supabase.auth.signInWithPassword({
+          email,
+          password,
+          options: { captchaToken }
+        });
+
+        resetLoginTurnstile();
+
+        if (error) throw error;
+        if (!data?.user) throw new Error("Login did not return a valid user.");
+
+        state.currentUser = data.user;
+        await routeAuthenticatedUser();
+
+      } catch (error) {
+        console.error("LOGIN ERROR:", error);
+        resetLoginTurnstile();
+        showMessage("#loginMessage", getFriendlyError(error), "error");
+      } finally {
+        resetButton(button, "Login");
+      }
+    }
+
+    async function routeAuthenticatedUser() {
+      if (state.redirectInProgress) return;
+      state.redirectInProgress = true;
+
+      try {
+        showLoader("Verifying account role...");
+
+        const { data, error } = await state.supabase.auth.getUser();
+        if (error) throw error;
+        if (!data?.user) throw new Error("Authenticated user could not be verified.");
+
+        state.currentUser = data.user;
+
+        const { data: profile, error: profileError } = await state.supabase
+          .from(CONFIG.PROFILE_TABLE)
+          .select("role, gate_number")
+          .eq("id", data.user.id)
+          .maybeSingle();
+
+        if (profileError) throw profileError;
+        if (!profile) {
+          throw new Error("Your account role could not be verified. Please contact the administrator.");
+        }
+
+        const role = String(profile.role || "").trim().toLowerCase();
+
+        if (role === "participant") { redirectTo(CONFIG.PARTICIPANT_PAGE); return; }
+        if (role === "admin") { redirectTo(CONFIG.ADMIN_PAGE); return; }
+        if (role === "gate") { redirectTo(CONFIG.GATE_PAGE); return; }
+
+        await state.supabase.auth.signOut();
+        state.currentUser = null;
+        throw new Error("Your account has an invalid or unauthorized role.");
+
+      } catch (error) {
+        state.redirectInProgress = false;
+        stopLoader();
+        console.error("ROLE ROUTING ERROR:", error);
+        showToast(getFriendlyError(error), "error");
+        openLanding();
+      }
+    }
+
+    function redirectTo(path) { window.location.replace(path); }
+
+    async function logout() {
+      try {
+        showLoader("Signing out securely...");
+        if (state.supabase) await state.supabase.auth.signOut();
+      } catch (error) {
+        console.error("LOGOUT ERROR:", error);
+      } finally {
+        window.location.replace("/index.html");
+      }
+    }
+
+    function togglePassword(id, button) {
+      const input = document.getElementById(id);
+      if (!input) return;
+      const hidden = input.type === "password";
+      input.type = hidden ? "text" : "password";
+      button.textContent = hidden ? "◌" : "◉";
+    }
+
+    function normalizeEmail(value) {
+      return String(value || "").trim().toLowerCase().slice(0, CONFIG.MAX_EMAIL_LENGTH);
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function cleanName(value) {
+      return String(value || "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, CONFIG.MAX_NAME_LENGTH);
+    }
+
+    function setButtonLoading(button, text) {
+      if (!button) return;
+      if (!button.dataset.originalText) button.dataset.originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = text;
+    }
+
+    function resetButton(button, fallback) {
+      if (!button) return;
+      button.disabled = false;
+      button.textContent = button.dataset.originalText || fallback;
+      delete button.dataset.originalText;
+    }
+
+    function showMessage(selector, message, type) {
+      const element = $(selector);
+      if (!element) return;
+      element.textContent = message;
+      element.className = "auth-message show " + type;
+    }
+
+    function hideMessage(selector) {
+      const element = $(selector);
+      if (!element) return;
+      element.textContent = "";
+      element.className = "auth-message";
+    }
+
+    function getFriendlyError(error) {
+      const code = String(error?.code || "").toLowerCase();
+      const message = String(error?.message || "").toLowerCase();
+
+      if (code === "email_not_confirmed" || message.includes("email not confirmed")) {
+        return "Please confirm your email before logging in.";
+      }
+      if (code === "invalid_credentials" || message.includes("invalid login credentials")) {
+        return "Incorrect email or password.";
+      }
+      if (
+        code === "user_already_exists" ||
+        message.includes("already registered") ||
+        message.includes("already exists")
+      ) {
+        return "This email is already registered. Please login.";
+      }
+      if (message.includes("captcha")) {
+        return "Security verification failed. Please try again.";
+      }
+      if (message.includes("rate limit")) {
+        return "Too many attempts. Please try again later.";
+      }
+      if (
+        message.includes("failed to fetch") ||
+        message.includes("network") ||
+        message.includes("name_not_resolved")
+      ) {
+        return "Unable to reach the authentication server. Please check your internet connection and try again.";
+      }
+      return error?.message || "Something went wrong. Please try again.";
+    }
+
+    function showLoader(text) {
+      $("#loaderText").textContent = text;
+      $("#loader").hidden = false;
+      document.body.classList.add("locked");
+    }
+
+    function stopLoader() {
+      $("#loader").hidden = true;
+      document.body.classList.remove("locked");
+    }
+
+    function showToast(message, type = "success") {
+      const container = $("#toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast " + type;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 3500);
+    }
+
+    function delay(milliseconds) {
+      return new Promise((resolve) => setTimeout(resolve, milliseconds));
+    }
+
+    /* =========================================================
+       TERMS MODAL — Genie open/close from icon
+    ========================================================= */
+
+    function initTermsModal() {
+      const toggle = document.getElementById("pagesToggle");
+      const modal = document.getElementById("pagesModal");
+      const panel = document.getElementById("pagesPanel");
+
+      if (!toggle || !modal || !panel) return;
+
+      let closeTimer = null;
+
+      function computeOrigin() {
+        const panelW = panel.offsetWidth;
+        const panelH = panel.offsetHeight;
+        const panelLeft = (window.innerWidth - panelW) / 2;
+        const panelTop = (window.innerHeight - panelH) / 2;
+
+        const iconRect = toggle.getBoundingClientRect();
+        const iconCX = iconRect.left + iconRect.width / 2;
+        const iconCY = iconRect.top + iconRect.height / 2;
+
+        const originX = iconCX - panelLeft;
+        const originY = iconCY - panelTop;
+
+        panel.style.setProperty("--origin", `${originX}px ${originY}px`);
+      }
+
+      function openModal() {
+        if (modal.classList.contains("open")) return;
+        if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+
+        modal.setAttribute("aria-hidden", "false");
+        void modal.offsetWidth;
+
+        computeOrigin();
+
+        requestAnimationFrame(() => {
+          modal.classList.add("open");
+          document.body.classList.add("pages-locked");
+        });
+      }
+
+      function closeModal() {
+        if (!modal.classList.contains("open")) return;
+
+        modal.classList.remove("open");
+        document.body.classList.remove("pages-locked");
+
+        closeTimer = setTimeout(() => {
+          if (!modal.classList.contains("open")) {
+            modal.setAttribute("aria-hidden", "true");
+          }
+          closeTimer = null;
+        }, 650);
+      }
+
+      window.addEventListener("resize", () => {
+        if (modal.classList.contains("open")) computeOrigin();
+      });
+
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal();
+      });
+
+      document.querySelectorAll("[data-pages-close]").forEach((el) => {
+        el.addEventListener("click", closeModal);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("open")) {
+          closeModal();
+        }
+      });
+    }
+
+    window.addEventListener("pageshow", () => {
+      state.redirectInProgress = false;
+    });
+
+  </script>
 
 </body>
 
