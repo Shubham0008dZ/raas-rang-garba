@@ -1338,6 +1338,7 @@
       };
 
       const registrations = (rpcData.registrations || []).map((r) => ({
+        registration_status: String(r.reg_status || "").toLowerCase(),
         id: r.id,
         registration_code: r.registration_code,
         name: r.name,
@@ -1468,7 +1469,9 @@
         <td><span class="primary-text">${amount ? "₹" + amount : "—"}</span></td>
         <td>${statusBadge(paymentStatus)}</td>
         <td><span class="secondary-text">${escapeHtml(utr)}</span></td>
-<td>${qrBadge(qrStatus, paymentStatus)}</td>
+        
+<td>${qrBadge(qrStatus, paymentStatus, registration.registration_status)}</td>
+
         <td><span class="secondary-text">${escapeHtml(createdAt)}</span></td>
         <td>
           <div class="action-row">
