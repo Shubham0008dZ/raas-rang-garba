@@ -1494,13 +1494,31 @@
       return `<span class="status pending">● Awaiting Verification</span>`;
     }
 
-    function qrBadge(status, paymentStatus) {
-      if (status === "active") return `<span class="status active">● QR Active</span>`;
-      if (status === "used") return `<span class="status used">● Checked In</span>`;
-      if (status === "revoked") return `<span class="status rejected">● Revoked</span>`;
-      if (paymentStatus === "rejected") return `<span class="status rejected">● Payment Rejected</span>`;
-      return `<span class="status pending">● Permission Pending</span>`;
-    }
+function qrBadge(status, paymentStatus, registrationStatus = "") {
+  if (status === "active") {
+    return `<span class="status active">● QR Active</span>`;
+  }
+
+  if (status === "used") {
+    return `<span class="status used">● Checked In</span>`;
+  }
+
+  if (status === "revoked") {
+    return `<span class="status rejected">● Revoked</span>`;
+  }
+
+  // Backend check-in: registration checked in,
+  // but no QR row is available for the badge.
+  if (registrationStatus === "checked_in") {
+    return `<span class="status used">● Checked In (Backend)</span>`;
+  }
+
+  if (paymentStatus === "rejected") {
+    return `<span class="status rejected">● Payment Rejected</span>`;
+  }
+
+  return `<span class="status pending">● Permission Pending</span>`;
+}
 
     /* ======================================================
        REVIEW DRAWER
